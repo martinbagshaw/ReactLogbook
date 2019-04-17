@@ -6,9 +6,8 @@
   "scripts": {
     "test": "jest workshop --watch --noStackTrace",
     "dev": "parcel src/index.html",
-    "prepublish": "npm run build",
-    "lint": "eslint src/",
-    "flow": "flow"
+    "build": "parcel build src/index.html",
+    "lint": "eslint src/"
   },
   "keywords": [],
   "author": "",
@@ -32,15 +31,12 @@
     "@babel/preset-react": "^7.0.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.1",
-    "babel-preset-flow": "^6.23.0",
     "eslint": "^5.13.0",
     "eslint-config-prettier": "^4.0.0",
     "eslint-config-react-minimal": "^1.0.0",
-    "eslint-plugin-flowtype": "^3.4.2",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
-    "flow-bin": "^0.94.0",
     "jest": "^24.0.0",
     "parcel-bundler": "^1.11.0",
     "prettier": "^1.16.4",

@@ -2,8 +2,10 @@ import React from "react";
 // styles
 import { AppContainer } from "../styles/mainView";
 
-// import data
+// import data (from file)
 import climbData from "../../data/mb-logbook.json";
+import { formatData } from "../../utils/formatData";
+const allClimbs = formatData(climbData);
 // import { climbData } from "../../data/getData"; // API version
 
 // import and combine all components here
@@ -14,7 +16,6 @@ import LargeResult from "../LargeResult/LargeResult";
 
 class App extends React.Component {
   state = {
-    climbs: [],
     matchingClimbs: [],
     matchingResult: "",
     favouriteClimbs: [],
@@ -23,29 +24,43 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    // change format of data
-    const newData = climbData.map(item => {
-      return {
-        climbName: item["Climb name"],
-        cragName: item["Crag name"],
-        date: item.Date,
-        grade: item.Grade,
-        notes: item.Notes,
-        partners: item["Partner(s)"],
-        style: item.Style,
-      };
-    });
-
-    this.setState({ climbs: newData });
-    // climbData().then(data => {
-    //   this.setState({ climbs: data });
-    // });
+    // don't need to add all climbs to state, just suggestions
+    // api call would happen here, if there was one
   }
+
+  // do some planning first
+  // - although i want suggestions in state, I also want to add extra information to any climb entry
+  // - LargeResult may be a class component with its own methods - onChange to take notes, for example
+  // --- this will affect state higher up, perhaps?
+  // - if unchecked as fav or mem, notes currently lost
+  // - fav, mem, has notes, back to suggestions
+  // - click item, show in searchbar, hide others, show more detailed single view
+  // 1. make autosuggest one function
+  // 2. simpler look of suggestions
+  // 3. click behaviour
+
+  // formidable thing:
+  // - text input
+  // handleOnChange = e => {
+  //   const inputVal = e.target.value.toLowerCase();
+
+  //   // convert cars to lowercase
+  //   const cars = this.props.list.map(item => item.toLowerCase());
+  //   // get suggestions from list
+  //   const suggestions = cars.filter(car => car.startsWith(inputVal));
+  //   // const boldSuggestions = cars.map(car => car.replace(inputVal, `<strong>${inputVal}</strong>`))
+
+  //   this.setState({
+  //     active: inputVal.length > 0,
+  //     inputVal: e.target.value,
+  //     suggestions,
+  //   });
+  // };
 
   // push an array of matching climbs to state
   searchClimbs = e => {
-    if (this.state.climbs.length > 0) {
-      const matchArray = this.findMatches(e.target.value, this.state.climbs);
+    if (allClimbs.length > 0) {
+      const matchArray = this.findMatches(e.target.value, allClimbs);
       this.setState({ matchingClimbs: matchArray });
     }
   };

@@ -9,34 +9,61 @@ An SPA (Single Page Application) implementation of my climbing logbook, taken fr
 2. `npm install`
 3. `npm run dev` to run in development mode. View at [http://localhost:1234/](http://localhost:1234/)
 4. `npm t` to run tests with jest and react testing library
-5. `npm run flow` to check for static types. Files with `// @flow` at the top use static types
+
+### Mockup
+> A draft of user flow through the app, and a rudimentary UI
+![climbing logbook app](./logbook-stats-mockup.jpg "stats view mockup")
 
 ### Stack
+> Things I intend to use
 
 | **Category**           | **Technology**                                                                            |
 |------------------------|-------------------------------------------------------------------------------------------|
 | Languages              | JavaScript, HTML, CSS                                                                     |
-| Frameworks & Libraries | React, React DOM, React Router DOM, Styled Components, Flow                               |
+| Frameworks & Libraries | React, React DOM, React Router DOM, Styled Components, D3                                 |
 | Testing                | Jest, React Testing Library                                                               |
-| Dev Tools / Other      | Parcel, Github, Netlify                                                                   |
+| Dev Tools / Other      | Parcel, Github                                                                            |
 | Quality Assurance      | Es-lint, Prettier                                                                         |
 
 
-### Todo
-- change a load of the code over before testing further, this will make proper testing achieveable
+### New Things I intend to use (That I haven't used before April 2019)
+- React Hooks
+- D3
+- MongoDB (perhaps). Alternative to localStorage
 
+
+### Todo
+1. Create a Mockup (above).
+    - Previously a search engine.
+    - To get cracking with D3 and Hooks, I could crunch some user data after it has loaded, and make charts from it
+    - Start with an overview of the user's stats
+2. Prioritise Hooks and D3
+
+
+- Implement D3 for data visualisation
+    - here is where the filtering comes in...
+    - grouping user info would be nice to show, e.g...
+        - average grade, grade groups
+        - most climbed at crags
+        - ascents by year / month / day
+        - max grades
+        - ascents by discipline
+
+- A more efficient autocomplete (than currently implemented)
+    - currently renders loads of html
+    - could try a datalist
+    - could show suggestions after minimum number of characters entered
+
+- Save information on logs
+    - favourite routes (star)
+    - memorable routes (star + add note)
+    - probably do this through localStorage, could try out MongoDB too
+
+- Routing for logs
+    - _will this add to the experience?_ Need more than date and route name, as same route can be climbed 2x in a day
 
 - Tests
-  - routes
-  - button click behavior
-  - rendering
-- React Hooks
-- Styled components
-- Persisting state (how best to do this?)
-- A more efficient autocomplete (than currently implemented)
-- Use Flow for static typing
-
-### New Things I used
-- Flow for static types
-- Styled Components
-- Proper Integration tests with Jest and React Testing Library
+    - rendering on mount
+    - rendering after interaction
+    - routing
+    - integration
