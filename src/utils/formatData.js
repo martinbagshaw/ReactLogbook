@@ -1,6 +1,6 @@
 // change format of climbs data
 export const formatData = rawData => {
-  return rawData.map(item => {
+  return rawData.map((item, index) => {
     return {
       climbName: item["Climb name"],
       cragName: item["Crag name"],
@@ -9,6 +9,7 @@ export const formatData = rawData => {
       notes: item.Notes,
       partners: item["Partner(s)"],
       style: item.Style,
+      key: `item-${index}`,
     };
   });
 };

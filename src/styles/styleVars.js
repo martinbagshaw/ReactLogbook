@@ -8,6 +8,7 @@ const styleVars = {
     oliveGreen: "7ca840",
   },
   spacing: {
+    xSmall: "0.125rem",
     small: "0.25rem",
     med: "0.5rem",
     large: "1rem",

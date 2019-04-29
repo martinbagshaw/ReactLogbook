@@ -1,7 +1,7 @@
 import React from "react";
 
 // import and combine all components here
-import ListButton from "../Buttons/ListButton";
+import ListButton from "./Buttons/ListButton";
 
 // get list styles
 import { ButtonContainer } from "../styles/mainView";

@@ -4,6 +4,68 @@ import styleVars from "./styleVars";
 
 const { colors, spacing, fonts, fontSize, fontWeight, boxShadow } = styleVars;
 
+const BaseStyle = styled.div`
+  margin: 0;
+  font-family: ${fonts.main};
+  font-size: ${fontSize.small};
+  line-height: 1.4;
+`;
+
+const HeaderStyle = styled.header`
+  background-color: ${colors.white};
+  border-bottom: ${spacing.xSmall} solid ${colors.midGrey};
+  > div {
+    max-width: 50rem;
+    margin: 0 auto;
+    display: flex;
+  }
+  button {
+    margin: 0;
+    padding: ${spacing.xLarge} 0;
+    border: 0;
+    box-shadow: 0;
+    cursor: pointer;
+    width: 50%;
+    font-family: ${fonts.main};
+    font-size: ${fontSize.small};
+    border-bottom: ${spacing.small} solid transparent;
+    transition: all ease-in-out 0.3s;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      background-color: ${colors.lightGrey};
+      border-bottom-color: ${colors.red};
+    }
+  }
+`;
+
+const ContainerStyle = styled.div`
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: ${spacing.xLarge} 0;
+  > section {
+    display: block;
+    padding-bottom: ${spacing.xLarge};
+    margin-bottom: ${spacing.xLarge};
+    border-bottom: ${spacing.xSmall} solid ${colors.midGrey};
+  }
+`;
+
+const UlStyle = styled.ul`
+  margin-top: ${spacing.large};
+`;
+
+const LiStyle = styled.li`
+  margin-top: ${spacing.small};
+  padding-top: ${spacing.small};
+  border-top: ${spacing.xSmall} solid ${colors.midGrey};
+  > span {
+    font-weight ${fontWeight.med};
+    margin-left: ${spacing.med};
+  }
+`;
+
 // main view elements
 // 1. app
 // 2. search bar
@@ -11,15 +73,6 @@ const { colors, spacing, fonts, fontSize, fontWeight, boxShadow } = styleVars;
 // 4. unordered list
 
 // 1.
-const AppContainer = styled.div`
-  display: block;
-  margin: ${spacing.xLarge} auto;
-  max-width: 50rem;
-  font-family: ${fonts.main};
-  font-size: ${fontSize.small};
-  line-height: 1.4;
-`;
-
 // 2.
 const SearchContainer = styled.input`
   list-style: none;
@@ -116,4 +169,13 @@ const ListContainer = styled.ul`
   }
 `;
 
-export { AppContainer, SearchContainer, ButtonContainer, ListContainer };
+export {
+  BaseStyle,
+  HeaderStyle,
+  ContainerStyle,
+  UlStyle,
+  LiStyle,
+  SearchContainer,
+  ButtonContainer,
+  ListContainer,
+};

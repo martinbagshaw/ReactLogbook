@@ -10,12 +10,8 @@ An SPA (Single Page Application) implementation of my climbing logbook, taken fr
 3. `npm run dev` to run in development mode. View at [http://localhost:1234/](http://localhost:1234/)
 4. `npm t` to run tests with jest and react testing library
 
-### Mockup
-> A draft of user flow through the app, and a rudimentary UI
-![climbing logbook app](./logbook-stats-mockup.jpg "stats view mockup")
-
 ### Stack
-> Things I intend to use
+> Things I am, or are intending to use in this project
 
 | **Category**           | **Technology**                                                                            |
 |------------------------|-------------------------------------------------------------------------------------------|
@@ -23,47 +19,56 @@ An SPA (Single Page Application) implementation of my climbing logbook, taken fr
 | Frameworks & Libraries | React, React DOM, React Router DOM, Styled Components, D3                                 |
 | Testing                | Jest, React Testing Library                                                               |
 | Dev Tools / Other      | Parcel, Github                                                                            |
-| Quality Assurance      | Es-lint, Prettier                                                                         |
+| Quality Assurance      | Es-lint, Prettier, Flow                                                                   |
 
 
 ### New Things I intend to use (That I haven't used before April 2019)
-- React Hooks
-- D3
+- React Hooks and Context
+- A Redux - like single source state management implementation using Hooks and Context
+- D3 - data visualisation library
 - MongoDB (perhaps). Alternative to localStorage
+- PropTypes - static types for props and state
 
+### UI Mockups
+> A draft of user flow through the app, and a rudimentary UI
+![climbing logbook app](./logbook-stats-mockup.jpg "stats view mockup")
 
 ### Todo
-1. Create a Mockup (above).
-    - Previously a search engine.
-    - To get cracking with D3 and Hooks, I could crunch some user data after it has loaded, and make charts from it
-    - Start with an overview of the user's stats
-2. Prioritise Hooks and D3
+1. Create Mockups:
+    - UI Design - (see paper sketches)
+        - Start with an overview of the user's stats - charts etc.
+        - Next, draw out the logbook UI - list of climbs, and individual entries
 
+2. Data flow chart
+    - Do this before doing much more coding, but bear in mind that it will change as my understanding improves
+    - What data is global, and can exist outside of state? *climbs data*
+    - What state needs to be available for the whole application? *favourite and memorable routes*
+    - What state can be local to a component, and does not need to be shared
 
-- Implement D3 for data visualisation
-    - here is where the filtering comes in...
-    - grouping user info would be nice to show, e.g...
+3. D3 for data visualisation
+    - This will be prevalent in the charts view
+    - Suggestions for information to visualise include:
         - average grade, grade groups
         - most climbed at crags
         - ascents by year / month / day
         - max grades
         - ascents by discipline
 
-- A more efficient autocomplete (than currently implemented)
-    - currently renders loads of html
-    - could try a datalist
-    - could show suggestions after minimum number of characters entered
+4. A more efficient autocomplete (than previously implemented)
+    - Avoid re-rendering loads of html every time the user performs a search
+        - Perhaps implement a better searching algorith - *natural sort?*
+        - Show suggestions only after x number of characters have been input
+        - Perhaps a React Autocomplete module can do this better?
+    - In terms of HTML, perhaps implement as a *datalist?*
 
-- Save information on logs
-    - favourite routes (star)
-    - memorable routes (star + add note)
-    - probably do this through localStorage, could try out MongoDB too
+5. Save information on logs
+    - Favourite Routes :hearts:
+    - Memorable Days :blue_book:
+    - Make this information persist somehow
 
-- Routing for logs
-    - _will this add to the experience?_ Need more than date and route name, as same route can be climbed 2x in a day
+6. Routing:
+    - Perhaps show a route (as in the type in the address bar, as opposed to a way up a piece of rock!) for a logbook entry
+    - _Will this add to the experience?_ More than a date and route name are required here, as the same route can be climbed multiple times in a day. Could give a long or a meaningless url. It will make the application architecture more interesting / complex though
 
-- Tests
-    - rendering on mount
-    - rendering after interaction
-    - routing
-    - integration
+7. CI
+    - Set up a CI Pipeline
