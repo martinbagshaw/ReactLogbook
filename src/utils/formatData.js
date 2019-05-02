@@ -1,4 +1,6 @@
 // change format of climbs data
+// - make id relate to entry in logbook order
+// const key = (i, data) => data.length - i;
 export const formatData = rawData => {
   return rawData.map((item, index) => {
     return {
@@ -9,7 +11,7 @@ export const formatData = rawData => {
       notes: item.Notes,
       partners: item["Partner(s)"],
       style: item.Style,
-      key: `item-${index}`,
+      key: `ascent-${index}`,
     };
   });
 };

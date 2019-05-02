@@ -10,7 +10,9 @@ import { BaseStyle, HeaderStyle } from "../styles/mainView";
 
 // Data - from file
 import climbData from "../data/mb-logbook.json";
+// combine utils in an index.js
 import { formatData } from "../utils/formatData";
+// load all logs, or just an initial portfio?
 const allLogs = formatData(climbData);
 
 // Components
