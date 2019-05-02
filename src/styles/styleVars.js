@@ -4,6 +4,7 @@ const styleVars = {
     lightGrey: "#f7f7f7",
     midGrey: "#D8D8D8",
     red: "tomato",
+    darkRed: "#ce442b",
     black: "black",
     oliveGreen: "7ca840",
   },

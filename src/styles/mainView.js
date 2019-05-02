@@ -66,6 +66,37 @@ const LiStyle = styled.li`
   }
 `;
 
+const BtnContainerStyle = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: ${spacing.large};
+`;
+const BtnStyle = styled.button`
+  margin-right: ${spacing.large};
+  
+  display: flex;
+  align-items: center;
+  border: 0;
+  ${props => (props.text === "prev" ? `padding-right: ${spacing.large} ` : "")};
+  ${props => (props.text === "next" ? `padding-left: ${spacing.large} ` : "")};
+  line-height: 1;
+  font-size: ${fontSize.small}
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+  border-radius: ${spacing.small};
+  background-color: ${colors.red};
+  color: ${colors.white};
+  &:focus,
+  &:hover {
+    outline: none;
+    background-color: ${colors.darkRed};
+  }
+  svg {
+    fill: ${colors.white};
+  }
+
+`;
+
 // main view elements
 // 1. app
 // 2. search bar
@@ -175,6 +206,8 @@ export {
   ContainerStyle,
   UlStyle,
   LiStyle,
+  BtnContainerStyle,
+  BtnStyle,
   SearchContainer,
   ButtonContainer,
   ListContainer,
