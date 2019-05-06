@@ -32,13 +32,17 @@ An SPA (Single Page Application) implementation of my climbing logbook, taken fr
 > Drafts of the UI - something resembling how the finished product may look
 
 ![climbing logbook app](./logbook-stats-mockup.jpg "stats view mockup")
-...Add a figma mockup as well
+
+[...The Figma Mockup can be found here](https://www.figma.com/file/fErHEaT4Gk2u3kCLaTTOsjay/React-Logbook)
 
 ### Data Flow
-> Flow of data through the app - how data and state interact
+> Flow of data through the app - how data, state, and components may interact
 
-...Will add this when I have a better idea
+> **Disclaimer:** somewhat naive at the moment, probably
+
+![data flow mockup](./react-logbook-dataflow.jpg "data flow")
 
 ### Todo List :heavy_check_mark:
 > A non- exhaustive, and regularly iterated on todo list can be [found here on HackMD](https://hackmd.io/Y3lQWBxjRQio8KjlLFEZaw)
+
 > Will include trials and tribulations, and notes to help me along the way
