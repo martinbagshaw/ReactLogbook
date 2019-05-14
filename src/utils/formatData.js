@@ -7,10 +7,10 @@ export const formatData = rawData => {
       climbName: item["Climb name"],
       cragName: item["Crag name"],
       date: item.Date,
-      grade: item.Grade,
+      grade: `${item.Grade}`.replace(/\*+$/, "").trim(),
       notes: item.Notes,
       partners: item["Partner(s)"],
-      style: item.Style,
+      style: `${item.Style}`.replace(/&beta;|_/, "flash"),
       key: `ascent-${index}`,
     };
   });

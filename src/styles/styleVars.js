@@ -1,20 +1,5 @@
 const styleVars = {
-  colors: {
-    white: "white",
-    lightGrey: "#f7f7f7",
-    midGrey: "#D8D8D8",
-    red: "tomato",
-    darkRed: "#ce442b",
-    black: "black",
-    oliveGreen: "7ca840",
-  },
-  spacing: {
-    xSmall: "0.125rem",
-    small: "0.25rem",
-    med: "0.5rem",
-    large: "1rem",
-    xLarge: "2rem",
-  },
+  // fonts
   fonts: {
     main: "'Raleway', sans-serif",
   },
@@ -27,13 +12,34 @@ const styleVars = {
     xLarge: "3rem",
   },
   fontWeight: {
-    light: "400",
-    med: "600",
-    bold: "700",
+    reg: "400",
+    med: "500",
+    bold: "600",
   },
+  // colors
+  colors: {
+    white: "white",
+    black: "black",
+    lightGrey: "#f7f7f7",
+    midGrey: "#d8d8d8",
+    red: "tomato",
+    lightRed: "#ffddd7",
+    darkRed: "#ce442b",
+    lightBlue: "#cde7ff",
+    midBlue: "#5aa9f2",
+    oliveGreen: "#7ca840",
+  },
+  // spacing
+  spacing: {
+    xSmall: "0.125rem",
+    small: "0.175rem",
+    med: "0.5rem",
+    large: "1rem",
+    xLarge: "2rem",
+  },
+  // shadows
   boxShadow: {
     top: "0 0 1rem rgba(0, 0, 0, 0.14)",
-    red: "0 0 1rem rgba(255, 99, 71, 0.42)",
     inset: "0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19)",
   },
 };
