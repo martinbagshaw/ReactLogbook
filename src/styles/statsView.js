@@ -1,4 +1,3 @@
-// get variables
 import styled from "styled-components";
 import styleVars from "./styleVars";
 

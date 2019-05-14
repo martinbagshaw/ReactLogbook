@@ -1,5 +1,7 @@
 /* App Component
-- entry point, contains main nav and main view
+- entry point
+- contains logbook, stats and menu
+- probably doesn't need to connect to the global store
 */
 
 // React and Hooks
@@ -8,12 +10,10 @@ import React, { useState } from "react";
 // Styles
 import { BaseStyle, HeaderStyle } from "../styles/mainView";
 
-// Data - from file
+// Data
 import climbData from "../data/mb-logbook.json";
-// combine utils in an index.js
 import { formatData } from "../utils/formatData";
-// load all logs, or just an initial portfio?
-const allLogs = formatData(climbData);
+const allLogs = formatData(climbData); // load all logs, or just an initial portion?
 
 // Components
 import Stats from "./Stats";
@@ -31,10 +31,12 @@ export default function App() {
   return (
     <BaseStyle>
       <HeaderStyle>
-        <div>
-          <button onClick={handleViewChange}>Stats</button>
-          <button onClick={handleViewChange}>Logbook</button>
-        </div>
+        <button onClick={handleViewChange} className={view === "Stats" ? "active" : ""}>
+          <span>Stats</span>
+        </button>
+        <button onClick={handleViewChange} className={view === "Logbook" ? "active" : ""}>
+          <span>Logbook</span>
+        </button>
       </HeaderStyle>
       {view === "Stats" && <Stats />}
       {view === "Logbook" && <Logbook logs={allLogs} />}
