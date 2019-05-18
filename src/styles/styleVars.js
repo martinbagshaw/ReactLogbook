@@ -22,11 +22,15 @@ const styleVars = {
     black: "black",
     lightGrey: "#f7f7f7",
     midGrey: "#d8d8d8",
+    darkGrey: "#888888",
+    yellow: "#fed605",
+    lightYellow: "#fff3b5",
     red: "tomato",
     lightRed: "#ffddd7",
     darkRed: "#ce442b",
     lightBlue: "#cde7ff",
     midBlue: "#5aa9f2",
+    green: "#70bf44",
     oliveGreen: "#7ca840",
   },
   // spacing
@@ -39,7 +43,7 @@ const styleVars = {
   },
   // shadows
   boxShadow: {
-    top: "0 0 1rem rgba(0, 0, 0, 0.14)",
+    top: "0 0 1rem rgba(0, 0, 0, 0.33)",
     inset: "0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19)",
   },
 };

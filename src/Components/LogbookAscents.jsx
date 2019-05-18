@@ -1,15 +1,17 @@
 import React from "react";
 import { ListStyle, ListButton } from "../styles/logbookListStyle";
 
-export const LogbookAscents = ({ logs, low, high }) => {
+export const LogbookAscents = ({ logs, low, high, onClick }) => {
   return (
     <ListStyle>
       {logs.slice(low, high).map(log => (
         <li key={log.key}>
-          <ListButton>
-            <span>{log.climbName}</span>{" "}
+          <ListButton onClick={() => onClick(log.key)}>
             <span>
-              {log.grade}, {log.style} - {log.cragName}
+              <strong>{log.climbName}</strong> - {log.grade}
+            </span>{" "}
+            <span>
+              {log.style} - {log.cragName}
             </span>
             <span>
               {log.date}

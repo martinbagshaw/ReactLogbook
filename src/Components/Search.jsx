@@ -8,9 +8,8 @@ import {
 } from "../styles/searchStyle";
 
 // TODO:
-// - utility function to abbreviate text (fit on one line)
-// - onClick display single result
-export const Search = ({ placeholder, searchTerm, results, onChange }) => {
+// - onUnfocus reset search
+export const Search = ({ placeholder, searchTerm, results, onChange, disabled }) => {
   return (
     <SearchStyle>
       <LabelStyle htmlFor="search-ascents">{placeholder}</LabelStyle>
@@ -20,6 +19,7 @@ export const Search = ({ placeholder, searchTerm, results, onChange }) => {
         placeholder={placeholder}
         value={searchTerm}
         onChange={onChange}
+        disabled={disabled}
       />
 
       {results && (

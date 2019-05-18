@@ -33,18 +33,20 @@ const ListButton = styled.button`
   }
   span:nth-child(1) {
     margin-right: ${spacing.large};
-    font-weight: ${fontWeight.med};
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    flex: 2;
+    flex: 3;
+    strong {
+      font-weight: ${fontWeight.med};
+    }
   }
   span:nth-child(2) {
     margin-right: ${spacing.large};
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    flex: 3;
+    flex: 2;
   }
   span:nth-child(3) {
     margin-left: ${spacing.large};
@@ -54,7 +56,11 @@ const ListButton = styled.button`
     align-items: center;
   }
   svg {
-    align-self: flex-end;
+    fill: transparent;
+    transition: all ease-in-out 0.3s;
+  }
+  &:hover svg {
+    fill: ${colors.black};
   }
 `;
 

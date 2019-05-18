@@ -28,20 +28,33 @@ const SearchBarStyle = styled.input`
   font-size: ${fontSize.large};
   font-weight: ${fontWeight.med};
   border: 0;
-  border-bottom: ${spacing.small} solid ${colors.midGrey};
-  color: ${colors.midGrey};
   text-align: center;
-  outline: 0;
-  transition: 1s;
+  transition: all ease-in-out 0.5s;
+  border-bottom: ${spacing.small} solid ${colors.darkGrey};
+  color: ${colors.darkGrey};
+  &::placeholder {
+    color: ${colors.darkGrey};
+  }
   &:focus {
-    border-bottom: ${spacing.small} solid ${colors.black};
+    outline: 0;
+    border-bottom-color: ${colors.black};
     color: ${colors.black};
+  }
+  &:disabled {
+    border-bottom-color: ${colors.midGrey};
+    color: ${colors.midGrey};
+    cursor: not-allowed;
+    &::placeholder {
+      color: ${colors.midGrey};
+    }
   }
 `;
 
 const SearchList = styled.ul`
   position: absolute;
   width: 100%;
+  max-height: 65vh;
+  overflow-y: scroll;
   box-shadow: ${boxShadow.top};
 `;
 

@@ -17,7 +17,7 @@ An SPA (Single Page Application) implementation of my climbing logbook, taken fr
 | Frameworks & Libraries | React, React DOM, React Router DOM, Styled Components, D3                                 |
 | Testing                | Jest, React Testing Library                                                               |
 | Bundler                | Parcel                                                                                    |
-| Quality Assurance      | Es-lint, Prettier, PropTypes, Travis                                                      |
+| Quality Assurance      | Es-lint, Prettier, Flow     , Travis                                                      |
 
 
 ### New things (that I haven't used before April 2019) :hatching_chick:

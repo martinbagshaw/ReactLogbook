@@ -21,6 +21,7 @@ import { Logbook } from "./Logbook";
 
 export default function App() {
   // handle view loading
+  // - refactor into a custom hook perhaps - see Logbook.jsx
   const [view, setView] = useState("Stats");
 
   // should this be useEffect? - e.target is a dom thing
