@@ -12,28 +12,31 @@ const BaseStyle = styled.div`
 `;
 
 const HeaderStyle = styled.header`
+  display: flex;
   button {
-    margin: 0;
-    padding: ${spacing.xLarge};
-    box-shadow: 0;
+    user-select: none;
     cursor: pointer;
-    width: 50%;
+    transition: all ease-in-out 0.3s;
     font-family: ${fonts.main};
     font-size: ${fontSize.med};
     font-weight: ${fontWeight.med};
     letter-spacing: 0.05rem;
-    transition: all ease-in-out 0.3s;
-    background-color: ${colors.lightGrey};
+    display: flex;
+    width: 50%;
     border: 0;
     border-bottom: ${spacing.small} solid ${colors.midGrey};
+    padding: ${spacing.xLarge};
+    background-color: ${colors.lightGrey};
+    &:first-child {
+      justify-content: flex-end;
+    }
     > span {
       user-select: none;
       max-width: 23rem;
+      width: 100%;
       display: block;
     }
-    &:first-child > span {
-      text-align: center;
-    }
+
     &:focus {
       outline: none;
     }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Search } from "./Search.jsx";
 import { LogbookNav } from "./LogbookNav.jsx";
 import { LogbookAscents } from "./LogbookAscents.jsx";
+import { LogbookSingleView } from "./LogbookSingleView.jsx";
 
 import { ContainerStyle } from "../styles/mainView";
 
@@ -36,11 +37,37 @@ export const Logbook = ({ logs }) => {
     return setRange({ low, high });
   }
 
+  // single view or list view
+
+  // defo:
+  // - clicked on result (results index)
+  // - use logs
+
+  // maybe:
+  // - pass this state to a reducer -> global store
+  // - results range (page)
+  // - set new scrollHeight, save old scrollHeight
+  const [view, setView] = useState({ selectedLog: "" });
+
+  function handleSingleView(logIndex) {
+    // do I need to create a copy of logs, or just pick out index?
+    // - I am adding to each log with stars, notes etc
+    // - will want extra information to be passed in too
+    // - new logs (with extra info) will need to reside in a global state
+    const selected = logIndex ? logs.find(i => i.key === logIndex) : "";
+    return setView({ selectedLog: selected });
+  }
+
   return (
     <ContainerStyle>
-      <Search {...search} onChange={e => handleSearch(e.target.value)} />
-      <LogbookNav {...range} logs={logs} onClick={handleRangeChange} />
-      <LogbookAscents {...range} logs={logs} />
+      <Search
+        {...search}
+        onChange={e => handleSearch(e.target.value)}
+        disabled={view.selectedLog !== "" ? true : false}
+      />
+      {!view.selectedLog && <LogbookNav {...range} logs={logs} onClick={handleRangeChange} />}
+      {!view.selectedLog && <LogbookAscents {...range} logs={logs} onClick={handleSingleView} />}
+      {view.selectedLog && <LogbookSingleView {...view.selectedLog} onClick={handleSingleView} />}
     </ContainerStyle>
   );
 };

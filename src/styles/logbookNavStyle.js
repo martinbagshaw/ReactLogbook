@@ -11,6 +11,7 @@ const BtnContainerStyle = styled.div`
   margin-top: ${spacing.large};
 `;
 
+// NOTE: used in single view also
 const BtnStyle = styled.button`
   user-select: none;
   cursor: pointer;
@@ -20,25 +21,32 @@ const BtnStyle = styled.button`
   line-height: 1;
   display: flex;
   align-items: center;
-  border: ${spacing.xSmall} solid ${colors.midBlue};
+  justify-content: center;
   border-radius: ${spacing.small};
   padding: 0;
   ${props => (props.text === "older" ? `padding-right: ${spacing.large} ` : "")};
   ${props => (props.text === "newer" ? `padding-left: ${spacing.large} ` : "")};
-  background-color: ${colors.lightBlue};
-  color: ${colors.midBlue};
+  //
+  // back button differences
+  //
+  ${props => (props.text === "back" ? `margin: -${spacing.xSmall}` : "")};
+  ${props => (props.text !== "back" ? `color: ${colors.midBlue}` : "")};
+  border: ${props => (props.text !== "back" ? `${spacing.xSmall} solid ${colors.midBlue}` : "0")};
+  background-color: ${props =>
+    props.text !== "back" ? `${colors.lightBlue}` : `${colors.midGrey}`};
   &:focus,
   &:hover {
     outline: none;
-    background-color: ${colors.midBlue};
+    background-color: ${props =>
+      props.text !== "back" ? `${colors.midBlue}` : `${colors.darkGrey}`};
     color: ${colors.white};
     svg {
       fill: ${colors.white};
-      transition: fill ease-in-out 0.3s;
     }
   }
   svg {
-    fill: ${colors.midBlue};
+    fill: ${props => (props.text === "back" ? `${colors.darkGrey}` : `${colors.midBlue}`)};
+    transition: all ease-in-out 0.3s;
   }
 `;
 

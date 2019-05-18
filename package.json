@@ -1,13 +1,15 @@
 {
-  "name": "reactLogbook",
+  "name": "React Logbook",
   "version": "1.0.0",
-  "description": "",
+  "homepage": "https://mr-bagglesworth.github.io/ReactLogbook/",
+  "description": "my climbing logbook built with React",
   "main": "index.js",
   "scripts": {
     "test": "jest workshop --watch --noStackTrace",
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +39,8 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.0",
+    "gh-pages": "^2.0.1",
     "jest": "^24.0.0",
     "parcel-bundler": "^1.11.0",
     "prettier": "^1.16.4",
