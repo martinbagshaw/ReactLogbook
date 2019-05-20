@@ -10,7 +10,7 @@
     "build": "parcel build src/index.html",
     "lint": "eslint src/",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
