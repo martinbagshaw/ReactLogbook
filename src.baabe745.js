@@ -92,4 +92,4 @@ module.exports=[{"Climb name":"Count's Buttress",Grade:"E2 5c ***",Style:"Lead O
 },{"react":"1n8/","../styles/mainView":"nbcQ","../data/mb-logbook.json":"/yF2","../utils/formatData":"FcXS","./Stats":"vGzT","./Logbook":"XyNt"}],"Focm":[function(require,module,exports) {
 "use strict";var e=u(require("react")),t=u(require("react-dom")),r=u(require("./Components/App"));function u(e){return e&&e.__esModule?e:{default:e}}t.default.render(e.default.createElement(r.default,null),document.getElementById("root"));
 },{"react":"1n8/","react-dom":"NKHc","./Components/App":"YOO8"}]},{},["Focm"], null)
-//# sourceMappingURL=/src.baabe745.map
+//# sourceMappingURL=/ReactLogbook/src.baabe745.map
