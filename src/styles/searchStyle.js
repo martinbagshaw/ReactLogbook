@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import styleVars from "./styleVars";
-
-const { colors, spacing, fonts, fontSize, fontWeight, boxShadow } = styleVars;
+import { colors, spacing, fonts, fontSize, fontWeight, boxShadow, breakpoint } from "./styleVars";
 
 // search container
 const SearchStyle = styled.div`
@@ -10,6 +8,10 @@ const SearchStyle = styled.div`
   margin: 0 auto ${spacing.xLarge};
   width: 100%;
   max-width: 40rem;
+  padding: 0 ${spacing.med};
+  @media only screen and (min-width: ${breakpoint.small}) {
+    padding: 0;
+  }
 `;
 
 // - include datalist + button?
@@ -25,7 +27,7 @@ const SearchBarStyle = styled.input`
   padding: ${spacing.large};
   width: 100%;
   font-family: ${fonts.main};
-  font-size: ${fontSize.large};
+  font-size: ${fontSize.med};
   font-weight: ${fontWeight.med};
   border: 0;
   text-align: center;
@@ -47,6 +49,9 @@ const SearchBarStyle = styled.input`
     &::placeholder {
       color: ${colors.midGrey};
     }
+  }
+  @media only screen and (min-width: ${breakpoint.small}) {
+    font-size: ${fontSize.large};
   }
 `;
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ResultContainer } from "../styles/singleView";
+import { ResultContainer } from "../../styles/singleViewStyle";
 
 const LargeResult = props => {
   const { climbName, cragName, date, grade, notes, partners, style } = props.resultData;

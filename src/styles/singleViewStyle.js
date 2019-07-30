@@ -1,81 +1,69 @@
 import styled from "styled-components";
-import styleVars from "./styleVars";
+import { colors, spacing, fontSize, fontWeight, breakpoint } from "./styleVars";
 
-const { colors, spacing, fonts, fontSize, fontWeight } = styleVars;
-
-const SingleStyle = styled.div`
+const LogContainer = styled.div`
   margin-top: ${spacing.xLarge};
   display: flex;
+  flex-direction: column;
   vertical-align: middle;
   border: ${spacing.xSmall} solid ${colors.midGrey};
   border-radius: ${spacing.xSmall};
   background-color: ${colors.lightGrey};
-  > button,
-  > div {
-    flex: 1;
-  }
-  > div {
-    display: flex;
-    flex-direction: column;
-  }
-  section {
-    flex: 8;
-    display: flex;
-    flex-direction: column;
-    padding: ${spacing.large};
-    font-size: ${fontSize.med};
-    h1 {
-      font-size: ${fontSize.xLarge};
-    }
-    ul li {
-      display: flex;
-      align-items: center;
-      margin-top: ${spacing.med};
-      &:first-child {
-        margin-top: 0;
-      }
-      &:last-child {
-        align-items: flex-start;
-      }
-      svg {
-        min-width: 36px;
-        margin-right: ${spacing.large};
-      }
-      strong {
-        font-weight: ${fontWeight.bold};
-      }
+  @media only screen and (min-width: ${breakpoint.small}) {
+    flex-direction: row;
+    > button,
+    > div {
+      flex: 1;
     }
   }
 `;
 
-// no text, just svgs
-const SingleBtnStyle = styled.button`
-  user-select: none;
-  cursor: pointer;
-  transition: all ease-in-out 0.3s;
+const LogContent = styled.section`
   display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  height: 50%;
-  margin: -${spacing.xSmall};
-  border-radius: ${spacing.small};
-  border: ${spacing.xSmall} solid
-    ${props => (props.type === "star" ? `${colors.yellow}` : `${colors.midBlue}`)};
-  background-color: ${props =>
-    props.type === "star" ? `${colors.lightYellow}` : `${colors.lightBlue}`};
-  svg {
-    fill: ${props => (props.type === "star" ? `${colors.yellow}` : `${colors.midBlue}`)};
-    transition: all ease-in-out 0.3s;
+  flex-direction: column;
+  padding: ${spacing.large} ${spacing.med} ${spacing.xLarge};
+  font-size: ${fontSize.small};
+  h1 {
+    font-size: ${fontSize.large};
+    padding-left: calc(36px + 1rem);
   }
-  &:focus,
-  &:hover {
-    outline: none;
-    background-color: ${props =>
-      props.type === "star" ? `${colors.yellow}` : `${colors.midBlue}`};
-    svg {
-      fill: ${colors.white};
+  @media only screen and (min-width: ${breakpoint.small}) {
+    flex: 8;
+    padding: ${spacing.large};
+    font-size: ${fontSize.med};
+    h1 {
+      font-size: ${fontSize.xLarge};
+      padding-left: 0;
     }
   }
 `;
-export { SingleStyle, SingleBtnStyle };
+
+const LogList = styled.ul`
+  li {
+    display: flex;
+    align-items: center;
+    margin-top: ${spacing.med};
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      align-items: flex-start;
+    }
+    svg {
+      min-width: 36px;
+      margin-right: ${spacing.large};
+    }
+    strong {
+      font-weight: ${fontWeight.bold};
+    }
+  }
+`;
+
+const EditButtons = styled.div`
+  display: flex;
+  @media only screen and (min-width: ${breakpoint.small}) {
+    flex-direction: column;
+  }
+`;
+
+export { LogContainer, LogContent, LogList, EditButtons };

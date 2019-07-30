@@ -16,8 +16,8 @@ import { formatData } from "../utils/formatData";
 const allLogs = formatData(climbData); // load all logs, or just an initial portion?
 
 // Components
-import Stats from "./Stats";
-import { Logbook } from "./Logbook";
+import { Stats } from "./Stats.jsx";
+import { Logbook } from "./Logbook.jsx";
 
 export default function App() {
   // handle view loading
@@ -39,7 +39,7 @@ export default function App() {
           <span>Logbook</span>
         </button>
       </HeaderStyle>
-      {view === "Stats" && <Stats />}
+      {view === "Stats" && <Stats logs={allLogs} />}
       {view === "Logbook" && <Logbook logs={allLogs} />}
     </BaseStyle>
   );

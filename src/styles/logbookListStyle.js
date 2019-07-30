@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import styleVars from "./styleVars";
-
-const { colors, spacing, fonts, fontSize, fontWeight } = styleVars;
+import { colors, spacing, fonts, fontSize, fontWeight } from "./styleVars";
 
 const ListStyle = styled.ul`
   margin-top: ${spacing.xLarge};

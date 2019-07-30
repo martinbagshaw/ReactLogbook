@@ -1,19 +1,31 @@
 import React, { useState } from "react";
+import { StatContainer, StatMenu } from "../styles/statsView";
 
-// Styles
-import { ContainerStyle } from "../styles/mainView";
+export const Stats = ({ logs }) => {
+  // main stat selection dropdown
+  // - currently saves a string from dropdown to state
+  // - use this to show different charts
+  const [option, setOption] = useState({
+    selected: "Date",
+  });
 
-export default function Stats(props) {
+  console.log(logs);
+
   return (
-    <ContainerStyle>
-      <section>
-        Stats by:{" "}
-        <select>
-          <option>Date</option>
-          <option>Grade</option>
-        </select>
-      </section>
-      <section>This is stats</section>
-    </ContainerStyle>
+    <StatContainer>
+      <StatMenu>
+        <div>
+          Total Ascents: <strong>{logs.length}</strong>
+        </div>
+        <div>
+          Stats by:{" "}
+          <select onChange={e => setOption({ selected: e.target.value })}>
+            <option>Date</option>
+            <option>Grade</option>
+          </select>
+        </div>
+      </StatMenu>
+      Currently showing stats by {option.selected}
+    </StatContainer>
   );
-}
+};

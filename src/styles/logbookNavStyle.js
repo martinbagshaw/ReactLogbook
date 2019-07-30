@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import styleVars from "./styleVars";
-
-const { colors, spacing, fonts, fontSize, fontWeight, boxShadow } = styleVars;
+import { colors, spacing, fonts, fontSize, fontWeight, boxShadow, breakpoint } from "./styleVars";
 
 // older / newer buttons
 const BtnContainerStyle = styled.div`
@@ -9,6 +7,10 @@ const BtnContainerStyle = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-top: ${spacing.large};
+  padding: 0 ${spacing.med};
+  @media only screen and (min-width: ${breakpoint.small}) {
+    padding: 0;
+  }
 `;
 
 // NOTE: used in single view also
@@ -23,7 +25,7 @@ const BtnStyle = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: ${spacing.small};
-  padding: 0;
+  padding: ${props => (props.hasPadding ? spacing[props.hasPadding] : 0)};
   ${props => (props.text === "older" ? `padding-right: ${spacing.large} ` : "")};
   ${props => (props.text === "newer" ? `padding-left: ${spacing.large} ` : "")};
   //
