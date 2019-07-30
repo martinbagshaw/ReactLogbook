@@ -1,7 +1,7 @@
 import React from "react";
 import { LogbookNavButton } from "./LogbookNavButton.jsx";
-import { LogbookSingleButton } from "./LogbookSingleButton.jsx";
-import { SingleStyle } from "../styles/singleViewStyle";
+import { IconButton } from "./Buttons/IconButton.jsx";
+import { LogContainer, LogContent, LogList, EditButtons } from "../styles/singleViewStyle";
 
 // combine these
 import { Circle } from "../icons/Circle.jsx";
@@ -13,6 +13,7 @@ import { Comment } from "../icons/Comment.jsx";
 
 // TODO:
 // - onClick for star and notes / memorable buttons
+// - map through fields
 export const LogbookSingleView = ({
   climbName,
   cragName,
@@ -24,11 +25,11 @@ export const LogbookSingleView = ({
   onClick,
 }) => {
   return (
-    <SingleStyle>
-      <LogbookNavButton onClick={() => onClick(null)} text="back" />
-      <section>
+    <LogContainer>
+      <LogbookNavButton onClick={() => onClick(null)} text="back" hasPadding={"med"} />
+      <LogContent>
         <h1>{climbName}</h1>
-        <ul>
+        <LogList>
           <li>
             <Circle grade={grade} /> {grade}
           </li>
@@ -54,12 +55,12 @@ export const LogbookSingleView = ({
               {notes}
             </li>
           )}
-        </ul>
-      </section>
-      <div>
-        <LogbookSingleButton type="star" title="star this ascent" />
-        <LogbookSingleButton type="notes" title="add notes to this ascent" />
-      </div>
-    </SingleStyle>
+        </LogList>
+      </LogContent>
+      <EditButtons>
+        <IconButton type="star" title="star this ascent" />
+        <IconButton type="notes" title="add notes to this ascent" />
+      </EditButtons>
+    </LogContainer>
   );
 };

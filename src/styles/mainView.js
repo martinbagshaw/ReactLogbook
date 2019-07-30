@@ -1,8 +1,5 @@
-// get variables
 import styled from "styled-components";
-import styleVars from "./styleVars";
-
-const { colors, spacing, fonts, fontSize, fontWeight, boxShadow } = styleVars;
+import { colors, spacing, fonts, fontSize, fontWeight, boxShadow } from "./styleVars";
 
 const BaseStyle = styled.div`
   margin: 0;
