@@ -1,5 +1,5 @@
 import React from "react";
-import { colors } from "../styles/styleVars";
+import { colors } from "../styleVars";
 
 export const Comment = () => {
   return (

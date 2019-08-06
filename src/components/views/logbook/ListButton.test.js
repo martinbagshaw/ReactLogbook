@@ -4,6 +4,7 @@ import ListButton from "./ListButton.js";
 
 import { render, fireEvent } from "react-testing-library";
 
+// kept here for future reference - writing render tests
 describe("button tests", () => {
   test("button component renders with favourite button props", () => {
     const props = {

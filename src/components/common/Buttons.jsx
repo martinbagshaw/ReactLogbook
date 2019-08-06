@@ -1,24 +1,21 @@
-import styled from "styled-components";
-import { colors, spacing, fonts, fontSize, fontWeight, boxShadow, breakpoint } from "./styleVars";
+import React from "react";
+import styled, { css } from "styled-components";
+import { fonts, fontSize, fontWeight, colors, spacing } from "./styleVars";
 
-// older / newer buttons
-const BtnContainerStyle = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: ${spacing.large};
-  padding: 0 ${spacing.med};
-  @media only screen and (min-width: ${breakpoint.small}) {
-    padding: 0;
+const buttonBase = css`
+  user-select: none;
+  cursor: pointer;
+  border: 0;
+  transition: all ease-in-out 0.3s;
+  font-family: ${fonts.main};
+  font-weight: ${fontWeight.med};
+  &:focus {
+    outline: none;
   }
 `;
 
-// NOTE: used in single view also
-const BtnStyle = styled.button`
-  user-select: none;
-  cursor: pointer;
-  transition: all ease-in-out 0.3s;
-  font-family: ${fonts.main};
+const Button = styled.button`
+  ${buttonBase};
   font-size: ${fontSize.small};
   line-height: 1;
   display: flex;
@@ -38,7 +35,6 @@ const BtnStyle = styled.button`
     props.text !== "back" ? `${colors.lightBlue}` : `${colors.midGrey}`};
   &:focus,
   &:hover {
-    outline: none;
     background-color: ${props =>
       props.text !== "back" ? `${colors.midBlue}` : `${colors.darkGrey}`};
     color: ${colors.white};
@@ -52,4 +48,22 @@ const BtnStyle = styled.button`
   }
 `;
 
-export { BtnContainerStyle, BtnStyle };
+const NavButton = ({ onClick, text, hasPadding }) => {
+  return (
+    <Button onClick={onClick} text={text} hasPadding={hasPadding} aria-label={text}>
+      {(text === "older" || text === "back") && (
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+          <path d="M30.83 32.67l-9.17-9.17 9.17-9.17L28 11.5l-12 12 12 12z" />
+        </svg>
+      )}
+      {text !== "back" && text}
+      {text === "newer" && (
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+          <path d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z" />
+        </svg>
+      )}
+    </Button>
+  );
+};
+
+export { buttonBase, NavButton };

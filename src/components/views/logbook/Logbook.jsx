@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Search } from "./Search.jsx";
-import { LogbookNav } from "./LogbookNav.jsx";
-import { LogbookAscents } from "./LogbookAscents.jsx";
-import { LogbookSingleView } from "./LogbookSingleView.jsx";
+import Search from "./Search.jsx";
+import PageNav from "./PageNav.jsx";
+import Results from "./Results.jsx";
+import SingleLog from "../singleLog/SingleLog.jsx";
 
-import { ContainerStyle } from "../styles/mainView";
+import { ContainerStyle } from "../../common/Layout.jsx";
 
-export const Logbook = ({ logs }) => {
+const Logbook = ({ logs }) => {
   // search results
   const [search, setSearch] = useState({
     placeholder: "Search by Climb or Crag name...",
@@ -50,9 +50,11 @@ export const Logbook = ({ logs }) => {
         onChange={e => handleSearch(e.target.value)}
         disabled={view.selectedLog !== "" ? true : false}
       />
-      {!view.selectedLog && <LogbookNav {...range} logs={logs} onClick={handleRangeChange} />}
-      {!view.selectedLog && <LogbookAscents {...range} logs={logs} onClick={handleSingleView} />}
-      {view.selectedLog && <LogbookSingleView {...view.selectedLog} onClick={handleSingleView} />}
+      {!view.selectedLog && <PageNav {...range} logs={logs} onClick={handleRangeChange} />}
+      {!view.selectedLog && <Results {...range} logs={logs} onClick={handleSingleView} />}
+      {view.selectedLog && <SingleLog {...view.selectedLog} onClick={handleSingleView} />}
     </ContainerStyle>
   );
 };
+
+export default Logbook;

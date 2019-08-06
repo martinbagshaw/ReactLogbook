@@ -1,4 +1,6 @@
 import React from "react";
+// not used
+// - kept because this component has a test, which may help when it comes to writing some soon!
 
 const ListButton = props => {
   // get button text and icon
