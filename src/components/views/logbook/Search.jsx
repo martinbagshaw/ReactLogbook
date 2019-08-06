@@ -1,8 +1,16 @@
+import React from "react";
 import styled from "styled-components";
-import { colors, spacing, fonts, fontSize, fontWeight, boxShadow, breakpoint } from "./styleVars";
+import {
+  colors,
+  spacing,
+  fonts,
+  fontSize,
+  fontWeight,
+  boxShadow,
+  breakpoint,
+} from "../../common/styleVars";
 
-// search container
-const SearchStyle = styled.div`
+const SearchContainer = styled.div`
   position: relative;
   display: block;
   margin: 0 auto ${spacing.xLarge};
@@ -14,8 +22,7 @@ const SearchStyle = styled.div`
   }
 `;
 
-// - include datalist + button?
-const LabelStyle = styled.label`
+const HiddenLabel = styled.label`
   font-family: ${fonts.main};
   font-size: ${fontSize.small};
   display: block;
@@ -23,7 +30,7 @@ const LabelStyle = styled.label`
   height: 0;
 `;
 
-const SearchBarStyle = styled.input`
+const SearchBar = styled.input`
   padding: ${spacing.large};
   width: 100%;
   font-family: ${fonts.main};
@@ -55,7 +62,7 @@ const SearchBarStyle = styled.input`
   }
 `;
 
-const SearchList = styled.ul`
+const Results = styled.ul`
   position: absolute;
   width: 100%;
   max-height: 65vh;
@@ -63,7 +70,7 @@ const SearchList = styled.ul`
   box-shadow: ${boxShadow.top};
 `;
 
-const SearchListButton = styled.button`
+const ResultButton = styled.button`
   border: 0;
   box-shadow: none;
   width: 100%;
@@ -84,25 +91,63 @@ const SearchListButton = styled.button`
   &:focus {
     outline: none;
   }
-  span:nth-child(1) {
-    margin-right: ${spacing.large};
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-weight: ${fontWeight.med};
-    flex: 3;
-  }
-  span:nth-child(2) {
-    margin-right: ${spacing.large};
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    flex: 2;
-  }
-  span:nth-child(3) {
-    margin-left: auto;
-    font-weight: ${fontWeight.bold};
-  }
 `;
 
-export { SearchBarStyle, LabelStyle, SearchStyle, SearchList, SearchListButton };
+const Climb = styled.span`
+  margin-right: ${spacing.large};
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: ${fontWeight.med};
+  flex: 3;
+`;
+
+const Crag = styled.span`
+  margin-right: ${spacing.large};
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 2;
+`;
+
+const Date = styled.span`
+  margin-left: auto;
+  font-weight: ${fontWeight.bold};
+`;
+
+// TODO:
+// - onUnfocus reset search
+// - split up above styling
+// - mixins for the above styling
+
+const Search = ({ placeholder, searchTerm, results, onChange, disabled }) => {
+  return (
+    <SearchContainer>
+      <HiddenLabel htmlFor="search-ascents">{placeholder}</HiddenLabel>
+      <SearchBar
+        id="search-ascents"
+        type="text"
+        placeholder={placeholder}
+        value={searchTerm}
+        onChange={onChange}
+        disabled={disabled}
+      />
+
+      {results && (
+        <Results>
+          {results.map(i => (
+            <li key={i.key}>
+              <ResultButton aria-label={`Go to log for: ${i.climbName} on ${i.date}`}>
+                <Climb>{i.climbName}</Climb>
+                <Crag>{i.cragName}</Crag>
+                <Date>{i.date}</Date>
+              </ResultButton>
+            </li>
+          ))}
+        </Results>
+      )}
+    </SearchContainer>
+  );
+};
+
+export default Search;

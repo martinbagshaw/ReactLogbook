@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { colors, spacing } from "../../styles/styleVars";
+import { colors, spacing } from "../../common/styleVars";
 
 const IconStyle = styled.button`
   user-select: none;
@@ -34,7 +34,7 @@ const IconStyle = styled.button`
 `;
 
 // star and notes button
-export const IconButton = ({ type, title }) => {
+const IconButton = ({ type, title }) => {
   return (
     <IconStyle type={type} title={title}>
       {type === "star" && (
@@ -53,3 +53,5 @@ export const IconButton = ({ type, title }) => {
     </IconStyle>
   );
 };
+
+export default IconButton;
