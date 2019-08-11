@@ -1,7 +1,7 @@
 /* App Component
 - entry point
 - contains logbook, stats and menu
-- probably doesn't need to connect to the global store
+- probably doesn't need to connect to the global store / context
 */
 
 import React, { useState } from "react";
@@ -45,13 +45,13 @@ const Button = styled.button`
     display: block;
   }
   &:hover {
-    background-color: ${colors.midGrey};
+    background-color: ${props => (props.isActive ? colors.lightRed : colors.midGrey)};
   }
   ${props =>
     props.isActive
       ? `
   background-color: ${colors.lightRed};
-    border-bottom-color: ${colors.red};
+  border-bottom-color: ${colors.red};
   `
       : ""}
 `;
@@ -61,9 +61,9 @@ const allLogs = formatData(climbData);
 const App = () => {
   const [view, setView] = useState("Stats");
 
-  function handleViewChange(e) {
+  const handleViewChange = e => {
     setView(e.target.textContent);
-  }
+  };
 
   return (
     <Root>

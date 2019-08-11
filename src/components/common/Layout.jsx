@@ -1,5 +1,12 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colors, spacing } from "./styleVars";
+
+const searchResultText = css`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: ${spacing.large};
+`;
 
 const ContainerStyle = styled.div`
   max-width: 50rem;
@@ -13,4 +20,4 @@ const ContainerStyle = styled.div`
   }
 `;
 
-export { ContainerStyle };
+export { searchResultText, ContainerStyle };

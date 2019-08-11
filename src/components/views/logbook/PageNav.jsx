@@ -6,7 +6,6 @@ import { spacing, breakpoint } from "../../common/styleVars";
 
 const NavContainer = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   margin-top: ${spacing.large};
   padding: 0 ${spacing.med};

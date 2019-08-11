@@ -9,6 +9,8 @@ import {
   boxShadow,
   breakpoint,
 } from "../../common/styleVars";
+import { searchResultText } from "../../common/Layout.jsx";
+import { buttonBase } from "../../common/Buttons.jsx";
 
 const SearchContainer = styled.div`
   position: relative;
@@ -71,42 +73,30 @@ const Results = styled.ul`
 `;
 
 const ResultButton = styled.button`
-  border: 0;
-  box-shadow: none;
+  ${buttonBase};
   width: 100%;
-  cursor: pointer;
-  transition: all ease-in-out 0.3s;
   display: flex;
   align-items: center;
-  font-family: ${fonts.main};
+  padding: ${spacing.med} ${spacing.large};
   font-size: ${fontSize.med};
   text-align: left;
-  padding: ${spacing.med} ${spacing.large};
   background-color: ${colors.lightGrey};
-  border-bottom: ${spacing.xSmall} solid ${colors.midGrey};
+  border: ${spacing.xSmall} solid transparent;
+  border-bottom-color: ${colors.midGrey};
   &:hover {
     background-color: ${colors.lightBlue};
-    border-bottom-color: ${colors.midBlue};
-  }
-  &:focus {
-    outline: none;
+    border-color: ${colors.midBlue};
   }
 `;
 
 const Climb = styled.span`
-  margin-right: ${spacing.large};
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-weight: ${fontWeight.med};
+  ${searchResultText};
   flex: 3;
 `;
 
 const Crag = styled.span`
-  margin-right: ${spacing.large};
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  ${searchResultText};
+  font-weight: ${fontWeight.reg};
   flex: 2;
 `;
 
@@ -115,39 +105,44 @@ const Date = styled.span`
   font-weight: ${fontWeight.bold};
 `;
 
-// TODO:
-// - onUnfocus reset search
-// - split up above styling
-// - mixins for the above styling
+const Search = ({
+  placeholder,
+  searchTerm,
+  results,
+  onChange,
+  onBlur,
+  onResultClick,
+  disabled,
+}) => (
+  <SearchContainer>
+    <HiddenLabel htmlFor="search-ascents">{placeholder}</HiddenLabel>
+    <SearchBar
+      id="search-ascents"
+      type="text"
+      placeholder={placeholder}
+      value={searchTerm}
+      onChange={onChange}
+      onBlur={onBlur}
+      disabled={disabled}
+    />
 
-const Search = ({ placeholder, searchTerm, results, onChange, disabled }) => {
-  return (
-    <SearchContainer>
-      <HiddenLabel htmlFor="search-ascents">{placeholder}</HiddenLabel>
-      <SearchBar
-        id="search-ascents"
-        type="text"
-        placeholder={placeholder}
-        value={searchTerm}
-        onChange={onChange}
-        disabled={disabled}
-      />
-
-      {results && (
-        <Results>
-          {results.map(i => (
-            <li key={i.key}>
-              <ResultButton aria-label={`Go to log for: ${i.climbName} on ${i.date}`}>
-                <Climb>{i.climbName}</Climb>
-                <Crag>{i.cragName}</Crag>
-                <Date>{i.date}</Date>
-              </ResultButton>
-            </li>
-          ))}
-        </Results>
-      )}
-    </SearchContainer>
-  );
-};
+    {results && !disabled && (
+      <Results>
+        {results.map(i => (
+          <li key={i.key}>
+            <ResultButton
+              aria-label={`Go to log for: ${i.climbName} on ${i.date}`}
+              onClick={() => onResultClick(i.key)}
+            >
+              <Climb>{i.climbName}</Climb>
+              <Crag>{i.cragName}</Crag>
+              <Date>{i.date}</Date>
+            </ResultButton>
+          </li>
+        ))}
+      </Results>
+    )}
+  </SearchContainer>
+);
 
 export default Search;

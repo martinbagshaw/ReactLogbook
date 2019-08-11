@@ -24,7 +24,13 @@ const Button = styled.button`
   border-radius: ${spacing.small};
   padding: ${props => (props.hasPadding ? spacing[props.hasPadding] : 0)};
   ${props => (props.text === "older" ? `padding-right: ${spacing.large} ` : "")};
-  ${props => (props.text === "newer" ? `padding-left: ${spacing.large} ` : "")};
+  ${props =>
+    props.text === "newer"
+      ? `
+  padding-left: ${spacing.large};
+  margin-left: auto;
+  `
+      : ""}
   //
   // back button differences
   //
@@ -53,12 +59,14 @@ const NavButton = ({ onClick, text, hasPadding }) => {
     <Button onClick={onClick} text={text} hasPadding={hasPadding} aria-label={text}>
       {(text === "older" || text === "back") && (
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+          <title>{text === "older" ? `${text} entries` : `${text} to all entries`}</title>
           <path d="M30.83 32.67l-9.17-9.17 9.17-9.17L28 11.5l-12 12 12 12z" />
         </svg>
       )}
       {text !== "back" && text}
       {text === "newer" && (
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+          <title>{`${text} entries`}</title>
           <path d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z" />
         </svg>
       )}
