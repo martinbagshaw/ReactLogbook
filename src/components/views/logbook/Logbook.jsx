@@ -7,14 +7,12 @@ import SingleLog from "../singleLog/SingleLog.jsx";
 import { ContainerStyle } from "../../common/Layout.jsx";
 
 const Logbook = ({ logs }) => {
-  // search results
   const [search, setSearch] = useState({
     placeholder: "Search by Climb or Crag name...",
     searchTerm: "",
     results: [],
   });
-
-  function handleSearch(value) {
+  const handleSearch = value => {
     const resultsFind = (value, logs) => {
       if (value.length < 3) return;
       return logs.filter(log => {
@@ -26,22 +24,18 @@ const Logbook = ({ logs }) => {
     };
     const placeholder = value.length > 0 ? "" : "Search by Climb or Crag name...";
     return setSearch({ placeholder, searchTerm: value, results: resultsFind(value, logs) });
-  }
+  };
 
-  // set results page
-  const [range, setRange] = useState({ low: 0, high: 50 });
+  const [page, setPage] = useState({ low: 0, high: 50 });
+  const handlePageChange = ({ low, high }) => {
+    return setPage({ low, high });
+  };
 
-  function handleRangeChange({ low, high }) {
-    return setRange({ low, high });
-  }
-
-  // list view or single climb
   const [view, setView] = useState({ selectedLog: "" });
-
-  function handleSingleView(logIndex) {
+  const handleSingleView = logIndex => {
     const selected = logIndex ? logs.find(i => i.key === logIndex) : "";
     return setView({ selectedLog: selected });
-  }
+  };
 
   return (
     <ContainerStyle>
@@ -49,9 +43,11 @@ const Logbook = ({ logs }) => {
         {...search}
         onChange={e => handleSearch(e.target.value)}
         disabled={view.selectedLog !== "" ? true : false}
+        onResultClick={handleSingleView}
+        onBlur={() => handleSearch("")}
       />
-      {!view.selectedLog && <PageNav {...range} logs={logs} onClick={handleRangeChange} />}
-      {!view.selectedLog && <Results {...range} logs={logs} onClick={handleSingleView} />}
+      {!view.selectedLog && <PageNav {...page} logs={logs} onClick={handlePageChange} />}
+      {!view.selectedLog && <Results {...page} logs={logs} onClick={handleSingleView} />}
       {view.selectedLog && <SingleLog {...view.selectedLog} onClick={handleSingleView} />}
     </ContainerStyle>
   );

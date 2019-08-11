@@ -9,7 +9,6 @@ const LogContainer = styled.div`
   margin-top: ${spacing.xLarge};
   display: flex;
   flex-direction: column;
-  vertical-align: middle;
   border: ${spacing.xSmall} solid ${colors.midGrey};
   border-radius: ${spacing.xSmall};
   background-color: ${colors.lightGrey};
