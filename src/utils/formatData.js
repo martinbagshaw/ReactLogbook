@@ -1,7 +1,7 @@
 // change format of climbs data
 // - make id relate to entry in logbook order
 // const key = (i, data) => data.length - i;
-export const formatData = rawData => {
+const formatData = rawData => {
   return rawData.map((item, index) => {
     return {
       climbName: item["Climb name"],
@@ -15,3 +15,5 @@ export const formatData = rawData => {
     };
   });
 };
+
+export { formatData };
