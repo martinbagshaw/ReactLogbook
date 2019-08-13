@@ -110,7 +110,7 @@ const Search = ({
   searchTerm,
   results,
   onChange,
-  onBlur,
+  // onBlur,
   onResultClick,
   disabled,
 }) => (
@@ -122,7 +122,7 @@ const Search = ({
       placeholder={placeholder}
       value={searchTerm}
       onChange={onChange}
-      onBlur={onBlur}
+      // onBlur={onBlur}
       disabled={disabled}
     />
 

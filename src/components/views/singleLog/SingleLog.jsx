@@ -70,8 +70,9 @@ const EditButtons = styled.div`
 `;
 
 // TODO:
-// - onClick for star and notes / memorable buttons
+// - onClick for star and notes / memorable buttons. Where to put logic?
 // - map through fields
+// - smooth animation (slide in from left, see dmarc site css animation)
 const SingleLog = ({ climbName, cragName, date, grade, notes, partners, style, onClick }) => {
   return (
     <LogContainer>

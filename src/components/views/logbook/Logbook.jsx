@@ -6,6 +6,12 @@ import SingleLog from "../singleLog/SingleLog.jsx";
 
 import { ContainerStyle } from "../../common/Layout.jsx";
 
+// todo:
+// - handle blur in a way that doesn't interfere with result click (set a timeout?)
+// - wait for mouseUp, if not on list button, clear results
+// - better: pass in e.target, see if this is NOT a search results button. If so, clear selectedLog
+// - try handleSingleView
+
 const Logbook = ({ logs }) => {
   const [search, setSearch] = useState({
     placeholder: "Search by Climb or Crag name...",
@@ -44,7 +50,7 @@ const Logbook = ({ logs }) => {
         onChange={e => handleSearch(e.target.value)}
         disabled={view.selectedLog !== "" ? true : false}
         onResultClick={handleSingleView}
-        onBlur={() => handleSearch("")}
+        // onBlur={() => handleSearch("")}
       />
       {!view.selectedLog && <PageNav {...page} logs={logs} onClick={handlePageChange} />}
       {!view.selectedLog && <Results {...page} logs={logs} onClick={handleSingleView} />}
