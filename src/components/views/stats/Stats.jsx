@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 
 // import ReactDOM from "react-dom";
 // import * as d3 from "d3";
 import Pie from "./PieChart.jsx";
-import { groupByYear } from "../../../utils/dateGrouping";
+import { yearFromLog, monthFromLog, dayFromLog, dateGrouping } from "../../../utils/dateGrouping";
 
 import styled from "styled-components";
 import { colors, spacing, fontWeight, breakpoint } from "../../common/styleVars";
@@ -39,28 +39,24 @@ const StatMenu = styled.section`
   }
 `;
 
-// const PieChart = styled(Pie)`
-//   width: 600px;
-//   height: 600px;
-// `;
-
 // todo:
-// 1. filter functions to get aggregates:
-// - discipline
-// - grade
-// - date (day / month / year)
+// 1. add labels
+// 2. filter functions to filter down by year > month > day when pie is clicked
+// 3. control svg styling (colour and position)
+
+const mapDateFunctions = {
+  Year: yearFromLog,
+  Month: monthFromLog,
+  Day: dayFromLog,
+};
+
 const Stats = ({ logs }) => {
   // main stat selection dropdown
   // - currently saves a string from dropdown to state
   // - use this to show different charts
-  const [option, setOption] = useState({
-    selected: "Date",
-  });
+  const [option, setOption] = useState("Date"); // discipline, partner, etc.
 
-  // have something to decide which filter to use, based on current state
-  // - currently hardcoded to use logs by year
-  // - want to get colour coded key from d3 somehow
-  const currentData = groupByYear(logs);
+  const [logsByDate, setLogsByDate] = useState("Year");
 
   return (
     <StatContainer>
@@ -70,16 +66,33 @@ const Stats = ({ logs }) => {
         </div>
         <div>
           Stats by:{" "}
-          <select onChange={e => setOption({ selected: e.target.value })}>
+          <select onChange={e => setOption(e.target.value)}>
             <option>Date</option>
             <option>Grade</option>
           </select>
         </div>
       </StatMenu>
-      Currently showing stats by {option.selected}
-      <div>
-        <Pie data={currentData} width={500} height={500} innerRadius={120} outerRadius={200} />
-      </div>
+      Currently showing stats by {option}
+      {option === "Date" && (
+        <Fragment>
+          <div>
+            <select onChange={e => setLogsByDate(e.target.value)}>
+              <option>Year</option>
+              <option>Month</option>
+              <option>Day</option>
+            </select>
+          </div>
+          <div>
+            <Pie
+              data={dateGrouping(mapDateFunctions[logsByDate], logs)}
+              width={500}
+              height={500}
+              innerRadius={120}
+              outerRadius={200}
+            />
+          </div>
+        </Fragment>
+      )}
     </StatContainer>
   );
 };
