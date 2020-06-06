@@ -9,7 +9,7 @@ const formatData = rawData => {
       date: item.Date,
       grade: `${item.Grade}`.replace(/\*+$/, "").trim(),
       notes: item.Notes,
-      partners: item["Partner(s)"],
+      partners: item["Partner(s)"] || "climbed alone / no partner listed",
       style: `${item.Style}`.replace(/&beta;|_/, "flash"),
       key: `ascent-${index}`,
     };

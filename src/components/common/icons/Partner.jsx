@@ -24,7 +24,7 @@ export const Partner = ({ partners }) => {
       fill={colors.darkGrey}
     >
       <title id="partners" lang="en">
-        Climbed with: {partners}
+        {partners}
       </title>
       {paths}
     </svg>
