@@ -1,13 +1,13 @@
 {
   "name": "reactLogbook",
   "version": "1.0.0",
-  "homepage": "https://mr-bagglesworth.github.io/ReactLogbook/",
+  "homepage": "https://martinbagshaw.github.io/ReactLogbook/",
   "description": "my climbing logbook built with React",
   "main": "index.js",
   "scripts": {
     "test": "jest workshop --watch --noStackTrace",
     "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html --public-url https://mr-bagglesworth.github.io/ReactLogbook/",
+    "build": "parcel build src/index.html --public-url https://martinbagshaw.github.io/ReactLogbook/",
     "lint": "eslint src/",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
