@@ -51425,7 +51425,7 @@ var formatData = function formatData(rawData) {
       date: item.Date,
       grade: "".concat(item.Grade).replace(/\*+$/, "").trim(),
       notes: item.Notes,
-      partners: item["Partner(s)"],
+      partners: item["Partner(s)"] || "climbed alone / no partner listed",
       style: "".concat(item.Style).replace(/&beta;|_/, "flash"),
       key: "ascent-".concat(index)
     };
@@ -81523,7 +81523,7 @@ var Partner = function Partner(_ref) {
   }, /*#__PURE__*/_react.default.createElement("title", {
     id: "partners",
     lang: "en"
-  }, "Climbed with: ", partners), paths);
+  }, partners), paths);
 };
 
 exports.Partner = Partner;
@@ -82009,7 +82009,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52774" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56225" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
