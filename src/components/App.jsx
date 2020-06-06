@@ -1,7 +1,6 @@
 /* App Component
 - entry point
 - contains logbook, stats and menu
-- probably doesn't need to connect to the global store / context
 */
 
 import React, { useState } from "react";
@@ -61,17 +60,21 @@ const allLogs = formatData(climbData);
 const App = () => {
   const [view, setView] = useState("Stats");
 
-  const handleViewChange = e => {
-    setView(e.target.textContent);
-  };
-
   return (
     <Root>
       <Header>
-        <Button onClick={handleViewChange} isActive={view === "Stats"} aria-label="Stats View">
+        <Button
+          onClick={() => setView("Stats")}
+          isActive={view === "Stats"}
+          aria-label="Stats View"
+        >
           <span>Stats</span>
         </Button>
-        <Button onClick={handleViewChange} isActive={view === "Logbook"} aria-label="Logbook View">
+        <Button
+          onClick={() => setView("Logbook")}
+          isActive={view === "Logbook"}
+          aria-label="Logbook View"
+        >
           <span>Logbook</span>
         </Button>
       </Header>
