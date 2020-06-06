@@ -1088,4 +1088,4 @@ module.exports=[{"Climb name":"Desperater times, Reversed",Grade:"f6A+  **",Styl
 },{"react":"n8MK","styled-components":"tFSs","../data/mb-logbook.json":"yF2O","../utils/formatData":"FcXS","./views/stats/Stats.jsx":"WLO2","./views/logbook/Logbook.jsx":"MpGv","./common/styleVars":"dZ7o","./common/Buttons.jsx":"lUoE"}],"Focm":[function(require,module,exports) {
 "use strict";var e=u(require("react")),t=u(require("react-dom")),r=u(require("./components/App.jsx"));function u(e){return e&&e.__esModule?e:{default:e}}t.default.render(e.default.createElement(r.default,null),document.getElementById("root"));
 },{"react":"n8MK","react-dom":"NKHc","./components/App.jsx":"FbLG"}]},{},["Focm"], null)
-//# sourceMappingURL=https://mr-bagglesworth.github.io/ReactLogbook/src.4ef22da1.js.map
+//# sourceMappingURL=https://martinbagshaw.github.io/ReactLogbook/src.4ef22da1.js.map
