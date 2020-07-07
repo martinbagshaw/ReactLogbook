@@ -51406,6 +51406,52 @@ module.exports = [{
   "Date": "??/Aug/11",
   "Crag name": "Winspit"
 }];
+},{}],"utils/constants.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.months = exports.defaultSettings = void 0;
+var defaultSettings = {
+  type: "Date",
+  // grade, discipline, style, crag
+  date: {
+    cumulative: "Year"
+  },
+  grade: {
+    cumulative: "Low"
+  },
+  // low to high. Tricky to show in a pie chart
+  discipline: {
+    cumulative: "Trad"
+  },
+  // Sport, Bouldering, Mixed, etc. => grade low to high
+  style: {
+    cumulative: "Onsight"
+  },
+  // Flashed, Worked, Dogged, Did not finish
+  partners: {
+    cumulative: undefined
+  } // most climbed with by default
+
+};
+exports.defaultSettings = defaultSettings;
+var months = {
+  Jan: "January",
+  Feb: "February",
+  Mar: "March",
+  Apr: "April",
+  May: "May",
+  Jun: "June",
+  Jul: "July",
+  Aug: "August",
+  Sep: "September",
+  Oct: "October",
+  Nov: "November",
+  Dec: "December"
+};
+exports.months = months;
 },{}],"utils/formatData.js":[function(require,module,exports) {
 "use strict";
 
@@ -51414,15 +51460,124 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.formatData = void 0;
 
-// change format of climbs data
-// - make id relate to entry in logbook order
-// const key = (i, data) => data.length - i;
+var _constants = require("./constants.js");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var twoDigitYear = new Date().getFullYear().toString().substr(2);
+
+var processMonthYear = function processMonthYear(month, year, retObj) {
+  if (Object.keys(_constants.months).includes(month)) {
+    retObj.month = month;
+    retObj.monthLong = _constants.months[month];
+  }
+
+  if (year && !year.includes("?") && year.length === 4) {
+    retObj.year = year;
+  }
+
+  if (year && !year.includes("?") && year.length === 2) {
+    retObj.year = year > twoDigitYear ? "19".concat(year) : "20".concat(year);
+  }
+
+  return retObj;
+};
+
+var processDaySuffix = function processDaySuffix(day) {
+  var num = parseInt(day);
+
+  if (!num) {
+    return day;
+  }
+
+  var t = num % 10;
+  var h = num % 100;
+
+  if (t == 1 && h != 11) {
+    return "".concat(num, "st");
+  }
+
+  if (t == 2 && h != 12) {
+    return "".concat(num, "nd");
+  }
+
+  if (t == 3 && h != 13) {
+    return "".concat(num, "rd");
+  }
+
+  return "".concat(num, "th");
+}; // return an object
+
+
+var processDate = function processDate(date) {
+  var defaultRes = {
+    year: "unknown",
+    month: "unknown",
+    monthLong: "unknown",
+    day: "unknown"
+  };
+
+  if (typeof date !== "string") {
+    return defaultRes;
+  }
+
+  var dateArr = date.split("/"); // month and year only
+
+  if (dateArr.length === 2) {
+    var _dateArr = _slicedToArray(dateArr, 2),
+        month = _dateArr[0],
+        year = _dateArr[1];
+
+    var newRes = _objectSpread({}, defaultRes);
+
+    return processMonthYear(month, year, newRes);
+  } // day, month, and year
+
+
+  if (dateArr.length === 3) {
+    var _dateArr2 = _slicedToArray(dateArr, 3),
+        day = _dateArr2[0],
+        _month = _dateArr2[1],
+        _year = _dateArr2[2];
+
+    var _newRes = _objectSpread({}, defaultRes);
+
+    if (day && !day.includes("?") && day.length === 2) {
+      _newRes.day = day;
+      _newRes.dayLong = processDaySuffix(day);
+    }
+
+    return processMonthYear(_month, _year, _newRes);
+  }
+
+  return defaultRes;
+};
+
 var formatData = function formatData(rawData) {
   return rawData.map(function (item, index) {
     return {
       climbName: item["Climb name"],
       cragName: item["Crag name"],
-      date: item.Date,
+      date: {
+        original: item.Date,
+        processed: processDate(item.Date)
+      },
       grade: "".concat(item.Grade).replace(/\*+$/, "").trim(),
       notes: item.Notes,
       partners: item["Partner(s)"] || "climbed alone / no partner listed",
@@ -51433,7 +51588,7 @@ var formatData = function formatData(rawData) {
 };
 
 exports.formatData = formatData;
-},{}],"../node_modules/d3/dist/package.js":[function(require,module,exports) {
+},{"./constants.js":"utils/constants.js"}],"../node_modules/d3/dist/package.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -80269,143 +80424,7 @@ Object.keys(_d3Zoom).forEach(function (key) {
     }
   });
 });
-},{"./dist/package.js":"../node_modules/d3/dist/package.js","d3-array":"../node_modules/d3-array/src/index.js","d3-axis":"../node_modules/d3-axis/src/index.js","d3-brush":"../node_modules/d3-brush/src/index.js","d3-chord":"../node_modules/d3-chord/src/index.js","d3-collection":"../node_modules/d3-collection/src/index.js","d3-color":"../node_modules/d3-color/src/index.js","d3-contour":"../node_modules/d3-contour/src/index.js","d3-dispatch":"../node_modules/d3-dispatch/src/index.js","d3-drag":"../node_modules/d3-drag/src/index.js","d3-dsv":"../node_modules/d3-dsv/src/index.js","d3-ease":"../node_modules/d3-ease/src/index.js","d3-fetch":"../node_modules/d3-fetch/src/index.js","d3-force":"../node_modules/d3-force/src/index.js","d3-format":"../node_modules/d3-format/src/index.js","d3-geo":"../node_modules/d3-geo/src/index.js","d3-hierarchy":"../node_modules/d3-hierarchy/src/index.js","d3-interpolate":"../node_modules/d3-interpolate/src/index.js","d3-path":"../node_modules/d3-path/src/index.js","d3-polygon":"../node_modules/d3-polygon/src/index.js","d3-quadtree":"../node_modules/d3-quadtree/src/index.js","d3-random":"../node_modules/d3-random/src/index.js","d3-scale":"../node_modules/d3-scale/src/index.js","d3-scale-chromatic":"../node_modules/d3-scale-chromatic/src/index.js","d3-selection":"../node_modules/d3-selection/src/index.js","d3-shape":"../node_modules/d3-shape/src/index.js","d3-time":"../node_modules/d3-time/src/index.js","d3-time-format":"../node_modules/d3-time-format/src/index.js","d3-timer":"../node_modules/d3-timer/src/index.js","d3-transition":"../node_modules/d3-transition/src/index.js","d3-voronoi":"../node_modules/d3-voronoi/src/index.js","d3-zoom":"../node_modules/d3-zoom/src/index.js"}],"components/views/stats/PieChart.jsx":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var d3 = _interopRequireWildcard(require("d3"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  width: 1rem;\n  height: 1rem;\n  margin-right: 0.5rem;\n  background-color: ", ";\n"]);
-
-  _templateObject5 = function _templateObject5() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  margin-bottom: 0.25rem;\n  font-size: 0.875rem;\n  strong {\n    font-weight: 700;\n    margin-right: 0.5rem;\n  }\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  margin-top: 0.5rem;\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  @media only screen and (min-width: 768px) {\n    position: absolute;\n    top: 3rem;\n  }\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  width: 50vw;\n  height: 50vw;\n  display: block;\n  margin: auto;\n  overflow: visible;\n  @media only screen and (min-width: 768px) {\n    margin-right: 0;\n    margin-left: calc(100% - 400px);\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var PieChart = _styledComponents.default.svg(_templateObject());
-
-var Key = _styledComponents.default.div(_templateObject2());
-
-var Items = _styledComponents.default.div(_templateObject3());
-
-var Item = _styledComponents.default.div(_templateObject4());
-
-var Square = _styledComponents.default.div(_templateObject5(), function (props) {
-  return props.bg;
-});
-
-var Arc = function Arc(_ref) {
-  var data = _ref.data,
-      index = _ref.index,
-      createArc = _ref.createArc,
-      colors = _ref.colors,
-      format = _ref.format;
-  return /*#__PURE__*/_react.default.createElement("g", {
-    key: index,
-    className: "arc"
-  }, /*#__PURE__*/_react.default.createElement("path", {
-    className: "arc",
-    d: createArc(data),
-    fill: colors(index)
-  }), /*#__PURE__*/_react.default.createElement("text", {
-    transform: "translate(".concat(createArc.centroid(data), ")"),
-    textAnchor: "middle",
-    alignmentBaseline: "middle",
-    fill: "white",
-    fontSize: "10"
-  }, format(data.value)));
-};
-
-var Pie = function Pie(props) {
-  var createPie = d3.pie().value(function (d) {
-    return d.value;
-  }).sort(null);
-  var createArc = d3.arc().innerRadius(props.innerRadius).outerRadius(props.outerRadius);
-  var colors = d3.scaleOrdinal(d3.schemeCategory10);
-  var format = d3.format(".0f");
-  var data = createPie(props.data);
-  return /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(PieChart, null, /*#__PURE__*/_react.default.createElement("g", {
-    transform: "translate(".concat(props.outerRadius, " ").concat(props.outerRadius, ")")
-  }, data.map(function (d, i) {
-    return /*#__PURE__*/_react.default.createElement(Arc, {
-      key: i,
-      data: d,
-      index: i,
-      createArc: createArc,
-      colors: colors,
-      format: format
-    });
-  }))), /*#__PURE__*/_react.default.createElement(Key, null, /*#__PURE__*/_react.default.createElement("legend", null, "Key"), /*#__PURE__*/_react.default.createElement(Items, null, data.map(function (d, i) {
-    return /*#__PURE__*/_react.default.createElement(Item, {
-      key: i
-    }, /*#__PURE__*/_react.default.createElement(Square, {
-      bg: colors(i)
-    }), /*#__PURE__*/_react.default.createElement("strong", null, d.data && d.data.label || "no label found"), d.data && "".concat(d.data.value, " logs") || "no logs found");
-  }))));
-};
-
-var _default = Pie;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/common/styleVars.js":[function(require,module,exports) {
+},{"./dist/package.js":"../node_modules/d3/dist/package.js","d3-array":"../node_modules/d3-array/src/index.js","d3-axis":"../node_modules/d3-axis/src/index.js","d3-brush":"../node_modules/d3-brush/src/index.js","d3-chord":"../node_modules/d3-chord/src/index.js","d3-collection":"../node_modules/d3-collection/src/index.js","d3-color":"../node_modules/d3-color/src/index.js","d3-contour":"../node_modules/d3-contour/src/index.js","d3-dispatch":"../node_modules/d3-dispatch/src/index.js","d3-drag":"../node_modules/d3-drag/src/index.js","d3-dsv":"../node_modules/d3-dsv/src/index.js","d3-ease":"../node_modules/d3-ease/src/index.js","d3-fetch":"../node_modules/d3-fetch/src/index.js","d3-force":"../node_modules/d3-force/src/index.js","d3-format":"../node_modules/d3-format/src/index.js","d3-geo":"../node_modules/d3-geo/src/index.js","d3-hierarchy":"../node_modules/d3-hierarchy/src/index.js","d3-interpolate":"../node_modules/d3-interpolate/src/index.js","d3-path":"../node_modules/d3-path/src/index.js","d3-polygon":"../node_modules/d3-polygon/src/index.js","d3-quadtree":"../node_modules/d3-quadtree/src/index.js","d3-random":"../node_modules/d3-random/src/index.js","d3-scale":"../node_modules/d3-scale/src/index.js","d3-scale-chromatic":"../node_modules/d3-scale-chromatic/src/index.js","d3-selection":"../node_modules/d3-selection/src/index.js","d3-shape":"../node_modules/d3-shape/src/index.js","d3-time":"../node_modules/d3-time/src/index.js","d3-time-format":"../node_modules/d3-time-format/src/index.js","d3-timer":"../node_modules/d3-timer/src/index.js","d3-transition":"../node_modules/d3-transition/src/index.js","d3-voronoi":"../node_modules/d3-voronoi/src/index.js","d3-zoom":"../node_modules/d3-zoom/src/index.js"}],"components/common/styleVars.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -80467,7 +80486,126 @@ var breakpoint = {
   large: "64rem"
 };
 exports.breakpoint = breakpoint;
-},{}],"components/views/stats/Stats.jsx":[function(require,module,exports) {
+},{}],"components/views/stats/StatsHeader.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _styleVars = require("../../common/styleVars");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject7() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n"]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  width: 100%;\n  margin: 1rem 0;\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n  font-size: 1.25rem;\n  margin-right: 2rem;\n  strong {\n    font-weight: 700;\n  }\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  border-left: 1px solid black;\n  padding-left: 1rem;\n  margin-left: 1rem;\n  select {\n    margin-left: ", ";\n  }\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n  margin-right: 1rem;\n  font-size: 1.25rem;\n  padding: ", " 0;\n  border-bottom: ", " solid ", ";\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  padding-bottom: ", ";\n  margin-bottom: ", ";\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var Header = _styledComponents.default.header(_templateObject(), _styleVars.spacing.large, _styleVars.spacing.large);
+
+var Top = _styledComponents.default.div(_templateObject2());
+
+var H1 = _styledComponents.default.h1(_templateObject3(), _styleVars.spacing.small, _styleVars.spacing.xSmall, _styleVars.colors.black);
+
+var MainControl = _styledComponents.default.div(_templateObject4(), _styleVars.spacing.med);
+
+var H2 = _styledComponents.default.h2(_templateObject5());
+
+var FilterControl = _styledComponents.default.div(_templateObject6());
+
+var Controls = _styledComponents.default.div(_templateObject7());
+
+var StatsHeader = function StatsHeader(_ref) {
+  var logs = _ref.logs,
+      setDropdown = _ref.setDropdown,
+      type = _ref.type;
+  return /*#__PURE__*/_react.default.createElement(Header, null, /*#__PURE__*/_react.default.createElement(Top, null, /*#__PURE__*/_react.default.createElement(H1, null, "Total Logs: ", /*#__PURE__*/_react.default.createElement("strong", null, logs.length)), /*#__PURE__*/_react.default.createElement(MainControl, null, /*#__PURE__*/_react.default.createElement("p", null, "Stats by:"), /*#__PURE__*/_react.default.createElement("select", {
+    onChange: function onChange(e) {
+      return setDropdown("type", e.target.value);
+    }
+  }, /*#__PURE__*/_react.default.createElement("option", null, "Date"), /*#__PURE__*/_react.default.createElement("option", null, "Discipline"), /*#__PURE__*/_react.default.createElement("option", null, "Style"), /*#__PURE__*/_react.default.createElement("option", null, "Partner(s)")))), /*#__PURE__*/_react.default.createElement(FilterControl, null, /*#__PURE__*/_react.default.createElement(H2, null, "Filter ", /*#__PURE__*/_react.default.createElement("strong", null, type)), /*#__PURE__*/_react.default.createElement(Controls, null, /*#__PURE__*/_react.default.createElement("select", {
+    onChange: function onChange(e) {
+      return setDropdown("date", e.target.value);
+    }
+  }, /*#__PURE__*/_react.default.createElement("option", null, "Year"), /*#__PURE__*/_react.default.createElement("option", null, "Month")))));
+};
+
+var _default = StatsHeader;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/styleVars":"components/common/styleVars.js"}],"components/views/stats/PieChart.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -80477,11 +80615,9 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _PieChart = _interopRequireDefault(require("./PieChart.jsx"));
+var d3 = _interopRequireWildcard(require("d3"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _styleVars = require("../../common/styleVars");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -80489,11 +80625,9 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -80507,38 +80641,8 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _templateObject8() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n"]);
-
-  _templateObject8 = function _templateObject8() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject7() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  margin-bottom: 1rem;\n"]);
-
-  _templateObject7 = function _templateObject7() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n  font-size: 1.25rem;\n  margin-right: 2rem;\n  strong {\n    font-weight: 700;\n  }\n"]);
-
-  _templateObject6 = function _templateObject6() {
-    return data;
-  };
-
-  return data;
-}
-
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  margin-top: 1rem;\n  position: relative;\n"]);
+  var data = _taggedTemplateLiteral(["\n  pointer-events: none;\n  padding: 0 0.25rem 0.25rem 0;\n  div {\n    width: auto;\n    z-index: 1;\n    pointer-events: none;\n    user-select: none;\n    font-size: 0.625rem;\n    text-align: left;\n    background: white;\n    box-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.25);\n    padding: 0.25rem;\n    border-radius: 0.125rem;\n  }\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -80548,7 +80652,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  border-left: 1px solid black;\n  padding-left: 1rem;\n  margin-left: 1rem;\n  select {\n    margin-left: ", ";\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  cursor: none;\n  user-select: none;\n  pointer-events: none;\n  font-size: 0.625rem;\n  fill: white;\n  text-anchor: middle;\n  alignment-baseline: middle;\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -80558,7 +80662,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  display: inline-block;\n  margin-right: 1rem;\n  font-size: 1.25rem;\n  padding: ", " 0;\n  border-bottom: ", " solid ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  cursor: pointer;\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -80568,7 +80672,291 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  padding-bottom: ", ";\n  margin-bottom: ", ";\n  align-items: center;\n"]);
+  var data = _taggedTemplateLiteral(["\n  cursor: pointer;\n  width: 100%;\n  height: 100%;\n  transform: translate(-200px, -200px);\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  width: 50vw;\n  height: 50vw;\n  display: block;\n  margin: auto;\n  overflow: visible;\n  @media only screen and (min-width: 768px) {\n    margin-right: 0;\n    margin-left: calc(100% - 400px);\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var SvgChart = _styledComponents.default.svg(_templateObject());
+
+var DismissObject = _styledComponents.default.foreignObject(_templateObject2());
+
+var ArcGroup = _styledComponents.default.g(_templateObject3());
+
+var Text = _styledComponents.default.text(_templateObject4());
+
+var ForeignObject = _styledComponents.default.foreignObject(_templateObject5());
+
+var Tooltip = function Tooltip(_ref) {
+  var transform = _ref.transform,
+      data = _ref.data;
+  var tooltipLabel = data.tooltipLabel;
+  return /*#__PURE__*/_react.default.createElement(ForeignObject, {
+    transform: transform,
+    width: 150,
+    height: 40
+  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, tooltipLabel)));
+};
+
+var Arc = function Arc(_ref2) {
+  var setTooltip = _ref2.setTooltip,
+      data = _ref2.data,
+      index = _ref2.index,
+      createArc = _ref2.createArc,
+      colors = _ref2.colors,
+      format = _ref2.format,
+      onClick = _ref2.onClick;
+  return /*#__PURE__*/_react.default.createElement(ArcGroup, {
+    key: index,
+    onClick: onClick
+  }, /*#__PURE__*/_react.default.createElement("path", {
+    d: createArc(data),
+    fill: colors(index),
+    onMouseOver: function onMouseOver() {
+      return setTooltip(data);
+    },
+    onMouseOut: function onMouseOut() {
+      return setTooltip(false);
+    }
+  }), /*#__PURE__*/_react.default.createElement(Text, {
+    transform: "translate(".concat(createArc.centroid(data), ")")
+  }, format(data.value)));
+};
+
+var PieChart = function PieChart(_ref3) {
+  var chartdata = _ref3.chartdata,
+      innerRadius = _ref3.innerRadius,
+      outerRadius = _ref3.outerRadius,
+      type = _ref3.type,
+      setFiltered = _ref3.setFiltered;
+
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      tooltip = _useState2[0],
+      setTooltip = _useState2[1]; // data for active tooltip
+
+
+  var colors = d3.scaleOrdinal(d3.schemeCategory10);
+  var format = d3.format(".0f");
+  var createArc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+
+  var getToolPos = function getToolPos(data, arcFunc, radius) {
+    if (_typeof(data) !== "object" || !arcFunc.centroid) {
+      return "translate(0, 0)";
+    }
+
+    var _arcFunc$centroid = arcFunc.centroid(data),
+        _arcFunc$centroid2 = _slicedToArray(_arcFunc$centroid, 2),
+        a = _arcFunc$centroid2[0],
+        b = _arcFunc$centroid2[1];
+
+    if (a && b) {
+      return "translate(".concat(a + radius, ", ").concat(b + radius, ")");
+    }
+
+    return "translate(0, 0)";
+  };
+
+  return /*#__PURE__*/_react.default.createElement(SvgChart, null, /*#__PURE__*/_react.default.createElement("g", {
+    transform: "translate(".concat(outerRadius, " ").concat(outerRadius, ")")
+  }, /*#__PURE__*/_react.default.createElement(DismissObject, {
+    onClick: function onClick() {
+      return setFiltered(null);
+    }
+  }), chartdata.map(function (d, i) {
+    return /*#__PURE__*/_react.default.createElement(Arc, {
+      setTooltip: setTooltip,
+      key: i,
+      data: d,
+      index: i,
+      createArc: createArc,
+      colors: colors,
+      format: format,
+      onClick: function onClick() {
+        return setFiltered(type, d.data);
+      }
+    });
+  })), tooltip && /*#__PURE__*/_react.default.createElement(Tooltip, _extends({
+    transform: getToolPos(tooltip, createArc, outerRadius)
+  }, tooltip)));
+};
+
+var _default = PieChart;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/views/stats/Legend.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var d3 = _interopRequireWildcard(require("d3"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n  width: 1rem;\n  height: 1rem;\n  margin-right: 0.5rem;\n  background-color: ", ";\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  margin-bottom: 0.25rem;\n  font-size: 0.875rem;\n  strong {\n    font-weight: 700;\n    margin-right: 0.5rem;\n  }\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  margin-top: 0.5rem;\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  @media only screen and (min-width: 768px) {\n    position: absolute;\n    top: 3rem;\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var Container = _styledComponents.default.div(_templateObject());
+
+var Items = _styledComponents.default.div(_templateObject2());
+
+var Item = _styledComponents.default.div(_templateObject3());
+
+var Square = _styledComponents.default.div(_templateObject4(), function (_ref) {
+  var bg = _ref.bg;
+  return bg;
+});
+
+var colors = d3.scaleOrdinal(d3.schemeCategory10);
+
+var logText = function logText(data) {
+  if (data && data.keyLabel) {
+    var keyLabel = data.keyLabel;
+    return /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement("strong", null, keyLabel[0]), "".concat(keyLabel[1]));
+  }
+
+  return "no label found";
+};
+
+var Legend = function Legend(_ref2) {
+  var chartdata = _ref2.chartdata,
+      settings = _ref2.settings;
+  var type = settings.type;
+  var cumulative = settings[type.toLowerCase()].cumulative;
+  return /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("legend", null, "Key", cumulative === "Month" && ": All years"), /*#__PURE__*/_react.default.createElement(Items, null, chartdata.map(function (d, i) {
+    return /*#__PURE__*/_react.default.createElement(Item, {
+      key: i
+    }, /*#__PURE__*/_react.default.createElement(Square, {
+      bg: colors(i)
+    }), logText(d.data));
+  })));
+};
+
+var _default = Legend;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/views/stats/Stats.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var d3 = _interopRequireWildcard(require("d3"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _constants = require("../../../utils/constants.js");
+
+var _StatsHeader = _interopRequireDefault(require("./StatsHeader.jsx"));
+
+var _PieChart = _interopRequireDefault(require("./PieChart.jsx"));
+
+var _Legend = _interopRequireDefault(require("./Legend.jsx"));
+
+var _styleVars = require("../../common/styleVars");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  margin-top: 1rem;\n  position: relative;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -80591,157 +80979,442 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var StatContainer = _styledComponents.default.div(_templateObject(), _styleVars.spacing.xLarge, _styleVars.spacing.med, _styleVars.breakpoint.small, _styleVars.spacing.large);
 
-var Header = _styledComponents.default.header(_templateObject2(), _styleVars.spacing.large, _styleVars.spacing.large);
-
-var H1 = _styledComponents.default.h1(_templateObject3(), _styleVars.spacing.small, _styleVars.spacing.xSmall, _styleVars.colors.black);
-
-var MainControl = _styledComponents.default.div(_templateObject4(), _styleVars.spacing.med);
-
-var BodySection = _styledComponents.default.section(_templateObject5());
-
-var H2 = _styledComponents.default.h2(_templateObject6());
-
-var FilterControl = _styledComponents.default.div(_templateObject7());
-
-var Controls = _styledComponents.default.div(_templateObject8());
-
-var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-var getDateFormat = function getDateFormat(type, date) {
-  if (type === "Year") {
-    var year = date.split("/")[2];
-    var currentYear = new Date().getFullYear().toString().substr(2);
-
-    if (year) {
-      return year > currentYear ? "19".concat(year) : "20".concat(year);
-    }
-
-    return "unknown";
-  }
-
-  if (type === "Month") {
-    var month = date.split("/")[1];
-
-    if (months.includes(month)) {
-      return month;
-    }
-
-    return "unknown";
-  }
-};
-
-var handleDate = function handleDate(dateType, logs) {
-  var result = logs.reduce(function (r, _ref) {
-    var date = _ref.date;
-    var output = getDateFormat(dateType, date);
-
-    if (!r[output]) {
-      r[output] = {
-        label: output,
-        value: 1
-      };
-    } else {
-      r[output].value++;
-    }
-
-    return r;
-  }, {});
-  var retArray = Object.values(result); // sort dates here
-
-  if (dateType === "Month") {
-    var validMonths = months.map(function (i) {
-      return result[i];
-    });
-    var invalidMonths = retArray.find(function (i) {
-      return i.label === "unknown";
-    });
-    return invalidMonths ? validMonths.concat(result["unknown"]) : validMonths;
-  }
-
-  return retArray;
-}; // TODO:
-// - add more main filters
-// - nice dropdowns
+var BodySection = _styledComponents.default.section(_templateObject2()); // TODO:
+// - cache main chart data for better performance
+// - update key and total logs text when drilling down
+// - clicking 'out' of the piechart resets
+// - more detailed tooltips (handle content drilldown)
+// - link to logbook at end of drilldown (e.g. see logs for a particular date)
+// - set up a context for nested components to use
+// - dropdown styling (probably need to reformat data for this)
 // - pie chart more responsive
-// - pie chart to handle different main values
-// 1. date
-// - year: needs a tooltip or key, need to process century data somehow
-// - month: needs to process text
-// - day should be omitted, unless a particular year and month can be selected somehow
-// ^ this would be a great feature, requires some extra though / design
-// 2. grade
-// - omit this (tied into discipline, will not work well with a pie chart overall)
-// 3. partner
-// - no partner listed = no partner listed text
-// 4. discipline
-// - comes from grade, tricky to process
-// 5. style
-// - not set
-
-
-var getChartData = function getChartData(settingState, logs) {
-  if (settingState.main === "Date") {
-    return handleDate(settingState.date, logs);
-  }
-};
-
-var defaultSettings = {
-  main: "Date",
-  // grade, discipline, style, crag
-  date: "Year",
-  // Month, Year and Month => day
-  grade: "Low",
-  // low to high. Class discipline this way also. Cant show low to high in a pie chart though
-  discipline: "Trad",
-  // Sport, Bouldering, Mixed, etc. => grade low to high
-  style: "Onsight",
-  // Flashed, Worked, Dogged, Did not finish
-  partners: undefined // most climbed with by default
-
-}; // set default select options here, e.g.
+// - add more 'type'/overall filters (partners, discipline, etc)
+// ^ see github issue https://github.com/martinbagshaw/ReactLogbook/issues/23
+// TODO (filter function for date):
+// - make more adaptable: handle different data types
+// - refactor: use a single reduce, if possible
+// - new behavior: date click takes you to the logbook, with climbs on that date shown
+// dropdown data format may need changing to:
 // const dateOptions = {
 //   year: { label: "Year", value: "year"},
 //   month: { label: "Month", value: "month"}
 // }
 
-var Stats = function Stats(_ref2) {
-  var logs = _ref2.logs;
 
-  var _useState = (0, _react.useState)(defaultSettings),
+var handleCumulativeDate = function handleCumulativeDate(dateType, logs) {
+  var search = dateType.toLowerCase();
+
+  var createData = function createData(monthOrYear, logs) {
+    var newLogs = _toConsumableArray(logs);
+
+    var res = newLogs.reduce(function (r, _ref) {
+      var date = _ref.date;
+      var label = date.processed[monthOrYear];
+
+      if (monthOrYear === "month") {
+        label = _constants.months[label] || "unknown";
+      }
+
+      if (!r[label]) {
+        r[label] = {
+          label: label,
+          value: 1
+        };
+      } else {
+        r[label].value++;
+      }
+
+      return r;
+    }, {});
+    return res;
+  };
+
+  var formatAndSort = function formatAndSort(monthOrYear, logsObj) {
+    var newLogs = _objectSpread({}, logsObj);
+
+    if (monthOrYear === "month") {
+      var valid = Object.values(_constants.months).map(function (i) {
+        var _newLogs$i = newLogs[i],
+            label = _newLogs$i.label,
+            value = _newLogs$i.value;
+        var monthAbbr = Object.keys(_constants.months).find(function (key) {
+          return _constants.months[key] === label;
+        });
+        return {
+          keyLabel: ["".concat(label, ":"), "".concat(value, " climbs")],
+          itemFilter: monthAbbr,
+          tooltipLabel: "".concat(value, " climbs in ").concat(label),
+          value: value
+        };
+      });
+      var invalid = Object.values(newLogs).find(function (i) {
+        return i.label === "unknown";
+      });
+      var value = invalid.value;
+      var unknown = {
+        keyLabel: ["Unknown:", "".concat(value, " climbs")],
+        tooltipLabel: "".concat(value, " climbs on an unknown date"),
+        value: value
+      };
+      return invalid ? valid.concat(unknown) : valid;
+    }
+
+    return Object.values(newLogs).map(function (i) {
+      var label = i.label,
+          value = i.value;
+      return {
+        keyLabel: ["".concat(label, ":"), "".concat(value, " climbs")],
+        itemFilter: label,
+        tooltipLabel: "".concat(value, " climbs in ").concat(label),
+        value: value
+      };
+    });
+  };
+
+  var createdData = createData(search, logs);
+  var sortedData = formatAndSort(search, createdData);
+  return sortedData;
+};
+
+var handleFilteredDate = function handleFilteredDate(filter, logs) {
+  var filters = Object.keys(filter).length; // part 1: filter logs
+
+  var filterLogs = function filterLogs(filterLength, filter, logs) {
+    var month = filter.month,
+        year = filter.year;
+
+    var newLogs = _toConsumableArray(logs);
+
+    if (filterLength === 1) {
+      // year and cumulative month
+      return newLogs.filter(function (i) {
+        if (month) {
+          return i.date.processed["month"] === month;
+        }
+
+        return i.date.processed["year"] === year;
+      });
+    }
+
+    if ([2, 3].includes(filterLength)) {
+      // month and day
+      return newLogs.reduce(function (acc, i) {
+        var _i$date$processed = i.date.processed,
+            day = _i$date$processed.day,
+            month = _i$date$processed.month,
+            year = _i$date$processed.year;
+        var isMonth = month === filter["month"] && year === filter["year"];
+        var isDay = isMonth && day === filter["day"];
+
+        if (filterLength === 2 && isMonth || filterLength === 3 && isDay) {
+          acc.push(i);
+        }
+
+        return acc;
+      }, []);
+    }
+  }; // part 2: create data for chart and key
+
+
+  var createData = function createData(filterLength, filter, filteredLogs) {
+    var isCumulativeMonth = filter.month;
+
+    var newLogs = _toConsumableArray(filteredLogs);
+
+    var result; // cumulative month, single year
+
+    if (filterLength === 1) {
+      result = newLogs.reduce(function (acc, _ref2) {
+        var date = _ref2.date;
+        var _date$processed = date.processed,
+            dayLong = _date$processed.dayLong,
+            day = _date$processed.day,
+            month = _date$processed.month,
+            monthLong = _date$processed.monthLong,
+            year = _date$processed.year;
+        var label = "".concat(monthLong, " ").concat(year);
+
+        if (isCumulativeMonth) {
+          label = "".concat(dayLong, " ").concat(monthLong);
+        }
+
+        if (!acc[label]) {
+          acc[label] = isCumulativeMonth ? {
+            day: day,
+            dayLong: dayLong,
+            month: month,
+            monthLong: monthLong,
+            label: label,
+            value: 1
+          } : {
+            month: month,
+            monthLong: monthLong,
+            year: year,
+            value: 1
+          };
+        } else {
+          acc[label].value++;
+        }
+
+        return acc;
+      }, {});
+      return Object.values(result);
+    } // single month and single day
+
+
+    if ([2, 3].includes(filterLength)) {
+      result = newLogs.reduce(function (acc, _ref3) {
+        var date = _ref3.date;
+        var _date$processed2 = date.processed,
+            day = _date$processed2.day,
+            dayLong = _date$processed2.dayLong,
+            month = _date$processed2.month,
+            monthLong = _date$processed2.monthLong,
+            year = _date$processed2.year;
+        var label = "".concat(dayLong, " ").concat(monthLong, " ").concat(year);
+
+        if (!acc[label]) {
+          acc[label] = {
+            day: day,
+            dayLong: dayLong,
+            month: month,
+            monthLong: monthLong,
+            year: year,
+            label: label,
+            value: 1
+          };
+        } else {
+          acc[label].value++;
+        }
+
+        return acc;
+      }, {});
+      return Object.values(result);
+    }
+  }; // part 3: sort data ascending, format, create labels
+
+
+  var formatAndSort = function formatAndSort(filterLength, filter, formattedData) {
+    var isCumulativeMonth = filter.month;
+
+    var formatted = _toConsumableArray(formattedData); // order ascending
+
+
+    if (filterLength === 1 && isCumulativeMonth || [2, 3].includes(filterLength)) {
+      var arr = [];
+
+      var _loop = function _loop(day) {
+        var entry = formatted.find(function (i) {
+          return parseInt(i.day) === day;
+        });
+
+        if (entry) {
+          var dayLong = entry.dayLong,
+              month = entry.month,
+              monthLong = entry.monthLong,
+              year = entry.year,
+              value = entry.value;
+          var keyLabel = ["".concat(dayLong, " ").concat(monthLong, " ").concat([2, 3].includes(filterLength) ? year : "", ":"), "".concat(value, " climbs")];
+          var tooltipLabel = "".concat(value, " climbs on ").concat(dayLong, " ").concat(monthLong, " ").concat([2, 3].includes(filterLength) ? year : "");
+          var res = {
+            keyLabel: keyLabel,
+            tooltipLabel: tooltipLabel,
+            value: value
+          };
+
+          if ([2, 3].includes(filterLength)) {
+            res.itemFilter = "".concat(year, " ").concat(month, " ").concat(day);
+          }
+
+          arr.push(res);
+        }
+      };
+
+      for (var day = 0; day < 32; day++) {
+        _loop(day);
+      }
+
+      return arr;
+    }
+
+    if (filterLength === 1) {
+      // use months object to order by month
+      return Object.values(_constants.months).reduce(function (acc, monthLong) {
+        var entry = formatted.find(function (i) {
+          return i.monthLong === monthLong;
+        });
+
+        if (entry) {
+          var month = entry.month,
+              _monthLong = entry.monthLong,
+              year = entry.year,
+              value = entry.value;
+          var keyLabel = ["".concat(_monthLong, " ").concat(year, ":"), "".concat(value, " climbs")];
+          var tooltipLabel = "".concat(value, " climbs in ").concat(_monthLong, " ").concat(year);
+          acc.push({
+            itemFilter: "".concat(year, " ").concat(month),
+            keyLabel: keyLabel,
+            tooltipLabel: tooltipLabel,
+            value: value
+          });
+        }
+
+        return acc;
+      }, []);
+    }
+
+    return formatted;
+  }; // crunch data
+
+
+  var filteredData = filterLogs(filters, filter, logs);
+  var createdData = createData(filters, filter, filteredData);
+  var sortedData = formatAndSort(filters, filter, createdData);
+  return sortedData;
+}; // set pie chart data:
+// - filters the settingState to get chart data
+
+
+var getChartData = function getChartData(settingState, logs) {
+  var type = settingState.type,
+      date = settingState.date;
+  var search = type.toLowerCase(); // find the item with '.filter'
+
+  var hasFilter = Object.values(settingState).find(function (i) {
+    return i.filter;
+  });
+
+  if (search === "date" && !hasFilter) {
+    return handleCumulativeDate(date.cumulative, logs);
+  }
+
+  if (search === "date" && hasFilter) {
+    return handleFilteredDate(hasFilter.filter, logs);
+  }
+};
+
+var Stats = function Stats(_ref4) {
+  var logs = _ref4.logs;
+
+  var _useState = (0, _react.useState)(_constants.defaultSettings),
       _useState2 = _slicedToArray(_useState, 2),
       settings = _useState2[0],
-      setSettings = _useState2[1]; // console.log(logs)
+      setSettings = _useState2[1];
 
+  var setDropdown = function setDropdown(type, value) {
+    var newSettings = _objectSpread({}, _constants.defaultSettings);
 
-  var setItem = function setItem(value, type) {
-    var newSettings = _objectSpread({}, settings);
+    if (type !== "type") {
+      newSettings[type].cumulative = value;
+    } else {
+      newSettings[type] = value;
+    }
 
-    newSettings[type] = value;
     setSettings(newSettings);
   };
 
+  var setFiltered = function setFiltered(type, data) {
+    // - works with handleFilteredDate
+    // - filters the settings object, used by getChartData
+    var newSettings = JSON.parse(JSON.stringify(settings)); // need to deep clone
+
+    var search = type ? type.toLowerCase() : null;
+
+    if (!search || !settings[search] || !settings[search].cumulative) {
+      var resetSettings = _objectSpread({}, _constants.defaultSettings);
+
+      return setSettings(resetSettings); // reset and return
+    }
+
+    var _newSettings$search = newSettings[search],
+        cumulative = _newSettings$search.cumulative,
+        filter = _newSettings$search.filter;
+
+    if (!filter) {
+      newSettings[search].filter = {};
+    } // remove requirement for months data
+
+
+    var handleDate = function handleDate(dateSetting, setting, data) {
+      var itemFilter = data.itemFilter;
+
+      if (!dateSetting) {
+        return;
+      }
+
+      if (!itemFilter) {
+        return dateSetting;
+      } // first level, month or year
+
+
+      var isMonth = Object.keys(_constants.months).includes(itemFilter);
+      var isYear = parseInt(itemFilter);
+      var singleMonth = !isMonth && itemFilter.split(" ").length === 2;
+      var singleDay = !isMonth && itemFilter.split(" ").length === 3;
+
+      if (isMonth || isYear) {
+        dateSetting.filter[setting] = itemFilter;
+      }
+
+      if (singleMonth || singleDay) {
+        var _itemFilter$split = itemFilter.split(" "),
+            _itemFilter$split2 = _slicedToArray(_itemFilter$split, 2),
+            year = _itemFilter$split2[0],
+            month = _itemFilter$split2[1];
+
+        dateSetting.filter[setting] = year;
+        dateSetting.filter["month"] = month;
+      }
+
+      if (singleDay) {
+        var day = itemFilter.split(" ")[2];
+        dateSetting.filter["day"] = day;
+      }
+
+      return dateSetting;
+    };
+
+    var setting = cumulative.toLowerCase();
+
+    switch (search) {
+      case "date":
+        newSettings[search] = handleDate(newSettings[search], setting, data);
+        break;
+
+      default:
+        null;
+    }
+
+    setSettings(newSettings);
+  };
+
+  var type = settings.type;
   var piechartData = getChartData(settings, logs);
-  var main = settings.main;
-  return /*#__PURE__*/_react.default.createElement(StatContainer, null, /*#__PURE__*/_react.default.createElement(Header, null, /*#__PURE__*/_react.default.createElement(H1, null, "Total Logs: ", /*#__PURE__*/_react.default.createElement("strong", null, logs.length)), /*#__PURE__*/_react.default.createElement(MainControl, null, /*#__PURE__*/_react.default.createElement("p", null, "Stats by:"), /*#__PURE__*/_react.default.createElement("select", {
-    onChange: function onChange(e) {
-      return setItem(e.target.value, "main");
-    }
-  }, /*#__PURE__*/_react.default.createElement("option", null, "Date"), /*#__PURE__*/_react.default.createElement("option", null, "Discipline"), /*#__PURE__*/_react.default.createElement("option", null, "Style"), /*#__PURE__*/_react.default.createElement("option", null, "Partner(s)")))), main === "Date" && /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(BodySection, null, /*#__PURE__*/_react.default.createElement(FilterControl, null, /*#__PURE__*/_react.default.createElement(H2, null, "Filter ", /*#__PURE__*/_react.default.createElement("strong", null, main)), /*#__PURE__*/_react.default.createElement(Controls, null, /*#__PURE__*/_react.default.createElement("select", {
-    onChange: function onChange(e) {
-      return setItem(e.target.value, "date");
-    }
-  }, /*#__PURE__*/_react.default.createElement("option", null, "Year"), /*#__PURE__*/_react.default.createElement("option", null, "Month")))), /*#__PURE__*/_react.default.createElement(_PieChart.default, {
-    data: piechartData,
+  var createPie = d3.pie().value(function (d) {
+    return d.value;
+  }).sort(null);
+  var chartdata = piechartData ? createPie(piechartData) : null;
+  return /*#__PURE__*/_react.default.createElement(StatContainer, null, /*#__PURE__*/_react.default.createElement(_StatsHeader.default, {
+    logs: logs,
+    setDropdown: setDropdown,
+    type: type
+  }), /*#__PURE__*/_react.default.createElement(BodySection, null, chartdata && type === "Date" ? /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_PieChart.default, {
+    chartdata: chartdata,
     width: 500,
     height: 500,
     innerRadius: 120,
-    outerRadius: 200
-  }))));
+    outerRadius: 200,
+    type: type,
+    setFiltered: setFiltered
+  }), /*#__PURE__*/_react.default.createElement(_Legend.default, {
+    chartdata: chartdata,
+    settings: settings
+  })) : /*#__PURE__*/_react.default.createElement("p", null, "Only date has been implemented so far...")));
 };
 
 var _default = Stats;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./PieChart.jsx":"components/views/stats/PieChart.jsx","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/styleVars":"components/common/styleVars.js"}],"components/common/Layout.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../../utils/constants.js":"utils/constants.js","./StatsHeader.jsx":"components/views/stats/StatsHeader.jsx","./PieChart.jsx":"components/views/stats/PieChart.jsx","./Legend.jsx":"components/views/stats/Legend.jsx","../../common/styleVars":"components/common/styleVars.js"}],"components/common/Layout.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -81020,7 +81693,7 @@ var Search = function Search(_ref) {
       onClick: function onClick() {
         return onResultClick(i.key);
       }
-    }, /*#__PURE__*/_react.default.createElement(Climb, null, i.climbName), /*#__PURE__*/_react.default.createElement(Crag, null, i.cragName), /*#__PURE__*/_react.default.createElement(Date, null, i.date)));
+    }, /*#__PURE__*/_react.default.createElement(Climb, null, i.climbName), /*#__PURE__*/_react.default.createElement(Crag, null, i.cragName), /*#__PURE__*/_react.default.createElement(Date, null, i.date.original)));
   })));
 };
 
@@ -81178,7 +81851,7 @@ var Results = function Results(_ref) {
       onClick: function onClick() {
         return _onClick(log.key);
       }
-    }, /*#__PURE__*/_react.default.createElement(Climb, null, /*#__PURE__*/_react.default.createElement("strong", null, log.climbName), " - ", log.grade), " ", /*#__PURE__*/_react.default.createElement(Crag, null, log.style, " - ", log.cragName), /*#__PURE__*/_react.default.createElement(Date, null, log.date, /*#__PURE__*/_react.default.createElement("svg", {
+    }, /*#__PURE__*/_react.default.createElement(Climb, null, /*#__PURE__*/_react.default.createElement("strong", null, log.climbName), " - ", log.grade), " ", /*#__PURE__*/_react.default.createElement(Crag, null, log.style, " - ", log.cragName), /*#__PURE__*/_react.default.createElement(Date, null, log.date.original, /*#__PURE__*/_react.default.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       width: "48",
       height: "48",
@@ -82009,7 +82682,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56225" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49219" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
