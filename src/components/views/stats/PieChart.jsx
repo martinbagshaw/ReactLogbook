@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React, { useState } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 
-const PieChart = styled.svg`
+const SvgChart = styled.svg`
   width: 50vw;
   height: 50vw;
   display: block;
@@ -14,89 +14,108 @@ const PieChart = styled.svg`
   }
 `;
 
-const Key = styled.div`
-  @media only screen and (min-width: 768px) {
-    position: absolute;
-    top: 3rem;
+const DismissObject = styled.foreignObject`
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  transform: translate(-200px, -200px);
+`;
+
+const ArcGroup = styled.g`
+  cursor: pointer;
+`;
+
+const Text = styled.text`
+  cursor: none;
+  user-select: none;
+  pointer-events: none;
+  font-size: 0.625rem;
+  fill: white;
+  text-anchor: middle;
+  alignment-baseline: middle;
+`;
+
+const ForeignObject = styled.foreignObject`
+  pointer-events: none;
+  padding: 0 0.25rem 0.25rem 0;
+  div {
+    width: auto;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    font-size: 0.625rem;
+    text-align: left;
+    background: white;
+    box-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.25);
+    padding: 0.25rem;
+    border-radius: 0.125rem;
   }
 `;
 
-const Items = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.5rem;
-`;
-
-const Item = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.25rem;
-  font-size: 0.875rem;
-  strong {
-    font-weight: 700;
-    margin-right: 0.5rem;
-  }
-`;
-
-const Square = styled.div`
-  width: 1rem;
-  height: 1rem;
-  margin-right: 0.5rem;
-  background-color: ${props => props.bg};
-`;
-
-const Arc = ({ data, index, createArc, colors, format }) => (
-  <g key={index} className="arc">
-    <path className="arc" d={createArc(data)} fill={colors(index)} />
-    <text
-      transform={`translate(${createArc.centroid(data)})`}
-      textAnchor="middle"
-      alignmentBaseline="middle"
-      fill="white"
-      fontSize="10"
-    >
-      {format(data.value)}
-    </text>
-  </g>
-);
-
-const Pie = props => {
-  const createPie = d3
-    .pie()
-    .value(d => d.value)
-    .sort(null);
-  const createArc = d3
-    .arc()
-    .innerRadius(props.innerRadius)
-    .outerRadius(props.outerRadius);
-  const colors = d3.scaleOrdinal(d3.schemeCategory10);
-  const format = d3.format(".0f");
-  const data = createPie(props.data);
-
+const Tooltip = ({ transform, data }) => {
+  const { tooltipLabel } = data;
   return (
-    <Fragment>
-      <PieChart>
-        <g transform={`translate(${props.outerRadius} ${props.outerRadius})`}>
-          {data.map((d, i) => (
-            <Arc key={i} data={d} index={i} createArc={createArc} colors={colors} format={format} />
-          ))}
-        </g>
-      </PieChart>
-
-      <Key>
-        <legend>Key</legend>
-        <Items>
-          {data.map((d, i) => (
-            <Item key={i}>
-              <Square bg={colors(i)} />
-              <strong>{(d.data && d.data.label) || "no label found"}</strong>
-              {(d.data && `${d.data.value} logs`) || "no logs found"}
-            </Item>
-          ))}
-        </Items>
-      </Key>
-    </Fragment>
+    <ForeignObject transform={transform} width={150} height={40}>
+      <div>
+        <p>{tooltipLabel}</p>
+      </div>
+    </ForeignObject>
   );
 };
 
-export default Pie;
+const Arc = ({ setTooltip, data, index, createArc, colors, format, onClick }) => (
+  <ArcGroup key={index} onClick={onClick}>
+    <path
+      d={createArc(data)}
+      fill={colors(index)}
+      onMouseOver={() => setTooltip(data)}
+      onMouseOut={() => setTooltip(false)}
+    />
+    <Text transform={`translate(${createArc.centroid(data)})`}>{format(data.value)}</Text>
+  </ArcGroup>
+);
+
+const PieChart = ({ chartdata, innerRadius, outerRadius, type, setFiltered }) => {
+  const [tooltip, setTooltip] = useState(false); // data for active tooltip
+
+  const colors = d3.scaleOrdinal(d3.schemeCategory10);
+  const format = d3.format(".0f");
+  const createArc = d3
+    .arc()
+    .innerRadius(innerRadius)
+    .outerRadius(outerRadius);
+
+  const getToolPos = (data, arcFunc, radius) => {
+    if (typeof data !== "object" || !arcFunc.centroid) {
+      return "translate(0, 0)";
+    }
+    const [a, b] = arcFunc.centroid(data);
+    if (a && b) {
+      return `translate(${a + radius}, ${b + radius})`;
+    }
+    return "translate(0, 0)";
+  };
+
+  return (
+    <SvgChart>
+      <g transform={`translate(${outerRadius} ${outerRadius})`}>
+        <DismissObject onClick={() => setFiltered(null)} />
+        {chartdata.map((d, i) => (
+          <Arc
+            setTooltip={setTooltip}
+            key={i}
+            data={d}
+            index={i}
+            createArc={createArc}
+            colors={colors}
+            format={format}
+            onClick={() => setFiltered(type, d.data)}
+          />
+        ))}
+      </g>
+      {tooltip && <Tooltip transform={getToolPos(tooltip, createArc, outerRadius)} {...tooltip} />}
+    </SvgChart>
+  );
+};
+
+export default PieChart;
