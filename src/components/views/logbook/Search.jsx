@@ -136,7 +136,7 @@ const Search = ({
             >
               <Climb>{i.climbName}</Climb>
               <Crag>{i.cragName}</Crag>
-              <Date>{i.date}</Date>
+              <Date>{i.date.original}</Date>
             </ResultButton>
           </li>
         ))}
