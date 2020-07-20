@@ -81294,7 +81294,10 @@ var getChartData = function getChartData(settingState, logs) {
 };
 
 var Stats = function Stats(_ref4) {
-  var logs = _ref4.logs;
+  var _hasFilter$filter2;
+
+  var handleSingleDay = _ref4.handleSingleDay,
+      logs = _ref4.logs;
 
   var _useState = (0, _react.useState)(_constants.defaultSettings),
       _useState2 = _slicedToArray(_useState, 2),
@@ -81394,7 +81397,34 @@ var Stats = function Stats(_ref4) {
     return d.value;
   }).sort(null);
   var chartdata = piechartData ? createPie(piechartData) : null;
-  return /*#__PURE__*/_react.default.createElement(StatContainer, null, /*#__PURE__*/_react.default.createElement(_StatsHeader.default, {
+  var hasFilter = Object.values(settings).find(function (i) {
+    return i.filter;
+  });
+  (0, _react.useEffect)(function () {
+    var _hasFilter$filter;
+
+    if (hasFilter === null || hasFilter === void 0 ? void 0 : (_hasFilter$filter = hasFilter.filter) === null || _hasFilter$filter === void 0 ? void 0 : _hasFilter$filter.day) {
+      var newLogs = _toConsumableArray(logs);
+
+      var filter = hasFilter.filter;
+      var dailyLogs = newLogs.reduce(function (acc, i) {
+        var _i$date$processed2 = i.date.processed,
+            day = _i$date$processed2.day,
+            month = _i$date$processed2.month,
+            year = _i$date$processed2.year;
+        var isMonth = month === filter["month"] && year === filter["year"];
+        var isDay = isMonth && day === filter["day"];
+
+        if (isDay) {
+          acc.push(i);
+        }
+
+        return acc;
+      }, []);
+      handleSingleDay(dailyLogs, filter);
+    }
+  }, [hasFilter]);
+  return !(hasFilter === null || hasFilter === void 0 ? void 0 : (_hasFilter$filter2 = hasFilter.filter) === null || _hasFilter$filter2 === void 0 ? void 0 : _hasFilter$filter2.day) && /*#__PURE__*/_react.default.createElement(StatContainer, null, /*#__PURE__*/_react.default.createElement(_StatsHeader.default, {
     logs: logs,
     setDropdown: setDropdown,
     type: type
@@ -81844,14 +81874,20 @@ var Results = function Results(_ref) {
       low = _ref.low,
       high = _ref.high,
       _onClick = _ref.onClick;
-  return /*#__PURE__*/_react.default.createElement(ResultsList, null, logs.slice(low, high).map(function (log) {
+  return /*#__PURE__*/_react.default.createElement(ResultsList, null, logs.slice(low, high).map(function (_ref2) {
+    var climbName = _ref2.climbName,
+        cragName = _ref2.cragName,
+        original = _ref2.date.original,
+        grade = _ref2.grade,
+        key = _ref2.key,
+        style = _ref2.style;
     return /*#__PURE__*/_react.default.createElement("li", {
-      key: log.key
+      key: key
     }, /*#__PURE__*/_react.default.createElement(ListButton, {
       onClick: function onClick() {
-        return _onClick(log.key);
+        return _onClick(key);
       }
-    }, /*#__PURE__*/_react.default.createElement(Climb, null, /*#__PURE__*/_react.default.createElement("strong", null, log.climbName), " - ", log.grade), " ", /*#__PURE__*/_react.default.createElement(Crag, null, log.style, " - ", log.cragName), /*#__PURE__*/_react.default.createElement(Date, null, log.date.original, /*#__PURE__*/_react.default.createElement("svg", {
+    }, /*#__PURE__*/_react.default.createElement(Climb, null, /*#__PURE__*/_react.default.createElement("strong", null, climbName), " - ", grade), " ", /*#__PURE__*/_react.default.createElement(Crag, null, style, " - ", cragName), /*#__PURE__*/_react.default.createElement(Date, null, original, /*#__PURE__*/_react.default.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       width: "48",
       height: "48",
@@ -82361,18 +82397,21 @@ var LogList = _styledComponents.default.ul(_templateObject3(), _styleVars.spacin
 var EditButtons = _styledComponents.default.div(_templateObject4(), _styleVars.breakpoint.small); // TODO:
 // - onClick for star and notes / memorable buttons. Where to put logic?
 // - map through fields
-// - smooth animation (slide in from left, see dmarc site css animation)
 
 
 var SingleLog = function SingleLog(_ref) {
   var climbName = _ref.climbName,
       cragName = _ref.cragName,
-      date = _ref.date,
+      processed = _ref.date.processed,
       grade = _ref.grade,
       notes = _ref.notes,
       partners = _ref.partners,
       style = _ref.style,
       _onClick = _ref.onClick;
+  var dayLong = processed.dayLong,
+      monthLong = processed.monthLong,
+      year = processed.year;
+  var dateFormat = "".concat(dayLong, " ").concat(monthLong, " ").concat(year);
   return /*#__PURE__*/_react.default.createElement(LogContainer, null, /*#__PURE__*/_react.default.createElement(_Buttons.NavButton, {
     onClick: function onClick() {
       return _onClick(null);
@@ -82386,8 +82425,8 @@ var SingleLog = function SingleLog(_ref) {
   }), cragName), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_Icons.Style, {
     style: style
   }), style), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_Icons.Date, {
-    date: date
-  }), /*#__PURE__*/_react.default.createElement("strong", null, date)), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_Icons.Partner, {
+    date: dateFormat
+  }), /*#__PURE__*/_react.default.createElement("strong", null, dateFormat)), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_Icons.Partner, {
     partners: partners
   }), partners), notes && /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_Icons.Comment, null), notes))), /*#__PURE__*/_react.default.createElement(EditButtons, null, /*#__PURE__*/_react.default.createElement(_IconButton.default, {
     type: "star",
@@ -82457,6 +82496,19 @@ var Logbook = function Logbook(_ref) {
       search = _useState2[0],
       setSearch = _useState2[1];
 
+  var _useState3 = (0, _react.useState)({
+    low: 0,
+    high: 50
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      page = _useState4[0],
+      setPage = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(null),
+      _useState6 = _slicedToArray(_useState5, 2),
+      singleLog = _useState6[0],
+      setSingleLog = _useState6[1];
+
   var handleSearch = function handleSearch(value) {
     var resultsFind = function resultsFind(value, logs) {
       if (value.length < 3) return;
@@ -82476,14 +82528,6 @@ var Logbook = function Logbook(_ref) {
     });
   };
 
-  var _useState3 = (0, _react.useState)({
-    low: 0,
-    high: 50
-  }),
-      _useState4 = _slicedToArray(_useState3, 2),
-      page = _useState4[0],
-      setPage = _useState4[1];
-
   var handlePageChange = function handlePageChange(_ref2) {
     var low = _ref2.low,
         high = _ref2.high;
@@ -82493,36 +82537,26 @@ var Logbook = function Logbook(_ref) {
     });
   };
 
-  var _useState5 = (0, _react.useState)({
-    selectedLog: ""
-  }),
-      _useState6 = _slicedToArray(_useState5, 2),
-      view = _useState6[0],
-      setView = _useState6[1];
-
-  var handleSingleView = function handleSingleView(logIndex) {
-    var selected = logIndex ? logs.find(function (i) {
-      return i.key === logIndex;
-    }) : "";
-    return setView({
-      selectedLog: selected
-    });
+  var handleSingleView = function handleSingleView(index) {
+    return setSingleLog(logs.find(function (i) {
+      return i.key === index;
+    }));
   };
 
   return /*#__PURE__*/_react.default.createElement(_Layout.ContainerStyle, null, /*#__PURE__*/_react.default.createElement(_Search.default, _extends({}, search, {
     onChange: function onChange(e) {
       return handleSearch(e.target.value);
     },
-    disabled: view.selectedLog !== "" ? true : false,
+    disabled: singleLog ? true : false,
     onResultClick: handleSingleView // onBlur={() => handleSearch("")}
 
-  })), !view.selectedLog && /*#__PURE__*/_react.default.createElement(_PageNav.default, _extends({}, page, {
+  })), !singleLog && /*#__PURE__*/_react.default.createElement(_PageNav.default, _extends({}, page, {
     logs: logs,
     onClick: handlePageChange
-  })), !view.selectedLog && /*#__PURE__*/_react.default.createElement(_Results.default, _extends({}, page, {
+  })), !singleLog && /*#__PURE__*/_react.default.createElement(_Results.default, _extends({}, page, {
     logs: logs,
     onClick: handleSingleView
-  })), view.selectedLog && /*#__PURE__*/_react.default.createElement(_SingleLog.default, _extends({}, view.selectedLog, {
+  })), singleLog && /*#__PURE__*/_react.default.createElement(_SingleLog.default, _extends({}, singleLog, {
     onClick: handleSingleView
   })));
 };
@@ -82571,6 +82605,16 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n  text-align: center;\n  padding: 0.25rem;\n  background-color: ", ";\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject3() {
   var data = _taggedTemplateLiteral(["\n  ", ";\n  letter-spacing: 0.05rem;\n  font-size: ", ";\n  display: flex;\n  width: 50%;\n  border-bottom: ", " solid ", ";\n  padding: ", ";\n  background-color: ", ";\n  &:first-child {\n    justify-content: flex-end;\n  }\n  > span {\n    user-select: none;\n    max-width: 23rem;\n    width: 100%;\n    display: block;\n  }\n  &:hover {\n    background-color: ", ";\n  }\n  ", "\n"]);
 
@@ -82610,8 +82654,10 @@ var Header = _styledComponents.default.header(_templateObject2());
 var Button = _styledComponents.default.button(_templateObject3(), _Buttons.buttonBase, _styleVars.fontSize.med, _styleVars.spacing.small, _styleVars.colors.midGrey, _styleVars.spacing.xLarge, _styleVars.colors.lightGrey, function (props) {
   return props.isActive ? _styleVars.colors.lightRed : _styleVars.colors.midGrey;
 }, function (props) {
-  return props.isActive ? "\n  background-color: ".concat(_styleVars.colors.lightRed, ";\n  border-bottom-color: ").concat(_styleVars.colors.red, ";\n  ") : "";
+  return props.isActive && "\n  background-color: ".concat(_styleVars.colors.lightRed, ";\n  border-bottom-color: ").concat(_styleVars.colors.red, ";\n  ");
 });
+
+var DailyMessage = _styledComponents.default.p(_templateObject4(), _styleVars.colors.midBlue);
 
 var allLogs = (0, _formatData.formatData)(_mbLogbook.default);
 
@@ -82621,7 +82667,33 @@ var App = function App() {
       view = _useState2[0],
       setView = _useState2[1];
 
-  return /*#__PURE__*/_react.default.createElement(Root, null, /*#__PURE__*/_react.default.createElement(Header, null, /*#__PURE__*/_react.default.createElement(Button, {
+  var _useState3 = (0, _react.useState)(allLogs),
+      _useState4 = _slicedToArray(_useState3, 2),
+      logs = _useState4[0],
+      setLogs = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(null),
+      _useState6 = _slicedToArray(_useState5, 2),
+      message = _useState6[0],
+      setMessage = _useState6[1];
+
+  var handleSingleDay = function handleSingleDay(logs, filter) {
+    var day = filter.day,
+        month = filter.month,
+        year = filter.year;
+    setView("Logbook");
+    setLogs(logs);
+    setMessage("Showing ".concat(logs.length, " ").concat(logs.length === 1 ? "log" : "logs", " for: ").concat(day, " ").concat(month, " ").concat(year));
+  }; // reset to original
+
+
+  (0, _react.useEffect)(function () {
+    if (message && view === "Stats") {
+      setLogs(allLogs);
+      setMessage(null);
+    }
+  }, [message, view]);
+  return /*#__PURE__*/_react.default.createElement(Root, null, message && /*#__PURE__*/_react.default.createElement(DailyMessage, null, message), /*#__PURE__*/_react.default.createElement(Header, null, /*#__PURE__*/_react.default.createElement(Button, {
     onClick: function onClick() {
       return setView("Stats");
     },
@@ -82634,9 +82706,10 @@ var App = function App() {
     isActive: view === "Logbook",
     "aria-label": "Logbook View"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Logbook"))), view === "Stats" && /*#__PURE__*/_react.default.createElement(_Stats.default, {
-    logs: allLogs
+    logs: logs,
+    handleSingleDay: handleSingleDay
   }), view === "Logbook" && /*#__PURE__*/_react.default.createElement(_Logbook.default, {
-    logs: allLogs
+    logs: logs
   }));
 };
 
@@ -82682,7 +82755,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49219" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59341" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
