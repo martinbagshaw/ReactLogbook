@@ -56,29 +56,27 @@ const Date = styled.span`
   align-items: center;
 `;
 
-const Results = ({ logs, low, high, onClick }) => {
-  return (
-    <ResultsList>
-      {logs.slice(low, high).map(log => (
-        <li key={log.key}>
-          <ListButton onClick={() => onClick(log.key)}>
-            <Climb>
-              <strong>{log.climbName}</strong> - {log.grade}
-            </Climb>{" "}
-            <Crag>
-              {log.style} - {log.cragName}
-            </Crag>
-            <Date>
-              {log.date.original}
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
-                <path d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z" />
-              </svg>
-            </Date>
-          </ListButton>
-        </li>
-      ))}
-    </ResultsList>
-  );
-};
+const Results = ({ logs, low, high, onClick }) => (
+  <ResultsList>
+    {logs.slice(low, high).map(({ climbName, cragName, date: { original }, grade, key, style }) => (
+      <li key={key}>
+        <ListButton onClick={() => onClick(key)}>
+          <Climb>
+            <strong>{climbName}</strong> - {grade}
+          </Climb>{" "}
+          <Crag>
+            {style} - {cragName}
+          </Crag>
+          <Date>
+            {original}
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+              <path d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z" />
+            </svg>
+          </Date>
+        </ListButton>
+      </li>
+    ))}
+  </ResultsList>
+);
 
 export default Results;

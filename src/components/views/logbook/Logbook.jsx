@@ -18,6 +18,9 @@ const Logbook = ({ logs }) => {
     searchTerm: "",
     results: [],
   });
+  const [page, setPage] = useState({ low: 0, high: 50 });
+  const [singleLog, setSingleLog] = useState(null);
+
   const handleSearch = value => {
     const resultsFind = (value, logs) => {
       if (value.length < 3) return;
@@ -32,15 +35,12 @@ const Logbook = ({ logs }) => {
     return setSearch({ placeholder, searchTerm: value, results: resultsFind(value, logs) });
   };
 
-  const [page, setPage] = useState({ low: 0, high: 50 });
   const handlePageChange = ({ low, high }) => {
     return setPage({ low, high });
   };
 
-  const [view, setView] = useState({ selectedLog: "" });
-  const handleSingleView = logIndex => {
-    const selected = logIndex ? logs.find(i => i.key === logIndex) : "";
-    return setView({ selectedLog: selected });
+  const handleSingleView = index => {
+    return setSingleLog(logs.find(i => i.key === index));
   };
 
   return (
@@ -48,13 +48,13 @@ const Logbook = ({ logs }) => {
       <Search
         {...search}
         onChange={e => handleSearch(e.target.value)}
-        disabled={view.selectedLog !== "" ? true : false}
+        disabled={singleLog ? true : false}
         onResultClick={handleSingleView}
         // onBlur={() => handleSearch("")}
       />
-      {!view.selectedLog && <PageNav {...page} logs={logs} onClick={handlePageChange} />}
-      {!view.selectedLog && <Results {...page} logs={logs} onClick={handleSingleView} />}
-      {view.selectedLog && <SingleLog {...view.selectedLog} onClick={handleSingleView} />}
+      {!singleLog && <PageNav {...page} logs={logs} onClick={handlePageChange} />}
+      {!singleLog && <Results {...page} logs={logs} onClick={handleSingleView} />}
+      {singleLog && <SingleLog {...singleLog} onClick={handleSingleView} />}
     </ContainerStyle>
   );
 };
