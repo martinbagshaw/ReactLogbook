@@ -3,7 +3,7 @@
 - contains logbook, stats and menu
 */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import climbData from "../data/mb-logbook.json";
 import { formatData } from "../utils/formatData";
@@ -47,21 +47,46 @@ const Button = styled.button`
     background-color: ${props => (props.isActive ? colors.lightRed : colors.midGrey)};
   }
   ${props =>
-    props.isActive
-      ? `
+    props.isActive &&
+    `
   background-color: ${colors.lightRed};
   border-bottom-color: ${colors.red};
-  `
-      : ""}
+  `}
+`;
+
+const DailyMessage = styled.p`
+  text-align: center;
+  padding: 0.25rem;
+  background-color: ${colors.midBlue};
 `;
 
 const allLogs = formatData(climbData);
 
 const App = () => {
   const [view, setView] = useState("Stats");
+  const [logs, setLogs] = useState(allLogs);
+  const [message, setMessage] = useState(null);
+
+  const handleSingleDay = (logs, filter) => {
+    const { day, month, year } = filter;
+    setView("Logbook");
+    setLogs(logs);
+    setMessage(
+      `Showing ${logs.length} ${logs.length === 1 ? "log" : "logs"} for: ${day} ${month} ${year}`
+    );
+  };
+
+  // reset to original
+  useEffect(() => {
+    if (message && view === "Stats") {
+      setLogs(allLogs);
+      setMessage(null);
+    }
+  }, [message, view]);
 
   return (
     <Root>
+      {message && <DailyMessage>{message}</DailyMessage>}
       <Header>
         <Button
           onClick={() => setView("Stats")}
@@ -78,8 +103,8 @@ const App = () => {
           <span>Logbook</span>
         </Button>
       </Header>
-      {view === "Stats" && <Stats logs={allLogs} />}
-      {view === "Logbook" && <Logbook logs={allLogs} />}
+      {view === "Stats" && <Stats logs={logs} handleSingleDay={handleSingleDay} />}
+      {view === "Logbook" && <Logbook logs={logs} />}
     </Root>
   );
 };

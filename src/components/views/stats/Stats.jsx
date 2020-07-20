@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 
@@ -241,7 +241,7 @@ const getChartData = (settingState, logs) => {
   }
 };
 
-const Stats = ({ logs }) => {
+const Stats = ({ handleSingleDay, logs }) => {
   const [settings, setSettings] = useState(defaultSettings);
 
   const setDropdown = (type, value) => {
@@ -317,28 +317,48 @@ const Stats = ({ logs }) => {
     .sort(null);
   const chartdata = piechartData ? createPie(piechartData) : null;
 
+  const hasFilter = Object.values(settings).find(i => i.filter);
+  useEffect(() => {
+    if (hasFilter?.filter?.day) {
+      const newLogs = [...logs];
+      const filter = hasFilter.filter;
+      const dailyLogs = newLogs.reduce((acc, i) => {
+        const { day, month, year } = i.date.processed;
+        const isMonth = month === filter["month"] && year === filter["year"];
+        const isDay = isMonth && day === filter["day"];
+        if (isDay) {
+          acc.push(i);
+        }
+        return acc;
+      }, []);
+      handleSingleDay(dailyLogs, filter);
+    }
+  }, [hasFilter]);
+
   return (
-    <StatContainer>
-      <StatsHeader logs={logs} setDropdown={setDropdown} type={type} />
-      <BodySection>
-        {chartdata && type === "Date" ? (
-          <Fragment>
-            <PieChart
-              chartdata={chartdata}
-              width={500}
-              height={500}
-              innerRadius={120}
-              outerRadius={200}
-              type={type}
-              setFiltered={setFiltered}
-            />
-            <Legend chartdata={chartdata} settings={settings} />
-          </Fragment>
-        ) : (
-          <p>Only date has been implemented so far...</p>
-        )}
-      </BodySection>
-    </StatContainer>
+    !hasFilter?.filter?.day && (
+      <StatContainer>
+        <StatsHeader logs={logs} setDropdown={setDropdown} type={type} />
+        <BodySection>
+          {chartdata && type === "Date" ? (
+            <Fragment>
+              <PieChart
+                chartdata={chartdata}
+                width={500}
+                height={500}
+                innerRadius={120}
+                outerRadius={200}
+                type={type}
+                setFiltered={setFiltered}
+              />
+              <Legend chartdata={chartdata} settings={settings} />
+            </Fragment>
+          ) : (
+            <p>Only date has been implemented so far...</p>
+          )}
+        </BodySection>
+      </StatContainer>
+    )
   );
 };
 

@@ -72,8 +72,18 @@ const EditButtons = styled.div`
 // TODO:
 // - onClick for star and notes / memorable buttons. Where to put logic?
 // - map through fields
-// - smooth animation (slide in from left, see dmarc site css animation)
-const SingleLog = ({ climbName, cragName, date, grade, notes, partners, style, onClick }) => {
+const SingleLog = ({
+  climbName,
+  cragName,
+  date: { processed },
+  grade,
+  notes,
+  partners,
+  style,
+  onClick,
+}) => {
+  const { dayLong, monthLong, year } = processed;
+  const dateFormat = `${dayLong} ${monthLong} ${year}`;
   return (
     <LogContainer>
       <NavButton onClick={() => onClick(null)} text="back" hasPadding={"med"} />
@@ -92,8 +102,8 @@ const SingleLog = ({ climbName, cragName, date, grade, notes, partners, style, o
             {style}
           </li>
           <li>
-            <Date date={date} />
-            <strong>{date}</strong>
+            <Date date={dateFormat} />
+            <strong>{dateFormat}</strong>
           </li>
           <li>
             <Partner partners={partners} />
