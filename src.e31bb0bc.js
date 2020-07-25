@@ -214,7 +214,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
   return to;
 };
 },{}],"../node_modules/react/cjs/react.development.js":[function(require,module,exports) {
-/** @license React v0.0.0-33c3af284
+/** @license React v0.0.0-7f28234f8
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -231,7 +231,7 @@ if ("development" !== "production") {
     var _assign = require('object-assign'); // TODO: this is special because it gets imported during build.
 
 
-    var ReactVersion = '16.13.1-33c3af284'; // ATTENTION
+    var ReactVersion = '16.13.1-7f28234f8'; // ATTENTION
     // When adding new symbols to this file,
     // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
     // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
@@ -386,13 +386,7 @@ if ("development" !== "production") {
       assign: _assign
     };
     {
-      _assign(ReactSharedInternals, {
-        // These should not be included in production.
-        ReactDebugCurrentFrame: ReactDebugCurrentFrame,
-        // Shim for React DOM 16.0.0 which still destructured (but not used) this.
-        // TODO: remove in React 17.0.
-        ReactComponentTreeHook: {}
-      });
+      ReactSharedInternals.ReactDebugCurrentFrame = ReactDebugCurrentFrame;
     } // by calls to these methods by a Babel plugin.
     //
     // In PROD (or in packages without access to React internals),
@@ -439,17 +433,6 @@ if ("development" !== "production") {
         // eslint-disable-next-line react-internal/no-production-logging
 
         Function.prototype.apply.call(console[level], console, argsWithFormat);
-
-        try {
-          // --- Welcome to debugging React ---
-          // This error was thrown as a convenience so that you can use this stack
-          // to find the callsite that caused this warning to fire.
-          var argIndex = 0;
-          var message = 'Warning: ' + format.replace(/%s/g, function () {
-            return args[argIndex++];
-          });
-          throw new Error(message);
-        } catch (x) {}
       }
     }
 
@@ -1261,7 +1244,7 @@ if ("development" !== "production") {
      *
      * See https://reactjs.org/docs/react-api.html#reactchildrenmap
      *
-     * The provided mapFunction(child, key, index) will be called for each
+     * The provided mapFunction(child, index) will be called for each
      * leaf child.
      *
      * @param {?*} children Children tree container.
@@ -1614,7 +1597,7 @@ if ("development" !== "production") {
 
     function isValidElementType(type) {
       return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-      type === exports.Fragment || type === exports.Profiler || type === REACT_DEBUG_TRACING_MODE_TYPE || type === exports.StrictMode || type === exports.Suspense || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE);
+      type === exports.Fragment || type === exports.Profiler || type === REACT_DEBUG_TRACING_MODE_TYPE || type === exports.StrictMode || type === exports.Suspense || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_LEGACY_HIDDEN_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE);
     }
 
     function memo(type, compare) {
@@ -1727,11 +1710,314 @@ if ("development" !== "production") {
         var dispatcher = resolveDispatcher();
         return dispatcher.useDebugValue(value, formatterFn);
       }
+    } // Helpers to patch console.logs to avoid logging during side-effect free
+    // replaying on render function. This currently only patches the object
+    // lazily which won't cover if the log function was extracted eagerly.
+    // We could also eagerly patch the method.
+
+
+    var disabledDepth = 0;
+    var prevLog;
+    var prevInfo;
+    var prevWarn;
+    var prevError;
+
+    function disabledLog() {}
+
+    disabledLog.__reactDisabledLog = true;
+
+    function disableLogs() {
+      {
+        if (disabledDepth === 0) {
+          /* eslint-disable react-internal/no-production-logging */
+          prevLog = console.log;
+          prevInfo = console.info;
+          prevWarn = console.warn;
+          prevError = console.error; // $FlowFixMe Flow thinks console is immutable.
+
+          console.log = console.info = console.warn = console.error = disabledLog;
+          /* eslint-enable react-internal/no-production-logging */
+        }
+
+        disabledDepth++;
+      }
+    }
+
+    function reenableLogs() {
+      {
+        disabledDepth--;
+
+        if (disabledDepth === 0) {
+          /* eslint-disable react-internal/no-production-logging */
+          // $FlowFixMe Flow thinks console is immutable.
+          console.log = prevLog; // $FlowFixMe Flow thinks console is immutable.
+
+          console.info = prevInfo; // $FlowFixMe Flow thinks console is immutable.
+
+          console.warn = prevWarn; // $FlowFixMe Flow thinks console is immutable.
+
+          console.error = prevError;
+          /* eslint-enable react-internal/no-production-logging */
+        }
+
+        if (disabledDepth < 0) {
+          error('disabledDepth fell below zero. ' + 'This is a bug in React. Please file an issue.');
+        }
+      }
+    }
+
+    var ReactCurrentDispatcher$1 = ReactSharedInternals.ReactCurrentDispatcher;
+    var prefix;
+
+    function describeBuiltInComponentFrame(name, source, ownerFn) {
+      {
+        if (prefix === undefined) {
+          // Extract the VM specific prefix used by each line.
+          try {
+            throw Error();
+          } catch (x) {
+            var match = x.stack.trim().match(/\n( *(at )?)/);
+            prefix = match && match[1] || '';
+          }
+        } // We use the prefix to ensure our stacks line up with native stack frames.
+
+
+        return '\n' + prefix + name;
+      }
+    }
+
+    var reentry = false;
+    var componentFrameCache;
+    {
+      var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
+      componentFrameCache = new PossiblyWeakMap();
+    }
+
+    function describeNativeComponentFrame(fn, construct) {
+      // If something asked for a stack inside a fake render, it should get ignored.
+      if (!fn || reentry) {
+        return '';
+      }
+
+      {
+        var frame = componentFrameCache.get(fn);
+
+        if (frame !== undefined) {
+          return frame;
+        }
+      }
+      var control;
+      reentry = true;
+      var previousPrepareStackTrace = Error.prepareStackTrace; // $FlowFixMe It does accept undefined.
+
+      Error.prepareStackTrace = undefined;
+      var previousDispatcher;
+      {
+        previousDispatcher = ReactCurrentDispatcher$1.current; // Set the dispatcher in DEV because this might be call in the render function
+        // for warnings.
+
+        ReactCurrentDispatcher$1.current = null;
+        disableLogs();
+      }
+
+      try {
+        // This should throw.
+        if (construct) {
+          // Something should be setting the props in the constructor.
+          var Fake = function () {
+            throw Error();
+          }; // $FlowFixMe
+
+
+          Object.defineProperty(Fake.prototype, 'props', {
+            set: function () {
+              // We use a throwing setter instead of frozen or non-writable props
+              // because that won't throw in a non-strict mode function.
+              throw Error();
+            }
+          });
+
+          if (typeof Reflect === 'object' && Reflect.construct) {
+            // We construct a different control for this case to include any extra
+            // frames added by the construct call.
+            try {
+              Reflect.construct(Fake, []);
+            } catch (x) {
+              control = x;
+            }
+
+            Reflect.construct(fn, [], Fake);
+          } else {
+            try {
+              Fake.call();
+            } catch (x) {
+              control = x;
+            }
+
+            fn.call(Fake.prototype);
+          }
+        } else {
+          try {
+            throw Error();
+          } catch (x) {
+            control = x;
+          }
+
+          fn();
+        }
+      } catch (sample) {
+        // This is inlined manually because closure doesn't do it for us.
+        if (sample && control && typeof sample.stack === 'string') {
+          // This extracts the first frame from the sample that isn't also in the control.
+          // Skipping one frame that we assume is the frame that calls the two.
+          var sampleLines = sample.stack.split('\n');
+          var controlLines = control.stack.split('\n');
+          var s = sampleLines.length - 1;
+          var c = controlLines.length - 1;
+
+          while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
+            // We expect at least one stack frame to be shared.
+            // Typically this will be the root most one. However, stack frames may be
+            // cut off due to maximum stack limits. In this case, one maybe cut off
+            // earlier than the other. We assume that the sample is longer or the same
+            // and there for cut off earlier. So we should find the root most frame in
+            // the sample somewhere in the control.
+            c--;
+          }
+
+          for (; s >= 1 && c >= 0; s--, c--) {
+            // Next we find the first one that isn't the same which should be the
+            // frame that called our sample function and the control.
+            if (sampleLines[s] !== controlLines[c]) {
+              // In V8, the first line is describing the message but other VMs don't.
+              // If we're about to return the first line, and the control is also on the same
+              // line, that's a pretty good indicator that our sample threw at same line as
+              // the control. I.e. before we entered the sample frame. So we ignore this result.
+              // This can happen if you passed a class to function component, or non-function.
+              if (s !== 1 || c !== 1) {
+                do {
+                  s--;
+                  c--; // We may still have similar intermediate frames from the construct call.
+                  // The next one that isn't the same should be our match though.
+
+                  if (c < 0 || sampleLines[s] !== controlLines[c]) {
+                    // V8 adds a "new" prefix for native classes. Let's remove it to make it prettier.
+                    var _frame = '\n' + sampleLines[s].replace(' at new ', ' at ');
+
+                    {
+                      if (typeof fn === 'function') {
+                        componentFrameCache.set(fn, _frame);
+                      }
+                    } // Return the line we found.
+
+                    return _frame;
+                  }
+                } while (s >= 1 && c >= 0);
+              }
+
+              break;
+            }
+          }
+        }
+      } finally {
+        reentry = false;
+        {
+          ReactCurrentDispatcher$1.current = previousDispatcher;
+          reenableLogs();
+        }
+        Error.prepareStackTrace = previousPrepareStackTrace;
+      } // Fallback to just using the name if we couldn't make it throw.
+
+
+      var name = fn ? fn.displayName || fn.name : '';
+      var syntheticFrame = name ? describeBuiltInComponentFrame(name) : '';
+      {
+        if (typeof fn === 'function') {
+          componentFrameCache.set(fn, syntheticFrame);
+        }
+      }
+      return syntheticFrame;
+    }
+
+    function describeFunctionComponentFrame(fn, source, ownerFn) {
+      {
+        return describeNativeComponentFrame(fn, false);
+      }
+    }
+
+    function shouldConstruct(Component) {
+      var prototype = Component.prototype;
+      return !!(prototype && prototype.isReactComponent);
+    }
+
+    function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
+      if (type == null) {
+        return '';
+      }
+
+      if (typeof type === 'function') {
+        {
+          return describeNativeComponentFrame(type, shouldConstruct(type));
+        }
+      }
+
+      if (typeof type === 'string') {
+        return describeBuiltInComponentFrame(type);
+      }
+
+      switch (type) {
+        case exports.Suspense:
+          return describeBuiltInComponentFrame('Suspense');
+
+        case REACT_SUSPENSE_LIST_TYPE:
+          return describeBuiltInComponentFrame('SuspenseList');
+      }
+
+      if (typeof type === 'object') {
+        switch (type.$$typeof) {
+          case REACT_FORWARD_REF_TYPE:
+            return describeFunctionComponentFrame(type.render);
+
+          case REACT_MEMO_TYPE:
+            // Memo may contain any component type so we recursively resolve it.
+            return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
+
+          case REACT_BLOCK_TYPE:
+            return describeFunctionComponentFrame(type._render);
+
+          case REACT_LAZY_TYPE:
+            {
+              var lazyComponent = type;
+              var payload = lazyComponent._payload;
+              var init = lazyComponent._init;
+
+              try {
+                // Lazy may contain any component type so we recursively resolve it.
+                return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
+              } catch (x) {}
+            }
+        }
+      }
+
+      return '';
     }
 
     var loggedTypeFailures = {};
+    var ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
 
-    function checkPropTypes(typeSpecs, values, location, componentName) {
+    function setCurrentlyValidatingElement(element) {
+      {
+        if (element) {
+          var owner = element._owner;
+          var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+          ReactDebugCurrentFrame$1.setExtraStackFrame(stack);
+        } else {
+          ReactDebugCurrentFrame$1.setExtraStackFrame(null);
+        }
+      }
+    }
+
+    function checkPropTypes(typeSpecs, values, location, componentName, element) {
       {
         // $FlowFixMe This is okay but Flow doesn't know it.
         var has = Function.call.bind(Object.prototype.hasOwnProperty);
@@ -1757,138 +2043,25 @@ if ("development" !== "production") {
             }
 
             if (error$1 && !(error$1 instanceof Error)) {
+              setCurrentlyValidatingElement(element);
               error('%s: type specification of %s' + ' `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error$1);
+              setCurrentlyValidatingElement(null);
             }
 
             if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
               // Only monitor this failure once because there tends to be a lot of the
               // same error.
               loggedTypeFailures[error$1.message] = true;
+              setCurrentlyValidatingElement(element);
               error('Failed %s type: %s', location, error$1.message);
+              setCurrentlyValidatingElement(null);
             }
           }
         }
       }
     }
 
-    function describeBuiltInComponentFrame(name, source, ownerFn) {
-      {
-        var ownerName = null;
-
-        if (ownerFn) {
-          ownerName = ownerFn.displayName || ownerFn.name || null;
-        }
-
-        return describeComponentFrame(name, source, ownerName);
-      }
-    }
-
-    var componentFrameCache;
-    {
-      var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
-      componentFrameCache = new PossiblyWeakMap();
-    }
-    var BEFORE_SLASH_RE = /^(.*)[\\\/]/;
-
-    function describeComponentFrame(name, source, ownerName) {
-      var sourceInfo = '';
-
-      if (source) {
-        var path = source.fileName;
-        var fileName = path.replace(BEFORE_SLASH_RE, ''); // In DEV, include code for a common special case:
-        // prefer "folder/index.js" instead of just "index.js".
-
-        if (/^index\./.test(fileName)) {
-          var match = path.match(BEFORE_SLASH_RE);
-
-          if (match) {
-            var pathBeforeSlash = match[1];
-
-            if (pathBeforeSlash) {
-              var folderName = pathBeforeSlash.replace(BEFORE_SLASH_RE, '');
-              fileName = folderName + '/' + fileName;
-            }
-          }
-        }
-
-        sourceInfo = ' (at ' + fileName + ':' + source.lineNumber + ')';
-      } else if (ownerName) {
-        sourceInfo = ' (created by ' + ownerName + ')';
-      }
-
-      return '\n    in ' + (name || 'Unknown') + sourceInfo;
-    }
-
-    function describeFunctionComponentFrame(fn, source, ownerFn) {
-      {
-        if (!fn) {
-          return '';
-        }
-
-        var name = fn.displayName || fn.name || null;
-        var ownerName = null;
-
-        if (ownerFn) {
-          ownerName = ownerFn.displayName || ownerFn.name || null;
-        }
-
-        return describeComponentFrame(name, source, ownerName);
-      }
-    }
-
-    function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
-      if (type == null) {
-        return '';
-      }
-
-      if (typeof type === 'function') {
-        {
-          return describeFunctionComponentFrame(type, source, ownerFn);
-        }
-      }
-
-      if (typeof type === 'string') {
-        return describeBuiltInComponentFrame(type, source, ownerFn);
-      }
-
-      switch (type) {
-        case exports.Suspense:
-          return describeBuiltInComponentFrame('Suspense', source, ownerFn);
-
-        case REACT_SUSPENSE_LIST_TYPE:
-          return describeBuiltInComponentFrame('SuspenseList', source, ownerFn);
-      }
-
-      if (typeof type === 'object') {
-        switch (type.$$typeof) {
-          case REACT_FORWARD_REF_TYPE:
-            return describeFunctionComponentFrame(type.render, source, ownerFn);
-
-          case REACT_MEMO_TYPE:
-            // Memo may contain any component type so we recursively resolve it.
-            return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
-
-          case REACT_BLOCK_TYPE:
-            return describeFunctionComponentFrame(type._render, source, ownerFn);
-
-          case REACT_LAZY_TYPE:
-            {
-              var lazyComponent = type;
-              var payload = lazyComponent._payload;
-              var init = lazyComponent._init;
-
-              try {
-                // Lazy may contain any component type so we recursively resolve it.
-                return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
-              } catch (x) {}
-            }
-        }
-      }
-
-      return '';
-    }
-
-    function setCurrentlyValidatingElement(element) {
+    function setCurrentlyValidatingElement$1(element) {
       {
         if (element) {
           var owner = element._owner;
@@ -1993,9 +2166,9 @@ if ("development" !== "production") {
       }
 
       {
-        setCurrentlyValidatingElement(element);
+        setCurrentlyValidatingElement$1(element);
         error('Each child in a list should have a unique "key" prop.' + '%s%s See https://fb.me/react-warning-keys for more information.', currentComponentErrorInfo, childOwner);
-        setCurrentlyValidatingElement(null);
+        setCurrentlyValidatingElement$1(null);
       }
     }
     /**
@@ -2076,9 +2249,7 @@ if ("development" !== "production") {
         }
 
         if (propTypes) {
-          setCurrentlyValidatingElement(element);
-          checkPropTypes(propTypes, element.props, 'prop', name);
-          setCurrentlyValidatingElement(null);
+          checkPropTypes(propTypes, element.props, 'prop', name, element);
         } else if (type.PropTypes !== undefined && !propTypesMisspellWarningShown) {
           propTypesMisspellWarningShown = true;
           error('Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?', name || 'Unknown');
@@ -2097,23 +2268,24 @@ if ("development" !== "production") {
 
     function validateFragmentProps(fragment) {
       {
-        setCurrentlyValidatingElement(fragment);
         var keys = Object.keys(fragment.props);
 
         for (var i = 0; i < keys.length; i++) {
           var key = keys[i];
 
           if (key !== 'children' && key !== 'key') {
+            setCurrentlyValidatingElement$1(fragment);
             error('Invalid prop `%s` supplied to `React.Fragment`. ' + 'React.Fragment can only have `key` and `children` props.', key);
+            setCurrentlyValidatingElement$1(null);
             break;
           }
         }
 
         if (fragment.ref !== null) {
+          setCurrentlyValidatingElement$1(fragment);
           error('Invalid attribute `ref` supplied to `React.Fragment`.');
+          setCurrentlyValidatingElement$1(null);
         }
-
-        setCurrentlyValidatingElement(null);
       }
     }
 
@@ -2273,7 +2445,7 @@ if ("development" === 'production') {
   module.exports = require('./cjs/react.development.js');
 }
 },{"./cjs/react.development.js":"../node_modules/react/cjs/react.development.js"}],"../node_modules/scheduler/cjs/scheduler.development.js":[function(require,module,exports) {
-/** @license React v0.0.0-33c3af284
+/** @license React v0.0.0-7f28234f8
  * scheduler.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -3136,7 +3308,7 @@ if ("development" === 'production') {
   module.exports = require('./cjs/scheduler.development.js');
 }
 },{"./cjs/scheduler.development.js":"../node_modules/scheduler/cjs/scheduler.development.js"}],"../node_modules/scheduler/cjs/scheduler-tracing.development.js":[function(require,module,exports) {
-/** @license React v0.0.0-33c3af284
+/** @license React v0.0.0-7f28234f8
  * scheduler-tracing.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -3492,7 +3664,7 @@ if ("development" === 'production') {
   module.exports = require('./cjs/scheduler-tracing.development.js');
 }
 },{"./cjs/scheduler-tracing.development.js":"../node_modules/scheduler/cjs/scheduler-tracing.development.js"}],"../node_modules/react-dom/cjs/react-dom.development.js":[function(require,module,exports) {
-/** @license React v0.0.0-33c3af284
+/** @license React v0.0.0-7f28234f8
  * react-dom.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -3560,17 +3732,6 @@ if ("development" !== "production") {
         // eslint-disable-next-line react-internal/no-production-logging
 
         Function.prototype.apply.call(console[level], console, argsWithFormat);
-
-        try {
-          // --- Welcome to debugging React ---
-          // This error was thrown as a convenience so that you can use this stack
-          // to find the callsite that caused this warning to fire.
-          var argIndex = 0;
-          var message = 'Warning: ' + format.replace(/%s/g, function () {
-            return args[argIndex++];
-          });
-          throw new Error(message);
-        } catch (x) {}
       }
     }
 
@@ -4128,8 +4289,8 @@ if ("development" !== "production") {
 
     var canUseDOM = !!(typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined');
     var PLUGIN_EVENT_SYSTEM = 1;
-    var IS_REPLAYED = 1 << 6;
-    var IS_FIRST_ANCESTOR = 1 << 7;
+    var IS_REPLAYED = 1 << 5;
+    var IS_FIRST_ANCESTOR = 1 << 6;
     var restoreImpl = null;
     var restoreTarget = null;
     var restoreQueue = null;
@@ -4203,6 +4364,8 @@ if ("development" !== "production") {
     var enableDeprecatedFlareAPI = false; // Experimental Host Component support.
 
     var enableFundamentalAPI = false; // Experimental Scope support.
+
+    var enableNewReconciler = false; // --------------------------
 
     var warnAboutStringRefs = false; // the renderer. Such as when we're dispatching events or if third party
     // libraries need to call batchedUpdates. Eventually, this API will go away when
@@ -4530,6 +4693,9 @@ if ("development" !== "production") {
     var Passive =
     /*                  */
     512;
+    var PassiveUnmountPendingDev =
+    /* */
+    8192;
     var Hydrating =
     /*                */
     1024;
@@ -4901,11 +5067,6 @@ if ("development" !== "production") {
       return null;
     }
 
-    function isFiberSuspenseAndTimedOut(fiber) {
-      var memoizedState = fiber.memoizedState;
-      return fiber.tag === SuspenseComponent && memoizedState !== null && memoizedState.dehydrated === null;
-    }
-
     function doesFiberContain(parentFiber, childFiber) {
       var node = childFiber;
       var parentFiberAlternate = parentFiber.alternate;
@@ -4919,19 +5080,6 @@ if ("development" !== "production") {
       }
 
       return false;
-    }
-
-    function isFiberTimedOutSuspenseThatContainsTargetFiber(fiber, targetFiber) {
-      var child = fiber.child;
-      return isFiberSuspenseAndTimedOut(fiber) && child !== null && doesFiberContain(child, targetFiber);
-    }
-
-    function isFiberDeletedAndContainsTargetFiber(fiber, targetFiber) {
-      return (fiber.effectTag & Deletion) !== 0 && doesFiberContain(fiber, targetFiber);
-    }
-
-    function isFiberHiddenOrDeletedAndContains(parentFiber, childFiber) {
-      return isFiberDeletedAndContainsTargetFiber(parentFiber, childFiber) || isFiberTimedOutSuspenseThatContainsTargetFiber(parentFiber, childFiber);
     } // Do not use the below two methods directly!
     // Instead use constants exported from DOMTopLevelEventTypes in ReactDOM.
     // (It is the only module that is allowed to access these methods.)
@@ -5883,6 +6031,96 @@ if ("development" !== "production") {
       traverseEnterLeave(from, to, accumulateDispatches, leave, enter);
     }
 
+    var DiscreteEvent = 0;
+    var UserBlockingEvent = 1;
+    var ContinuousEvent = 2; // do it in two places, which duplicates logic
+    // and increases the bundle size, we do it all
+    // here once. If we remove or refactor the
+    // SimpleEventPlugin, we should also remove or
+    // update the below line.
+
+    var simpleEventPluginEventTypes = {};
+    var topLevelEventsToDispatchConfig = new Map();
+    var eventPriorities = new Map(); // We store most of the events in this module in pairs of two strings so we can re-use
+    // the code required to apply the same logic for event prioritization and that of the
+    // SimpleEventPlugin. This complicates things slightly, but the aim is to reduce code
+    // duplication (for which there would be quite a bit). For the events that are not needed
+    // for the SimpleEventPlugin (otherDiscreteEvents) we process them separately as an
+    // array of top level events.
+    // Lastly, we ignore prettier so we can keep the formatting sane.
+    // prettier-ignore
+
+    var discreteEventPairsForSimpleEventPlugin = [TOP_BLUR, 'blur', TOP_CANCEL, 'cancel', TOP_CLICK, 'click', TOP_CLOSE, 'close', TOP_CONTEXT_MENU, 'contextMenu', TOP_COPY, 'copy', TOP_CUT, 'cut', TOP_AUX_CLICK, 'auxClick', TOP_DOUBLE_CLICK, 'doubleClick', TOP_DRAG_END, 'dragEnd', TOP_DRAG_START, 'dragStart', TOP_DROP, 'drop', TOP_FOCUS, 'focus', TOP_INPUT, 'input', TOP_INVALID, 'invalid', TOP_KEY_DOWN, 'keyDown', TOP_KEY_PRESS, 'keyPress', TOP_KEY_UP, 'keyUp', TOP_MOUSE_DOWN, 'mouseDown', TOP_MOUSE_UP, 'mouseUp', TOP_PASTE, 'paste', TOP_PAUSE, 'pause', TOP_PLAY, 'play', TOP_POINTER_CANCEL, 'pointerCancel', TOP_POINTER_DOWN, 'pointerDown', TOP_POINTER_UP, 'pointerUp', TOP_RATE_CHANGE, 'rateChange', TOP_RESET, 'reset', TOP_SEEKED, 'seeked', TOP_SUBMIT, 'submit', TOP_TOUCH_CANCEL, 'touchCancel', TOP_TOUCH_END, 'touchEnd', TOP_TOUCH_START, 'touchStart', TOP_VOLUME_CHANGE, 'volumeChange'];
+    var otherDiscreteEvents = [TOP_CHANGE, TOP_SELECTION_CHANGE, TOP_TEXT_INPUT, TOP_COMPOSITION_START, TOP_COMPOSITION_END, TOP_COMPOSITION_UPDATE];
+    var userBlockingPairsForSimpleEventPlugin = [TOP_DRAG, 'drag', TOP_DRAG_ENTER, 'dragEnter', TOP_DRAG_EXIT, 'dragExit', TOP_DRAG_LEAVE, 'dragLeave', TOP_DRAG_OVER, 'dragOver', TOP_MOUSE_MOVE, 'mouseMove', TOP_MOUSE_OUT, 'mouseOut', TOP_MOUSE_OVER, 'mouseOver', TOP_POINTER_MOVE, 'pointerMove', TOP_POINTER_OUT, 'pointerOut', TOP_POINTER_OVER, 'pointerOver', TOP_SCROLL, 'scroll', TOP_TOGGLE, 'toggle', TOP_TOUCH_MOVE, 'touchMove', TOP_WHEEL, 'wheel']; // prettier-ignore
+
+    var continuousPairsForSimpleEventPlugin = [TOP_ABORT, 'abort', TOP_ANIMATION_END, 'animationEnd', TOP_ANIMATION_ITERATION, 'animationIteration', TOP_ANIMATION_START, 'animationStart', TOP_CAN_PLAY, 'canPlay', TOP_CAN_PLAY_THROUGH, 'canPlayThrough', TOP_DURATION_CHANGE, 'durationChange', TOP_EMPTIED, 'emptied', TOP_ENCRYPTED, 'encrypted', TOP_ENDED, 'ended', TOP_ERROR, 'error', TOP_GOT_POINTER_CAPTURE, 'gotPointerCapture', TOP_LOAD, 'load', TOP_LOADED_DATA, 'loadedData', TOP_LOADED_METADATA, 'loadedMetadata', TOP_LOAD_START, 'loadStart', TOP_LOST_POINTER_CAPTURE, 'lostPointerCapture', TOP_PLAYING, 'playing', TOP_PROGRESS, 'progress', TOP_SEEKING, 'seeking', TOP_STALLED, 'stalled', TOP_SUSPEND, 'suspend', TOP_TIME_UPDATE, 'timeUpdate', TOP_TRANSITION_END, 'transitionEnd', TOP_WAITING, 'waiting'];
+    /**
+     * Turns
+     * ['abort', ...]
+     * into
+     * eventTypes = {
+     *   'abort': {
+     *     phasedRegistrationNames: {
+     *       bubbled: 'onAbort',
+     *       captured: 'onAbortCapture',
+     *     },
+     *     dependencies: [TOP_ABORT],
+     *   },
+     *   ...
+     * };
+     * topLevelEventsToDispatchConfig = new Map([
+     *   [TOP_ABORT, { sameConfig }],
+     * ]);
+     */
+
+    function processSimpleEventPluginPairsByPriority(eventTypes, priority) {
+      // As the event types are in pairs of two, we need to iterate
+      // through in twos. The events are in pairs of two to save code
+      // and improve init perf of processing this array, as it will
+      // result in far fewer object allocations and property accesses
+      // if we only use three arrays to process all the categories of
+      // instead of tuples.
+      for (var i = 0; i < eventTypes.length; i += 2) {
+        var topEvent = eventTypes[i];
+        var event = eventTypes[i + 1];
+        var capitalizedEvent = event[0].toUpperCase() + event.slice(1);
+        var onEvent = 'on' + capitalizedEvent;
+        var config = {
+          phasedRegistrationNames: {
+            bubbled: onEvent,
+            captured: onEvent + 'Capture'
+          },
+          dependencies: [topEvent],
+          eventPriority: priority
+        };
+        eventPriorities.set(topEvent, priority);
+        topLevelEventsToDispatchConfig.set(topEvent, config);
+        simpleEventPluginEventTypes[event] = config;
+      }
+    }
+
+    function processTopEventPairsByPriority(eventTypes, priority) {
+      for (var i = 0; i < eventTypes.length; i++) {
+        eventPriorities.set(eventTypes[i], priority);
+      }
+    } // SimpleEventPlugin
+
+
+    processSimpleEventPluginPairsByPriority(discreteEventPairsForSimpleEventPlugin, DiscreteEvent);
+    processSimpleEventPluginPairsByPriority(userBlockingPairsForSimpleEventPlugin, UserBlockingEvent);
+    processSimpleEventPluginPairsByPriority(continuousPairsForSimpleEventPlugin, ContinuousEvent); // Not used by SimpleEventPlugin
+
+    processTopEventPairsByPriority(otherDiscreteEvents, DiscreteEvent);
+
+    function getEventPriorityForPluginSystem(topLevelType) {
+      var priority = eventPriorities.get(topLevelType); // Default to a ContinuousEvent. Note: we might
+      // want to warn if we can't detect the priority
+      // for the event.
+
+      return priority === undefined ? ContinuousEvent : priority;
+    }
+
     var attemptUserBlockingHydration;
 
     function setAttemptUserBlockingHydration(fn) {
@@ -6279,97 +6517,6 @@ if ("development" !== "production") {
           }
         }
       }
-    }
-
-    var DiscreteEvent = 0;
-    var UserBlockingEvent = 1;
-    var ContinuousEvent = 2; // do it in two places, which duplicates logic
-    // and increases the bundle size, we do it all
-    // here once. If we remove or refactor the
-    // SimpleEventPlugin, we should also remove or
-    // update the below line.
-
-    var simpleEventPluginEventTypes = {};
-    var topLevelEventsToDispatchConfig = new Map();
-    var eventPriorities = new Map(); // We store most of the events in this module in pairs of two strings so we can re-use
-    // the code required to apply the same logic for event prioritization and that of the
-    // SimpleEventPlugin. This complicates things slightly, but the aim is to reduce code
-    // duplication (for which there would be quite a bit). For the events that are not needed
-    // for the SimpleEventPlugin (otherDiscreteEvents) we process them separately as an
-    // array of top level events.
-    // Lastly, we ignore prettier so we can keep the formatting sane.
-    // prettier-ignore
-
-    var discreteEventPairsForSimpleEventPlugin = [TOP_BLUR, 'blur', TOP_CANCEL, 'cancel', TOP_CLICK, 'click', TOP_CLOSE, 'close', TOP_CONTEXT_MENU, 'contextMenu', TOP_COPY, 'copy', TOP_CUT, 'cut', TOP_AUX_CLICK, 'auxClick', TOP_DOUBLE_CLICK, 'doubleClick', TOP_DRAG_END, 'dragEnd', TOP_DRAG_START, 'dragStart', TOP_DROP, 'drop', TOP_FOCUS, 'focus', TOP_INPUT, 'input', TOP_INVALID, 'invalid', TOP_KEY_DOWN, 'keyDown', TOP_KEY_PRESS, 'keyPress', TOP_KEY_UP, 'keyUp', TOP_MOUSE_DOWN, 'mouseDown', TOP_MOUSE_UP, 'mouseUp', TOP_PASTE, 'paste', TOP_PAUSE, 'pause', TOP_PLAY, 'play', TOP_POINTER_CANCEL, 'pointerCancel', TOP_POINTER_DOWN, 'pointerDown', TOP_POINTER_UP, 'pointerUp', TOP_RATE_CHANGE, 'rateChange', TOP_RESET, 'reset', TOP_SEEKED, 'seeked', TOP_SUBMIT, 'submit', TOP_TOUCH_CANCEL, 'touchCancel', TOP_TOUCH_END, 'touchEnd', TOP_TOUCH_START, 'touchStart', TOP_VOLUME_CHANGE, 'volumeChange'];
-    var otherDiscreteEvents = [TOP_CHANGE, TOP_SELECTION_CHANGE, TOP_TEXT_INPUT, TOP_COMPOSITION_START, TOP_COMPOSITION_END, TOP_COMPOSITION_UPDATE]; // prettier-ignore
-
-    var userBlockingPairsForSimpleEventPlugin = [TOP_DRAG, 'drag', TOP_DRAG_ENTER, 'dragEnter', TOP_DRAG_EXIT, 'dragExit', TOP_DRAG_LEAVE, 'dragLeave', TOP_DRAG_OVER, 'dragOver', TOP_MOUSE_MOVE, 'mouseMove', TOP_MOUSE_OUT, 'mouseOut', TOP_MOUSE_OVER, 'mouseOver', TOP_POINTER_MOVE, 'pointerMove', TOP_POINTER_OUT, 'pointerOut', TOP_POINTER_OVER, 'pointerOver', TOP_SCROLL, 'scroll', TOP_TOGGLE, 'toggle', TOP_TOUCH_MOVE, 'touchMove', TOP_WHEEL, 'wheel']; // prettier-ignore
-
-    var continuousPairsForSimpleEventPlugin = [TOP_ABORT, 'abort', TOP_ANIMATION_END, 'animationEnd', TOP_ANIMATION_ITERATION, 'animationIteration', TOP_ANIMATION_START, 'animationStart', TOP_CAN_PLAY, 'canPlay', TOP_CAN_PLAY_THROUGH, 'canPlayThrough', TOP_DURATION_CHANGE, 'durationChange', TOP_EMPTIED, 'emptied', TOP_ENCRYPTED, 'encrypted', TOP_ENDED, 'ended', TOP_ERROR, 'error', TOP_GOT_POINTER_CAPTURE, 'gotPointerCapture', TOP_LOAD, 'load', TOP_LOADED_DATA, 'loadedData', TOP_LOADED_METADATA, 'loadedMetadata', TOP_LOAD_START, 'loadStart', TOP_LOST_POINTER_CAPTURE, 'lostPointerCapture', TOP_PLAYING, 'playing', TOP_PROGRESS, 'progress', TOP_SEEKING, 'seeking', TOP_STALLED, 'stalled', TOP_SUSPEND, 'suspend', TOP_TIME_UPDATE, 'timeUpdate', TOP_TRANSITION_END, 'transitionEnd', TOP_WAITING, 'waiting'];
-    /**
-     * Turns
-     * ['abort', ...]
-     * into
-     * eventTypes = {
-     *   'abort': {
-     *     phasedRegistrationNames: {
-     *       bubbled: 'onAbort',
-     *       captured: 'onAbortCapture',
-     *     },
-     *     dependencies: [TOP_ABORT],
-     *   },
-     *   ...
-     * };
-     * topLevelEventsToDispatchConfig = new Map([
-     *   [TOP_ABORT, { sameConfig }],
-     * ]);
-     */
-
-    function processSimpleEventPluginPairsByPriority(eventTypes, priority) {
-      // As the event types are in pairs of two, we need to iterate
-      // through in twos. The events are in pairs of two to save code
-      // and improve init perf of processing this array, as it will
-      // result in far fewer object allocations and property accesses
-      // if we only use three arrays to process all the categories of
-      // instead of tuples.
-      for (var i = 0; i < eventTypes.length; i += 2) {
-        var topEvent = eventTypes[i];
-        var event = eventTypes[i + 1];
-        var capitalizedEvent = event[0].toUpperCase() + event.slice(1);
-        var onEvent = 'on' + capitalizedEvent;
-        var config = {
-          phasedRegistrationNames: {
-            bubbled: onEvent,
-            captured: onEvent + 'Capture'
-          },
-          dependencies: [topEvent],
-          eventPriority: priority
-        };
-        eventPriorities.set(topEvent, priority);
-        topLevelEventsToDispatchConfig.set(topEvent, config);
-        simpleEventPluginEventTypes[event] = config;
-      }
-    }
-
-    function processTopEventPairsByPriority(eventTypes, priority) {
-      for (var i = 0; i < eventTypes.length; i++) {
-        eventPriorities.set(eventTypes[i], priority);
-      }
-    } // SimpleEventPlugin
-
-
-    processSimpleEventPluginPairsByPriority(discreteEventPairsForSimpleEventPlugin, DiscreteEvent);
-    processSimpleEventPluginPairsByPriority(userBlockingPairsForSimpleEventPlugin, UserBlockingEvent);
-    processSimpleEventPluginPairsByPriority(continuousPairsForSimpleEventPlugin, ContinuousEvent); // Not used by SimpleEventPlugin
-
-    processTopEventPairsByPriority(otherDiscreteEvents, DiscreteEvent);
-
-    function getEventPriorityForPluginSystem(topLevelType) {
-      var priority = eventPriorities.get(topLevelType); // Default to a ContinuousEvent. Note: we might
-      // want to warn if we can't detect the priority
-      // for the event.
-
-      return priority === undefined ? ContinuousEvent : priority;
     } // Intentionally not named imports because Rollup would use dynamic dispatch for
 
 
@@ -7065,6 +7212,8 @@ if ("development" !== "production") {
 
     function disabledLog() {}
 
+    disabledLog.__reactDisabledLog = true;
+
     function disableLogs() {
       {
         if (disabledDepth === 0) {
@@ -7106,76 +7255,245 @@ if ("development" !== "production") {
     }
 
     var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
+    var prefix;
 
     function describeBuiltInComponentFrame(name, source, ownerFn) {
       {
-        var ownerName = null;
+        if (prefix === undefined) {
+          // Extract the VM specific prefix used by each line.
+          try {
+            throw Error();
+          } catch (x) {
+            var match = x.stack.trim().match(/\n( *(at )?)/);
+            prefix = match && match[1] || '';
+          }
+        } // We use the prefix to ensure our stacks line up with native stack frames.
 
-        if (ownerFn) {
-          ownerName = ownerFn.displayName || ownerFn.name || null;
-        }
 
-        return describeComponentFrame(name, source, ownerName);
+        return '\n' + prefix + name;
       }
     }
 
+    var reentry = false;
     var componentFrameCache;
     {
       var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
       componentFrameCache = new PossiblyWeakMap();
     }
-    var BEFORE_SLASH_RE = /^(.*)[\\\/]/;
 
-    function describeComponentFrame(name, source, ownerName) {
-      var sourceInfo = '';
+    function describeNativeComponentFrame(fn, construct) {
+      // If something asked for a stack inside a fake render, it should get ignored.
+      if (!fn || reentry) {
+        return '';
+      }
 
-      if (source) {
-        var path = source.fileName;
-        var fileName = path.replace(BEFORE_SLASH_RE, ''); // In DEV, include code for a common special case:
-        // prefer "folder/index.js" instead of just "index.js".
+      {
+        var frame = componentFrameCache.get(fn);
 
-        if (/^index\./.test(fileName)) {
-          var match = path.match(BEFORE_SLASH_RE);
+        if (frame !== undefined) {
+          return frame;
+        }
+      }
+      var control;
+      reentry = true;
+      var previousPrepareStackTrace = Error.prepareStackTrace; // $FlowFixMe It does accept undefined.
 
-          if (match) {
-            var pathBeforeSlash = match[1];
+      Error.prepareStackTrace = undefined;
+      var previousDispatcher;
+      {
+        previousDispatcher = ReactCurrentDispatcher.current; // Set the dispatcher in DEV because this might be call in the render function
+        // for warnings.
 
-            if (pathBeforeSlash) {
-              var folderName = pathBeforeSlash.replace(BEFORE_SLASH_RE, '');
-              fileName = folderName + '/' + fileName;
+        ReactCurrentDispatcher.current = null;
+        disableLogs();
+      }
+
+      try {
+        // This should throw.
+        if (construct) {
+          // Something should be setting the props in the constructor.
+          var Fake = function () {
+            throw Error();
+          }; // $FlowFixMe
+
+
+          Object.defineProperty(Fake.prototype, 'props', {
+            set: function () {
+              // We use a throwing setter instead of frozen or non-writable props
+              // because that won't throw in a non-strict mode function.
+              throw Error();
+            }
+          });
+
+          if (typeof Reflect === 'object' && Reflect.construct) {
+            // We construct a different control for this case to include any extra
+            // frames added by the construct call.
+            try {
+              Reflect.construct(Fake, []);
+            } catch (x) {
+              control = x;
+            }
+
+            Reflect.construct(fn, [], Fake);
+          } else {
+            try {
+              Fake.call();
+            } catch (x) {
+              control = x;
+            }
+
+            fn.call(Fake.prototype);
+          }
+        } else {
+          try {
+            throw Error();
+          } catch (x) {
+            control = x;
+          }
+
+          fn();
+        }
+      } catch (sample) {
+        // This is inlined manually because closure doesn't do it for us.
+        if (sample && control && typeof sample.stack === 'string') {
+          // This extracts the first frame from the sample that isn't also in the control.
+          // Skipping one frame that we assume is the frame that calls the two.
+          var sampleLines = sample.stack.split('\n');
+          var controlLines = control.stack.split('\n');
+          var s = sampleLines.length - 1;
+          var c = controlLines.length - 1;
+
+          while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
+            // We expect at least one stack frame to be shared.
+            // Typically this will be the root most one. However, stack frames may be
+            // cut off due to maximum stack limits. In this case, one maybe cut off
+            // earlier than the other. We assume that the sample is longer or the same
+            // and there for cut off earlier. So we should find the root most frame in
+            // the sample somewhere in the control.
+            c--;
+          }
+
+          for (; s >= 1 && c >= 0; s--, c--) {
+            // Next we find the first one that isn't the same which should be the
+            // frame that called our sample function and the control.
+            if (sampleLines[s] !== controlLines[c]) {
+              // In V8, the first line is describing the message but other VMs don't.
+              // If we're about to return the first line, and the control is also on the same
+              // line, that's a pretty good indicator that our sample threw at same line as
+              // the control. I.e. before we entered the sample frame. So we ignore this result.
+              // This can happen if you passed a class to function component, or non-function.
+              if (s !== 1 || c !== 1) {
+                do {
+                  s--;
+                  c--; // We may still have similar intermediate frames from the construct call.
+                  // The next one that isn't the same should be our match though.
+
+                  if (c < 0 || sampleLines[s] !== controlLines[c]) {
+                    // V8 adds a "new" prefix for native classes. Let's remove it to make it prettier.
+                    var _frame = '\n' + sampleLines[s].replace(' at new ', ' at ');
+
+                    {
+                      if (typeof fn === 'function') {
+                        componentFrameCache.set(fn, _frame);
+                      }
+                    } // Return the line we found.
+
+                    return _frame;
+                  }
+                } while (s >= 1 && c >= 0);
+              }
+
+              break;
             }
           }
         }
+      } finally {
+        reentry = false;
+        {
+          ReactCurrentDispatcher.current = previousDispatcher;
+          reenableLogs();
+        }
+        Error.prepareStackTrace = previousPrepareStackTrace;
+      } // Fallback to just using the name if we couldn't make it throw.
 
-        sourceInfo = ' (at ' + fileName + ':' + source.lineNumber + ')';
-      } else if (ownerName) {
-        sourceInfo = ' (created by ' + ownerName + ')';
+
+      var name = fn ? fn.displayName || fn.name : '';
+      var syntheticFrame = name ? describeBuiltInComponentFrame(name) : '';
+      {
+        if (typeof fn === 'function') {
+          componentFrameCache.set(fn, syntheticFrame);
+        }
       }
-
-      return '\n    in ' + (name || 'Unknown') + sourceInfo;
+      return syntheticFrame;
     }
 
     function describeClassComponentFrame(ctor, source, ownerFn) {
       {
-        return describeFunctionComponentFrame(ctor, source, ownerFn);
+        return describeNativeComponentFrame(ctor, true);
       }
     }
 
     function describeFunctionComponentFrame(fn, source, ownerFn) {
       {
-        if (!fn) {
-          return '';
-        }
-
-        var name = fn.displayName || fn.name || null;
-        var ownerName = null;
-
-        if (ownerFn) {
-          ownerName = ownerFn.displayName || ownerFn.name || null;
-        }
-
-        return describeComponentFrame(name, source, ownerName);
+        return describeNativeComponentFrame(fn, false);
       }
+    }
+
+    function shouldConstruct(Component) {
+      var prototype = Component.prototype;
+      return !!(prototype && prototype.isReactComponent);
+    }
+
+    function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
+      if (type == null) {
+        return '';
+      }
+
+      if (typeof type === 'function') {
+        {
+          return describeNativeComponentFrame(type, shouldConstruct(type));
+        }
+      }
+
+      if (typeof type === 'string') {
+        return describeBuiltInComponentFrame(type);
+      }
+
+      switch (type) {
+        case REACT_SUSPENSE_TYPE:
+          return describeBuiltInComponentFrame('Suspense');
+
+        case REACT_SUSPENSE_LIST_TYPE:
+          return describeBuiltInComponentFrame('SuspenseList');
+      }
+
+      if (typeof type === 'object') {
+        switch (type.$$typeof) {
+          case REACT_FORWARD_REF_TYPE:
+            return describeFunctionComponentFrame(type.render);
+
+          case REACT_MEMO_TYPE:
+            // Memo may contain any component type so we recursively resolve it.
+            return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
+
+          case REACT_BLOCK_TYPE:
+            return describeFunctionComponentFrame(type._render);
+
+          case REACT_LAZY_TYPE:
+            {
+              var lazyComponent = type;
+              var payload = lazyComponent._payload;
+              var init = lazyComponent._init;
+
+              try {
+                // Lazy may contain any component type so we recursively resolve it.
+                return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
+              } catch (x) {}
+            }
+        }
+      }
+
+      return '';
     }
 
     function describeFiber(fiber) {
@@ -7184,30 +7502,30 @@ if ("development" !== "production") {
 
       switch (fiber.tag) {
         case HostComponent:
-          return describeBuiltInComponentFrame(fiber.type, source, owner);
+          return describeBuiltInComponentFrame(fiber.type);
 
         case LazyComponent:
-          return describeBuiltInComponentFrame('Lazy', source, owner);
+          return describeBuiltInComponentFrame('Lazy');
 
         case SuspenseComponent:
-          return describeBuiltInComponentFrame('Suspense', source, owner);
+          return describeBuiltInComponentFrame('Suspense');
 
         case SuspenseListComponent:
-          return describeBuiltInComponentFrame('SuspenseList', source, owner);
+          return describeBuiltInComponentFrame('SuspenseList');
 
         case FunctionComponent:
         case IndeterminateComponent:
         case SimpleMemoComponent:
-          return describeFunctionComponentFrame(fiber.type, source, owner);
+          return describeFunctionComponentFrame(fiber.type);
 
         case ForwardRef:
-          return describeFunctionComponentFrame(fiber.type.render, source, owner);
+          return describeFunctionComponentFrame(fiber.type.render);
 
         case Block:
-          return describeFunctionComponentFrame(fiber.type._render, source, owner);
+          return describeFunctionComponentFrame(fiber.type._render);
 
         case ClassComponent:
-          return describeClassComponentFrame(fiber.type, source, owner);
+          return describeClassComponentFrame(fiber.type);
 
         default:
           return '';
@@ -9773,17 +10091,16 @@ if ("development" !== "production") {
       }
 
       if (namespaceURI === HTML_NAMESPACE$1) {
-        var lowerCaseType = type.toLowerCase();
         {
           isCustomComponentTag = isCustomComponent(type, props); // Should this check be gated by parent namespace? Not sure we want to
           // allow <SVG> or <mATH>.
 
-          if (!isCustomComponentTag && type !== lowerCaseType) {
+          if (!isCustomComponentTag && type !== type.toLowerCase()) {
             error('<%s /> is using incorrect casing. ' + 'Use PascalCase for React components, ' + 'or lowercase for HTML elements.', type);
           }
         }
 
-        if (lowerCaseType === 'script') {
+        if (type === 'script') {
           // Create the script via .innerHTML so its "parser-inserted" flag is
           // set to true and it does not execute
           var div = ownerDocument.createElement('div');
@@ -11472,7 +11789,9 @@ if ("development" !== "production") {
     }
 
     function shouldDeprioritizeSubtree(type, props) {
-      return !!props.hidden;
+      // This is obnoxiously specific so that nobody uses it, but we can still opt
+      // in via an infra-level userspace abstraction.
+      return props.hidden === 'unstable-do-not-use-legacy-hidden';
     }
 
     function createTextInstance(text, rootContainerInstance, hostContext, internalInstanceHandle) {
@@ -11560,9 +11879,6 @@ if ("development" !== "production") {
       } else {
         container.insertBefore(child, beforeChild);
       }
-    }
-
-    function beforeRemoveInstance(instance) {// TODO for ReactDOM.createEventInstance
     }
 
     function removeChild(parentInstance, child) {
@@ -12222,7 +12538,10 @@ if ("development" !== "production") {
        * won't be added back into the pool.
        */
       persist: function () {
-        this.isPersistent = functionThatReturnsTrue;
+        // Modern event system doesn't use pooling.
+        {
+          this.isPersistent = functionThatReturnsTrue;
+        }
       },
 
       /**
@@ -12236,29 +12555,30 @@ if ("development" !== "production") {
        * `PooledClass` looks for `destructor` on each instance it releases.
        */
       destructor: function () {
-        var Interface = this.constructor.Interface;
-
-        for (var propName in Interface) {
-          {
-            Object.defineProperty(this, propName, getPooledWarningPropertyDefinition(propName, Interface[propName]));
-          }
-        }
-
-        this.dispatchConfig = null;
-        this._targetInst = null;
-        this.nativeEvent = null;
-        this.isDefaultPrevented = functionThatReturnsFalse;
-        this.isPropagationStopped = functionThatReturnsFalse;
+        // Modern event system doesn't use pooling.
         {
+          var Interface = this.constructor.Interface;
+
+          for (var propName in Interface) {
+            {
+              Object.defineProperty(this, propName, getPooledWarningPropertyDefinition(propName, Interface[propName]));
+            }
+          }
+
+          this.dispatchConfig = null;
+          this._targetInst = null;
+          this.nativeEvent = null;
+          this.isDefaultPrevented = functionThatReturnsFalse;
+          this.isPropagationStopped = functionThatReturnsFalse;
           this._dispatchListeners = null;
           this._dispatchInstances = null;
-        }
-        {
-          Object.defineProperty(this, 'nativeEvent', getPooledWarningPropertyDefinition('nativeEvent', null));
-          Object.defineProperty(this, 'isDefaultPrevented', getPooledWarningPropertyDefinition('isDefaultPrevented', functionThatReturnsFalse));
-          Object.defineProperty(this, 'isPropagationStopped', getPooledWarningPropertyDefinition('isPropagationStopped', functionThatReturnsFalse));
-          Object.defineProperty(this, 'preventDefault', getPooledWarningPropertyDefinition('preventDefault', function () {}));
-          Object.defineProperty(this, 'stopPropagation', getPooledWarningPropertyDefinition('stopPropagation', function () {}));
+          {
+            Object.defineProperty(this, 'nativeEvent', getPooledWarningPropertyDefinition('nativeEvent', null));
+            Object.defineProperty(this, 'isDefaultPrevented', getPooledWarningPropertyDefinition('isDefaultPrevented', functionThatReturnsFalse));
+            Object.defineProperty(this, 'isPropagationStopped', getPooledWarningPropertyDefinition('isPropagationStopped', functionThatReturnsFalse));
+            Object.defineProperty(this, 'preventDefault', getPooledWarningPropertyDefinition('preventDefault', function () {}));
+            Object.defineProperty(this, 'stopPropagation', getPooledWarningPropertyDefinition('stopPropagation', function () {}));
+          }
         }
       }
     });
@@ -12327,38 +12647,45 @@ if ("development" !== "production") {
       }
     }
 
-    function getPooledEvent(dispatchConfig, targetInst, nativeEvent, nativeInst) {
-      var EventConstructor = this;
+    function createOrGetPooledEvent(dispatchConfig, targetInst, nativeEvent, nativeInst) {
+      var EventConstructor = this; // Modern event system doesn't use pooling.
 
-      if (EventConstructor.eventPool.length) {
-        var instance = EventConstructor.eventPool.pop();
-        EventConstructor.call(instance, dispatchConfig, targetInst, nativeEvent, nativeInst);
-        return instance;
+      {
+        if (EventConstructor.eventPool.length) {
+          var instance = EventConstructor.eventPool.pop();
+          EventConstructor.call(instance, dispatchConfig, targetInst, nativeEvent, nativeInst);
+          return instance;
+        }
       }
-
       return new EventConstructor(dispatchConfig, targetInst, nativeEvent, nativeInst);
     }
 
     function releasePooledEvent(event) {
-      var EventConstructor = this;
+      // Modern event system doesn't use pooling.
+      {
+        var EventConstructor = this;
 
-      if (!(event instanceof EventConstructor)) {
-        {
-          throw Error("Trying to release an event instance into a pool of a different type.");
+        if (!(event instanceof EventConstructor)) {
+          {
+            throw Error("Trying to release an event instance into a pool of a different type.");
+          }
         }
-      }
 
-      event.destructor();
+        event.destructor();
 
-      if (EventConstructor.eventPool.length < EVENT_POOL_SIZE) {
-        EventConstructor.eventPool.push(event);
+        if (EventConstructor.eventPool.length < EVENT_POOL_SIZE) {
+          EventConstructor.eventPool.push(event);
+        }
       }
     }
 
     function addEventPoolingTo(EventConstructor) {
-      EventConstructor.eventPool = [];
-      EventConstructor.getPooled = getPooledEvent;
-      EventConstructor.release = releasePooledEvent;
+      EventConstructor.getPooled = createOrGetPooledEvent; // Modern event system doesn't use pooling.
+
+      {
+        EventConstructor.eventPool = [];
+        EventConstructor.release = releasePooledEvent;
+      }
     }
     /**
      * @interface Event
@@ -13970,8 +14297,21 @@ if ("development" !== "production") {
       });
     }
     var loggedTypeFailures = {};
+    var ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
 
-    function checkPropTypes(typeSpecs, values, location, componentName) {
+    function setCurrentlyValidatingElement(element) {
+      {
+        if (element) {
+          var owner = element._owner;
+          var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+          ReactDebugCurrentFrame$1.setExtraStackFrame(stack);
+        } else {
+          ReactDebugCurrentFrame$1.setExtraStackFrame(null);
+        }
+      }
+    }
+
+    function checkPropTypes(typeSpecs, values, location, componentName, element) {
       {
         // $FlowFixMe This is okay but Flow doesn't know it.
         var has = Function.call.bind(Object.prototype.hasOwnProperty);
@@ -13997,14 +14337,18 @@ if ("development" !== "production") {
             }
 
             if (error$1 && !(error$1 instanceof Error)) {
+              setCurrentlyValidatingElement(element);
               error('%s: type specification of %s' + ' `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error$1);
+              setCurrentlyValidatingElement(null);
             }
 
             if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
               // Only monitor this failure once because there tends to be a lot of the
               // same error.
               loggedTypeFailures[error$1.message] = true;
+              setCurrentlyValidatingElement(element);
               error('Failed %s type: %s', location, error$1.message);
+              setCurrentlyValidatingElement(null);
             }
           }
         }
@@ -14740,19 +15084,19 @@ if ("development" !== "production") {
         if (componentWillMountUniqueNames.size > 0) {
           var _sortedNames3 = setToSortedString(componentWillMountUniqueNames);
 
-          warn('componentWillMount has been renamed, and is not recommended for use. ' + 'See https://fb.me/react-unsafe-component-lifecycles for details.\n\n' + '* Move code with side effects to componentDidMount, and set initial state in the constructor.\n' + '* Rename componentWillMount to UNSAFE_componentWillMount to suppress ' + 'this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. ' + 'To rename all deprecated lifecycles to their new names, you can run ' + '`npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n' + '\nPlease update the following components: %s', _sortedNames3);
+          warn('componentWillMount has been renamed, and is not recommended for use. ' + 'See https://fb.me/react-unsafe-component-lifecycles for details.\n\n' + '* Move code with side effects to componentDidMount, and set initial state in the constructor.\n' + '* Rename componentWillMount to UNSAFE_componentWillMount to suppress ' + 'this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. ' + 'To rename all deprecated lifecycles to their new names, you can run ' + '`npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n' + '\nPlease update the following components: %s', _sortedNames3);
         }
 
         if (componentWillReceivePropsUniqueNames.size > 0) {
           var _sortedNames4 = setToSortedString(componentWillReceivePropsUniqueNames);
 
-          warn('componentWillReceiveProps has been renamed, and is not recommended for use. ' + 'See https://fb.me/react-unsafe-component-lifecycles for details.\n\n' + '* Move data fetching code or side effects to componentDidUpdate.\n' + "* If you're updating state whenever props change, refactor your " + 'code to use memoization techniques or move it to ' + 'static getDerivedStateFromProps. Learn more at: https://fb.me/react-derived-state\n' + '* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress ' + 'this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. ' + 'To rename all deprecated lifecycles to their new names, you can run ' + '`npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n' + '\nPlease update the following components: %s', _sortedNames4);
+          warn('componentWillReceiveProps has been renamed, and is not recommended for use. ' + 'See https://fb.me/react-unsafe-component-lifecycles for details.\n\n' + '* Move data fetching code or side effects to componentDidUpdate.\n' + "* If you're updating state whenever props change, refactor your " + 'code to use memoization techniques or move it to ' + 'static getDerivedStateFromProps. Learn more at: https://fb.me/react-derived-state\n' + '* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress ' + 'this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. ' + 'To rename all deprecated lifecycles to their new names, you can run ' + '`npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n' + '\nPlease update the following components: %s', _sortedNames4);
         }
 
         if (componentWillUpdateUniqueNames.size > 0) {
           var _sortedNames5 = setToSortedString(componentWillUpdateUniqueNames);
 
-          warn('componentWillUpdate has been renamed, and is not recommended for use. ' + 'See https://fb.me/react-unsafe-component-lifecycles for details.\n\n' + '* Move data fetching code or side effects to componentDidUpdate.\n' + '* Rename componentWillUpdate to UNSAFE_componentWillUpdate to suppress ' + 'this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. ' + 'To rename all deprecated lifecycles to their new names, you can run ' + '`npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n' + '\nPlease update the following components: %s', _sortedNames5);
+          warn('componentWillUpdate has been renamed, and is not recommended for use. ' + 'See https://fb.me/react-unsafe-component-lifecycles for details.\n\n' + '* Move data fetching code or side effects to componentDidUpdate.\n' + '* Rename componentWillUpdate to UNSAFE_componentWillUpdate to suppress ' + 'this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. ' + 'To rename all deprecated lifecycles to their new names, you can run ' + '`npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n' + '\nPlease update the following components: %s', _sortedNames5);
         }
       };
 
@@ -18019,6 +18363,10 @@ if ("development" !== "production") {
       return eventResponderListener;
     }
 
+    var NoEffect$1 =
+    /*  */
+    0; // Represents whether effect should fire.
+
     var HasEffect =
     /* */
     1; // Represents the phase in which the effect (not the clean-up) fires.
@@ -18333,7 +18681,7 @@ if ("development" !== "production") {
     // This tracks which mutable sources need to be reset after a render.
 
 
-    var workInProgressPrimarySources = [];
+    var workInProgressSources = [];
     var rendererSigil$1;
     {
       // Used to detect multiple renderers using the same mutable source.
@@ -18360,20 +18708,18 @@ if ("development" !== "production") {
     }
 
     function markSourceAsDirty(mutableSource) {
-      {
-        workInProgressPrimarySources.push(mutableSource);
-      }
+      workInProgressSources.push(mutableSource);
     }
 
     function resetWorkInProgressVersions() {
-      {
-        for (var i = 0; i < workInProgressPrimarySources.length; i++) {
-          var mutableSource = workInProgressPrimarySources[i];
+      for (var i = 0; i < workInProgressSources.length; i++) {
+        var mutableSource = workInProgressSources[i];
+        {
           mutableSource._workInProgressVersionPrimary = null;
         }
-
-        workInProgressPrimarySources.length = 0;
       }
+
+      workInProgressSources.length = 0;
     }
 
     function getWorkInProgressVersion(mutableSource) {
@@ -18385,8 +18731,8 @@ if ("development" !== "production") {
     function setWorkInProgressVersion(mutableSource, version) {
       {
         mutableSource._workInProgressVersionPrimary = version;
-        workInProgressPrimarySources.push(mutableSource);
       }
+      workInProgressSources.push(mutableSource);
     }
 
     function warnAboutMultipleRenderersDEV(mutableSource) {
@@ -18398,6 +18744,22 @@ if ("development" !== "production") {
             error('Detected multiple renderers concurrently rendering the ' + 'same mutable source. This is currently unsupported.');
           }
         }
+      }
+    } // Eager reads the version of a mutable source and stores it on the root.
+    // This ensures that the version used for server rendering matches the one
+    // that is eventually read during hydration.
+    // If they don't match there's a potential tear and a full deopt render is required.
+
+
+    function registerMutableSourceForHydration(root, mutableSource) {
+      var getVersion = mutableSource._getVersion;
+      var version = getVersion(mutableSource._source); // TODO Clear this data once all pending hydration work is finished.
+      // Retaining it forever may interfere with GC.
+
+      if (root.mutableSourceEagerHydrationData == null) {
+        root.mutableSourceEagerHydrationData = [mutableSource, version];
+      } else {
+        root.mutableSourceEagerHydrationData.push(mutableSource, version);
       }
     }
 
@@ -19040,7 +19402,13 @@ if ("development" !== "production") {
       }
 
       if (isSafeToReadFromSource) {
-        return getSnapshot(source._source);
+        var snapshot = getSnapshot(source._source);
+        {
+          if (typeof snapshot === 'function') {
+            error('Mutable source should not return a function as the snapshot value. ' + 'Functions may close over mutable values and cause tearing.');
+          }
+        }
+        return snapshot;
       } else {
         // This handles the special case of a mutable source being shared beween renderers.
         // In that case, if the source is mutated between the first and second renderer,
@@ -19107,21 +19475,27 @@ if ("development" !== "production") {
 
         if (!objectIs(version, maybeNewVersion)) {
           var maybeNewSnapshot = getSnapshot(source._source);
+          {
+            if (typeof maybeNewSnapshot === 'function') {
+              error('Mutable source should not return a function as the snapshot value. ' + 'Functions may close over mutable values and cause tearing.');
+            }
+          }
 
           if (!objectIs(snapshot, maybeNewSnapshot)) {
             setSnapshot(maybeNewSnapshot);
             var currentTime = requestCurrentTimeForUpdate();
             var suspenseConfig = requestCurrentSuspenseConfig();
             var expirationTime = computeExpirationForFiber(currentTime, fiber, suspenseConfig);
-            setPendingExpirationTime(root, expirationTime); // If the source mutated between render and now,
-            // there may be state updates already scheduled from the old getSnapshot.
-            // Those updates should not commit without this value.
-            // There is no mechanism currently to associate these updates though,
-            // so for now we fall back to synchronously flushing all pending updates.
-            // TODO: Improve this later.
+            setPendingExpirationTime(root, expirationTime);
+          } // If the source mutated between render and now,
+          // there may be state updates already scheduled from the old getSnapshot.
+          // Those updates should not commit without this value.
+          // There is no mechanism currently to associate these updates though,
+          // so for now we fall back to synchronously flushing all pending updates.
+          // TODO: Improve this later.
 
-            markRootExpiredAtTime(root, getLastPendingExpirationTime(root));
-          }
+
+          markRootExpiredAtTime(root, getLastPendingExpirationTime(root));
         }
       }, [getSnapshot, source, subscribe]); // If we got a new source or subscribe function, re-subscribe in a passive effect.
 
@@ -19733,7 +20107,8 @@ if ("development" !== "production") {
       useDeferredValue: throwInvalidHookError,
       useTransition: throwInvalidHookError,
       useMutableSource: throwInvalidHookError,
-      useOpaqueIdentifier: throwInvalidHookError
+      useOpaqueIdentifier: throwInvalidHookError,
+      unstable_isNewReconciler: enableNewReconciler
     };
     var HooksDispatcherOnMountInDEV = null;
     var HooksDispatcherOnMountWithHookTypesInDEV = null;
@@ -19855,7 +20230,8 @@ if ("development" !== "production") {
           currentHookNameInDev = 'useOpaqueIdentifier';
           mountHookTypesDev();
           return mountOpaqueIdentifier();
-        }
+        },
+        unstable_isNewReconciler: enableNewReconciler
       };
       HooksDispatcherOnMountWithHookTypesInDEV = {
         readContext: function (context, observedBits) {
@@ -19956,7 +20332,8 @@ if ("development" !== "production") {
           currentHookNameInDev = 'useOpaqueIdentifier';
           updateHookTypesDev();
           return mountOpaqueIdentifier();
-        }
+        },
+        unstable_isNewReconciler: enableNewReconciler
       };
       HooksDispatcherOnUpdateInDEV = {
         readContext: function (context, observedBits) {
@@ -20057,7 +20434,8 @@ if ("development" !== "production") {
           currentHookNameInDev = 'useOpaqueIdentifier';
           updateHookTypesDev();
           return updateOpaqueIdentifier();
-        }
+        },
+        unstable_isNewReconciler: enableNewReconciler
       };
       HooksDispatcherOnRerenderInDEV = {
         readContext: function (context, observedBits) {
@@ -20158,7 +20536,8 @@ if ("development" !== "production") {
           currentHookNameInDev = 'useOpaqueIdentifier';
           updateHookTypesDev();
           return rerenderOpaqueIdentifier();
-        }
+        },
+        unstable_isNewReconciler: enableNewReconciler
       };
       InvalidNestedHooksDispatcherOnMountInDEV = {
         readContext: function (context, observedBits) {
@@ -20275,7 +20654,8 @@ if ("development" !== "production") {
           warnInvalidHookAccess();
           mountHookTypesDev();
           return mountOpaqueIdentifier();
-        }
+        },
+        unstable_isNewReconciler: enableNewReconciler
       };
       InvalidNestedHooksDispatcherOnUpdateInDEV = {
         readContext: function (context, observedBits) {
@@ -20392,7 +20772,8 @@ if ("development" !== "production") {
           warnInvalidHookAccess();
           updateHookTypesDev();
           return updateOpaqueIdentifier();
-        }
+        },
+        unstable_isNewReconciler: enableNewReconciler
       };
       InvalidNestedHooksDispatcherOnRerenderInDEV = {
         readContext: function (context, observedBits) {
@@ -20509,7 +20890,8 @@ if ("development" !== "production") {
           warnInvalidHookAccess();
           updateHookTypesDev();
           return rerenderOpaqueIdentifier();
-        }
+        },
+        unstable_isNewReconciler: enableNewReconciler
       };
     }
     var now$1 = Scheduler.unstable_now;
@@ -20546,6 +20928,18 @@ if ("development" !== "production") {
         }
 
         profilerStartTime = -1;
+      }
+    }
+
+    function transferActualDuration(fiber) {
+      // Transfer time spent rendering these children so we don't lose it
+      // after we rerender. This is used as a helper in special cases
+      // where we should count the work of multiple passes.
+      var child = fiber.child;
+
+      while (child) {
+        fiber.actualDuration += child.actualDuration;
+        child = child.sibling;
       }
     }
 
@@ -21063,6 +21457,17 @@ if ("development" !== "production") {
         // We always try to hydrate. If this isn't a hydration pass there won't
         // be any children to hydrate which is effectively the same thing as
         // not hydrating.
+        {
+          var mutableSourceEagerHydrationData = root.mutableSourceEagerHydrationData;
+
+          if (mutableSourceEagerHydrationData != null) {
+            for (var i = 0; i < mutableSourceEagerHydrationData.length; i += 2) {
+              var mutableSource = mutableSourceEagerHydrationData[i];
+              var version = mutableSourceEagerHydrationData[i + 1];
+              setWorkInProgressVersion(mutableSource, version);
+            }
+          }
+        }
         var child = mountChildFibers(workInProgress, null, nextChildren, renderExpirationTime);
         workInProgress.child = child;
         var node = child;
@@ -21119,7 +21524,9 @@ if ("development" !== "production") {
           markSpawnedWork(Never);
         } // Schedule this fiber to re-render at offscreen priority. Then bailout.
 
-        workInProgress.expirationTime = workInProgress.childExpirationTime = Never;
+        workInProgress.expirationTime = workInProgress.childExpirationTime = Never; // We should never render the children of a dehydrated boundary until we
+        // upgrade it. We return null instead of bailoutOnAlreadyFinishedWork.
+
         return null;
       }
 
@@ -22706,6 +23113,12 @@ if ("development" !== "production") {
     }
 
     function cutOffTailIfNeeded(renderState, hasRenderedATailFallback) {
+      if (getIsHydrating()) {
+        // If we're hydrating, we should consume as many items as we can
+        // so we don't leave any behind.
+        return;
+      }
+
       switch (renderState.tailMode) {
         case 'hidden':
           {
@@ -22944,7 +23357,12 @@ if ("development" !== "production") {
 
             if ((workInProgress.effectTag & DidCapture) !== NoEffect) {
               // Something suspended. Re-render with the fallback children.
-              workInProgress.expirationTime = renderExpirationTime; // Do not reset the effect list.
+              workInProgress.expirationTime = renderExpirationTime;
+
+              if ((workInProgress.mode & ProfileMode) !== NoMode) {
+                transferActualDuration(workInProgress);
+              } // Do not reset the effect list.
+
 
               return workInProgress;
             }
@@ -23153,19 +23571,20 @@ if ("development" !== "production") {
 
                   cutOffTailIfNeeded(renderState, true); // This might have been modified.
 
-                  if (renderState.tail === null && renderState.tailMode === 'hidden' && !renderedTail.alternate) {
-                    // We need to delete the row we just rendered.
-                    // Reset the effect list to what it was before we rendered this
-                    // child. The nested children have already appended themselves.
-                    var lastEffect = workInProgress.lastEffect = renderState.lastEffect; // Remove any effects that were appended after this point.
+                  if (renderState.tail === null && renderState.tailMode === 'hidden' && !renderedTail.alternate && !getIsHydrating() // We don't cut it if we're hydrating.
+                  ) {
+                      // We need to delete the row we just rendered.
+                      // Reset the effect list to what it was before we rendered this
+                      // child. The nested children have already appended themselves.
+                      var lastEffect = workInProgress.lastEffect = renderState.lastEffect; // Remove any effects that were appended after this point.
 
-                    if (lastEffect !== null) {
-                      lastEffect.nextEffect = null;
-                    } // We're done.
+                      if (lastEffect !== null) {
+                        lastEffect.nextEffect = null;
+                      } // We're done.
 
 
-                    return null;
-                  }
+                      return null;
+                    }
                 } else if ( // The time it took to render last row is greater than time until
                 // the expiration.
                 now() * 2 - renderState.renderingStartTime > renderState.tailExpiration && renderExpirationTime > Never) {
@@ -23271,6 +23690,11 @@ if ("development" !== "production") {
 
             if (effectTag & ShouldCapture) {
               workInProgress.effectTag = effectTag & ~ShouldCapture | DidCapture;
+
+              if ((workInProgress.mode & ProfileMode) !== NoMode) {
+                transferActualDuration(workInProgress);
+              }
+
               return workInProgress;
             }
 
@@ -23308,6 +23732,10 @@ if ("development" !== "production") {
 
             if (_effectTag2 & ShouldCapture) {
               workInProgress.effectTag = _effectTag2 & ~ShouldCapture | DidCapture; // Captured a suspense effect. Re-render the boundary.
+
+              if ((workInProgress.mode & ProfileMode) !== NoMode) {
+                transferActualDuration(workInProgress);
+              }
 
               return workInProgress;
             }
@@ -23948,24 +24376,26 @@ if ("development" !== "production") {
       }
     }
 
-    function commitPassiveHookEffects(finishedWork) {
-      if ((finishedWork.effectTag & Passive) !== NoEffect) {
-        switch (finishedWork.tag) {
-          case FunctionComponent:
-          case ForwardRef:
-          case SimpleMemoComponent:
-          case Block:
-            {
-              // TODO (#17945) We should call all passive destroy functions (for all fibers)
-              // before calling any create functions. The current approach only serializes
-              // these for a single fiber.
-              {
-                commitHookEffectListUnmount(Passive$1 | HasEffect, finishedWork);
-                commitHookEffectListMount(Passive$1 | HasEffect, finishedWork);
-              }
-              break;
-            }
-        }
+    function schedulePassiveEffects(finishedWork) {
+      var updateQueue = finishedWork.updateQueue;
+      var lastEffect = updateQueue !== null ? updateQueue.lastEffect : null;
+
+      if (lastEffect !== null) {
+        var firstEffect = lastEffect.next;
+        var effect = firstEffect;
+
+        do {
+          var _effect = effect,
+              next = _effect.next,
+              tag = _effect.tag;
+
+          if ((tag & Passive$1) !== NoEffect$1 && (tag & HasEffect) !== NoEffect$1) {
+            enqueuePendingPassiveHookEffectUnmount(finishedWork, effect);
+            enqueuePendingPassiveHookEffectMount(finishedWork, effect);
+          }
+
+          effect = next;
+        } while (effect !== firstEffect);
       }
     }
 
@@ -23983,6 +24413,7 @@ if ("development" !== "production") {
             {
               commitHookEffectListMount(Layout | HasEffect, finishedWork);
             }
+            schedulePassiveEffects(finishedWork);
             return;
           }
 
@@ -24266,38 +24697,25 @@ if ("development" !== "production") {
 
               if (lastEffect !== null) {
                 var firstEffect = lastEffect.next;
-                {
-                  // When the owner fiber is deleted, the destroy function of a passive
-                  // effect hook is called during the synchronous commit phase. This is
-                  // a concession to implementation complexity. Calling it in the
-                  // passive effect phase (like they usually are, when dependencies
-                  // change during an update) would require either traversing the
-                  // children of the deleted fiber again, or including unmount effects
-                  // as part of the fiber effect list.
-                  //
-                  // Because this is during the sync commit phase, we need to change
-                  // the priority.
-                  //
-                  // TODO: Reconsider this implementation trade off.
-                  var priorityLevel = renderPriorityLevel > NormalPriority ? NormalPriority : renderPriorityLevel;
-                  runWithPriority$1(priorityLevel, function () {
-                    var effect = firstEffect;
+                var effect = firstEffect;
 
-                    do {
-                      var _effect3 = effect,
-                          _destroy = _effect3.destroy,
-                          _tag = _effect3.tag;
+                do {
+                  var _effect2 = effect,
+                      destroy = _effect2.destroy,
+                      tag = _effect2.tag;
 
-                      if (_destroy !== undefined) {
-                        {
-                          safelyCallDestroy(current, _destroy);
-                        }
+                  if (destroy !== undefined) {
+                    if ((tag & Passive$1) !== NoEffect$1) {
+                      enqueuePendingPassiveHookEffectUnmount(current, effect);
+                    } else {
+                      {
+                        safelyCallDestroy(current, destroy);
                       }
+                    }
+                  }
 
-                      effect = effect.next;
-                    } while (effect !== firstEffect);
-                  });
-                }
+                  effect = effect.next;
+                } while (effect !== firstEffect);
               }
             }
 
@@ -24318,7 +24736,6 @@ if ("development" !== "production") {
 
         case HostComponent:
           {
-            beforeRemoveInstance(current.stateNode);
             safelyDetachRef(current);
             return;
           }
@@ -24329,7 +24746,7 @@ if ("development" !== "production") {
             // We are also not using this parent because
             // the portal will get pushed immediately.
             {
-              unmountHostComponents(finishedRoot, current, renderPriorityLevel);
+              unmountHostComponents(finishedRoot, current);
             }
             return;
           }
@@ -24360,7 +24777,7 @@ if ("development" !== "production") {
       var node = root;
 
       while (true) {
-        commitUnmount(finishedRoot, node, renderPriorityLevel); // Visit children because they may contain more composite or host nodes.
+        commitUnmount(finishedRoot, node); // Visit children because they may contain more composite or host nodes.
         // Skip portals because commitUnmount() currently visits them recursively.
 
         if (node.child !== null && // If we use mutation we drill down into portals using commitUnmount above.
@@ -24388,7 +24805,7 @@ if ("development" !== "production") {
       }
     }
 
-    function detachFiber(fiber) {
+    function detachFiberMutation(fiber) {
       // Cut off the return pointers to disconnect it from the tree. Ideally, we
       // should clear the child pointer of the parent alternate to let this
       // get GC:ed but we don't know which for sure which parent is the current
@@ -24396,7 +24813,8 @@ if ("development" !== "production") {
       // itself will be GC:ed when the parent updates the next time.
       // Note: we cannot null out sibling here, otherwise it can cause issues
       // with findDOMNode and how it requires the sibling field to carry out
-      // traversal in a later effect. See PR #16820.
+      // traversal in a later effect. See PR #16820. We now clear the sibling
+      // field after effects, see: detachFiberAfterEffects.
       fiber.alternate = null;
       fiber.child = null;
       fiber.dependencies_old = null;
@@ -24635,7 +25053,7 @@ if ("development" !== "production") {
         }
 
         if (node.tag === HostComponent || node.tag === HostText) {
-          commitNestedUnmounts(finishedRoot, node, renderPriorityLevel); // After all the children have unmounted, it is now safe to remove the
+          commitNestedUnmounts(finishedRoot, node); // After all the children have unmounted, it is now safe to remove the
           // node from the tree.
 
           if (currentParentIsContainer) {
@@ -24656,7 +25074,7 @@ if ("development" !== "production") {
             continue;
           }
         } else {
-          commitUnmount(finishedRoot, node, renderPriorityLevel); // Visit children because we may find more host components below.
+          commitUnmount(finishedRoot, node); // Visit children because we may find more host components below.
 
           if (node.child !== null) {
             node.child.return = node;
@@ -24692,13 +25110,13 @@ if ("development" !== "production") {
       {
         // Recursively delete all host nodes from the parent.
         // Detach refs and call componentWillUnmount() on the whole subtree.
-        unmountHostComponents(finishedRoot, current, renderPriorityLevel);
+        unmountHostComponents(finishedRoot, current);
       }
       var alternate = current.alternate;
-      detachFiber(current);
+      detachFiberMutation(current);
 
       if (alternate !== null) {
-        detachFiber(alternate);
+        detachFiberMutation(alternate);
       }
     }
 
@@ -24880,6 +25298,22 @@ if ("development" !== "production") {
           }
         });
       }
+    } // This function detects when a Suspense boundary goes from visible to hidden.
+    // It returns false if the boundary is already hidden.
+    // TODO: Use an effect tag.
+
+
+    function isSuspenseBoundaryBeingHidden(current, finishedWork) {
+      if (current !== null) {
+        var oldState = current.memoizedState;
+
+        if (oldState === null || oldState.dehydrated !== null) {
+          var newState = finishedWork.memoizedState;
+          return newState !== null && newState.dehydrated === null;
+        }
+      }
+
+      return false;
     }
 
     function commitResetTextContent(current) {
@@ -24916,7 +25350,7 @@ if ("development" !== "production") {
         ReactCurrentOwner$2 = ReactSharedInternals.ReactCurrentOwner,
         IsSomeRendererActing = ReactSharedInternals.IsSomeRendererActing;
     var NoContext =
-    /*                    */
+    /*             */
     0;
     var BatchedContext =
     /*               */
@@ -24936,6 +25370,9 @@ if ("development" !== "production") {
     var CommitContext =
     /*                */
     32;
+    var RetryAfterError =
+    /*       */
+    64;
     var RootIncomplete = 0;
     var RootFatalErrored = 1;
     var RootErrored = 2;
@@ -24980,6 +25417,8 @@ if ("development" !== "production") {
     var rootWithPendingPassiveEffects = null;
     var pendingPassiveEffectsRenderPriority = NoPriority;
     var pendingPassiveEffectsExpirationTime = NoWork;
+    var pendingPassiveHookEffectsMount = [];
+    var pendingPassiveHookEffectsUnmount = [];
     var rootsWithPendingDiscreteUpdates = null; // Use these to prevent an infinite loop of nested updates
 
     var NESTED_UPDATE_LIMIT = 50;
@@ -25175,8 +25614,13 @@ if ("development" !== "production") {
 
       if (alternate !== null && alternate.expirationTime < expirationTime) {
         alternate.expirationTime = expirationTime;
-      } // Walk the parent path to the root and update the child expiration time.
+      }
 
+      {
+        if (alternate === null && (fiber.effectTag & (Placement | Hydrating)) !== NoEffect) {
+          warnAboutUpdateOnNotYetMountedFiberInDEV(fiber);
+        }
+      } // Walk the parent path to the root and update the child expiration time.
 
       var node = fiber.return;
       var root = null;
@@ -25186,6 +25630,11 @@ if ("development" !== "production") {
       } else {
         while (node !== null) {
           alternate = node.alternate;
+          {
+            if (alternate === null && (node.effectTag & (Placement | Hydrating)) !== NoEffect) {
+              warnAboutUpdateOnNotYetMountedFiberInDEV(fiber);
+            }
+          }
 
           if (node.childExpirationTime < expirationTime) {
             node.childExpirationTime = expirationTime;
@@ -25282,7 +25731,7 @@ if ("development" !== "production") {
       if (lastExpiredTime !== NoWork) {
         // Special case: Expired work should flush synchronously.
         root.callbackExpirationTime = Sync;
-        root.callbackPriority = ImmediatePriority;
+        root.callbackPriority_old = ImmediatePriority;
         root.callbackNode = scheduleSyncCallback(performSyncWorkOnRoot.bind(null, root));
         return;
       }
@@ -25295,7 +25744,7 @@ if ("development" !== "production") {
         if (existingCallbackNode !== null) {
           root.callbackNode = null;
           root.callbackExpirationTime = NoWork;
-          root.callbackPriority = NoPriority;
+          root.callbackPriority_old = NoPriority;
         }
 
         return;
@@ -25308,7 +25757,7 @@ if ("development" !== "production") {
       // expiration time. Otherwise, we'll cancel it and schedule a new one.
 
       if (existingCallbackNode !== null) {
-        var existingCallbackPriority = root.callbackPriority;
+        var existingCallbackPriority = root.callbackPriority_old;
         var existingCallbackExpirationTime = root.callbackExpirationTime;
 
         if ( // Callback must have the exact same expiration time.
@@ -25325,7 +25774,7 @@ if ("development" !== "production") {
       }
 
       root.callbackExpirationTime = expirationTime;
-      root.callbackPriority = priorityLevel;
+      root.callbackPriority_old = priorityLevel;
       var callbackNode;
 
       if (expirationTime === Sync) {
@@ -25380,11 +25829,19 @@ if ("development" !== "production") {
 
       if (exitStatus !== RootIncomplete) {
         if (exitStatus === RootErrored) {
-          // If something threw an error, try rendering one more time. We'll
+          executionContext |= RetryAfterError; // If an error occurred during hydration,
+          // discard server response and fall back to client side render.
+
+          if (root.hydrate) {
+            root.hydrate = false;
+            clearContainer(root.containerInfo);
+          } // If something threw an error, try rendering one more time. We'll
           // render synchronously to block concurrent data mutations, and we'll
           // render at Idle (or lower) so that all pending updates are included.
           // If it still fails after the second attempt, we'll give up and commit
           // the resulting tree.
+
+
           expirationTime = expirationTime > Idle ? Idle : expirationTime;
           exitStatus = renderRootSync(root, expirationTime);
         }
@@ -25652,11 +26109,19 @@ if ("development" !== "production") {
       var exitStatus = renderRootSync(root, expirationTime);
 
       if (root.tag !== LegacyRoot && exitStatus === RootErrored) {
-        // If something threw an error, try rendering one more time. We'll
+        executionContext |= RetryAfterError; // If an error occurred during hydration,
+        // discard server response and fall back to client side render.
+
+        if (root.hydrate) {
+          root.hydrate = false;
+          clearContainer(root.containerInfo);
+        } // If something threw an error, try rendering one more time. We'll
         // render synchronously to block concurrent data mutations, and we'll
         // render at Idle (or lower) so that all pending updates are included.
         // If it still fails after the second attempt, we'll give up and commit
         // the resulting tree.
+
+
         expirationTime = expirationTime > Idle ? Idle : expirationTime;
         exitStatus = renderRootSync(root, expirationTime);
       }
@@ -26194,13 +26659,14 @@ if ("development" !== "production") {
           }
 
           resetCurrentFiber();
-          resetChildExpirationTime(completedWork);
 
           if (next !== null) {
             // Completing this fiber spawned new work. Work on that next.
             workInProgress = next;
             return;
           }
+
+          resetChildExpirationTime(completedWork);
 
           if (returnFiber !== null && // Do not append effects to parents if a sibling failed to complete
           (returnFiber.effectTag & Incomplete) === NoEffect) {
@@ -26246,6 +26712,16 @@ if ("development" !== "production") {
           var _next = unwindWork(completedWork); // Because this fiber did not complete, don't reset its expiration time.
 
 
+          if (_next !== null) {
+            // If completing this work spawned new work, do that next. We'll come
+            // back here again.
+            // Since we're restarting, remove anything that is not a host effect
+            // from the effect tag.
+            _next.effectTag &= HostEffectMask;
+            workInProgress = _next;
+            return;
+          }
+
           if ((completedWork.mode & ProfileMode) !== NoMode) {
             // Record the render duration for the fiber that errored.
             stopProfilerTimerIfRunningAndRecordDelta(completedWork, false); // Include the time spent working on failed children before continuing.
@@ -26259,16 +26735,6 @@ if ("development" !== "production") {
             }
 
             completedWork.actualDuration = actualDuration;
-          }
-
-          if (_next !== null) {
-            // If completing this work spawned new work, do that next. We'll come
-            // back here again.
-            // Since we're restarting, remove anything that is not a host effect
-            // from the effect tag.
-            _next.effectTag &= HostEffectMask;
-            workInProgress = _next;
-            return;
           }
 
           if (returnFiber !== null) {
@@ -26348,6 +26814,17 @@ if ("development" !== "production") {
           child = child.sibling;
         }
 
+        var isTimedOutSuspense = completedWork.tag === SuspenseComponent && completedWork.memoizedState !== null;
+
+        if (isTimedOutSuspense) {
+          // Don't count time spent in a timed out Suspense subtree as part of the base duration.
+          var primaryChildFragment = completedWork.child;
+
+          if (primaryChildFragment !== null) {
+            treeBaseDuration -= primaryChildFragment.treeBaseDuration;
+          }
+        }
+
         completedWork.actualDuration = actualDuration;
         completedWork.treeBaseDuration = treeBaseDuration;
       } else {
@@ -26417,7 +26894,7 @@ if ("development" !== "production") {
 
       root.callbackNode = null;
       root.callbackExpirationTime = NoWork;
-      root.callbackPriority = NoPriority; // Update the first and last pending times on this root. The new first
+      root.callbackPriority_old = NoPriority; // Update the first and last pending times on this root. The new first
       // pending time is whatever is left on the root fiber.
 
       var remainingExpirationTimeBeforeCommit = getRemainingExpirationTime(finishedWork);
@@ -26592,6 +27069,11 @@ if ("development" !== "production") {
         while (nextEffect !== null) {
           var nextNextEffect = nextEffect.nextEffect;
           nextEffect.nextEffect = null;
+
+          if (nextEffect.effectTag & Deletion) {
+            detachFiberAfterEffects(nextEffect);
+          }
+
           nextEffect = nextNextEffect;
         }
       } // Check if there's remaining work on this root
@@ -26670,15 +27152,25 @@ if ("development" !== "production") {
 
     function commitBeforeMutationEffects() {
       while (nextEffect !== null) {
-        if (!shouldFireAfterActiveInstanceBlur && focusedInstanceHandle !== null && isFiberHiddenOrDeletedAndContains(nextEffect, focusedInstanceHandle)) {
-          shouldFireAfterActiveInstanceBlur = true;
+        var current = nextEffect.alternate;
+
+        if (!shouldFireAfterActiveInstanceBlur && focusedInstanceHandle !== null) {
+          if ((nextEffect.effectTag & Deletion) !== NoEffect) {
+            if (doesFiberContain(nextEffect, focusedInstanceHandle)) {
+              shouldFireAfterActiveInstanceBlur = true;
+            }
+          } else {
+            // TODO: Move this out of the hot path using a dedicated effect tag.
+            if (nextEffect.tag === SuspenseComponent && isSuspenseBoundaryBeingHidden(current, nextEffect) && doesFiberContain(nextEffect, focusedInstanceHandle)) {
+              shouldFireAfterActiveInstanceBlur = true;
+            }
+          }
         }
 
         var effectTag = nextEffect.effectTag;
 
         if ((effectTag & Snapshot) !== NoEffect) {
           setCurrentFiber(nextEffect);
-          var current = nextEffect.alternate;
           commitBeforeMutationLifeCycles(current, nextEffect);
           resetCurrentFiber();
         }
@@ -26772,7 +27264,7 @@ if ("development" !== "production") {
 
           case Deletion:
             {
-              commitDeletion(root, nextEffect, renderPriorityLevel);
+              commitDeletion(root, nextEffect);
               break;
             }
         }
@@ -26809,6 +27301,43 @@ if ("development" !== "production") {
       }
     }
 
+    function enqueuePendingPassiveHookEffectMount(fiber, effect) {
+      pendingPassiveHookEffectsMount.push(effect, fiber);
+
+      if (!rootDoesHavePassiveEffects) {
+        rootDoesHavePassiveEffects = true;
+        scheduleCallback(NormalPriority, function () {
+          flushPassiveEffects();
+          return null;
+        });
+      }
+    }
+
+    function enqueuePendingPassiveHookEffectUnmount(fiber, effect) {
+      pendingPassiveHookEffectsUnmount.push(effect, fiber);
+      {
+        fiber.effectTag |= PassiveUnmountPendingDev;
+        var alternate = fiber.alternate;
+
+        if (alternate !== null) {
+          alternate.effectTag |= PassiveUnmountPendingDev;
+        }
+      }
+
+      if (!rootDoesHavePassiveEffects) {
+        rootDoesHavePassiveEffects = true;
+        scheduleCallback(NormalPriority, function () {
+          flushPassiveEffects();
+          return null;
+        });
+      }
+    }
+
+    function invokePassiveEffectCreate(effect) {
+      var create = effect.create;
+      effect.destroy = create();
+    }
+
     function flushPassiveEffectsImpl() {
       if (rootWithPendingPassiveEffects === null) {
         return false;
@@ -26830,37 +27359,97 @@ if ("development" !== "production") {
       }
       var prevExecutionContext = executionContext;
       executionContext |= CommitContext;
-      var prevInteractions = pushInteractions(root); // because the root is not part of its own effect list.
-      // This could change in the future.
+      var prevInteractions = pushInteractions(root); // It's important that ALL pending passive effect destroy functions are called
+      // before ANY passive effect create functions are called.
+      // Otherwise effects in sibling components might interfere with each other.
+      // e.g. a destroy function in one component may unintentionally override a ref
+      // value set by a create function in another component.
+      // Layout effects have the same constraint.
+      // First pass: Destroy stale passive effects.
 
-      var effect = root.current.firstEffect;
+      var unmountEffects = pendingPassiveHookEffectsUnmount;
+      pendingPassiveHookEffectsUnmount = [];
 
-      while (effect !== null) {
-        // We do this work above if this flag is enabled, so we shouldn't be
-        // doing it here.
+      for (var i = 0; i < unmountEffects.length; i += 2) {
+        var _effect = unmountEffects[i];
+        var fiber = unmountEffects[i + 1];
+        var destroy = _effect.destroy;
+        _effect.destroy = undefined;
         {
+          fiber.effectTag &= ~PassiveUnmountPendingDev;
+          var alternate = fiber.alternate;
+
+          if (alternate !== null) {
+            alternate.effectTag &= ~PassiveUnmountPendingDev;
+          }
+        }
+
+        if (typeof destroy === 'function') {
           {
-            setCurrentFiber(effect);
-            invokeGuardedCallback(null, commitPassiveHookEffects, null, effect);
+            setCurrentFiber(fiber);
+            {
+              invokeGuardedCallback(null, destroy, null);
+            }
 
             if (hasCaughtError()) {
-              if (!(effect !== null)) {
+              if (!(fiber !== null)) {
                 {
                   throw Error("Should be working on an effect.");
                 }
               }
 
-              var _error5 = clearCaughtError();
-
-              captureCommitPhaseError(effect, _error5);
+              var error = clearCaughtError();
+              captureCommitPhaseError(fiber, error);
             }
 
             resetCurrentFiber();
           }
         }
+      } // Second pass: Create new passive effects.
+
+
+      var mountEffects = pendingPassiveHookEffectsMount;
+      pendingPassiveHookEffectsMount = [];
+
+      for (var _i = 0; _i < mountEffects.length; _i += 2) {
+        var _effect2 = mountEffects[_i];
+        var _fiber = mountEffects[_i + 1];
+        {
+          setCurrentFiber(_fiber);
+          {
+            invokeGuardedCallback(null, invokePassiveEffectCreate, null, _effect2);
+          }
+
+          if (hasCaughtError()) {
+            if (!(_fiber !== null)) {
+              {
+                throw Error("Should be working on an effect.");
+              }
+            }
+
+            var _error4 = clearCaughtError();
+
+            captureCommitPhaseError(_fiber, _error4);
+          }
+
+          resetCurrentFiber();
+        }
+      } // Note: This currently assumes there are no passive effects on the root fiber
+      // because the root is not part of its own effect list.
+      // This could change in the future.
+
+
+      var effect = root.current.firstEffect;
+
+      while (effect !== null) {
         var nextNextEffect = effect.nextEffect; // Remove nextEffect pointer to assist GC
 
         effect.nextEffect = null;
+
+        if (effect.effectTag & Deletion) {
+          detachFiberAfterEffects(effect);
+        }
+
         effect = nextNextEffect;
       }
 
@@ -27105,6 +27694,55 @@ if ("development" !== "production") {
       }
     }
 
+    var didWarnStateUpdateForNotYetMountedComponent = null;
+
+    function warnAboutUpdateOnNotYetMountedFiberInDEV(fiber) {
+      {
+        if ((executionContext & RenderContext) !== NoContext) {
+          // We let the other warning about render phase updates deal with this one.
+          return;
+        }
+
+        if (!(fiber.mode & (BlockingMode | ConcurrentMode))) {
+          return;
+        }
+
+        var tag = fiber.tag;
+
+        if (tag !== IndeterminateComponent && tag !== HostRoot && tag !== ClassComponent && tag !== FunctionComponent && tag !== ForwardRef && tag !== MemoComponent && tag !== SimpleMemoComponent && tag !== Block) {
+          // Only warn for user-defined components, not internal ones like Suspense.
+          return;
+        } // We show the whole stack but dedupe on the top component's name because
+        // the problematic code almost always lies inside that component.
+
+
+        var componentName = getComponentName(fiber.type) || 'ReactComponent';
+
+        if (didWarnStateUpdateForNotYetMountedComponent !== null) {
+          if (didWarnStateUpdateForNotYetMountedComponent.has(componentName)) {
+            return;
+          }
+
+          didWarnStateUpdateForNotYetMountedComponent.add(componentName);
+        } else {
+          didWarnStateUpdateForNotYetMountedComponent = new Set([componentName]);
+        }
+
+        var previousFiber = current;
+
+        try {
+          setCurrentFiber(fiber);
+          error("Can't perform a React state update on a component that hasn't mounted yet. " + 'This indicates that you have a side-effect in your render function that ' + 'asynchronously later calls tries to update the component. Move this work to ' + 'useEffect instead.');
+        } finally {
+          if (previousFiber) {
+            setCurrentFiber(fiber);
+          } else {
+            resetCurrentFiber();
+          }
+        }
+      }
+    }
+
     var didWarnStateUpdateForUnmountedComponent = null;
 
     function warnAboutUpdateOnUnmountedFiberInDEV(fiber) {
@@ -27114,7 +27752,14 @@ if ("development" !== "production") {
         if (tag !== HostRoot && tag !== ClassComponent && tag !== FunctionComponent && tag !== ForwardRef && tag !== MemoComponent && tag !== SimpleMemoComponent && tag !== Block) {
           // Only warn for user-defined components, not internal ones like Suspense.
           return;
-        } // the problematic code almost always lies inside that component.
+        } // If there are pending passive effects unmounts for this Fiber,
+        // we can assume that they would have prevented this update.
+
+
+        if ((fiber.effectTag & PassiveUnmountPendingDev) !== NoEffect) {
+          return;
+        } // We show the whole stack but dedupe on the top component's name because
+        // the problematic code almost always lies inside that component.
 
 
         var componentName = getComponentName(fiber.type) || 'ReactComponent';
@@ -27459,6 +28104,10 @@ if ("development" !== "production") {
       return isFlushingAct;
     }
 
+    function detachFiberAfterEffects(fiber) {
+      fiber.sibling = null;
+    }
+
     var rendererID = null;
     var injectedHook = null;
     var hasLoggedError = false;
@@ -27657,18 +28306,18 @@ if ("development" !== "production") {
       return new FiberNode(tag, pendingProps, key, mode);
     };
 
-    function shouldConstruct(Component) {
+    function shouldConstruct$1(Component) {
       var prototype = Component.prototype;
       return !!(prototype && prototype.isReactComponent);
     }
 
     function isSimpleFunctionComponent(type) {
-      return typeof type === 'function' && !shouldConstruct(type) && type.defaultProps === undefined;
+      return typeof type === 'function' && !shouldConstruct$1(type) && type.defaultProps === undefined;
     }
 
     function resolveLazyComponentTag(Component) {
       if (typeof Component === 'function') {
-        return shouldConstruct(Component) ? ClassComponent : FunctionComponent;
+        return shouldConstruct$1(Component) ? ClassComponent : FunctionComponent;
       } else if (Component !== undefined && Component !== null) {
         var $$typeof = Component.$$typeof;
 
@@ -27862,7 +28511,7 @@ if ("development" !== "production") {
       var resolvedType = type;
 
       if (typeof type === 'function') {
-        if (shouldConstruct(type)) {
+        if (shouldConstruct$1(type)) {
           fiberTag = ClassComponent;
           {
             resolvedType = resolveClassForHotReloading(resolvedType);
@@ -28117,7 +28766,7 @@ if ("development" !== "production") {
       this.pendingContext = null;
       this.hydrate = hydrate;
       this.callbackNode = null;
-      this.callbackPriority = NoPriority;
+      this.callbackPriority_old = NoPriority;
       this.firstPendingTime = NoWork;
       this.lastPendingTime = NoWork;
       this.firstSuspendedTime = NoWork;
@@ -28127,9 +28776,27 @@ if ("development" !== "production") {
       this.lastExpiredTime = NoWork;
       this.mutableSourceLastPendingUpdateTime = NoWork;
       {
+        this.mutableSourceEagerHydrationData = null;
+      }
+      {
         this.interactionThreadID = tracing.unstable_getThreadID();
         this.memoizedInteractions = new Set();
         this.pendingInteractionMap_old = new Map();
+      }
+      {
+        switch (tag) {
+          case BlockingRoot:
+            this._debugRootType = 'createBlockingRoot()';
+            break;
+
+          case ConcurrentRoot:
+            this._debugRootType = 'createRoot()';
+            break;
+
+          case LegacyRoot:
+            this._debugRootType = 'createLegacyRoot()';
+            break;
+        }
       }
     }
 
@@ -28653,6 +29320,7 @@ if ("development" !== "production") {
       // Tag is either LegacyRoot or Concurrent Root
       var hydrate = options != null && options.hydrate === true;
       var hydrationCallbacks = options != null && options.hydrationOptions || null;
+      var mutableSources = options != null && options.hydrationOptions != null && options.hydrationOptions.mutableSources || null;
       var root = createContainer(container, tag, hydrate);
       markContainerAsRoot(root.current, container);
       var containerNodeType = container.nodeType;
@@ -28664,6 +29332,13 @@ if ("development" !== "production") {
         // hoist it to reduce code-size.
 
         eagerlyTrapReplayableEvents(container, doc);
+      }
+
+      if (mutableSources) {
+        for (var i = 0; i < mutableSources.length; i++) {
+          var mutableSource = mutableSources[i];
+          registerMutableSourceForHydration(root, mutableSource);
+        }
       }
 
       return root;
@@ -28744,7 +29419,7 @@ if ("development" !== "production") {
       {
         if (shouldHydrate && !forceHydrate && !warnedAboutHydrateAPI) {
           warnedAboutHydrateAPI = true;
-          warn('render(): Calling ReactDOM.render() to hydrate server-rendered markup ' + 'will stop working in React v17. Replace the ReactDOM.render() call ' + 'with ReactDOM.hydrate() if you want React to attach to the server HTML.');
+          warn('render(): Calling ReactDOM.render() to hydrate server-rendered markup ' + 'will stop working in React v18. Replace the ReactDOM.render() call ' + 'with ReactDOM.hydrate() if you want React to attach to the server HTML.');
         }
       }
       return createLegacyRoot(container, shouldHydrate ? {
@@ -28939,7 +29614,7 @@ if ("development" !== "production") {
     } // TODO: this is special because it gets imported during build.
 
 
-    var ReactVersion = '16.13.1-33c3af284';
+    var ReactVersion = '16.13.1-7f28234f8';
     setAttemptUserBlockingHydration(attemptUserBlockingHydration$1);
     setAttemptContinuousHydration(attemptContinuousHydration$1);
     setAttemptHydrationAtCurrentPriority(attemptHydrationAtCurrentPriority$1);
@@ -28977,7 +29652,7 @@ if ("development" !== "production") {
       {
         if (!didWarnAboutUnstableCreatePortal) {
           didWarnAboutUnstableCreatePortal = true;
-          warn('The ReactDOM.unstable_createPortal() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactDOM.createPortal() instead. It has the exact same API, ' + 'but without the "unstable_" prefix.');
+          warn('The ReactDOM.unstable_createPortal() alias has been deprecated, ' + 'and will be removed in React 18+. Update your code to use ' + 'ReactDOM.createPortal() instead. It has the exact same API, ' + 'but without the "unstable_" prefix.');
         }
       }
       return createPortal$1(children, container, key);
@@ -51438,18 +52113,54 @@ var defaultSettings = {
 };
 exports.defaultSettings = defaultSettings;
 var months = {
-  Jan: "January",
-  Feb: "February",
-  Mar: "March",
-  Apr: "April",
-  May: "May",
-  Jun: "June",
-  Jul: "July",
-  Aug: "August",
-  Sep: "September",
-  Oct: "October",
-  Nov: "November",
-  Dec: "December"
+  Jan: {
+    text: "January",
+    int: "01"
+  },
+  Feb: {
+    text: "February",
+    int: "02"
+  },
+  Mar: {
+    text: "March",
+    int: "03"
+  },
+  Apr: {
+    text: "April",
+    int: "04"
+  },
+  May: {
+    text: "May",
+    int: "05"
+  },
+  Jun: {
+    text: "June",
+    int: "06"
+  },
+  Jul: {
+    text: "July",
+    int: "07"
+  },
+  Aug: {
+    text: "August",
+    int: "08"
+  },
+  Sep: {
+    text: "September",
+    int: "09"
+  },
+  Oct: {
+    text: "October",
+    int: "10"
+  },
+  Nov: {
+    text: "November",
+    int: "11"
+  },
+  Dec: {
+    text: "December",
+    int: "12"
+  }
 };
 exports.months = months;
 },{}],"utils/formatData.js":[function(require,module,exports) {
@@ -51484,8 +52195,12 @@ var twoDigitYear = new Date().getFullYear().toString().substr(2);
 
 var processMonthYear = function processMonthYear(month, year, retObj) {
   if (Object.keys(_constants.months).includes(month)) {
+    var _months$month = _constants.months[month],
+        text = _months$month.text,
+        int = _months$month.int;
     retObj.month = month;
-    retObj.monthLong = _constants.months[month];
+    retObj.monthLong = text;
+    retObj.monthInt = int;
   }
 
   if (year && !year.includes("?") && year.length === 4) {
@@ -51496,6 +52211,7 @@ var processMonthYear = function processMonthYear(month, year, retObj) {
     retObj.year = year > twoDigitYear ? "19".concat(year) : "20".concat(year);
   }
 
+  retObj.yearInt = year.slice(0, 2);
   return retObj;
 };
 
@@ -80481,9 +81197,13 @@ var boxShadow = {
 };
 exports.boxShadow = boxShadow;
 var breakpoint = {
-  small: "40rem",
-  medium: "52rem",
-  large: "64rem"
+  XXsmall: "360px",
+  Xsmall: "480px",
+  small: "600px",
+  tablet: "768px",
+  large: "1024px",
+  Xlarge: "1280px",
+  massive: "1440px"
 };
 exports.breakpoint = breakpoint;
 },{}],"components/views/stats/StatsHeader.jsx":[function(require,module,exports) {
@@ -80523,7 +81243,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  font-size: 1.25rem;\n  margin-right: 2rem;\n  strong {\n    font-weight: 700;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  margin-right: 2rem;\n  strong {\n    font-weight: 700;\n  }\n  font-size: 1rem;\n  @media only screen and (min-width: ", ") {\n    font-size: 1.25rem;\n  }\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -80533,7 +81253,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  border-left: 1px solid black;\n  padding-left: 1rem;\n  margin-left: 1rem;\n  select {\n    margin-left: ", ";\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  border-left: 1px solid ", ";\n  padding-left: 1rem;\n  margin-left: 1rem;\n  select {\n    margin-left: 0.5rem;\n  }\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -80543,7 +81263,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  margin-right: 1rem;\n  font-size: 1.25rem;\n  padding: ", " 0;\n  border-bottom: ", " solid ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  margin-right: 1rem;\n  padding-bottom: 0.25rem;\n  border-bottom: 0.125rem solid ", ";\n  font-size: 1rem;\n  @media only screen and (min-width: ", ") {\n    font-size: 1.25rem;\n  }\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -80563,7 +81283,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  padding-bottom: ", ";\n  margin-bottom: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  padding: 0.5rem 1rem;\n  margin-bottom: 1rem;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -80574,15 +81294,15 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var Header = _styledComponents.default.header(_templateObject(), _styleVars.spacing.large, _styleVars.spacing.large);
+var Header = _styledComponents.default.header(_templateObject());
 
 var Top = _styledComponents.default.div(_templateObject2());
 
-var H1 = _styledComponents.default.h1(_templateObject3(), _styleVars.spacing.small, _styleVars.spacing.xSmall, _styleVars.colors.black);
+var H1 = _styledComponents.default.h1(_templateObject3(), _styleVars.colors.black, _styleVars.breakpoint.Xsmall);
 
-var MainControl = _styledComponents.default.div(_templateObject4(), _styleVars.spacing.med);
+var MainControl = _styledComponents.default.div(_templateObject4(), _styleVars.colors.black);
 
-var H2 = _styledComponents.default.h2(_templateObject5());
+var H2 = _styledComponents.default.h2(_templateObject5(), _styleVars.breakpoint.Xsmall);
 
 var FilterControl = _styledComponents.default.div(_templateObject6());
 
@@ -80682,7 +81402,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  width: 50vw;\n  height: 50vw;\n  display: block;\n  margin: auto;\n  overflow: visible;\n  @media only screen and (min-width: 768px) {\n    margin-right: 0;\n    margin-left: calc(100% - 400px);\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: block;\n  margin: auto;\n  overflow: visible;\n  transform: scale(0.5) translate(0, 0);\n  transform-origin: bottom right;\n  max-width: 480px;\n  @media only screen and (min-width: 768px) {\n    margin: 0;\n    margin-left: auto;\n    transform: scale(0.75) translate(0, 50%);\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -80773,8 +81493,8 @@ var PieChart = function PieChart(_ref3) {
     return "translate(0, 0)";
   };
 
-  return /*#__PURE__*/_react.default.createElement(SvgChart, null, /*#__PURE__*/_react.default.createElement("g", {
-    transform: "translate(".concat(outerRadius, " ").concat(outerRadius, ")")
+  return /*#__PURE__*/_react.default.createElement(SvgChart, {
+    viewBox: "0 0 200 200"
   }, /*#__PURE__*/_react.default.createElement(DismissObject, {
     onClick: function onClick() {
       return setFiltered(null);
@@ -80792,14 +81512,143 @@ var PieChart = function PieChart(_ref3) {
         return setFiltered(type, d.data);
       }
     });
-  })), tooltip && /*#__PURE__*/_react.default.createElement(Tooltip, _extends({
+  }), tooltip && /*#__PURE__*/_react.default.createElement(Tooltip, _extends({
     transform: getToolPos(tooltip, createArc, outerRadius)
   }, tooltip)));
 };
 
 var _default = PieChart;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/views/stats/Legend.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"../node_modules/matchmedia-polyfill/matchMedia.js":[function(require,module,exports) {
+/*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas, David Knight. MIT license */
+
+window.matchMedia || (window.matchMedia = function() {
+    "use strict";
+
+    // For browsers that support matchMedium api such as IE 9 and webkit
+    var styleMedia = (window.styleMedia || window.media);
+
+    // For those that don't support matchMedium
+    if (!styleMedia) {
+        var style       = document.createElement('style'),
+            script      = document.getElementsByTagName('script')[0],
+            info        = null;
+
+        style.type  = 'text/css';
+        style.id    = 'matchmediajs-test';
+
+        if (!script) {
+          document.head.appendChild(style);
+        } else {
+          script.parentNode.insertBefore(style, script);
+        }
+
+        // 'style.currentStyle' is used by IE <= 8 and 'window.getComputedStyle' for all other browsers
+        info = ('getComputedStyle' in window) && window.getComputedStyle(style, null) || style.currentStyle;
+
+        styleMedia = {
+            matchMedium: function(media) {
+                var text = '@media ' + media + '{ #matchmediajs-test { width: 1px; } }';
+
+                // 'style.styleSheet' is used by IE <= 8 and 'style.textContent' for all other browsers
+                if (style.styleSheet) {
+                    style.styleSheet.cssText = text;
+                } else {
+                    style.textContent = text;
+                }
+
+                // Test if media query is true or false
+                return info.width === '1px';
+            }
+        };
+    }
+
+    return function(media) {
+        return {
+            matches: styleMedia.matchMedium(media || 'all'),
+            media: media || 'all'
+        };
+    };
+}());
+
+},{}],"../node_modules/matchmedia-polyfill/matchMedia.addListener.js":[function(require,module,exports) {
+/*! matchMedia() polyfill addListener/removeListener extension. Author & copyright (c) 2012: Scott Jehl. MIT license */
+(function(){
+    // Bail out for browsers that have addListener support
+    if (window.matchMedia && window.matchMedia('all').addListener) {
+        return false;
+    }
+
+    var localMatchMedia = window.matchMedia,
+        hasMediaQueries = localMatchMedia('only all').matches,
+        isListening     = false,
+        timeoutID       = 0,    // setTimeout for debouncing 'handleChange'
+        queries         = [],   // Contains each 'mql' and associated 'listeners' if 'addListener' is used
+        handleChange    = function(evt) {
+            // Debounce
+            clearTimeout(timeoutID);
+
+            timeoutID = setTimeout(function() {
+                for (var i = 0, il = queries.length; i < il; i++) {
+                    var mql         = queries[i].mql,
+                        listeners   = queries[i].listeners || [],
+                        matches     = localMatchMedia(mql.media).matches;
+
+                    // Update mql.matches value and call listeners
+                    // Fire listeners only if transitioning to or from matched state
+                    if (matches !== mql.matches) {
+                        mql.matches = matches;
+
+                        for (var j = 0, jl = listeners.length; j < jl; j++) {
+                            listeners[j].call(window, mql);
+                        }
+                    }
+                }
+            }, 30);
+        };
+
+    window.matchMedia = function(media) {
+        var mql         = localMatchMedia(media),
+            listeners   = [],
+            index       = 0;
+
+        mql.addListener = function(listener) {
+            // Changes would not occur to css media type so return now (Affects IE <= 8)
+            if (!hasMediaQueries) {
+                return;
+            }
+
+            // Set up 'resize' listener for browsers that support CSS3 media queries (Not for IE <= 8)
+            // There should only ever be 1 resize listener running for performance
+            if (!isListening) {
+                isListening = true;
+                window.addEventListener('resize', handleChange, true);
+            }
+
+            // Push object only if it has not been pushed already
+            if (index === 0) {
+                index = queries.push({
+                    mql         : mql,
+                    listeners   : listeners
+                });
+            }
+
+            listeners.push(listener);
+        };
+
+        mql.removeListener = function(listener) {
+            for (var i = 0, il = listeners.length; i < il; i++){
+                if (listeners[i] === listener){
+                    listeners.splice(i, 1);
+                }
+            }
+        };
+
+        return mql;
+    };
+}());
+
+},{}],"components/common/useIsWidth.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -80809,121 +81658,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var d3 = _interopRequireWildcard(require("d3"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  width: 1rem;\n  height: 1rem;\n  margin-right: 0.5rem;\n  background-color: ", ";\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  margin-bottom: 0.25rem;\n  font-size: 0.875rem;\n  strong {\n    font-weight: 700;\n    margin-right: 0.5rem;\n  }\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  margin-top: 0.5rem;\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  @media only screen and (min-width: 768px) {\n    position: absolute;\n    top: 3rem;\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var Container = _styledComponents.default.div(_templateObject());
-
-var Items = _styledComponents.default.div(_templateObject2());
-
-var Item = _styledComponents.default.div(_templateObject3());
-
-var Square = _styledComponents.default.div(_templateObject4(), function (_ref) {
-  var bg = _ref.bg;
-  return bg;
-});
-
-var colors = d3.scaleOrdinal(d3.schemeCategory10);
-
-var logText = function logText(data) {
-  if (data && data.keyLabel) {
-    var keyLabel = data.keyLabel;
-    return /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement("strong", null, keyLabel[0]), "".concat(keyLabel[1]));
-  }
-
-  return "no label found";
-};
-
-var Legend = function Legend(_ref2) {
-  var chartdata = _ref2.chartdata,
-      settings = _ref2.settings;
-  var type = settings.type;
-  var cumulative = settings[type.toLowerCase()].cumulative;
-  return /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("legend", null, "Key", cumulative === "Month" && ": All years"), /*#__PURE__*/_react.default.createElement(Items, null, chartdata.map(function (d, i) {
-    return /*#__PURE__*/_react.default.createElement(Item, {
-      key: i
-    }, /*#__PURE__*/_react.default.createElement(Square, {
-      bg: colors(i)
-    }), logText(d.data));
-  })));
-};
-
-var _default = Legend;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/views/stats/Stats.jsx":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var d3 = _interopRequireWildcard(require("d3"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _constants = require("../../../utils/constants.js");
-
-var _StatsHeader = _interopRequireDefault(require("./StatsHeader.jsx"));
-
-var _PieChart = _interopRequireDefault(require("./PieChart.jsx"));
-
-var _Legend = _interopRequireDefault(require("./Legend.jsx"));
-
-var _styleVars = require("../../common/styleVars");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _styleVars = require("./styleVars");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -80933,545 +81668,60 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+require("matchmedia-polyfill");
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+require("matchmedia-polyfill/matchMedia.addListener");
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var useIsWidth = function useIsWidth(width) {
+  var check = matchMedia("(min-width: ".concat(_styleVars.breakpoint[width], ")"));
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  margin-top: 1rem;\n  position: relative;\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  max-width: 50rem;\n  margin: 0 auto;\n  padding: ", " ", ";\n  @media only screen and (min-width: ", ") {\n    padding: ", " 1rem;\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var StatContainer = _styledComponents.default.div(_templateObject(), _styleVars.spacing.xLarge, _styleVars.spacing.med, _styleVars.breakpoint.small, _styleVars.spacing.large);
-
-var BodySection = _styledComponents.default.section(_templateObject2()); // TODO:
-// - cache main chart data for better performance
-// - update key and total logs text when drilling down
-// - clicking 'out' of the piechart resets
-// - more detailed tooltips (handle content drilldown)
-// - link to logbook at end of drilldown (e.g. see logs for a particular date)
-// - set up a context for nested components to use
-// - dropdown styling (probably need to reformat data for this)
-// - pie chart more responsive
-// - add more 'type'/overall filters (partners, discipline, etc)
-// ^ see github issue https://github.com/martinbagshaw/ReactLogbook/issues/23
-// TODO (filter function for date):
-// - make more adaptable: handle different data types
-// - refactor: use a single reduce, if possible
-// - new behavior: date click takes you to the logbook, with climbs on that date shown
-// dropdown data format may need changing to:
-// const dateOptions = {
-//   year: { label: "Year", value: "year"},
-//   month: { label: "Month", value: "month"}
-// }
-
-
-var handleCumulativeDate = function handleCumulativeDate(dateType, logs) {
-  var search = dateType.toLowerCase();
-
-  var createData = function createData(monthOrYear, logs) {
-    var newLogs = _toConsumableArray(logs);
-
-    var res = newLogs.reduce(function (r, _ref) {
-      var date = _ref.date;
-      var label = date.processed[monthOrYear];
-
-      if (monthOrYear === "month") {
-        label = _constants.months[label] || "unknown";
-      }
-
-      if (!r[label]) {
-        r[label] = {
-          label: label,
-          value: 1
-        };
-      } else {
-        r[label].value++;
-      }
-
-      return r;
-    }, {});
-    return res;
-  };
-
-  var formatAndSort = function formatAndSort(monthOrYear, logsObj) {
-    var newLogs = _objectSpread({}, logsObj);
-
-    if (monthOrYear === "month") {
-      var valid = Object.values(_constants.months).map(function (i) {
-        var _newLogs$i = newLogs[i],
-            label = _newLogs$i.label,
-            value = _newLogs$i.value;
-        var monthAbbr = Object.keys(_constants.months).find(function (key) {
-          return _constants.months[key] === label;
-        });
-        return {
-          keyLabel: ["".concat(label, ":"), "".concat(value, " climbs")],
-          itemFilter: monthAbbr,
-          tooltipLabel: "".concat(value, " climbs in ").concat(label),
-          value: value
-        };
-      });
-      var invalid = Object.values(newLogs).find(function (i) {
-        return i.label === "unknown";
-      });
-      var value = invalid.value;
-      var unknown = {
-        keyLabel: ["Unknown:", "".concat(value, " climbs")],
-        tooltipLabel: "".concat(value, " climbs on an unknown date"),
-        value: value
-      };
-      return invalid ? valid.concat(unknown) : valid;
-    }
-
-    return Object.values(newLogs).map(function (i) {
-      var label = i.label,
-          value = i.value;
-      return {
-        keyLabel: ["".concat(label, ":"), "".concat(value, " climbs")],
-        itemFilter: label,
-        tooltipLabel: "".concat(value, " climbs in ").concat(label),
-        value: value
-      };
-    });
-  };
-
-  var createdData = createData(search, logs);
-  var sortedData = formatAndSort(search, createdData);
-  return sortedData;
-};
-
-var handleFilteredDate = function handleFilteredDate(filter, logs) {
-  var filters = Object.keys(filter).length; // part 1: filter logs
-
-  var filterLogs = function filterLogs(filterLength, filter, logs) {
-    var month = filter.month,
-        year = filter.year;
-
-    var newLogs = _toConsumableArray(logs);
-
-    if (filterLength === 1) {
-      // year and cumulative month
-      return newLogs.filter(function (i) {
-        if (month) {
-          return i.date.processed["month"] === month;
-        }
-
-        return i.date.processed["year"] === year;
-      });
-    }
-
-    if ([2, 3].includes(filterLength)) {
-      // month and day
-      return newLogs.reduce(function (acc, i) {
-        var _i$date$processed = i.date.processed,
-            day = _i$date$processed.day,
-            month = _i$date$processed.month,
-            year = _i$date$processed.year;
-        var isMonth = month === filter["month"] && year === filter["year"];
-        var isDay = isMonth && day === filter["day"];
-
-        if (filterLength === 2 && isMonth || filterLength === 3 && isDay) {
-          acc.push(i);
-        }
-
-        return acc;
-      }, []);
-    }
-  }; // part 2: create data for chart and key
-
-
-  var createData = function createData(filterLength, filter, filteredLogs) {
-    var isCumulativeMonth = filter.month;
-
-    var newLogs = _toConsumableArray(filteredLogs);
-
-    var result; // cumulative month, single year
-
-    if (filterLength === 1) {
-      result = newLogs.reduce(function (acc, _ref2) {
-        var date = _ref2.date;
-        var _date$processed = date.processed,
-            dayLong = _date$processed.dayLong,
-            day = _date$processed.day,
-            month = _date$processed.month,
-            monthLong = _date$processed.monthLong,
-            year = _date$processed.year;
-        var label = "".concat(monthLong, " ").concat(year);
-
-        if (isCumulativeMonth) {
-          label = "".concat(dayLong, " ").concat(monthLong);
-        }
-
-        if (!acc[label]) {
-          acc[label] = isCumulativeMonth ? {
-            day: day,
-            dayLong: dayLong,
-            month: month,
-            monthLong: monthLong,
-            label: label,
-            value: 1
-          } : {
-            month: month,
-            monthLong: monthLong,
-            year: year,
-            value: 1
-          };
-        } else {
-          acc[label].value++;
-        }
-
-        return acc;
-      }, {});
-      return Object.values(result);
-    } // single month and single day
-
-
-    if ([2, 3].includes(filterLength)) {
-      result = newLogs.reduce(function (acc, _ref3) {
-        var date = _ref3.date;
-        var _date$processed2 = date.processed,
-            day = _date$processed2.day,
-            dayLong = _date$processed2.dayLong,
-            month = _date$processed2.month,
-            monthLong = _date$processed2.monthLong,
-            year = _date$processed2.year;
-        var label = "".concat(dayLong, " ").concat(monthLong, " ").concat(year);
-
-        if (!acc[label]) {
-          acc[label] = {
-            day: day,
-            dayLong: dayLong,
-            month: month,
-            monthLong: monthLong,
-            year: year,
-            label: label,
-            value: 1
-          };
-        } else {
-          acc[label].value++;
-        }
-
-        return acc;
-      }, {});
-      return Object.values(result);
-    }
-  }; // part 3: sort data ascending, format, create labels
-
-
-  var formatAndSort = function formatAndSort(filterLength, filter, formattedData) {
-    var isCumulativeMonth = filter.month;
-
-    var formatted = _toConsumableArray(formattedData); // order ascending
-
-
-    if (filterLength === 1 && isCumulativeMonth || [2, 3].includes(filterLength)) {
-      var arr = [];
-
-      var _loop = function _loop(day) {
-        var entry = formatted.find(function (i) {
-          return parseInt(i.day) === day;
-        });
-
-        if (entry) {
-          var dayLong = entry.dayLong,
-              month = entry.month,
-              monthLong = entry.monthLong,
-              year = entry.year,
-              value = entry.value;
-          var keyLabel = ["".concat(dayLong, " ").concat(monthLong, " ").concat([2, 3].includes(filterLength) ? year : "", ":"), "".concat(value, " climbs")];
-          var tooltipLabel = "".concat(value, " climbs on ").concat(dayLong, " ").concat(monthLong, " ").concat([2, 3].includes(filterLength) ? year : "");
-          var res = {
-            keyLabel: keyLabel,
-            tooltipLabel: tooltipLabel,
-            value: value
-          };
-
-          if ([2, 3].includes(filterLength)) {
-            res.itemFilter = "".concat(year, " ").concat(month, " ").concat(day);
-          }
-
-          arr.push(res);
-        }
-      };
-
-      for (var day = 0; day < 32; day++) {
-        _loop(day);
-      }
-
-      return arr;
-    }
-
-    if (filterLength === 1) {
-      // use months object to order by month
-      return Object.values(_constants.months).reduce(function (acc, monthLong) {
-        var entry = formatted.find(function (i) {
-          return i.monthLong === monthLong;
-        });
-
-        if (entry) {
-          var month = entry.month,
-              _monthLong = entry.monthLong,
-              year = entry.year,
-              value = entry.value;
-          var keyLabel = ["".concat(_monthLong, " ").concat(year, ":"), "".concat(value, " climbs")];
-          var tooltipLabel = "".concat(value, " climbs in ").concat(_monthLong, " ").concat(year);
-          acc.push({
-            itemFilter: "".concat(year, " ").concat(month),
-            keyLabel: keyLabel,
-            tooltipLabel: tooltipLabel,
-            value: value
-          });
-        }
-
-        return acc;
-      }, []);
-    }
-
-    return formatted;
-  }; // crunch data
-
-
-  var filteredData = filterLogs(filters, filter, logs);
-  var createdData = createData(filters, filter, filteredData);
-  var sortedData = formatAndSort(filters, filter, createdData);
-  return sortedData;
-}; // set pie chart data:
-// - filters the settingState to get chart data
-
-
-var getChartData = function getChartData(settingState, logs) {
-  var type = settingState.type,
-      date = settingState.date;
-  var search = type.toLowerCase(); // find the item with '.filter'
-
-  var hasFilter = Object.values(settingState).find(function (i) {
-    return i.filter;
-  });
-
-  if (search === "date" && !hasFilter) {
-    return handleCumulativeDate(date.cumulative, logs);
-  }
-
-  if (search === "date" && hasFilter) {
-    return handleFilteredDate(hasFilter.filter, logs);
-  }
-};
-
-var Stats = function Stats(_ref4) {
-  var _hasFilter$filter2;
-
-  var handleSingleDay = _ref4.handleSingleDay,
-      logs = _ref4.logs;
-
-  var _useState = (0, _react.useState)(_constants.defaultSettings),
+  var _useState = (0, _react.useState)(check),
       _useState2 = _slicedToArray(_useState, 2),
-      settings = _useState2[0],
-      setSettings = _useState2[1];
+      state = _useState2[0],
+      setState = _useState2[1];
 
-  var setDropdown = function setDropdown(type, value) {
-    var newSettings = _objectSpread({}, _constants.defaultSettings);
-
-    if (type !== "type") {
-      newSettings[type].cumulative = value;
-    } else {
-      newSettings[type] = value;
+  var checkIsWidth = function checkIsWidth() {
+    if (state !== check.matches) {
+      setState(check.matches);
     }
-
-    setSettings(newSettings);
   };
 
-  var setFiltered = function setFiltered(type, data) {
-    // - works with handleFilteredDate
-    // - filters the settings object, used by getChartData
-    var newSettings = JSON.parse(JSON.stringify(settings)); // need to deep clone
-
-    var search = type ? type.toLowerCase() : null;
-
-    if (!search || !settings[search] || !settings[search].cumulative) {
-      var resetSettings = _objectSpread({}, _constants.defaultSettings);
-
-      return setSettings(resetSettings); // reset and return
-    }
-
-    var _newSettings$search = newSettings[search],
-        cumulative = _newSettings$search.cumulative,
-        filter = _newSettings$search.filter;
-
-    if (!filter) {
-      newSettings[search].filter = {};
-    } // remove requirement for months data
-
-
-    var handleDate = function handleDate(dateSetting, setting, data) {
-      var itemFilter = data.itemFilter;
-
-      if (!dateSetting) {
-        return;
-      }
-
-      if (!itemFilter) {
-        return dateSetting;
-      } // first level, month or year
-
-
-      var isMonth = Object.keys(_constants.months).includes(itemFilter);
-      var isYear = parseInt(itemFilter);
-      var singleMonth = !isMonth && itemFilter.split(" ").length === 2;
-      var singleDay = !isMonth && itemFilter.split(" ").length === 3;
-
-      if (isMonth || isYear) {
-        dateSetting.filter[setting] = itemFilter;
-      }
-
-      if (singleMonth || singleDay) {
-        var _itemFilter$split = itemFilter.split(" "),
-            _itemFilter$split2 = _slicedToArray(_itemFilter$split, 2),
-            year = _itemFilter$split2[0],
-            month = _itemFilter$split2[1];
-
-        dateSetting.filter[setting] = year;
-        dateSetting.filter["month"] = month;
-      }
-
-      if (singleDay) {
-        var day = itemFilter.split(" ")[2];
-        dateSetting.filter["day"] = day;
-      }
-
-      return dateSetting;
-    };
-
-    var setting = cumulative.toLowerCase();
-
-    switch (search) {
-      case "date":
-        newSettings[search] = handleDate(newSettings[search], setting, data);
-        break;
-
-      default:
-        null;
-    }
-
-    setSettings(newSettings);
-  };
-
-  var type = settings.type;
-  var piechartData = getChartData(settings, logs);
-  var createPie = d3.pie().value(function (d) {
-    return d.value;
-  }).sort(null);
-  var chartdata = piechartData ? createPie(piechartData) : null;
-  var hasFilter = Object.values(settings).find(function (i) {
-    return i.filter;
-  });
   (0, _react.useEffect)(function () {
-    var _hasFilter$filter;
-
-    if (hasFilter === null || hasFilter === void 0 ? void 0 : (_hasFilter$filter = hasFilter.filter) === null || _hasFilter$filter === void 0 ? void 0 : _hasFilter$filter.day) {
-      var newLogs = _toConsumableArray(logs);
-
-      var filter = hasFilter.filter;
-      var dailyLogs = newLogs.reduce(function (acc, i) {
-        var _i$date$processed2 = i.date.processed,
-            day = _i$date$processed2.day,
-            month = _i$date$processed2.month,
-            year = _i$date$processed2.year;
-        var isMonth = month === filter["month"] && year === filter["year"];
-        var isDay = isMonth && day === filter["day"];
-
-        if (isDay) {
-          acc.push(i);
-        }
-
-        return acc;
-      }, []);
-      handleSingleDay(dailyLogs, filter);
-    }
-  }, [hasFilter]);
-  return !(hasFilter === null || hasFilter === void 0 ? void 0 : (_hasFilter$filter2 = hasFilter.filter) === null || _hasFilter$filter2 === void 0 ? void 0 : _hasFilter$filter2.day) && /*#__PURE__*/_react.default.createElement(StatContainer, null, /*#__PURE__*/_react.default.createElement(_StatsHeader.default, {
-    logs: logs,
-    setDropdown: setDropdown,
-    type: type
-  }), /*#__PURE__*/_react.default.createElement(BodySection, null, chartdata && type === "Date" ? /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_PieChart.default, {
-    chartdata: chartdata,
-    width: 500,
-    height: 500,
-    innerRadius: 120,
-    outerRadius: 200,
-    type: type,
-    setFiltered: setFiltered
-  }), /*#__PURE__*/_react.default.createElement(_Legend.default, {
-    chartdata: chartdata,
-    settings: settings
-  })) : /*#__PURE__*/_react.default.createElement("p", null, "Only date has been implemented so far...")));
+    check.addListener(checkIsWidth);
+    return function () {
+      check.removeListener(checkIsWidth);
+    };
+  });
+  checkIsWidth();
+  return {
+    isWidth: check.matches
+  };
 };
 
-var _default = Stats;
+var _default = useIsWidth;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../../utils/constants.js":"utils/constants.js","./StatsHeader.jsx":"components/views/stats/StatsHeader.jsx","./PieChart.jsx":"components/views/stats/PieChart.jsx","./Legend.jsx":"components/views/stats/Legend.jsx","../../common/styleVars":"components/common/styleVars.js"}],"components/common/Layout.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","matchmedia-polyfill":"../node_modules/matchmedia-polyfill/matchMedia.js","matchmedia-polyfill/matchMedia.addListener":"../node_modules/matchmedia-polyfill/matchMedia.addListener.js","./styleVars":"components/common/styleVars.js"}],"components/common/Buttons.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ContainerStyle = exports.searchResultText = void 0;
+exports.buttonBase = void 0;
 
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
+var _styledComponents = require("styled-components");
 
 var _styleVars = require("./styleVars");
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  max-width: 50rem;\n  margin: 0 auto;\n  padding: ", " 0;\n  > section {\n    display: block;\n    padding-bottom: ", ";\n    margin-bottom: ", ";\n    border-bottom: ", " solid ", ";\n  }\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  overflow: hidden;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  margin-right: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  user-select: none;\n  cursor: pointer;\n  border: 0;\n  margin: 0;\n  padding: 0;\n  background-color: transparent;\n  transition: all ease-in-out 0.3s;\n  font-family: ", ";\n  font-weight: 500;\n  font-size: 1.25rem;\n  letter-spacing: 0.05rem;\n  &:focus {\n    outline: none;\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -81482,498 +81732,53 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var searchResultText = (0, _styledComponents.css)(_templateObject(), _styleVars.spacing.large);
-exports.searchResultText = searchResultText;
-
-var ContainerStyle = _styledComponents.default.div(_templateObject2(), _styleVars.spacing.xLarge, _styleVars.spacing.xLarge, _styleVars.spacing.xLarge, _styleVars.spacing.xSmall, _styleVars.colors.midGrey);
-
-exports.ContainerStyle = ContainerStyle;
-},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./styleVars":"components/common/styleVars.js"}],"components/common/Buttons.jsx":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.NavButton = exports.buttonBase = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
-var _styleVars = require("./styleVars");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  ", ";\n  font-size: ", ";\n  line-height: 1;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: ", ";\n  padding: ", ";\n  ", ";\n  ", "\n  //\n  // back button differences\n  //\n  ", ";\n  ", ";\n  border: ", ";\n  background-color: ", ";\n  &:focus,\n  &:hover {\n    background-color: ", ";\n    color: ", ";\n    svg {\n      fill: ", ";\n    }\n  }\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n  }\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  user-select: none;\n  cursor: pointer;\n  border: 0;\n  transition: all ease-in-out 0.3s;\n  font-family: ", ";\n  font-weight: ", ";\n  &:focus {\n    outline: none;\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var buttonBase = (0, _styledComponents.css)(_templateObject(), _styleVars.fonts.main, _styleVars.fontWeight.med);
+var buttonBase = (0, _styledComponents.css)(_templateObject(), _styleVars.fonts.main);
 exports.buttonBase = buttonBase;
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./styleVars":"components/common/styleVars.js"}],"components/common/icons/Chevron.jsx":[function(require,module,exports) {
+"use strict";
 
-var Button = _styledComponents.default.button(_templateObject2(), buttonBase, _styleVars.fontSize.small, _styleVars.spacing.small, function (props) {
-  return props.hasPadding ? _styleVars.spacing[props.hasPadding] : 0;
-}, function (props) {
-  return props.text === "older" ? "padding-right: ".concat(_styleVars.spacing.large, " ") : "";
-}, function (props) {
-  return props.text === "newer" ? "\n  padding-left: ".concat(_styleVars.spacing.large, ";\n  margin-left: auto;\n  ") : "";
-}, function (props) {
-  return props.text === "back" ? "margin: -".concat(_styleVars.spacing.xSmall) : "";
-}, function (props) {
-  return props.text !== "back" ? "color: ".concat(_styleVars.colors.midBlue) : "";
-}, function (props) {
-  return props.text !== "back" ? "".concat(_styleVars.spacing.xSmall, " solid ").concat(_styleVars.colors.midBlue) : "0";
-}, function (props) {
-  return props.text !== "back" ? "".concat(_styleVars.colors.lightBlue) : "".concat(_styleVars.colors.midGrey);
-}, function (props) {
-  return props.text !== "back" ? "".concat(_styleVars.colors.midBlue) : "".concat(_styleVars.colors.darkGrey);
-}, _styleVars.colors.white, _styleVars.colors.white, function (props) {
-  return props.text === "back" ? "".concat(_styleVars.colors.darkGrey) : "".concat(_styleVars.colors.midBlue);
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
+exports.default = void 0;
 
-var NavButton = function NavButton(_ref) {
-  var onClick = _ref.onClick,
-      text = _ref.text,
-      hasPadding = _ref.hasPadding;
-  return /*#__PURE__*/_react.default.createElement(Button, {
-    onClick: onClick,
-    text: text,
-    hasPadding: hasPadding,
-    "aria-label": text
-  }, (text === "older" || text === "back") && /*#__PURE__*/_react.default.createElement("svg", {
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Chevron = function Chevron(_ref) {
+  var _ref$title = _ref.title,
+      title = _ref$title === void 0 ? "Arrow" : _ref$title,
+      _ref$width = _ref.width,
+      width = _ref$width === void 0 ? 48 : _ref$width,
+      _ref$fill = _ref.fill,
+      fill = _ref$fill === void 0 ? "#000000" : _ref$fill,
+      _ref$direction = _ref.direction,
+      direction = _ref$direction === void 0 ? "right" : _ref$direction;
+  var degree = {
+    left: 180,
+    right: 0,
+    up: -90,
+    down: 90
+  };
+  var arrowDirection = "rotate(".concat(degree[direction], "deg)");
+  return /*#__PURE__*/_react.default.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
-    width: "48",
-    height: "48",
-    viewBox: "0 0 48 48"
-  }, /*#__PURE__*/_react.default.createElement("title", null, text === "older" ? "".concat(text, " entries") : "".concat(text, " to all entries")), /*#__PURE__*/_react.default.createElement("path", {
-    d: "M30.83 32.67l-9.17-9.17 9.17-9.17L28 11.5l-12 12 12 12z"
-  })), text !== "back" && text, text === "newer" && /*#__PURE__*/_react.default.createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "48",
-    height: "48",
-    viewBox: "0 0 48 48"
-  }, /*#__PURE__*/_react.default.createElement("title", null, "".concat(text, " entries")), /*#__PURE__*/_react.default.createElement("path", {
+    viewBox: "0 0 48 48",
+    style: {
+      width: width,
+      transform: arrowDirection,
+      transformOrigin: "50% 50%"
+    }
+  }, /*#__PURE__*/_react.default.createElement("title", null, title), /*#__PURE__*/_react.default.createElement("path", {
+    fill: fill,
     d: "M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z"
-  })));
-};
-
-exports.NavButton = NavButton;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./styleVars":"components/common/styleVars.js"}],"components/views/logbook/Search.jsx":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _styleVars = require("../../common/styleVars");
-
-var _Layout = require("../../common/Layout.jsx");
-
-var _Buttons = require("../../common/Buttons.jsx");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _templateObject8() {
-  var data = _taggedTemplateLiteral(["\n  margin-left: auto;\n  font-weight: ", ";\n"]);
-
-  _templateObject8 = function _templateObject8() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject7() {
-  var data = _taggedTemplateLiteral(["\n  ", ";\n  font-weight: ", ";\n  flex: 2;\n"]);
-
-  _templateObject7 = function _templateObject7() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n  ", ";\n  flex: 3;\n"]);
-
-  _templateObject6 = function _templateObject6() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  ", ";\n  width: 100%;\n  display: flex;\n  align-items: center;\n  padding: ", " ", ";\n  font-size: ", ";\n  text-align: left;\n  background-color: ", ";\n  border: ", " solid transparent;\n  border-bottom-color: ", ";\n  &:hover {\n    background-color: ", ";\n    border-color: ", ";\n  }\n"]);
-
-  _templateObject5 = function _templateObject5() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  width: 100%;\n  max-height: 65vh;\n  overflow-y: scroll;\n  box-shadow: ", ";\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  padding: ", ";\n  width: 100%;\n  font-family: ", ";\n  font-size: ", ";\n  font-weight: ", ";\n  border: 0;\n  text-align: center;\n  transition: all ease-in-out 0.5s;\n  border-bottom: ", " solid ", ";\n  color: ", ";\n  &::placeholder {\n    color: ", ";\n  }\n  &:focus {\n    outline: 0;\n    border-bottom-color: ", ";\n    color: ", ";\n  }\n  &:disabled {\n    border-bottom-color: ", ";\n    color: ", ";\n    cursor: not-allowed;\n    &::placeholder {\n      color: ", ";\n    }\n  }\n  @media only screen and (min-width: ", ") {\n    font-size: ", ";\n  }\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  font-family: ", ";\n  font-size: ", ";\n  display: block;\n  visibility: hidden;\n  height: 0;\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  position: relative;\n  display: block;\n  margin: 0 auto ", ";\n  width: 100%;\n  max-width: 40rem;\n  padding: 0 ", ";\n  @media only screen and (min-width: ", ") {\n    padding: 0;\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var SearchContainer = _styledComponents.default.div(_templateObject(), _styleVars.spacing.xLarge, _styleVars.spacing.med, _styleVars.breakpoint.small);
-
-var HiddenLabel = _styledComponents.default.label(_templateObject2(), _styleVars.fonts.main, _styleVars.fontSize.small);
-
-var SearchBar = _styledComponents.default.input(_templateObject3(), _styleVars.spacing.large, _styleVars.fonts.main, _styleVars.fontSize.med, _styleVars.fontWeight.med, _styleVars.spacing.small, _styleVars.colors.darkGrey, _styleVars.colors.darkGrey, _styleVars.colors.darkGrey, _styleVars.colors.black, _styleVars.colors.black, _styleVars.colors.midGrey, _styleVars.colors.midGrey, _styleVars.colors.midGrey, _styleVars.breakpoint.small, _styleVars.fontSize.large);
-
-var Results = _styledComponents.default.ul(_templateObject4(), _styleVars.boxShadow.top);
-
-var ResultButton = _styledComponents.default.button(_templateObject5(), _Buttons.buttonBase, _styleVars.spacing.med, _styleVars.spacing.large, _styleVars.fontSize.med, _styleVars.colors.lightGrey, _styleVars.spacing.xSmall, _styleVars.colors.midGrey, _styleVars.colors.lightBlue, _styleVars.colors.midBlue);
-
-var Climb = _styledComponents.default.span(_templateObject6(), _Layout.searchResultText);
-
-var Crag = _styledComponents.default.span(_templateObject7(), _Layout.searchResultText, _styleVars.fontWeight.reg);
-
-var Date = _styledComponents.default.span(_templateObject8(), _styleVars.fontWeight.bold);
-
-var Search = function Search(_ref) {
-  var placeholder = _ref.placeholder,
-      searchTerm = _ref.searchTerm,
-      results = _ref.results,
-      onChange = _ref.onChange,
-      onResultClick = _ref.onResultClick,
-      disabled = _ref.disabled;
-  return /*#__PURE__*/_react.default.createElement(SearchContainer, null, /*#__PURE__*/_react.default.createElement(HiddenLabel, {
-    htmlFor: "search-ascents"
-  }, placeholder), /*#__PURE__*/_react.default.createElement(SearchBar, {
-    id: "search-ascents",
-    type: "text",
-    placeholder: placeholder,
-    value: searchTerm,
-    onChange: onChange // onBlur={onBlur}
-    ,
-    disabled: disabled
-  }), results && !disabled && /*#__PURE__*/_react.default.createElement(Results, null, results.map(function (i) {
-    return /*#__PURE__*/_react.default.createElement("li", {
-      key: i.key
-    }, /*#__PURE__*/_react.default.createElement(ResultButton, {
-      "aria-label": "Go to log for: ".concat(i.climbName, " on ").concat(i.date),
-      onClick: function onClick() {
-        return onResultClick(i.key);
-      }
-    }, /*#__PURE__*/_react.default.createElement(Climb, null, i.climbName), /*#__PURE__*/_react.default.createElement(Crag, null, i.cragName), /*#__PURE__*/_react.default.createElement(Date, null, i.date.original)));
-  })));
-};
-
-var _default = Search;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/styleVars":"components/common/styleVars.js","../../common/Layout.jsx":"components/common/Layout.jsx","../../common/Buttons.jsx":"components/common/Buttons.jsx"}],"components/views/logbook/PageNav.jsx":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _Buttons = require("../../common/Buttons.jsx");
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _styleVars = require("../../common/styleVars");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  margin-top: ", ";\n  padding: 0 ", ";\n  @media only screen and (min-width: ", ") {\n    padding: 0;\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var NavContainer = _styledComponents.default.div(_templateObject(), _styleVars.spacing.large, _styleVars.spacing.med, _styleVars.breakpoint.small);
-
-var PageNav = function PageNav(_ref) {
-  var logs = _ref.logs,
-      low = _ref.low,
-      high = _ref.high,
-      _onClick = _ref.onClick;
-  return /*#__PURE__*/_react.default.createElement(NavContainer, null, high < logs.length && /*#__PURE__*/_react.default.createElement(_Buttons.NavButton, {
-    onClick: function onClick() {
-      return _onClick({
-        low: low += 50,
-        high: high += 50
-      });
-    },
-    text: "older"
-  }), low >= 50 && /*#__PURE__*/_react.default.createElement(_Buttons.NavButton, {
-    onClick: function onClick() {
-      return _onClick({
-        low: low -= 50,
-        high: high -= 50
-      });
-    },
-    text: "newer"
   }));
 };
 
-var _default = PageNav;
+var _default = Chevron;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../../common/Buttons.jsx":"components/common/Buttons.jsx","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/styleVars":"components/common/styleVars.js"}],"components/views/logbook/Results.jsx":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _styleVars = require("../../common/styleVars");
-
-var _Layout = require("../../common/Layout.jsx");
-
-var _Buttons = require("../../common/Buttons.jsx");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  margin-left: ", ";\n  font-weight: ", ";\n  margin-left: auto;\n  display: flex;\n  align-items: center;\n"]);
-
-  _templateObject5 = function _templateObject5() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  ", ";\n  flex: 2;\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  ", ";\n  flex: 3;\n  strong {\n    font-weight: ", ";\n  }\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  ", ";\n  font-size: ", ";\n  display: flex;\n  align-items: center;\n  text-align: left;\n  width: 100%;\n  padding: ", " ", ";\n  border: ", " solid transparent;\n  border-radius: ", ";\n  background-color: transparent;\n  &:hover {\n    background-color: ", ";\n    border-color: ", ";\n  }\n  svg {\n    fill: transparent;\n    transition: all ease-in-out 0.3s;\n  }\n  &:hover svg {\n    fill: ", ";\n  }\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  margin-top: ", ";\n  li {\n    width: 100%;\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var ResultsList = _styledComponents.default.ul(_templateObject(), _styleVars.spacing.xLarge);
-
-var ListButton = _styledComponents.default.button(_templateObject2(), _Buttons.buttonBase, _styleVars.fontSize.small, _styleVars.spacing.med, _styleVars.spacing.large, _styleVars.spacing.xSmall, _styleVars.spacing.xSmall, _styleVars.colors.lightGrey, _styleVars.colors.midGrey, _styleVars.colors.black);
-
-var Climb = _styledComponents.default.span(_templateObject3(), _Layout.searchResultText, _styleVars.fontWeight.med);
-
-var Crag = _styledComponents.default.span(_templateObject4(), _Layout.searchResultText);
-
-var Date = _styledComponents.default.span(_templateObject5(), _styleVars.spacing.large, _styleVars.fontWeight.bold);
-
-var Results = function Results(_ref) {
-  var logs = _ref.logs,
-      low = _ref.low,
-      high = _ref.high,
-      _onClick = _ref.onClick;
-  return /*#__PURE__*/_react.default.createElement(ResultsList, null, logs.slice(low, high).map(function (_ref2) {
-    var climbName = _ref2.climbName,
-        cragName = _ref2.cragName,
-        original = _ref2.date.original,
-        grade = _ref2.grade,
-        key = _ref2.key,
-        style = _ref2.style;
-    return /*#__PURE__*/_react.default.createElement("li", {
-      key: key
-    }, /*#__PURE__*/_react.default.createElement(ListButton, {
-      onClick: function onClick() {
-        return _onClick(key);
-      }
-    }, /*#__PURE__*/_react.default.createElement(Climb, null, /*#__PURE__*/_react.default.createElement("strong", null, climbName), " - ", grade), " ", /*#__PURE__*/_react.default.createElement(Crag, null, style, " - ", cragName), /*#__PURE__*/_react.default.createElement(Date, null, original, /*#__PURE__*/_react.default.createElement("svg", {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "48",
-      height: "48",
-      viewBox: "0 0 48 48"
-    }, /*#__PURE__*/_react.default.createElement("path", {
-      d: "M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z"
-    })))));
-  }));
-};
-
-var _default = Results;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/styleVars":"components/common/styleVars.js","../../common/Layout.jsx":"components/common/Layout.jsx","../../common/Buttons.jsx":"components/common/Buttons.jsx"}],"components/views/singleLog/IconButton.jsx":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _styleVars = require("../../common/styleVars");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  user-select: none;\n  cursor: pointer;\n  transition: all ease-in-out 0.3s;\n  display: flex;\n  flex: 1;\n  align-items: center;\n  justify-content: center;\n  height: 50%;\n  margin: -", ";\n  padding: ", ";\n  border-radius: ", ";\n  border: ", " solid\n    ", ";\n  background-color: ", ";\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n  }\n  &:focus,\n  &:hover {\n    outline: none;\n    background-color: ", ";\n    svg {\n      fill: ", ";\n    }\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var IconStyle = _styledComponents.default.button(_templateObject(), _styleVars.spacing.xSmall, _styleVars.spacing.med, _styleVars.spacing.small, _styleVars.spacing.xSmall, function (props) {
-  return props.type === "star" ? "".concat(_styleVars.colors.yellow) : "".concat(_styleVars.colors.midBlue);
-}, function (props) {
-  return props.type === "star" ? "".concat(_styleVars.colors.lightYellow) : "".concat(_styleVars.colors.lightBlue);
-}, function (props) {
-  return props.type === "star" ? "".concat(_styleVars.colors.yellow) : "".concat(_styleVars.colors.midBlue);
-}, function (props) {
-  return props.type === "star" ? "".concat(_styleVars.colors.yellow) : "".concat(_styleVars.colors.midBlue);
-}, _styleVars.colors.white); // star and notes button
-
-
-var IconButton = function IconButton(_ref) {
-  var type = _ref.type,
-      title = _ref.title;
-  return /*#__PURE__*/_react.default.createElement(IconStyle, {
-    type: type,
-    title: title
-  }, type === "star" && /*#__PURE__*/_react.default.createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "36",
-    height: "36",
-    viewBox: "0 0 24 24"
-  }, /*#__PURE__*/_react.default.createElement("path", {
-    d: "M0 0h24v24H0z",
-    fill: "none"
-  }), /*#__PURE__*/_react.default.createElement("path", {
-    d: "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-  }), /*#__PURE__*/_react.default.createElement("path", {
-    d: "M0 0h24v24H0z",
-    fill: "none"
-  })), type === "notes" && /*#__PURE__*/_react.default.createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "36",
-    height: "36",
-    viewBox: "0 0 24 24"
-  }, /*#__PURE__*/_react.default.createElement("path", {
-    d: "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
-  }), /*#__PURE__*/_react.default.createElement("path", {
-    d: "M0 0h24v24H0z",
-    fill: "none"
-  })));
-};
-
-var _default = IconButton;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/styleVars":"components/common/styleVars.js"}],"components/common/icons/Circle.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"components/common/icons/Circle.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -82276,6 +82081,12 @@ exports.Comment = Comment;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+Object.defineProperty(exports, "Chevron", {
+  enumerable: true,
+  get: function () {
+    return _Chevron.default;
+  }
+});
 Object.defineProperty(exports, "Circle", {
   enumerable: true,
   get: function () {
@@ -82313,6 +82124,8 @@ Object.defineProperty(exports, "Comment", {
   }
 });
 
+var _Chevron = _interopRequireDefault(require("./Chevron.jsx"));
+
 var _Circle = require("./Circle.jsx");
 
 var _Place = require("./Place.jsx");
@@ -82324,7 +82137,1212 @@ var _Date = require("./Date.jsx");
 var _Partner = require("./Partner.jsx");
 
 var _Comment = require("./Comment.jsx");
-},{"./Circle.jsx":"components/common/icons/Circle.jsx","./Place.jsx":"components/common/icons/Place.jsx","./Style.jsx":"components/common/icons/Style.jsx","./Date.jsx":"components/common/icons/Date.jsx","./Partner.jsx":"components/common/icons/Partner.jsx","./Comment.jsx":"components/common/icons/Comment.jsx"}],"components/views/singleLog/SingleLog.jsx":[function(require,module,exports) {
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./Chevron.jsx":"components/common/icons/Chevron.jsx","./Circle.jsx":"components/common/icons/Circle.jsx","./Place.jsx":"components/common/icons/Place.jsx","./Style.jsx":"components/common/icons/Style.jsx","./Date.jsx":"components/common/icons/Date.jsx","./Partner.jsx":"components/common/icons/Partner.jsx","./Comment.jsx":"components/common/icons/Comment.jsx"}],"components/views/stats/Legend.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var d3 = _interopRequireWildcard(require("d3"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _useIsWidth2 = _interopRequireDefault(require("../../common/useIsWidth.jsx"));
+
+var _Buttons = require("../../common/Buttons.jsx");
+
+var _Icons = require("../../common/icons/Icons.jsx");
+
+var _styleVars = require("../../common/styleVars");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _templateObject7() {
+  var data = _taggedTemplateLiteral(["\n  width: 1rem;\n  height: 1rem;\n  margin-right: 0.5rem;\n  background-color: ", ";\n"]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  margin-bottom: 0.25rem;\n  font-size: 0.875rem;\n  strong {\n    font-weight: 700;\n    margin-right: 0.5rem;\n  }\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  margin-top: 0.5rem;\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n  ", ";\n  width: 100%;\n  text-align: right;\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n    margin-right: 0.25rem;\n    width: 2.25rem;\n    height: 2.25rem;\n    @media only screen and (min-width: ", ") {\n      width: 3rem;\n      height: 3rem;\n    }\n  }\n  &:hover svg {\n    margin-left: 0.5rem;\n  }\n  @media only screen and (min-width: ", ") {\n    display: none;\n    pointer-events: none;\n  }\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n  font-weight: 500;\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  padding: 0.5rem;\n  position: fixed;\n  bottom: 0;\n  z-index: 1;\n  width: 100%;\n  background: ", ";\n  border-top: 0.175rem solid ", ";\n  @media only screen and (min-width: ", ") {\n    position: unset;\n    background: transparent;\n    border-top: 0;\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var Container = _styledComponents.default.div(_templateObject(), _styleVars.colors.lightGrey, _styleVars.colors.midGrey, _styleVars.breakpoint.tablet);
+
+var TitleContainer = _styledComponents.default.div(_templateObject2());
+
+var LegendTitle = _styledComponents.default.legend(_templateObject3());
+
+var Button = _styledComponents.default.button(_templateObject4(), _Buttons.buttonBase, _styleVars.colors.black, _styleVars.breakpoint.Xsmall, _styleVars.breakpoint.tablet);
+
+var Items = _styledComponents.default.div(_templateObject5());
+
+var Item = _styledComponents.default.div(_templateObject6());
+
+var Square = _styledComponents.default.div(_templateObject7(), function (_ref) {
+  var bg = _ref.bg;
+  return bg;
+});
+
+var chartColors = d3.scaleOrdinal(d3.schemeCategory10);
+
+var logText = function logText(data) {
+  if (data && data.keyLabel) {
+    var keyLabel = data.keyLabel;
+    return /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement("strong", null, keyLabel[0]), "".concat(keyLabel[1]));
+  }
+
+  return "no label found";
+};
+
+var Legend = function Legend(_ref2) {
+  var chartdata = _ref2.chartdata,
+      settings = _ref2.settings;
+
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      open = _useState2[0],
+      setOpen = _useState2[1];
+
+  var _useIsWidth = (0, _useIsWidth2.default)("tablet"),
+      isTablet = _useIsWidth.isWidth;
+
+  var type = settings.type;
+  var cumulative = settings[type.toLowerCase()].cumulative;
+  return /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement(TitleContainer, null, /*#__PURE__*/_react.default.createElement(LegendTitle, null, "Key", cumulative === "Month" && ": All years"), /*#__PURE__*/_react.default.createElement(Button, {
+    onClick: function onClick() {
+      return setOpen(!open);
+    }
+  }, /*#__PURE__*/_react.default.createElement(_Icons.Chevron, {
+    title: "".concat(open ? "close" : "open", " key"),
+    fill: "unset",
+    direction: open ? "down" : "up",
+    width: "unset"
+  }))), (isTablet || open) && /*#__PURE__*/_react.default.createElement(Items, null, chartdata.map(function (d, i) {
+    return /*#__PURE__*/_react.default.createElement(Item, {
+      key: i
+    }, /*#__PURE__*/_react.default.createElement(Square, {
+      bg: chartColors(i)
+    }), logText(d.data));
+  })));
+};
+
+var _default = Legend;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/useIsWidth.jsx":"components/common/useIsWidth.jsx","../../common/Buttons.jsx":"components/common/Buttons.jsx","../../common/icons/Icons.jsx":"components/common/icons/Icons.jsx","../../common/styleVars":"components/common/styleVars.js"}],"components/views/stats/Stats.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var d3 = _interopRequireWildcard(require("d3"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _constants = require("../../../utils/constants.js");
+
+var _StatsHeader = _interopRequireDefault(require("./StatsHeader.jsx"));
+
+var _PieChart = _interopRequireDefault(require("./PieChart.jsx"));
+
+var _Legend = _interopRequireDefault(require("./Legend.jsx"));
+
+var _styleVars = require("../../common/styleVars");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  padding-bottom: 250px;\n  @media only screen and (min-width: ", ") {\n    display: flex;\n    flex-direction: row-reverse;\n    padding-bottom: 0;\n  }\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  max-width: 60rem;\n  margin: 0 auto;\n  padding: 1rem 0;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var StatContainer = _styledComponents.default.div(_templateObject());
+
+var BodySection = _styledComponents.default.section(_templateObject2(), _styleVars.breakpoint.tablet); // TODO:
+// - cache main chart data for better performance
+// - update key and total logs text when drilling down
+// - clicking 'out' of the piechart resets
+// - more detailed tooltips (handle content drilldown)
+// - link to logbook at end of drilldown (e.g. see logs for a particular date)
+// - set up a context for nested components to use
+// - dropdown styling (probably need to reformat data for this)
+// - pie chart more responsive
+// - add more 'type'/overall filters (partners, discipline, etc)
+// ^ see github issue https://github.com/martinbagshaw/ReactLogbook/issues/23
+// TODO (filter function for date):
+// - make more adaptable: handle different data types
+// - refactor: use a single reduce, if possible
+// - new behavior: date click takes you to the logbook, with climbs on that date shown
+// dropdown data format may need changing to:
+// const dateOptions = {
+//   year: { label: "Year", value: "year"},
+//   month: { label: "Month", value: "month"}
+// }
+
+
+var handleCumulativeDate = function handleCumulativeDate(dateType, logs) {
+  var search = dateType.toLowerCase();
+
+  var createData = function createData(monthOrYear, logs) {
+    var newLogs = _toConsumableArray(logs);
+
+    var res = newLogs.reduce(function (r, _ref) {
+      var date = _ref.date;
+      var label = date.processed[monthOrYear];
+
+      if (monthOrYear === "month") {
+        label = _constants.months[label] && _constants.months[label].text || "unknown";
+      }
+
+      if (!r[label]) {
+        r[label] = {
+          label: label,
+          value: 1
+        };
+      } else {
+        r[label].value++;
+      }
+
+      return r;
+    }, {});
+    return res;
+  };
+
+  var formatAndSort = function formatAndSort(monthOrYear, logsObj) {
+    var newLogs = _objectSpread({}, logsObj);
+
+    if (monthOrYear === "month") {
+      var valid = Object.values(_constants.months).map(function (_ref2) {
+        var text = _ref2.text;
+        var _newLogs$text = newLogs[text],
+            label = _newLogs$text.label,
+            value = _newLogs$text.value;
+        var monthAbbr = Object.keys(_constants.months).find(function (key) {
+          return _constants.months[key].text === label;
+        });
+        return {
+          keyLabel: ["".concat(label, ":"), "".concat(value, " climbs")],
+          itemFilter: monthAbbr,
+          tooltipLabel: "".concat(value, " climbs in ").concat(label),
+          value: value
+        };
+      });
+      var invalid = Object.values(newLogs).find(function (i) {
+        return i.label === "unknown";
+      });
+      var value = invalid.value;
+      var unknown = {
+        keyLabel: ["Unknown:", "".concat(value, " climbs")],
+        tooltipLabel: "".concat(value, " climbs on an unknown date"),
+        value: value
+      };
+      return invalid ? valid.concat(unknown) : valid;
+    }
+
+    return Object.values(newLogs).map(function (i) {
+      var label = i.label,
+          value = i.value;
+      return {
+        keyLabel: ["".concat(label, ":"), "".concat(value, " climbs")],
+        itemFilter: label,
+        tooltipLabel: "".concat(value, " climbs in ").concat(label),
+        value: value
+      };
+    });
+  };
+
+  var createdData = createData(search, logs);
+  var sortedData = formatAndSort(search, createdData);
+  return sortedData;
+};
+
+var handleFilteredDate = function handleFilteredDate(filter, logs) {
+  var filters = Object.keys(filter).length; // part 1: filter logs
+
+  var filterLogs = function filterLogs(filterLength, filter, logs) {
+    var month = filter.month,
+        year = filter.year;
+
+    var newLogs = _toConsumableArray(logs);
+
+    if (filterLength === 1) {
+      // year and cumulative month
+      return newLogs.filter(function (i) {
+        if (month) {
+          return i.date.processed["month"] === month;
+        }
+
+        return i.date.processed["year"] === year;
+      });
+    }
+
+    if ([2, 3].includes(filterLength)) {
+      // month and day
+      return newLogs.reduce(function (acc, i) {
+        var _i$date$processed = i.date.processed,
+            day = _i$date$processed.day,
+            month = _i$date$processed.month,
+            year = _i$date$processed.year;
+        var isMonth = month === filter["month"] && year === filter["year"];
+        var isDay = isMonth && day === filter["day"];
+
+        if (filterLength === 2 && isMonth || filterLength === 3 && isDay) {
+          acc.push(i);
+        }
+
+        return acc;
+      }, []);
+    }
+  }; // part 2: create data for chart and key
+
+
+  var createData = function createData(filterLength, filter, filteredLogs) {
+    var isCumulativeMonth = filter.month;
+
+    var newLogs = _toConsumableArray(filteredLogs);
+
+    var result; // cumulative month, single year
+
+    if (filterLength === 1) {
+      result = newLogs.reduce(function (acc, _ref3) {
+        var date = _ref3.date;
+        var _date$processed = date.processed,
+            dayLong = _date$processed.dayLong,
+            day = _date$processed.day,
+            month = _date$processed.month,
+            monthLong = _date$processed.monthLong,
+            year = _date$processed.year;
+        var label = "".concat(monthLong, " ").concat(year);
+
+        if (isCumulativeMonth) {
+          label = "".concat(dayLong, " ").concat(monthLong);
+        }
+
+        if (!acc[label]) {
+          acc[label] = isCumulativeMonth ? {
+            day: day,
+            dayLong: dayLong,
+            month: month,
+            monthLong: monthLong,
+            label: label,
+            value: 1
+          } : {
+            month: month,
+            monthLong: monthLong,
+            year: year,
+            value: 1
+          };
+        } else {
+          acc[label].value++;
+        }
+
+        return acc;
+      }, {});
+      return Object.values(result);
+    } // single month and single day
+
+
+    if ([2, 3].includes(filterLength)) {
+      result = newLogs.reduce(function (acc, _ref4) {
+        var date = _ref4.date;
+        var _date$processed2 = date.processed,
+            day = _date$processed2.day,
+            dayLong = _date$processed2.dayLong,
+            month = _date$processed2.month,
+            monthLong = _date$processed2.monthLong,
+            year = _date$processed2.year;
+        var label = "".concat(dayLong, " ").concat(monthLong, " ").concat(year);
+
+        if (!acc[label]) {
+          acc[label] = {
+            day: day,
+            dayLong: dayLong,
+            month: month,
+            monthLong: monthLong,
+            year: year,
+            label: label,
+            value: 1
+          };
+        } else {
+          acc[label].value++;
+        }
+
+        return acc;
+      }, {});
+      return Object.values(result);
+    }
+  }; // part 3: sort data ascending, format, create labels
+
+
+  var formatAndSort = function formatAndSort(filterLength, filter, formattedData) {
+    var isCumulativeMonth = filter.month;
+
+    var formatted = _toConsumableArray(formattedData); // order ascending
+
+
+    if (filterLength === 1 && isCumulativeMonth || [2, 3].includes(filterLength)) {
+      var arr = [];
+
+      var _loop = function _loop(day) {
+        var entry = formatted.find(function (i) {
+          return parseInt(i.day) === day;
+        });
+
+        if (entry) {
+          var dayLong = entry.dayLong,
+              month = entry.month,
+              monthLong = entry.monthLong,
+              year = entry.year,
+              value = entry.value;
+          var keyLabel = ["".concat(dayLong, " ").concat(monthLong, " ").concat([2, 3].includes(filterLength) ? year : "", ":"), "".concat(value, " climbs")];
+          var tooltipLabel = "".concat(value, " climbs on ").concat(dayLong, " ").concat(monthLong, " ").concat([2, 3].includes(filterLength) ? year : "");
+          var res = {
+            keyLabel: keyLabel,
+            tooltipLabel: tooltipLabel,
+            value: value
+          };
+
+          if ([2, 3].includes(filterLength)) {
+            res.itemFilter = "".concat(year, " ").concat(month, " ").concat(day);
+          }
+
+          arr.push(res);
+        }
+      };
+
+      for (var day = 0; day < 32; day++) {
+        _loop(day);
+      }
+
+      return arr;
+    }
+
+    if (filterLength === 1) {
+      // use months object to order by month
+      return Object.values(_constants.months).reduce(function (acc, monthLong) {
+        var entry = formatted.find(function (i) {
+          return i.monthLong === monthLong.text;
+        });
+
+        if (entry) {
+          var month = entry.month,
+              _monthLong = entry.monthLong,
+              year = entry.year,
+              value = entry.value;
+          var keyLabel = ["".concat(_monthLong, " ").concat(year, ":"), "".concat(value, " climbs")];
+          var tooltipLabel = "".concat(value, " climbs in ").concat(_monthLong, " ").concat(year);
+          acc.push({
+            itemFilter: "".concat(year, " ").concat(month),
+            keyLabel: keyLabel,
+            tooltipLabel: tooltipLabel,
+            value: value
+          });
+        }
+
+        return acc;
+      }, []);
+    }
+
+    return formatted;
+  }; // crunch data
+
+
+  var filteredData = filterLogs(filters, filter, logs);
+  var createdData = createData(filters, filter, filteredData);
+  var sortedData = formatAndSort(filters, filter, createdData);
+  return sortedData;
+}; // set pie chart data:
+// - filters the settingState to get chart data
+
+
+var getChartData = function getChartData(settingState, logs) {
+  var type = settingState.type,
+      date = settingState.date;
+  var search = type.toLowerCase(); // find the item with '.filter'
+
+  var hasFilter = Object.values(settingState).find(function (i) {
+    return i.filter;
+  });
+
+  if (search === "date" && !hasFilter) {
+    return handleCumulativeDate(date.cumulative, logs);
+  }
+
+  if (search === "date" && hasFilter) {
+    return handleFilteredDate(hasFilter.filter, logs);
+  }
+};
+
+var Stats = function Stats(_ref5) {
+  var _hasFilter$filter2;
+
+  var handleSingleDay = _ref5.handleSingleDay,
+      logs = _ref5.logs;
+
+  var _useState = (0, _react.useState)(_constants.defaultSettings),
+      _useState2 = _slicedToArray(_useState, 2),
+      settings = _useState2[0],
+      setSettings = _useState2[1];
+
+  var setDropdown = function setDropdown(type, value) {
+    var newSettings = _objectSpread({}, _constants.defaultSettings);
+
+    if (type !== "type") {
+      newSettings[type].cumulative = value;
+    } else {
+      newSettings[type] = value;
+    }
+
+    setSettings(newSettings);
+  };
+
+  var setFiltered = function setFiltered(type, data) {
+    // - works with handleFilteredDate
+    // - filters the settings object, used by getChartData
+    var newSettings = JSON.parse(JSON.stringify(settings)); // need to deep clone
+
+    var search = type ? type.toLowerCase() : null;
+
+    if (!search || !settings[search] || !settings[search].cumulative) {
+      var resetSettings = _objectSpread({}, _constants.defaultSettings);
+
+      return setSettings(resetSettings); // reset and return
+    }
+
+    var _newSettings$search = newSettings[search],
+        cumulative = _newSettings$search.cumulative,
+        filter = _newSettings$search.filter;
+
+    if (!filter) {
+      newSettings[search].filter = {};
+    } // remove requirement for months data
+
+
+    var handleDate = function handleDate(dateSetting, setting, data) {
+      var itemFilter = data.itemFilter;
+
+      if (!dateSetting) {
+        return;
+      }
+
+      if (!itemFilter) {
+        return dateSetting;
+      } // first level, month or year
+
+
+      var isMonth = Object.keys(_constants.months).includes(itemFilter);
+      var isYear = parseInt(itemFilter);
+      var singleMonth = !isMonth && itemFilter.split(" ").length === 2;
+      var singleDay = !isMonth && itemFilter.split(" ").length === 3;
+
+      if (isMonth || isYear) {
+        dateSetting.filter[setting] = itemFilter;
+      }
+
+      if (singleMonth || singleDay) {
+        var _itemFilter$split = itemFilter.split(" "),
+            _itemFilter$split2 = _slicedToArray(_itemFilter$split, 2),
+            year = _itemFilter$split2[0],
+            month = _itemFilter$split2[1];
+
+        dateSetting.filter[setting] = year;
+        dateSetting.filter["month"] = month;
+      }
+
+      if (singleDay) {
+        var day = itemFilter.split(" ")[2];
+        dateSetting.filter["day"] = day;
+      }
+
+      return dateSetting;
+    };
+
+    var setting = cumulative.toLowerCase();
+
+    switch (search) {
+      case "date":
+        newSettings[search] = handleDate(newSettings[search], setting, data);
+        break;
+
+      default:
+        null;
+    }
+
+    setSettings(newSettings);
+  };
+
+  var type = settings.type;
+  var piechartData = getChartData(settings, logs);
+  var createPie = d3.pie().value(function (d) {
+    return d.value;
+  }).sort(null);
+  var chartdata = piechartData ? createPie(piechartData) : null;
+  var hasFilter = Object.values(settings).find(function (i) {
+    return i.filter;
+  }); // bug: make smoother
+
+  (0, _react.useEffect)(function () {
+    var _hasFilter$filter;
+
+    if (hasFilter === null || hasFilter === void 0 ? void 0 : (_hasFilter$filter = hasFilter.filter) === null || _hasFilter$filter === void 0 ? void 0 : _hasFilter$filter.day) {
+      var newLogs = _toConsumableArray(logs);
+
+      var filter = hasFilter.filter;
+      var dailyLogs = newLogs.reduce(function (acc, i) {
+        var _i$date$processed2 = i.date.processed,
+            day = _i$date$processed2.day,
+            month = _i$date$processed2.month,
+            year = _i$date$processed2.year;
+        var isMonth = month === filter["month"] && year === filter["year"]; // normalise days: can be '04', needs to match to '4'
+
+        var isDay = isMonth && parseInt(day) === parseInt(filter["day"]);
+
+        if (isDay) {
+          acc.push(i);
+        }
+
+        return acc;
+      }, []);
+      handleSingleDay(dailyLogs, filter);
+    }
+  }, [hasFilter]);
+  return !(hasFilter === null || hasFilter === void 0 ? void 0 : (_hasFilter$filter2 = hasFilter.filter) === null || _hasFilter$filter2 === void 0 ? void 0 : _hasFilter$filter2.day) && /*#__PURE__*/_react.default.createElement(StatContainer, null, /*#__PURE__*/_react.default.createElement(_StatsHeader.default, {
+    logs: logs,
+    setDropdown: setDropdown,
+    type: type
+  }), /*#__PURE__*/_react.default.createElement(BodySection, null, chartdata && type === "Date" ? /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_PieChart.default, {
+    chartdata: chartdata,
+    width: 500,
+    height: 500,
+    innerRadius: 120,
+    outerRadius: 200,
+    type: type,
+    setFiltered: setFiltered
+  }), /*#__PURE__*/_react.default.createElement(_Legend.default, {
+    chartdata: chartdata,
+    settings: settings
+  })) : /*#__PURE__*/_react.default.createElement("p", null, "Only date has been implemented so far...")));
+};
+
+var _default = Stats;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../../utils/constants.js":"utils/constants.js","./StatsHeader.jsx":"components/views/stats/StatsHeader.jsx","./PieChart.jsx":"components/views/stats/PieChart.jsx","./Legend.jsx":"components/views/stats/Legend.jsx","../../common/styleVars":"components/common/styleVars.js"}],"components/common/Layout.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ContainerStyle = exports.searchResultText = void 0;
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+var _styleVars = require("./styleVars");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  max-width: 60rem;\n  margin: 0 auto;\n  padding: 1rem 0;\n  @media only screen and (min-width: ", ") {\n    padding: 2rem 0;\n  }\n  > section {\n    display: block;\n    padding-bottom: 2rem;\n    margin-bottom: 2rem;\n    border-bottom: 0.125rem solid ", ";\n  }\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  overflow: hidden;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  margin-right: 1rem;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+// put in a typography file instead:
+var searchResultText = (0, _styledComponents.css)(_templateObject());
+exports.searchResultText = searchResultText;
+
+var ContainerStyle = _styledComponents.default.div(_templateObject2(), _styleVars.breakpoint.small, _styleVars.colors.midGrey);
+
+exports.ContainerStyle = ContainerStyle;
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./styleVars":"components/common/styleVars.js"}],"components/views/logbook/Search.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _useIsWidth3 = _interopRequireDefault(require("../../common/useIsWidth.jsx"));
+
+var _Layout = require("../../common/Layout.jsx");
+
+var _Buttons = require("../../common/Buttons.jsx");
+
+var _styleVars = require("../../common/styleVars");
+
+var _Logbook = require("./Logbook.jsx");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject8() {
+  var data = _taggedTemplateLiteral(["\n  margin-left: auto;\n  font-weight: 600;\n"]);
+
+  _templateObject8 = function _templateObject8() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject7() {
+  var data = _taggedTemplateLiteral(["\n  ", ";\n  font-weight: 400;\n  flex: 2;\n"]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["\n  ", ";\n  flex: 3;\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n  ", ";\n  width: 100%;\n  display: flex;\n  align-items: center;\n  font-weight: 500;\n  text-align: left;\n  font-size: 1rem;\n  padding: 0.5rem;\n  @media only screen and (min-width: ", ") {\n    padding: 0.5rem 1rem;\n    font-size: 1.25rem;\n  }\n  @media only screen and (min-width: ", ") {\n    font-size: 1.125rem;\n  }\n  background-color: ", ";\n  border: 0.125rem solid transparent;\n  border-bottom-color: ", ";\n  &:hover {\n    background-color: ", ";\n    border-color: ", ";\n  }\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 42px;\n  @media only screen and (min-width: ", ") {\n    top: 47px;\n  }\n  @media only screen and (min-width: ", ") {\n    top: 71px;\n  }\n  left: 0.5rem;\n  z-index: 1;\n  width: calc(100% - 1rem);\n  max-height: 65vh;\n  overflow-y: scroll;\n  box-shadow: ", ";\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n  padding: 0.5rem 1rem;\n  width: 100%;\n  max-width: 40rem;\n  border: 0;\n  text-align: center;\n  letter-spacing: 0.025rem;\n  font-family: ", ";\n  font-weight: 500;\n  font-size: 1.25rem;\n  @media only screen and (min-width: ", ") {\n    font-size: 1.5rem;\n  }\n  @media only screen and (min-width: ", ") {\n    padding: 1rem;\n    font-size: 2rem;\n  }\n  transition: all ease-in-out 0.5s;\n  border-bottom: 0.125rem solid ", ";\n  color: ", ";\n  &::placeholder {\n    color: ", ";\n  }\n  &:focus {\n    outline: 0;\n    border-bottom-color: ", ";\n    color: ", ";\n  }\n  &:disabled {\n    border-bottom-color: ", ";\n    color: ", ";\n    cursor: not-allowed;\n    &::placeholder {\n      color: ", ";\n    }\n  }\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  font-family: ", ";\n  font-size: 0.95rem;\n  display: block;\n  visibility: hidden;\n  height: 0;\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin: 0 auto 1rem;\n  width: 100%;\n  padding: 0 0.5rem;\n  @media only screen and (min-width: ", ") {\n    padding: 0 0.5rem;\n    margin-bottom: 2rem;\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var SearchContainer = _styledComponents.default.div(_templateObject(), _styleVars.breakpoint.small);
+
+var HiddenLabel = _styledComponents.default.label(_templateObject2(), _styleVars.fonts.main);
+
+var SearchBar = _styledComponents.default.input(_templateObject3(), _styleVars.fonts.main, _styleVars.breakpoint.Xsmall, _styleVars.breakpoint.small, _styleVars.colors.darkGrey, _styleVars.colors.darkGrey, _styleVars.colors.darkGrey, _styleVars.colors.black, _styleVars.colors.black, _styleVars.colors.midGrey, _styleVars.colors.midGrey, _styleVars.colors.midGrey);
+
+var Results = _styledComponents.default.ul(_templateObject4(), _styleVars.breakpoint.Xsmall, _styleVars.breakpoint.small, _styleVars.boxShadow.top);
+
+var ResultButton = _styledComponents.default.button(_templateObject5(), _Buttons.buttonBase, _styleVars.breakpoint.Xsmall, _styleVars.breakpoint.tablet, _styleVars.colors.lightGrey, _styleVars.colors.midGrey, _styleVars.colors.lightBlue, _styleVars.colors.midBlue);
+
+var Climb = _styledComponents.default.span(_templateObject6(), _Layout.searchResultText);
+
+var Crag = _styledComponents.default.span(_templateObject7(), _Layout.searchResultText);
+
+var Date = _styledComponents.default.span(_templateObject8());
+
+var Search = function Search(_ref) {
+  var handleSearch = _ref.handleSearch,
+      handleSingleView = _ref.handleSingleView,
+      placeholder = _ref.placeholder,
+      results = _ref.results,
+      searchTerm = _ref.searchTerm;
+
+  var _useIsWidth = (0, _useIsWidth3.default)("tablet"),
+      isTablet = _useIsWidth.isWidth;
+
+  var _useIsWidth2 = (0, _useIsWidth3.default)("large"),
+      isDesktop = _useIsWidth2.isWidth;
+
+  return /*#__PURE__*/_react.default.createElement(SearchContainer, null, /*#__PURE__*/_react.default.createElement(HiddenLabel, {
+    htmlFor: "search-ascents"
+  }, placeholder), /*#__PURE__*/_react.default.createElement(SearchBar, {
+    id: "search-ascents",
+    type: "text",
+    placeholder: placeholder,
+    value: searchTerm,
+    onChange: handleSearch
+  }), results && /*#__PURE__*/_react.default.createElement(Results, null, results.map(function (i) {
+    return /*#__PURE__*/_react.default.createElement("li", {
+      key: i.key
+    }, /*#__PURE__*/_react.default.createElement(ResultButton, {
+      "aria-label": "Go to log for: ".concat(i.climbName, " on ").concat(i.date),
+      onClick: function onClick() {
+        return handleSingleView(i.key);
+      }
+    }, /*#__PURE__*/_react.default.createElement(Climb, null, i.climbName), isTablet && /*#__PURE__*/_react.default.createElement(Crag, null, i.cragName), /*#__PURE__*/_react.default.createElement(Date, null, (0, _Logbook.getDate)(i.date.processed, isDesktop))));
+  })));
+};
+
+var _default = Search;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/useIsWidth.jsx":"components/common/useIsWidth.jsx","../../common/Layout.jsx":"components/common/Layout.jsx","../../common/Buttons.jsx":"components/common/Buttons.jsx","../../common/styleVars":"components/common/styleVars.js","./Logbook.jsx":"components/views/logbook/Logbook.jsx"}],"components/views/logbook/SearchReset.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var SearchReset = function SearchReset(_ref) {
+  var onClose = _ref.onClose,
+      children = _ref.children;
+  var ref = (0, _react.useRef)(null);
+  var escapeListener = (0, _react.useCallback)(function (e) {
+    if (e.key === "Escape") {
+      onClose();
+    }
+  }, [onClose]);
+  var clickListener = (0, _react.useCallback)(function (e) {
+    if (ref.current && !ref.current.contains(e.target)) {
+      onClose === null || onClose === void 0 ? void 0 : onClose();
+    }
+  }, [onClose, ref]);
+  (0, _react.useEffect)(function () {
+    // mount
+    document.addEventListener("click", clickListener);
+    document.addEventListener("keyup", escapeListener); // unmount
+
+    return function () {
+      document.removeEventListener("click", clickListener);
+      document.removeEventListener("keyup", escapeListener);
+    };
+  }, [clickListener, escapeListener]);
+  return /*#__PURE__*/_react.default.createElement("div", {
+    ref: ref
+  }, children);
+};
+
+var _default = SearchReset;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"components/views/logbook/PageNav.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _useIsWidth2 = _interopRequireDefault(require("../../common/useIsWidth.jsx"));
+
+var _Chevron = _interopRequireDefault(require("../../common/icons/Chevron.jsx"));
+
+var _Buttons = require("../../common/Buttons.jsx");
+
+var _styleVars = require("../../common/styleVars");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n  ", ";\n  line-height: 1;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 0.175rem;\n  border: 0.125rem solid ", ";\n  ", ";\n  color: ", ";\n  background-color: ", ";\n  &:focus,\n  &:hover,\n  &:active {\n    background-color: ", ";\n    color: ", ";\n    svg {\n      fill: ", ";\n    }\n  }\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n  }\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  left: calc(50% - 259px / 2);\n  top: 2rem;\n  font-size: 1rem;\n  text-align: center;\n  strong {\n    font-weight: 500;\n    padding: 0.125rem;\n    border-radius: 0.125rem;\n    background-color: ", ";\n    &:nth-child(2) {\n      background-color: ", ";\n    }\n  }\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  padding: 0 0.5rem 0.5rem;\n  position: fixed;\n  bottom: 0;\n  z-index: 1;\n  width: 100%;\n  background: linear-gradient(0deg, white, transparent);\n  @media only screen and (min-width: ", ") {\n    padding: 1rem 0.5rem;\n    position: unset;\n    background: none;\n  }\n  @media only screen and (min-width: ", ") {\n    position: relative;\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var NavContainer = _styledComponents.default.div(_templateObject(), _styleVars.breakpoint.Xsmall, _styleVars.breakpoint.large);
+
+var Pagination = _styledComponents.default.p(_templateObject2(), _styleVars.colors.lightBlue, _styleVars.colors.lightRed);
+
+var Button = _styledComponents.default.button(_templateObject3(), _Buttons.buttonBase, _styleVars.colors.midBlue, function (_ref) {
+  var direction = _ref.direction;
+  return direction === "left" ? "padding-right: 1rem" : direction === "right" ? "\n  padding-left: 1rem;\n  margin-left: auto;\n  " : "";
+}, _styleVars.colors.midBlue, _styleVars.colors.lightBlue, _styleVars.colors.midBlue, _styleVars.colors.white, _styleVars.colors.white, _styleVars.colors.midBlue); // TODO:
+// - go to top of page when changing pages
+
+
+var PageNav = function PageNav(_ref2) {
+  var logs = _ref2.logs,
+      low = _ref2.low,
+      high = _ref2.high,
+      handlePageChange = _ref2.handlePageChange;
+
+  var _useIsWidth = (0, _useIsWidth2.default)("large"),
+      isDesktop = _useIsWidth.isWidth;
+
+  var buttons = {
+    older: {
+      condition: high < logs.length,
+      direction: "left"
+    },
+    newer: {
+      condition: low >= 50,
+      direction: "right"
+    }
+  };
+  return /*#__PURE__*/_react.default.createElement(NavContainer, null, isDesktop && /*#__PURE__*/_react.default.createElement(Pagination, null, "Showing ", /*#__PURE__*/_react.default.createElement("strong", null, "".concat(logs.length - high >= 0 ? logs.length - high : 0)), " to", " ", /*#__PURE__*/_react.default.createElement("strong", null, "".concat(logs.length - low)), " ", "of ".concat(logs.length, " logs.")), Object.keys(buttons).map(function (i) {
+    var _buttons$i = buttons[i],
+        condition = _buttons$i.condition,
+        direction = _buttons$i.direction;
+    return condition && /*#__PURE__*/_react.default.createElement(Button, {
+      key: i,
+      onClick: function onClick() {
+        return handlePageChange(i);
+      },
+      direction: direction
+    }, direction === "right" && i, /*#__PURE__*/_react.default.createElement(_Chevron.default, {
+      fill: "unset",
+      title: "".concat(i, " entries"),
+      direction: direction
+    }), direction === "left" && i);
+  }));
+};
+
+var _default = PageNav;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/useIsWidth.jsx":"components/common/useIsWidth.jsx","../../common/icons/Chevron.jsx":"components/common/icons/Chevron.jsx","../../common/Buttons.jsx":"components/common/Buttons.jsx","../../common/styleVars":"components/common/styleVars.js"}],"components/views/logbook/Results.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _useIsWidth2 = _interopRequireDefault(require("../../common/useIsWidth.jsx"));
+
+var _Chevron = _interopRequireDefault(require("../../common/icons/Chevron.jsx"));
+
+var _styleVars = require("../../common/styleVars");
+
+var _Layout = require("../../common/Layout.jsx");
+
+var _Buttons = require("../../common/Buttons.jsx");
+
+var _Logbook = require("./Logbook.jsx");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["\n  margin-left: 1rem;\n  font-weight: 600;\n  margin-left: auto;\n  display: flex;\n  align-items: center;\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n  ", ";\n  flex: 2;\n  display: none;\n  @media only screen and (min-width: ", ") {\n    display: flex;\n  }\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n  ", ";\n  flex: 3;\n  strong {\n    font-weight: 500;\n  }\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n  ", ";\n  display: flex;\n  align-items: center;\n  text-align: left;\n  width: 100%;\n  padding: 0.5rem;\n  font-size: 1rem;\n  @media only screen and (min-width: ", ") {\n    padding: 0.5rem 1rem;\n    font-size: 1.25rem;\n  }\n  border: 0.125rem solid transparent;\n  border-radius: 0.125rem;\n  background-color: transparent;\n  &:hover {\n    background-color: ", ";\n    border-color: ", ";\n    svg {\n      fill: ", ";\n    }\n  }\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n    width: 2.25rem;\n    height: 2.25rem;\n    @media only screen and (min-width: ", ") {\n      width: 3rem;\n      height: 3rem;\n    }\n    @media only screen and (min-width: ", ") {\n      fill: transparent;\n    }\n  }\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  width: 100%;\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  margin: 0 0 3rem;\n  @media only screen and (min-width: ", ") {\n    margin-bottom: 0;\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var ResultsList = _styledComponents.default.ul(_templateObject(), _styleVars.breakpoint.Xsmall);
+
+var ListItem = _styledComponents.default.li(_templateObject2());
+
+var ListButton = _styledComponents.default.button(_templateObject3(), _Buttons.buttonBase, _styleVars.breakpoint.Xsmall, _styleVars.colors.lightGrey, _styleVars.colors.midGrey, _styleVars.colors.black, _styleVars.colors.black, _styleVars.breakpoint.Xsmall, _styleVars.breakpoint.tablet);
+
+var Climb = _styledComponents.default.span(_templateObject4(), _Layout.searchResultText);
+
+var Crag = _styledComponents.default.span(_templateObject5(), _Layout.searchResultText, _styleVars.breakpoint.tablet);
+
+var Date = _styledComponents.default.span(_templateObject6());
+
+var Results = function Results(_ref) {
+  var logs = _ref.logs,
+      low = _ref.low,
+      high = _ref.high,
+      handleSingleView = _ref.handleSingleView;
+
+  var _useIsWidth = (0, _useIsWidth2.default)("large"),
+      isDesktop = _useIsWidth.isWidth;
+
+  return /*#__PURE__*/_react.default.createElement(ResultsList, null, logs.slice(low, high).map(function (_ref2) {
+    var climbName = _ref2.climbName,
+        cragName = _ref2.cragName,
+        processed = _ref2.date.processed,
+        grade = _ref2.grade,
+        key = _ref2.key,
+        style = _ref2.style;
+    return /*#__PURE__*/_react.default.createElement(ListItem, {
+      key: key
+    }, /*#__PURE__*/_react.default.createElement(ListButton, {
+      onClick: function onClick() {
+        return handleSingleView(key);
+      }
+    }, /*#__PURE__*/_react.default.createElement(Climb, null, /*#__PURE__*/_react.default.createElement("strong", null, climbName), " - ", grade), " ", /*#__PURE__*/_react.default.createElement(Crag, null, isDesktop && "".concat(style, " - "), cragName), /*#__PURE__*/_react.default.createElement(Date, null, (0, _Logbook.getDate)(processed, isDesktop), /*#__PURE__*/_react.default.createElement(_Chevron.default, {
+      fill: "unset"
+    }))));
+  }));
+};
+
+var _default = Results;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/useIsWidth.jsx":"components/common/useIsWidth.jsx","../../common/icons/Chevron.jsx":"components/common/icons/Chevron.jsx","../../common/styleVars":"components/common/styleVars.js","../../common/Layout.jsx":"components/common/Layout.jsx","../../common/Buttons.jsx":"components/common/Buttons.jsx","./Logbook.jsx":"components/views/logbook/Logbook.jsx"}],"components/views/singleLog/IconButton.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -82338,46 +83356,10 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _styleVars = require("../../common/styleVars");
 
-var _Buttons = require("../../common/Buttons.jsx");
-
-var _IconButton = _interopRequireDefault(require("./IconButton.jsx"));
-
-var _Icons = require("../../common/icons/Icons.jsx");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  @media only screen and (min-width: ", ") {\n    flex-direction: column;\n  }\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  li {\n    display: flex;\n    align-items: center;\n    margin-top: ", ";\n    &:first-child {\n      margin-top: 0;\n    }\n    &:last-child {\n      align-items: flex-start;\n    }\n    svg {\n      min-width: 36px;\n      margin-right: ", ";\n    }\n    strong {\n      font-weight: ", ";\n    }\n  }\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  padding: ", " ", " ", ";\n  font-size: ", ";\n  h1 {\n    font-size: ", ";\n    padding-left: calc(36px + 1rem);\n  }\n  @media only screen and (min-width: ", ") {\n    flex: 8;\n    padding: ", ";\n    font-size: ", ";\n    h1 {\n      font-size: ", ";\n      padding-left: 0;\n    }\n  }\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  margin-top: ", ";\n  display: flex;\n  flex-direction: column;\n  border: ", " solid ", ";\n  border-radius: ", ";\n  background-color: ", ";\n  @media only screen and (min-width: ", ") {\n    flex-direction: row;\n    > button,\n    > div {\n      flex: 1;\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  user-select: none;\n  cursor: pointer;\n  transition: all ease-in-out 0.3s;\n  display: flex;\n  flex: 1;\n  align-items: center;\n  justify-content: center;\n  height: 50%;\n  margin: -", ";\n  padding: ", ";\n  border-radius: ", ";\n  border: ", " solid\n    ", ";\n  background-color: ", ";\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n  }\n  &:focus,\n  &:hover {\n    outline: none;\n    background-color: ", ";\n    svg {\n      fill: ", ";\n    }\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -82388,47 +83370,212 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var LogContainer = _styledComponents.default.div(_templateObject(), _styleVars.spacing.xLarge, _styleVars.spacing.xSmall, _styleVars.colors.midGrey, _styleVars.spacing.xSmall, _styleVars.colors.lightGrey, _styleVars.breakpoint.small);
+var IconStyle = _styledComponents.default.button(_templateObject(), _styleVars.spacing.xSmall, _styleVars.spacing.med, _styleVars.spacing.small, _styleVars.spacing.xSmall, function (props) {
+  return props.type === "star" ? "".concat(_styleVars.colors.yellow) : "".concat(_styleVars.colors.midBlue);
+}, function (props) {
+  return props.type === "star" ? "".concat(_styleVars.colors.lightYellow) : "".concat(_styleVars.colors.lightBlue);
+}, function (props) {
+  return props.type === "star" ? "".concat(_styleVars.colors.yellow) : "".concat(_styleVars.colors.midBlue);
+}, function (props) {
+  return props.type === "star" ? "".concat(_styleVars.colors.yellow) : "".concat(_styleVars.colors.midBlue);
+}, _styleVars.colors.white); // star and notes button
 
-var LogContent = _styledComponents.default.section(_templateObject2(), _styleVars.spacing.large, _styleVars.spacing.med, _styleVars.spacing.xLarge, _styleVars.fontSize.small, _styleVars.fontSize.large, _styleVars.breakpoint.small, _styleVars.spacing.large, _styleVars.fontSize.med, _styleVars.fontSize.xLarge);
 
-var LogList = _styledComponents.default.ul(_templateObject3(), _styleVars.spacing.med, _styleVars.spacing.large, _styleVars.fontWeight.bold);
+var IconButton = function IconButton(_ref) {
+  var type = _ref.type,
+      title = _ref.title;
+  return /*#__PURE__*/_react.default.createElement(IconStyle, {
+    type: type,
+    title: title
+  }, type === "star" && /*#__PURE__*/_react.default.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "36",
+    height: "36",
+    viewBox: "0 0 24 24"
+  }, /*#__PURE__*/_react.default.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  })), type === "notes" && /*#__PURE__*/_react.default.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "36",
+    height: "36",
+    viewBox: "0 0 24 24"
+  }, /*#__PURE__*/_react.default.createElement("path", {
+    d: "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  })));
+};
 
-var EditButtons = _styledComponents.default.div(_templateObject4(), _styleVars.breakpoint.small); // TODO:
-// - onClick for star and notes / memorable buttons. Where to put logic?
-// - map through fields
+var _default = IconButton;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/styleVars":"components/common/styleVars.js"}],"components/views/singleLog/SingleLog.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Icons = require("../../common/icons/Icons.jsx");
+
+var _styleVars = require("../../common/styleVars");
+
+var _Buttons = require("../../common/Buttons.jsx");
+
+var _IconButton = _interopRequireDefault(require("./IconButton.jsx"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject7() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  position: fixed;\n  bottom: 0;\n  z-index: 1;\n  width: 100%;\n  @media only screen and (min-width: ", ") {\n    flex-direction: column;\n    position: unset;\n  }\n"]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  margin-top: 0.5rem;\n  font-size: 1rem;\n  @media only screen and (min-width: ", ") {\n    font-size: 1.25rem;\n  }\n  &:first-child {\n    margin-top: 0;\n  }\n  &:last-child {\n    align-items: flex-start;\n  }\n  svg {\n    min-width: 2.25rem;\n    margin-right: 1rem;\n  }\n  strong {\n    font-weight: 500;\n  }\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n  margin-top: -0.5rem;\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n  font-size: 1.25rem;\n  font-weight: 500;\n  letter-spacing: 0.05rem;\n  text-align: center;\n  margin-bottom: 1.5rem;\n  padding-bottom: 0.5rem;\n  border-bottom: 0.125rem solid ", ";\n  @media only screen and (min-width: ", ") {\n    font-size: 1.5rem;\n  }\n  @media only screen and (min-width: ", ") {\n    font-size: 2rem;\n    border-bottom: 0;\n    text-align: left;\n  }\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  height: 100vh;\n  padding: 1rem 0.5rem 2rem;\n  @media only screen and (min-width: ", ") {\n    flex: 8;\n    height: auto;\n    padding: 1rem;\n  }\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  ", ";\n  line-height: 1;\n  display: flex;\n  align-items: center;\n  color: ", ";\n  background-color: ", ";\n  padding: 0.5rem;\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n    margin-right: 0.25rem;\n  }\n  &:hover svg {\n    margin-left: 0.5rem;\n  }\n  @media only screen and (min-width: ", ") {\n    justify-content: center;\n    border-radius: 0.175rem;\n    margin: -0.125rem;\n    background-color: ", ";\n    color: ", ";\n    &:focus,\n    &:hover,\n    &:active {\n      background-color: ", ";\n      color: ", ";\n      svg {\n        fill: ", ";\n        margin: 0;\n      }\n    }\n    svg {\n      fill: ", ";\n      margin: 0;\n    }\n    span {\n      display: none;\n    }\n  }\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  margin-top: -1rem;\n  display: flex;\n  flex-direction: column;\n  border-radius: 0.125rem;\n  background-color: ", ";\n  @media only screen and (min-width: ", ") {\n    margin-top: 0;\n    flex-direction: row;\n    border: 0.125rem solid ", ";\n    > button,\n    > div {\n      flex: 1;\n    }\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var Container = _styledComponents.default.div(_templateObject(), _styleVars.colors.lightGrey, _styleVars.breakpoint.small, _styleVars.colors.midGrey);
+
+var BackButton = _styledComponents.default.button(_templateObject2(), _Buttons.buttonBase, _styleVars.colors.black, _styleVars.colors.white, _styleVars.colors.black, _styleVars.breakpoint.small, _styleVars.colors.midGrey, _styleVars.colors.darkGrey, _styleVars.colors.darkGrey, _styleVars.colors.white, _styleVars.colors.white, _styleVars.colors.darkGrey);
+
+var Content = _styledComponents.default.section(_templateObject3(), _styleVars.breakpoint.small);
+
+var Title = _styledComponents.default.h1(_templateObject4(), _styleVars.colors.midGrey, _styleVars.breakpoint.Xsmall, _styleVars.breakpoint.small);
+
+var LogList = _styledComponents.default.ul(_templateObject5());
+
+var ListItem = _styledComponents.default.li(_templateObject6(), _styleVars.breakpoint.Xsmall);
+
+var EditButtons = _styledComponents.default.div(_templateObject7(), _styleVars.breakpoint.small);
+
+var iconFunc = function iconFunc(key, string) {
+  var icons = {
+    cragName: /*#__PURE__*/_react.default.createElement(_Icons.Place, {
+      cragName: string
+    }),
+    grade: /*#__PURE__*/_react.default.createElement(_Icons.Circle, {
+      grade: string
+    }),
+    style: /*#__PURE__*/_react.default.createElement(_Icons.Style, {
+      style: string
+    }),
+    partners: /*#__PURE__*/_react.default.createElement(_Icons.Partner, {
+      partners: string
+    }),
+    date: /*#__PURE__*/_react.default.createElement(_Icons.Date, {
+      date: string
+    })
+  };
+  return icons[key];
+};
+
+var textFunc = function textFunc(key, data) {
+  if (key === "date") {
+    var _data$processed = data.processed,
+        dayLong = _data$processed.dayLong,
+        monthLong = _data$processed.monthLong,
+        year = _data$processed.year;
+    return "".concat(dayLong, " ").concat(monthLong, " ").concat(year);
+  }
+
+  return data;
+}; // TODO:
+// - onClick for star and notes / memorable buttons.
 
 
-var SingleLog = function SingleLog(_ref) {
-  var climbName = _ref.climbName,
-      cragName = _ref.cragName,
-      processed = _ref.date.processed,
-      grade = _ref.grade,
-      notes = _ref.notes,
-      partners = _ref.partners,
-      style = _ref.style,
-      _onClick = _ref.onClick;
-  var dayLong = processed.dayLong,
-      monthLong = processed.monthLong,
-      year = processed.year;
-  var dateFormat = "".concat(dayLong, " ").concat(monthLong, " ").concat(year);
-  return /*#__PURE__*/_react.default.createElement(LogContainer, null, /*#__PURE__*/_react.default.createElement(_Buttons.NavButton, {
+var SingleLog = function SingleLog(props) {
+  var climbName = props.climbName,
+      notes = props.notes,
+      handleSingleView = props.handleSingleView;
+  return /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement(BackButton, {
     onClick: function onClick() {
-      return _onClick(null);
-    },
-    text: "back",
-    hasPadding: "med"
-  }), /*#__PURE__*/_react.default.createElement(LogContent, null, /*#__PURE__*/_react.default.createElement("h1", null, climbName), /*#__PURE__*/_react.default.createElement(LogList, null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_Icons.Circle, {
-    grade: grade
-  }), " ", grade), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_Icons.Place, {
-    cragName: cragName
-  }), cragName), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_Icons.Style, {
-    style: style
-  }), style), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_Icons.Date, {
-    date: dateFormat
-  }), /*#__PURE__*/_react.default.createElement("strong", null, dateFormat)), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_Icons.Partner, {
-    partners: partners
-  }), partners), notes && /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_Icons.Comment, null), notes))), /*#__PURE__*/_react.default.createElement(EditButtons, null, /*#__PURE__*/_react.default.createElement(_IconButton.default, {
+      return handleSingleView(null);
+    }
+  }, /*#__PURE__*/_react.default.createElement(_Icons.Chevron, {
+    fill: "unset",
+    title: "back to logs",
+    direction: "left"
+  }), /*#__PURE__*/_react.default.createElement("span", null, "back")), /*#__PURE__*/_react.default.createElement(Content, null, /*#__PURE__*/_react.default.createElement(Title, null, climbName), /*#__PURE__*/_react.default.createElement(LogList, null, ["grade", "cragName", "style", "date", "partners"].map(function (i) {
+    var string = textFunc(i, props[i]);
+    return /*#__PURE__*/_react.default.createElement(ListItem, {
+      key: i
+    }, iconFunc(i, string), i === "date" ? /*#__PURE__*/_react.default.createElement("strong", null, string) : string);
+  }), notes && /*#__PURE__*/_react.default.createElement(ListItem, null, /*#__PURE__*/_react.default.createElement(_Icons.Comment, null), notes))), /*#__PURE__*/_react.default.createElement(EditButtons, null, /*#__PURE__*/_react.default.createElement(_IconButton.default, {
     type: "star",
     title: "star this ascent"
   }), /*#__PURE__*/_react.default.createElement(_IconButton.default, {
@@ -82439,17 +83586,19 @@ var SingleLog = function SingleLog(_ref) {
 
 var _default = SingleLog;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/styleVars":"components/common/styleVars.js","../../common/Buttons.jsx":"components/common/Buttons.jsx","./IconButton.jsx":"components/views/singleLog/IconButton.jsx","../../common/icons/Icons.jsx":"components/common/icons/Icons.jsx"}],"components/views/logbook/Logbook.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/icons/Icons.jsx":"components/common/icons/Icons.jsx","../../common/styleVars":"components/common/styleVars.js","../../common/Buttons.jsx":"components/common/Buttons.jsx","./IconButton.jsx":"components/views/singleLog/IconButton.jsx"}],"components/views/logbook/Logbook.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = exports.getDate = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
 var _Search = _interopRequireDefault(require("./Search.jsx"));
+
+var _SearchReset = _interopRequireDefault(require("./SearchReset.jsx"));
 
 var _PageNav = _interopRequireDefault(require("./PageNav.jsx"));
 
@@ -82467,6 +83616,12 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -82479,19 +83634,32 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-// todo:
-// - handle blur in a way that doesn't interfere with result click (set a timeout?)
-// - wait for mouseUp, if not on list button, clear results
-// - better: pass in e.target, see if this is NOT a search results button. If so, clear selectedLog
-// - try handleSingleView
+var getDate = function getDate(dateData, desktop) {
+  var day = dateData.day,
+      dayLong = dateData.dayLong,
+      monthInt = dateData.monthInt,
+      monthLong = dateData.monthLong,
+      year = dateData.year,
+      yearInt = dateData.yearInt;
+
+  if (desktop) {
+    return "".concat(dayLong, " ").concat(monthLong, " ").concat(year);
+  }
+
+  return "".concat(day, "/").concat(monthInt, "/").concat(yearInt);
+};
+
+exports.getDate = getDate;
+var defaultSearch = {
+  placeholder: "Search by Climb or Crag name...",
+  searchTerm: "",
+  results: []
+};
+
 var Logbook = function Logbook(_ref) {
   var logs = _ref.logs;
 
-  var _useState = (0, _react.useState)({
-    placeholder: "Search by Climb or Crag name...",
-    searchTerm: "",
-    results: []
-  }),
+  var _useState = (0, _react.useState)(_objectSpread({}, defaultSearch)),
       _useState2 = _slicedToArray(_useState, 2),
       search = _useState2[0],
       setSearch = _useState2[1];
@@ -82509,7 +83677,7 @@ var Logbook = function Logbook(_ref) {
       singleLog = _useState6[0],
       setSingleLog = _useState6[1];
 
-  var handleSearch = function handleSearch(value) {
+  var _handleSearch = function handleSearch(value) {
     var resultsFind = function resultsFind(value, logs) {
       if (value.length < 3) return;
       return logs.filter(function (log) {
@@ -82528,13 +83696,23 @@ var Logbook = function Logbook(_ref) {
     });
   };
 
-  var handlePageChange = function handlePageChange(_ref2) {
-    var low = _ref2.low,
-        high = _ref2.high;
-    return setPage({
-      low: low,
-      high: high
-    });
+  var handlePageChange = function handlePageChange(direction) {
+    var newLow = page.low,
+        newHigh = page.high;
+
+    if (direction === "older") {
+      setPage({
+        low: newLow += 50,
+        high: newHigh += 50
+      });
+    }
+
+    if (direction === "newer") {
+      setPage({
+        low: newLow -= 50,
+        high: newHigh -= 50
+      });
+    }
   };
 
   var handleSingleView = function handleSingleView(index) {
@@ -82543,27 +83721,29 @@ var Logbook = function Logbook(_ref) {
     }));
   };
 
-  return /*#__PURE__*/_react.default.createElement(_Layout.ContainerStyle, null, /*#__PURE__*/_react.default.createElement(_Search.default, _extends({}, search, {
-    onChange: function onChange(e) {
-      return handleSearch(e.target.value);
+  return /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_Layout.ContainerStyle, null, !singleLog && /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_Search.default, _extends({}, search, {
+    handleSearch: function handleSearch(e) {
+      return _handleSearch(e.target.value);
     },
-    disabled: singleLog ? true : false,
-    onResultClick: handleSingleView // onBlur={() => handleSearch("")}
-
-  })), !singleLog && /*#__PURE__*/_react.default.createElement(_PageNav.default, _extends({}, page, {
+    handleSingleView: handleSingleView
+  })), /*#__PURE__*/_react.default.createElement(_PageNav.default, _extends({}, page, {
     logs: logs,
-    onClick: handlePageChange
-  })), !singleLog && /*#__PURE__*/_react.default.createElement(_Results.default, _extends({}, page, {
+    handlePageChange: handlePageChange
+  })), /*#__PURE__*/_react.default.createElement(_Results.default, _extends({}, page, {
     logs: logs,
-    onClick: handleSingleView
-  })), singleLog && /*#__PURE__*/_react.default.createElement(_SingleLog.default, _extends({}, singleLog, {
-    onClick: handleSingleView
-  })));
+    handleSingleView: handleSingleView
+  }))), singleLog && /*#__PURE__*/_react.default.createElement(_SingleLog.default, _extends({}, singleLog, {
+    handleSingleView: handleSingleView
+  }))), /*#__PURE__*/_react.default.createElement(_SearchReset.default, {
+    onClose: function onClose() {
+      setSearch(_objectSpread({}, defaultSearch));
+    }
+  }));
 };
 
 var _default = Logbook;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./Search.jsx":"components/views/logbook/Search.jsx","./PageNav.jsx":"components/views/logbook/PageNav.jsx","./Results.jsx":"components/views/logbook/Results.jsx","../singleLog/SingleLog.jsx":"components/views/singleLog/SingleLog.jsx","../../common/Layout.jsx":"components/common/Layout.jsx"}],"components/App.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./Search.jsx":"components/views/logbook/Search.jsx","./SearchReset.jsx":"components/views/logbook/SearchReset.jsx","./PageNav.jsx":"components/views/logbook/PageNav.jsx","./Results.jsx":"components/views/logbook/Results.jsx","../singleLog/SingleLog.jsx":"components/views/singleLog/SingleLog.jsx","../../common/Layout.jsx":"components/common/Layout.jsx"}],"components/App.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -82616,7 +83796,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  ", ";\n  letter-spacing: 0.05rem;\n  font-size: ", ";\n  display: flex;\n  width: 50%;\n  border-bottom: ", " solid ", ";\n  padding: ", ";\n  background-color: ", ";\n  &:first-child {\n    justify-content: flex-end;\n  }\n  > span {\n    user-select: none;\n    max-width: 23rem;\n    width: 100%;\n    display: block;\n  }\n  &:hover {\n    background-color: ", ";\n  }\n  ", "\n"]);
+  var data = _taggedTemplateLiteral(["\n  ", ";\n  display: flex;\n  width: 50%;\n  padding: 1.25rem 2rem;\n  border-bottom: 0.175rem solid ", ";\n  background-color: ", ";\n  @media only screen and (min-width: ", ") {\n    padding: 2rem;\n    font-size: 1.5rem;\n  }\n  &:first-child {\n    justify-content: flex-end;\n  }\n  > span {\n    user-select: none;\n    max-width: 23rem;\n    width: 100%;\n    display: block;\n  }\n  &:hover {\n    background-color: ", ";\n  }\n  ", "\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -82651,10 +83831,12 @@ var Root = _styledComponents.default.div(_templateObject(), _styleVars.fonts.mai
 
 var Header = _styledComponents.default.header(_templateObject2());
 
-var Button = _styledComponents.default.button(_templateObject3(), _Buttons.buttonBase, _styleVars.fontSize.med, _styleVars.spacing.small, _styleVars.colors.midGrey, _styleVars.spacing.xLarge, _styleVars.colors.lightGrey, function (props) {
-  return props.isActive ? _styleVars.colors.lightRed : _styleVars.colors.midGrey;
-}, function (props) {
-  return props.isActive && "\n  background-color: ".concat(_styleVars.colors.lightRed, ";\n  border-bottom-color: ").concat(_styleVars.colors.red, ";\n  ");
+var Button = _styledComponents.default.button(_templateObject3(), _Buttons.buttonBase, _styleVars.colors.midGrey, _styleVars.colors.lightGrey, _styleVars.breakpoint.small, function (_ref) {
+  var isActive = _ref.isActive;
+  return _styleVars.colors[isActive ? "lightRed" : "midGrey"];
+}, function (_ref2) {
+  var isActive = _ref2.isActive;
+  return isActive && "\n  background-color: ".concat(_styleVars.colors.lightRed, ";\n  border-bottom-color: ").concat(_styleVars.colors.red, ";\n  ");
 });
 
 var DailyMessage = _styledComponents.default.p(_templateObject4(), _styleVars.colors.midBlue);
@@ -82680,7 +83862,8 @@ var App = function App() {
   var handleSingleDay = function handleSingleDay(logs, filter) {
     var day = filter.day,
         month = filter.month,
-        year = filter.year;
+        year = filter.year; // bug: make smoother
+
     setView("Logbook");
     setLogs(logs);
     setMessage("Showing ".concat(logs.length, " ").concat(logs.length === 1 ? "log" : "logs", " for: ").concat(day, " ").concat(month, " ").concat(year));
@@ -82755,7 +83938,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59341" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49487" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
