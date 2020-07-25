@@ -1,37 +1,59 @@
 import React from "react";
 import styled from "styled-components";
-import { colors, spacing, fontSize, fontWeight } from "../../common/styleVars";
+
+import useIsWidth from "../../common/useIsWidth.jsx";
+import Chevron from "../../common/icons/Chevron.jsx";
+import { breakpoint, colors } from "../../common/styleVars";
 import { searchResultText } from "../../common/Layout.jsx";
 import { buttonBase } from "../../common/Buttons.jsx";
 
+import { getDate } from "./Logbook.jsx";
+
 const ResultsList = styled.ul`
-  margin-top: ${spacing.xLarge};
-  li {
-    width: 100%;
+  margin: 0 0 3rem;
+  @media only screen and (min-width: ${breakpoint.Xsmall}) {
+    margin-bottom: 0;
   }
+`;
+
+const ListItem = styled.li`
+  width: 100%;
 `;
 
 const ListButton = styled.button`
   ${buttonBase};
-  font-size: ${fontSize.small};
   display: flex;
   align-items: center;
   text-align: left;
   width: 100%;
-  padding: ${spacing.med} ${spacing.large};
-  border: ${spacing.xSmall} solid transparent;
-  border-radius: ${spacing.xSmall};
+  padding: 0.5rem;
+  font-size: 1rem;
+  @media only screen and (min-width: ${breakpoint.Xsmall}) {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+  }
+  border: 0.125rem solid transparent;
+  border-radius: 0.125rem;
   background-color: transparent;
   &:hover {
     background-color: ${colors.lightGrey};
     border-color: ${colors.midGrey};
+    svg {
+      fill: ${colors.black};
+    }
   }
   svg {
-    fill: transparent;
-    transition: all ease-in-out 0.3s;
-  }
-  &:hover svg {
     fill: ${colors.black};
+    transition: all ease-in-out 0.3s;
+    width: 2.25rem;
+    height: 2.25rem;
+    @media only screen and (min-width: ${breakpoint.Xsmall}) {
+      width: 3rem;
+      height: 3rem;
+    }
+    @media only screen and (min-width: ${breakpoint.tablet}) {
+      fill: transparent;
+    }
   }
 `;
 
@@ -39,44 +61,53 @@ const Climb = styled.span`
   ${searchResultText};
   flex: 3;
   strong {
-    font-weight: ${fontWeight.med};
+    font-weight: 500;
   }
 `;
 
 const Crag = styled.span`
   ${searchResultText};
   flex: 2;
+  display: none;
+  @media only screen and (min-width: ${breakpoint.tablet}) {
+    display: flex;
+  }
 `;
 
 const Date = styled.span`
-  margin-left: ${spacing.large};
-  font-weight: ${fontWeight.bold};
+  margin-left: 1rem;
+  font-weight: 600;
   margin-left: auto;
   display: flex;
   align-items: center;
 `;
 
-const Results = ({ logs, low, high, onClick }) => (
-  <ResultsList>
-    {logs.slice(low, high).map(({ climbName, cragName, date: { original }, grade, key, style }) => (
-      <li key={key}>
-        <ListButton onClick={() => onClick(key)}>
-          <Climb>
-            <strong>{climbName}</strong> - {grade}
-          </Climb>{" "}
-          <Crag>
-            {style} - {cragName}
-          </Crag>
-          <Date>
-            {original}
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
-              <path d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z" />
-            </svg>
-          </Date>
-        </ListButton>
-      </li>
-    ))}
-  </ResultsList>
-);
+const Results = ({ logs, low, high, handleSingleView }) => {
+  const { isWidth: isDesktop } = useIsWidth("large");
+
+  return (
+    <ResultsList>
+      {logs
+        .slice(low, high)
+        .map(({ climbName, cragName, date: { processed }, grade, key, style }) => (
+          <ListItem key={key}>
+            <ListButton onClick={() => handleSingleView(key)}>
+              <Climb>
+                <strong>{climbName}</strong> - {grade}
+              </Climb>{" "}
+              <Crag>
+                {isDesktop && `${style} - `}
+                {cragName}
+              </Crag>
+              <Date>
+                {getDate(processed, isDesktop)}
+                <Chevron fill="unset" />
+              </Date>
+            </ListButton>
+          </ListItem>
+        ))}
+    </ResultsList>
+  );
+};
 
 export default Results;

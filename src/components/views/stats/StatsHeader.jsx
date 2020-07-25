@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { colors, spacing } from "../../common/styleVars";
+import { breakpoint, colors } from "../../common/styleVars";
 
 const Header = styled.header`
-  padding-bottom: ${spacing.large};
-  margin-bottom: ${spacing.large};
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
 `;
 const Top = styled.div`
   display: flex;
@@ -13,26 +13,32 @@ const Top = styled.div`
 
 const H1 = styled.h1`
   margin-right: 1rem;
-  font-size: 1.25rem;
-  padding: ${spacing.small} 0;
-  border-bottom: ${spacing.xSmall} solid ${colors.black};
+  padding-bottom: 0.25rem;
+  border-bottom: 0.125rem solid ${colors.black};
+  font-size: 1rem;
+  @media only screen and (min-width: ${breakpoint.Xsmall}) {
+    font-size: 1.25rem;
+  }
 `;
 
 const MainControl = styled.div`
   display: flex;
-  border-left: 1px solid black;
+  border-left: 1px solid ${colors.black};
   padding-left: 1rem;
   margin-left: 1rem;
   select {
-    margin-left: ${spacing.med};
+    margin-left: 0.5rem;
   }
 `;
 
 const H2 = styled.h2`
-  font-size: 1.25rem;
   margin-right: 2rem;
   strong {
     font-weight: 700;
+  }
+  font-size: 1rem;
+  @media only screen and (min-width: ${breakpoint.Xsmall}) {
+    font-size: 1.25rem;
   }
 `;
 

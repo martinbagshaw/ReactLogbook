@@ -48,9 +48,13 @@ const boxShadow = {
 };
 
 const breakpoint = {
-  small: "40rem",
-  medium: "52rem",
-  large: "64rem",
+  XXsmall: "360px",
+  Xsmall: "480px",
+  small: "600px",
+  tablet: "768px",
+  large: "1024px",
+  Xlarge: "1280px",
+  massive: "1440px",
 };
 
 export { fonts, fontSize, fontWeight, colors, spacing, boxShadow, breakpoint };

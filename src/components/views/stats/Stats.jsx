@@ -6,20 +6,21 @@ import { defaultSettings, months } from "../../../utils/constants.js";
 import StatsHeader from "./StatsHeader.jsx";
 import PieChart from "./PieChart.jsx";
 import Legend from "./Legend.jsx";
-import { spacing, breakpoint } from "../../common/styleVars";
+import { breakpoint } from "../../common/styleVars";
 
 const StatContainer = styled.div`
-  max-width: 50rem;
+  max-width: 60rem;
   margin: 0 auto;
-  padding: ${spacing.xLarge} ${spacing.med};
-  @media only screen and (min-width: ${breakpoint.small}) {
-    padding: ${spacing.large} 1rem;
-  }
+  padding: 1rem 0;
 `;
 
 const BodySection = styled.section`
-  margin-top: 1rem;
-  position: relative;
+  padding-bottom: 250px;
+  @media only screen and (min-width: ${breakpoint.tablet}) {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-bottom: 0;
+  }
 `;
 
 // TODO:
@@ -54,7 +55,7 @@ const handleCumulativeDate = (dateType, logs) => {
     const res = newLogs.reduce((r, { date }) => {
       let label = date.processed[monthOrYear];
       if (monthOrYear === "month") {
-        label = months[label] || "unknown";
+        label = (months[label] && months[label].text) || "unknown";
       }
       if (!r[label]) {
         r[label] = { label, value: 1 };
@@ -69,9 +70,9 @@ const handleCumulativeDate = (dateType, logs) => {
   const formatAndSort = (monthOrYear, logsObj) => {
     const newLogs = { ...logsObj };
     if (monthOrYear === "month") {
-      const valid = Object.values(months).map(i => {
-        const { label, value } = newLogs[i];
-        const monthAbbr = Object.keys(months).find(key => months[key] === label);
+      const valid = Object.values(months).map(({ text }) => {
+        const { label, value } = newLogs[text];
+        const monthAbbr = Object.keys(months).find(key => months[key].text === label);
         return {
           keyLabel: [`${label}:`, `${value} climbs`],
           itemFilter: monthAbbr,
@@ -206,7 +207,7 @@ const handleFilteredDate = (filter, logs) => {
     if (filterLength === 1) {
       // use months object to order by month
       return Object.values(months).reduce((acc, monthLong) => {
-        const entry = formatted.find(i => i.monthLong === monthLong);
+        const entry = formatted.find(i => i.monthLong === monthLong.text);
         if (entry) {
           const { month, monthLong, year, value } = entry;
           const keyLabel = [`${monthLong} ${year}:`, `${value} climbs`];
@@ -318,6 +319,8 @@ const Stats = ({ handleSingleDay, logs }) => {
   const chartdata = piechartData ? createPie(piechartData) : null;
 
   const hasFilter = Object.values(settings).find(i => i.filter);
+
+  // bug: make smoother
   useEffect(() => {
     if (hasFilter?.filter?.day) {
       const newLogs = [...logs];
@@ -325,7 +328,8 @@ const Stats = ({ handleSingleDay, logs }) => {
       const dailyLogs = newLogs.reduce((acc, i) => {
         const { day, month, year } = i.date.processed;
         const isMonth = month === filter["month"] && year === filter["year"];
-        const isDay = isMonth && day === filter["day"];
+        // normalise days: can be '04', needs to match to '4'
+        const isDay = isMonth && parseInt(day) === parseInt(filter["day"]);
         if (isDay) {
           acc.push(i);
         }

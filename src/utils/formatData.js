@@ -12,8 +12,10 @@ const twoDigitYear = new Date()
 
 const processMonthYear = (month, year, retObj) => {
   if (Object.keys(months).includes(month)) {
+    const { text, int } = months[month];
     retObj.month = month;
-    retObj.monthLong = months[month];
+    retObj.monthLong = text;
+    retObj.monthInt = int;
   }
   if (year && !year.includes("?") && year.length === 4) {
     retObj.year = year;
@@ -21,6 +23,7 @@ const processMonthYear = (month, year, retObj) => {
   if (year && !year.includes("?") && year.length === 2) {
     retObj.year = year > twoDigitYear ? `19${year}` : `20${year}`;
   }
+  retObj.yearInt = year.slice(0, 2);
   return retObj;
 };
 
