@@ -1,22 +1,26 @@
 import styled, { css } from "styled-components";
-import { colors, spacing } from "./styleVars";
+import { breakpoint, colors } from "./styleVars";
 
+// put in a typography file instead:
 const searchResultText = css`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin-right: ${spacing.large};
+  margin-right: 1rem;
 `;
 
 const ContainerStyle = styled.div`
-  max-width: 50rem;
+  max-width: 60rem;
   margin: 0 auto;
-  padding: ${spacing.xLarge} 0;
+  padding: 1rem 0;
+  @media only screen and (min-width: ${breakpoint.small}) {
+    padding: 2rem 0;
+  }
   > section {
     display: block;
-    padding-bottom: ${spacing.xLarge};
-    margin-bottom: ${spacing.xLarge};
-    border-bottom: ${spacing.xSmall} solid ${colors.midGrey};
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 0.125rem solid ${colors.midGrey};
   }
 `;
 

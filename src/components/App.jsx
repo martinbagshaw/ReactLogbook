@@ -11,7 +11,7 @@ import { formatData } from "../utils/formatData";
 import Stats from "./views/stats/Stats.jsx";
 import Logbook from "./views/logbook/Logbook.jsx";
 
-import { colors, spacing, fonts, fontSize } from "./common/styleVars";
+import { breakpoint, colors, fonts, fontSize } from "./common/styleVars";
 import { buttonBase } from "./common/Buttons.jsx";
 
 const Root = styled.div`
@@ -27,13 +27,15 @@ const Header = styled.header`
 
 const Button = styled.button`
   ${buttonBase};
-  letter-spacing: 0.05rem;
-  font-size: ${fontSize.med};
   display: flex;
   width: 50%;
-  border-bottom: ${spacing.small} solid ${colors.midGrey};
-  padding: ${spacing.xLarge};
+  padding: 1.25rem 2rem;
+  border-bottom: 0.175rem solid ${colors.midGrey};
   background-color: ${colors.lightGrey};
+  @media only screen and (min-width: ${breakpoint.small}) {
+    padding: 2rem;
+    font-size: 1.5rem;
+  }
   &:first-child {
     justify-content: flex-end;
   }
@@ -44,10 +46,10 @@ const Button = styled.button`
     display: block;
   }
   &:hover {
-    background-color: ${props => (props.isActive ? colors.lightRed : colors.midGrey)};
+    background-color: ${({ isActive }) => colors[isActive ? "lightRed" : "midGrey"]};
   }
-  ${props =>
-    props.isActive &&
+  ${({ isActive }) =>
+    isActive &&
     `
   background-color: ${colors.lightRed};
   border-bottom-color: ${colors.red};
@@ -69,6 +71,7 @@ const App = () => {
 
   const handleSingleDay = (logs, filter) => {
     const { day, month, year } = filter;
+    // bug: make smoother
     setView("Logbook");
     setLogs(logs);
     setMessage(

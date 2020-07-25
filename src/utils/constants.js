@@ -8,18 +8,18 @@ const defaultSettings = {
 };
 
 const months = {
-  Jan: "January",
-  Feb: "February",
-  Mar: "March",
-  Apr: "April",
-  May: "May",
-  Jun: "June",
-  Jul: "July",
-  Aug: "August",
-  Sep: "September",
-  Oct: "October",
-  Nov: "November",
-  Dec: "December",
+  Jan: { text: "January", int: "01" },
+  Feb: { text: "February", int: "02" },
+  Mar: { text: "March", int: "03" },
+  Apr: { text: "April", int: "04" },
+  May: { text: "May", int: "05" },
+  Jun: { text: "June", int: "06" },
+  Jul: { text: "July", int: "07" },
+  Aug: { text: "August", int: "08" },
+  Sep: { text: "September", int: "09" },
+  Oct: { text: "October", int: "10" },
+  Nov: { text: "November", int: "11" },
+  Dec: { text: "December", int: "12" },
 };
 
 export { defaultSettings, months };
