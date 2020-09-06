@@ -34,7 +34,7 @@ const Text = styled.text`
   font-size: 0.625rem;
   fill: white;
   text-anchor: middle;
-  alignment-baseline: middle;
+  /* alignment-baseline: middle; */
 `;
 
 const ForeignObject = styled.foreignObject`
@@ -93,7 +93,7 @@ const PieChart = ({ chartdata, innerRadius, outerRadius, type, setFiltered }) =>
     }
     const [a, b] = arcFunc.centroid(data);
     if (a && b) {
-      return `translate(${a + radius}, ${b + radius})`;
+      return `translate(${a - (radius/4)}, ${b - (radius/4)})`;
     }
     return "translate(0, 0)";
   };

@@ -17,6 +17,7 @@ const Container = styled.div`
   border-top: 0.175rem solid ${colors.midGrey};
   @media only screen and (min-width: ${breakpoint.tablet}) {
     position: unset;
+    width: auto;
     background: transparent;
     border-top: 0;
   }
