@@ -2,11 +2,11 @@ import React, { useState, useEffect, Fragment } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 
-import { defaultSettings, months } from "../../../utils/constants.js";
+import { defaultSettings, months } from "../../utils/constants.ts";
 import StatsHeader from "./StatsHeader.jsx";
 import PieChart from "./PieChart.jsx";
-import Legend from "./Legend.jsx";
-import { breakpoint } from "../../common/styleVars";
+import Legend from "./Legend.tsx";
+import { breakpoint } from "../common/styleVars";
 
 const StatContainer = styled.div`
   max-width: 60rem;

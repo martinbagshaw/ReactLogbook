@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { colors, spacing } from "../../common/styleVars";
+import { colors, spacing } from "../common/styleVars";
 
 const IconStyle = styled.button`
   user-select: none;
@@ -14,19 +14,16 @@ const IconStyle = styled.button`
   margin: -${spacing.xSmall};
   padding: ${spacing.med};
   border-radius: ${spacing.small};
-  border: ${spacing.xSmall} solid
-    ${props => (props.type === "star" ? `${colors.yellow}` : `${colors.midBlue}`)};
-  background-color: ${props =>
-    props.type === "star" ? `${colors.lightYellow}` : `${colors.lightBlue}`};
+  border: ${spacing.xSmall} solid ${({ type }) => colors[type === "star" ? "yellow" : "midBlue"]};
+  background-color: ${({ type }) => colors[type === "star" ? "lightYellow" : "lightBlue"]};
   svg {
-    fill: ${props => (props.type === "star" ? `${colors.yellow}` : `${colors.midBlue}`)};
+    fill: ${({ type }) => colors[type === "star" ? "yellow" : "midBlue"]};
     transition: all ease-in-out 0.3s;
   }
   &:focus,
   &:hover {
     outline: none;
-    background-color: ${props =>
-      props.type === "star" ? `${colors.yellow}` : `${colors.midBlue}`};
+    background-color: ${({ type }) => colors[type === "star" ? "yellow" : "midBlue"]};
     svg {
       fill: ${colors.white};
     }

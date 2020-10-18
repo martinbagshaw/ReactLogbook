@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { breakpoint, colors } from "../../common/styleVars";
+import { breakpoint, colors } from "../common/styleVars";
 
 const Header = styled.header`
   padding: 0.5rem 1rem;

@@ -1,15 +1,10 @@
-/* App Component
-- entry point
-- contains logbook, stats and menu
-*/
-
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import climbData from "../data/mb-logbook.json";
-import { formatData } from "../utils/formatData";
+import { formatData } from "../utils/formatData.ts";
 
-import Stats from "./views/stats/Stats.jsx";
-import Logbook from "./views/logbook/Logbook.jsx";
+import Stats from "./stats/Stats.jsx";
+import Logbook from "./logbook/Logbook.jsx";
 
 import { breakpoint, colors, fonts, fontSize } from "./common/styleVars";
 import { buttonBase } from "./common/Buttons.jsx";

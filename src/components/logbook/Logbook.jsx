@@ -5,15 +5,7 @@ import PageNav from "./PageNav.jsx";
 import Results from "./Results.jsx";
 import SingleLog from "../singleLog/SingleLog.jsx";
 
-import { ContainerStyle } from "../../common/Layout.jsx";
-
-export const getDate = (dateData, desktop) => {
-  const { day, dayLong, monthInt, monthLong, year, yearInt } = dateData;
-  if (desktop) {
-    return `${dayLong} ${monthLong} ${year}`;
-  }
-  return `${day}/${monthInt}/${yearInt}`;
-};
+import { ContainerStyle } from "../common/Layout.jsx";
 
 const defaultSearch = {
   placeholder: "Search by Climb or Crag name...",

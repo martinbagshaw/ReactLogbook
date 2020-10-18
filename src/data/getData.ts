@@ -1,5 +1,8 @@
-// check response
-const checkResponse = response => {
+interface ResponseObject {
+  status: number;
+  json: any;
+}
+const checkResponse = (response: ResponseObject): any => {
   if (response.status !== 200) {
     console.log(`Error with the request! ${response.status}`);
     return;
@@ -8,7 +11,7 @@ const checkResponse = response => {
 };
 
 // get user data
-export const climbData = () => {
+export const climbData = (): object | string => {
   return fetch("mb-logbook")
     .then(checkResponse)
     .catch(err => {

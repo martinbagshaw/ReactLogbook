@@ -1,10 +1,10 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-import useIsWidth from "../../common/useIsWidth.jsx";
-import Chevron from "../../common/icons/Chevron.jsx";
-import { buttonBase } from "../../common/Buttons.jsx";
-import { breakpoint, colors } from "../../common/styleVars";
+import useIsWidth from "../common/useIsWidth.jsx";
+import Chevron from "../common/icons/Chevron.jsx";
+import { buttonBase } from "../common/Buttons.jsx";
+import { breakpoint, colors } from "../common/styleVars";
 
 const NavContainer = styled.div`
   display: flex;
@@ -22,25 +22,38 @@ const NavContainer = styled.div`
   }
   @media only screen and (min-width: ${breakpoint.large}) {
     position: relative;
+    min-height: 52px;
   }
 `;
 
 const Pagination = styled.p`
   position: absolute;
   left: calc(50% - 259px / 2);
-  top: 2rem;
+  top: 1rem;
   font-size: 1rem;
   text-align: center;
-  strong {
-    font-weight: 500;
-    padding: 0.125rem;
-    border-radius: 0.125rem;
-    background-color: ${colors.lightBlue};
-    &:nth-child(2) {
-      background-color: ${colors.lightRed};
-    }
-  }
 `;
+
+const Low = styled.strong`
+  font-weight: 500;
+  padding: 0.125rem;
+  border-radius: 0.125rem;
+  background-color: ${colors.lightBlue};
+`;
+
+const High = styled(Low)`
+  background-color: ${colors.lightRed};
+`;
+
+const buttonCss = {
+  left: css`
+    padding-right: 1rem;
+  `,
+  right: css`
+    padding-left: 1rem;
+    margin-left: auto;
+  `,
+};
 
 const Button = styled.button`
   ${buttonBase};
@@ -50,15 +63,7 @@ const Button = styled.button`
   justify-content: center;
   border-radius: 0.175rem;
   border: 0.125rem solid ${colors.midBlue};
-  ${({ direction }) =>
-    direction === "left"
-      ? "padding-right: 1rem"
-      : direction === "right"
-      ? `
-  padding-left: 1rem;
-  margin-left: auto;
-  `
-      : ""};
+  ${({ direction }) => buttonCss[direction]};
   color: ${colors.midBlue};
   background-color: ${colors.lightBlue};
   &:focus,
@@ -76,8 +81,6 @@ const Button = styled.button`
   }
 `;
 
-// TODO:
-// - go to top of page when changing pages
 const PageNav = ({ logs, low, high, handlePageChange }) => {
   const { isWidth: isDesktop } = useIsWidth("large");
   const buttons = {
@@ -95,8 +98,8 @@ const PageNav = ({ logs, low, high, handlePageChange }) => {
     <NavContainer>
       {isDesktop && (
         <Pagination>
-          Showing <strong>{`${logs.length - high >= 0 ? logs.length - high : 0}`}</strong> to{" "}
-          <strong>{`${logs.length - low}`}</strong> {`of ${logs.length} logs.`}
+          Showing <Low>{`${logs.length - high >= 0 ? logs.length - high : 1}`}</Low> to{" "}
+          <High>{`${logs.length - low}`}</High> {`of ${logs.length} logs.`}
         </Pagination>
       )}
       {Object.keys(buttons).map(i => {

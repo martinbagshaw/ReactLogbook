@@ -1,16 +1,29 @@
-/* formatData.js
- * - format raw data, then cache it (TODO)
- * - id relates to entry in logbook order
+/* formatData.ts
+ * - format logbook data from json
+ * - id = index of climb in logbook
  */
 
-import { months } from "./constants.js";
+import { months } from "./constants";
 
 const twoDigitYear = new Date()
   .getFullYear()
   .toString()
   .substr(2);
 
-const processMonthYear = (month, year, retObj) => {
+type MonthYearInputOptions = "day" | "month" | "monthLong" | "year"
+type MonthYearInput = {
+  [key in MonthYearInputOptions]: string;
+}
+// add optional properties
+interface MonthYearOutput extends MonthYearInput {
+  monthInt?: string; 
+  yearInt?: string; 
+}
+
+// - use a regex instead, if possible
+// - edit months in constants.ts
+const processMonthYear = (month: string, year: string, inputObj: MonthYearInput): MonthYearOutput => {
+  const retObj: MonthYearOutput = { ...inputObj };
   if (Object.keys(months).includes(month)) {
     const { text, int } = months[month];
     retObj.month = month;
@@ -27,7 +40,7 @@ const processMonthYear = (month, year, retObj) => {
   return retObj;
 };
 
-const processDaySuffix = day => {
+const processDaySuffix = (day: string): string => {
   const num = parseInt(day);
   if (!num) {
     return day;
@@ -46,8 +59,7 @@ const processDaySuffix = day => {
   return `${num}th`;
 };
 
-// return an object
-const processDate = date => {
+const processDate = (date: string | undefined): object => {
   const defaultRes = {
     year: "unknown",
     month: "unknown",
