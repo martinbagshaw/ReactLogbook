@@ -1,17 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import {
-  Chevron,
-  Circle,
-  Place,
-  Style,
-  Date,
-  Partner,
-  Comment,
-} from "../../common/icons/Icons.jsx";
-import { colors, breakpoint } from "../../common/styleVars";
-import { buttonBase } from "../../common/Buttons.jsx";
+import { Chevron, Circle, Place, Style, Date, Partner, Comment } from "../common/icons/Icons.jsx";
+import { colors, breakpoint } from "../common/styleVars";
+import { buttonBase } from "../common/Buttons.jsx";
 import IconButton from "./IconButton.jsx";
 
 const Container = styled.div`

@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import useIsWidth from "../../common/useIsWidth.jsx";
-import { searchResultText } from "../../common/Layout.jsx";
-import { buttonBase } from "../../common/Buttons.jsx";
-import { colors, fonts, boxShadow, breakpoint } from "../../common/styleVars";
+import useIsWidth from "../common/useIsWidth.jsx";
+import { searchResultText } from "../common/Layout.jsx";
+import { buttonBase } from "../common/Buttons.jsx";
+import { colors, fonts, boxShadow, breakpoint } from "../common/styleVars";
 
-import { getDate } from "./Logbook.jsx";
+import { getDate } from "../../utils/getDate";
 
 const SearchContainer = styled.div`
   position: relative;

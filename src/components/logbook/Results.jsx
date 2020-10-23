@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import useIsWidth from "../../common/useIsWidth.jsx";
-import Chevron from "../../common/icons/Chevron.jsx";
-import { breakpoint, colors } from "../../common/styleVars";
-import { searchResultText } from "../../common/Layout.jsx";
-import { buttonBase } from "../../common/Buttons.jsx";
+import useIsWidth from "../common/useIsWidth.jsx";
+import Chevron from "../common/icons/Chevron.jsx";
+import { breakpoint, colors } from "../common/styleVars";
+import { searchResultText } from "../common/Layout.jsx";
+import { buttonBase } from "../common/Buttons.jsx";
 
-import { getDate } from "./Logbook.jsx";
+import { getDate } from "../../utils/getDate";
 
 const ResultsList = styled.ul`
   margin: 0 0 3rem;

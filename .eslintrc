@@ -20,5 +20,12 @@
     "no-this-before-super": 2,
     "no-class-assign": 2,
     "react-hooks/rules-of-hooks": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
+      }
+    }
   }
 }

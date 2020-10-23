@@ -1,16 +1,29 @@
-/* formatData.js
- * - format raw data, then cache it (TODO)
- * - id relates to entry in logbook order
+/* formatData.ts
+ * - format logbook data from json
+ * - id = index of climb in logbook
  */
 
-import { months } from "./constants.js";
+import climbData from "../data/mb-logbook.json";
+import { months, MonthOptions } from "./constants";
 
 const twoDigitYear = new Date()
   .getFullYear()
   .toString()
   .substr(2);
 
-const processMonthYear = (month, year, retObj) => {
+type MonthYearInputOptions = "day" | "month" | "monthLong" | "year"
+type MonthYearInput = {
+  [key in MonthYearInputOptions]: string;
+}
+
+// optional properties
+interface MonthYearOutput extends MonthYearInput {
+  monthInt?: string; 
+  yearInt?: string; 
+}
+
+const processMonthYear = (month: keyof typeof months, year: string, inputObj: MonthYearInput): MonthYearOutput => {
+  const retObj: MonthYearOutput = { ...inputObj };
   if (Object.keys(months).includes(month)) {
     const { text, int } = months[month];
     retObj.month = month;
@@ -27,8 +40,8 @@ const processMonthYear = (month, year, retObj) => {
   return retObj;
 };
 
-const processDaySuffix = day => {
-  const num = parseInt(day);
+const processDaySuffix = (day: string): string => {
+  const num: number | 'typeof NaN' = parseInt(day);
   if (!num) {
     return day;
   }
@@ -46,9 +59,18 @@ const processDaySuffix = day => {
   return `${num}th`;
 };
 
-// return an object
-const processDate = date => {
-  const defaultRes = {
+interface DateOptions {
+  year: string,
+  yearInt?: string,
+  month: string,
+  monthLong: string,
+  monthInt?: string,
+  day: string,
+  dayLong?: string,
+}
+
+const processDate = (date: string): DateOptions => {
+  const defaultRes: DateOptions = {
     year: "unknown",
     month: "unknown",
     monthLong: "unknown",
@@ -57,18 +79,19 @@ const processDate = date => {
   if (typeof date !== "string") {
     return defaultRes;
   }
-  const dateArr = date.split("/");
+
+  const dateArr: string[] = date.split("/");
 
   // month and year only
   if (dateArr.length === 2) {
-    const [month, year] = dateArr;
+    const [month, year] = <[m: MonthOptions, y: string]>dateArr;
     const newRes = { ...defaultRes };
     return processMonthYear(month, year, newRes);
   }
 
   // day, month, and year
   if (dateArr.length === 3) {
-    const [day, month, year] = dateArr;
+    const [day, month, year] = <[d: string, m: MonthOptions, y: string]>dateArr;
     const newRes = { ...defaultRes };
     if (day && !day.includes("?") && day.length === 2) {
       newRes.day = day;
@@ -79,8 +102,26 @@ const processDate = date => {
   return defaultRes;
 };
 
-const formatData = rawData => {
-  return rawData.map((item, index) => {
+
+type InputOptions = "Climb name" | "Grade" | "Style" | "Partner(s)" | "Notes" | "Date" | "Crag name";
+interface Date {
+  original: string,
+  processed: DateOptions
+}
+
+interface OutputObject {
+  climbName: string,
+  cragName: string,
+  date: Date,
+  grade: string,
+  notes: string,
+  partners: string,
+  style: string,
+  key: string,
+}
+
+const formatData = (rawData: Record<InputOptions, string>[]): OutputObject[] => {
+  return rawData.map((item, index: number) => {
     return {
       climbName: item["Climb name"],
       cragName: item["Crag name"],
@@ -97,4 +138,7 @@ const formatData = rawData => {
   });
 };
 
-export { formatData };
+// perhaps avoid using a record to make this work:
+const allLogs = formatData(climbData)
+
+export { allLogs, InputOptions, OutputObject };

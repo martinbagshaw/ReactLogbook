@@ -2,17 +2,26 @@ import React, { useState, useEffect, Fragment } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 
-import { defaultSettings, months } from "../../../utils/constants.js";
+import { defaultSettings, months } from "../../utils/constants.ts";
 import StatsHeader from "./StatsHeader.jsx";
 import PieChart from "./PieChart.jsx";
-import Legend from "./Legend.jsx";
-import { breakpoint } from "../../common/styleVars";
+import Legend from "./Legend.tsx";
+import { breakpoint } from "../common/styleVars";
 
 const StatContainer = styled.div`
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 1rem 0;
+  width: 50%;
 `;
+
+// old version: 
+// const StatContainer = styled.div`
+//   width: 50%;
+//   visibility: hidden;
+//   ${({ isVisible }) =>
+//     isVisible &&
+//     `
+//   visibility: visible;
+//   `};
+// `;
 
 const BodySection = styled.section`
   padding-bottom: 250px;
@@ -26,13 +35,11 @@ const BodySection = styled.section`
 // TODO:
 // - cache main chart data for better performance
 // - update key and total logs text when drilling down
-// - clicking 'out' of the piechart resets
 // - more detailed tooltips (handle content drilldown)
 // - link to logbook at end of drilldown (e.g. see logs for a particular date)
 
 // - set up a context for nested components to use
 // - dropdown styling (probably need to reformat data for this)
-// - pie chart more responsive
 // - add more 'type'/overall filters (partners, discipline, etc)
 // ^ see github issue https://github.com/martinbagshaw/ReactLogbook/issues/23
 
@@ -335,34 +342,34 @@ const Stats = ({ handleSingleDay, logs }) => {
         }
         return acc;
       }, []);
+      console.log("dailyLogs", dailyLogs);
       handleSingleDay(dailyLogs, filter);
     }
   }, [hasFilter]);
 
+  // see if I need isVisible prop
   return (
-    !hasFilter?.filter?.day && (
-      <StatContainer>
-        <StatsHeader logs={logs} setDropdown={setDropdown} type={type} />
-        <BodySection>
-          {chartdata && type === "Date" ? (
-            <Fragment>
-              <PieChart
-                chartdata={chartdata}
-                width={500}
-                height={500}
-                innerRadius={120}
-                outerRadius={200}
-                type={type}
-                setFiltered={setFiltered}
-              />
-              <Legend chartdata={chartdata} settings={settings} />
-            </Fragment>
-          ) : (
-            <p>Only date has been implemented so far...</p>
-          )}
-        </BodySection>
-      </StatContainer>
-    )
+    <StatContainer isVisible={!hasFilter?.filter?.day}>
+      <StatsHeader logs={logs} setDropdown={setDropdown} type={type} />
+      <BodySection>
+        {chartdata && type === "Date" ? (
+          <Fragment>
+            <PieChart
+              chartdata={chartdata}
+              width={500}
+              height={500}
+              innerRadius={120}
+              outerRadius={200}
+              type={type}
+              setFiltered={setFiltered}
+            />
+            <Legend chartdata={chartdata} settings={settings} />
+          </Fragment>
+        ) : (
+          <p>Only date has been implemented so far...</p>
+        )}
+      </BodySection>
+    </StatContainer>
   );
 };
 

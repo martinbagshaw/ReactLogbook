@@ -10,24 +10,19 @@ An SPA (Single Page Application) implementation of my climbing logbook, taken fr
 4. `npm t` to run tests with jest and react testing library
 
 ### Stack :books:
-> Things I am intending to use in this project
 
 | **Category**           | **Technology**                                                                            |
 |------------------------|-------------------------------------------------------------------------------------------|
-| Languages              | JavaScript, HTML, CSS                                                                     |
+| Languages              | TypeScript, HTML, CSS                                                                     |
 | Frameworks & Libraries | React, React DOM, React Router DOM, Styled Components, D3                                 |
-| Testing                | Jest, React Testing Library                                                               |
 | Bundler                | Parcel                                                                                    |
-| Quality Assurance      | Es-lint, Prettier, Flow     , Travis                                                      |
+| Quality Assurance      | Es-lint, Prettier                                                                         |
 
 
-### New things (that I haven't used before April 2019) :hatching_chick:
-- React Hooks and Context
-- A Redux - like single source state management implementation using Hooks and Context
+### New things for this project :hatching_chick:
+- React Hooks
 - D3 - data visualisation library
-- MongoDB (perhaps). Alternative to localStorage
-- PropTypes - static types for props and state
-- A more advanced CI Pipeline: More controlled linting / formatting, and pre-commit hooks
+- TypeScript
 
 ### UI Mockups
 > Drafts of the UI - something resembling how the finished product may look

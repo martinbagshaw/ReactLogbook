@@ -2,17 +2,28 @@ import React, { useState } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 
-const SvgChart = styled.svg`
+import { breakpoint } from "../common/styleVars";
+
+const ChartContainer = styled.div`
   display: block;
-  margin: auto;
+  margin: 1rem;
+  max-width: 480px;
+  @media only screen and (min-width: ${breakpoint.Xsmall}) {
+    margin: 1rem auto;
+  }
+  @media only screen and (min-width: ${breakpoint.tablet}) {
+    margin: 0;
+    margin-left: auto;
+    padding-right: 1rem;
+  }
+`;
+
+const SvgChart = styled.svg`
   overflow: visible;
   transform: scale(0.5) translate(0, 0);
   transform-origin: bottom right;
-  max-width: 480px;
-  @media only screen and (min-width: 768px) {
-    margin: 0;
-    margin-left: auto;
-    transform: scale(0.75) translate(0, 50%);
+  @media only screen and (min-width: ${breakpoint.tablet}) {
+    transform: scale(0.5) translate(0, -20%);
   }
 `;
 
@@ -93,28 +104,32 @@ const PieChart = ({ chartdata, innerRadius, outerRadius, type, setFiltered }) =>
     }
     const [a, b] = arcFunc.centroid(data);
     if (a && b) {
-      return `translate(${a - (radius/4)}, ${b - (radius/4)})`;
+      return `translate(${a - radius / 4}, ${b - radius / 4})`;
     }
     return "translate(0, 0)";
   };
 
   return (
-    <SvgChart viewBox="0 0 200 200">
-      <DismissObject onClick={() => setFiltered(null)} />
-      {chartdata.map((d, i) => (
-        <Arc
-          setTooltip={setTooltip}
-          key={i}
-          data={d}
-          index={i}
-          createArc={createArc}
-          colors={colors}
-          format={format}
-          onClick={() => setFiltered(type, d.data)}
-        />
-      ))}
-      {tooltip && <Tooltip transform={getToolPos(tooltip, createArc, outerRadius)} {...tooltip} />}
-    </SvgChart>
+    <ChartContainer>
+      <SvgChart viewBox="0 0 200 200">
+        <DismissObject onClick={() => setFiltered(null)} />
+        {chartdata.map((d, i) => (
+          <Arc
+            setTooltip={setTooltip}
+            key={i}
+            data={d}
+            index={i}
+            createArc={createArc}
+            colors={colors}
+            format={format}
+            onClick={() => setFiltered(type, d.data)}
+          />
+        ))}
+        {tooltip && (
+          <Tooltip transform={getToolPos(tooltip, createArc, outerRadius)} {...tooltip} />
+        )}
+      </SvgChart>
+    </ChartContainer>
   );
 };
 
