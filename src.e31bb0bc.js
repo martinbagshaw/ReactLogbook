@@ -32529,58 +32529,384 @@ var _default = styled;
 exports.default = _default;
 },{"stylis/stylis.min":"../node_modules/stylis/stylis.min.js","stylis-rule-sheet":"../node_modules/stylis-rule-sheet/index.js","react":"../node_modules/react/index.js","@emotion/unitless":"../node_modules/@emotion/unitless/dist/unitless.browser.esm.js","react-is":"../node_modules/react-is/index.js","memoize-one":"../node_modules/memoize-one/dist/memoize-one.esm.js","prop-types":"../node_modules/prop-types/index.js","@emotion/is-prop-valid":"../node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","merge-anything":"../node_modules/merge-anything/dist/index.esm.js","process":"../node_modules/process/browser.js"}],"data/mb-logbook.json":[function(require,module,exports) {
 module.exports = [{
+  "Climb name": "Reliquary",
+  "Grade": "7a+  **",
+  "Style": "Lead RP",
+  "Partner(s)": "Michael Porter",
+  "Date": "17/Oct/20",
+  "Crag name": "Deep Rake"
+}, {
+  "Climb name": "Lead Vein Thrombosis",
+  "Grade": "7a  *",
+  "Style": "Lead O/S",
+  "Partner(s)": "Michael Porter",
+  "Date": "17/Oct/20",
+  "Crag name": "Deep Rake"
+}, {
+  "Climb name": "Rake It In",
+  "Grade": "6b+  **",
+  "Style": "Lead O/S",
+  "Partner(s)": "Michael Porter",
+  "Date": "17/Oct/20",
+  "Crag name": "Deep Rake"
+}, {
+  "Climb name": "Take A Knee",
+  "Grade": "6b+  ",
+  "Style": "Lead O/S",
+  "Partner(s)": "Michael Porter",
+  "Date": "17/Oct/20",
+  "Crag name": "Stoney Middleton"
+}, {
+  "Climb name": "Scarab",
+  "Grade": "E6 6b **",
+  "Style": "TR RP",
+  "Partner(s)": "Michael Porter",
+  "Date": "17/Oct/20",
+  "Crag name": "Stoney Middleton"
+}, {
+  "Climb name": "Carls Wark Crack",
+  "Grade": "E2 5c **",
+  "Style": "Lead O/S",
+  "Partner(s)": "Michael Porter",
+  "Date": "27/Sep/20",
+  "Crag name": "Stoney Middleton"
+}, {
+  "Climb name": "Dies Irae",
+  "Grade": "E2 5c ***",
+  "Style": "Lead O/S",
+  "Partner(s)": "Michael Porter",
+  "Date": "27/Sep/20",
+  "Crag name": "Stoney Middleton"
+}, {
+  "Climb name": "Black Kabul",
+  "Grade": "E5 6b *",
+  "Style": "TR &beta;",
+  "Partner(s)": "Michael Porter",
+  "Date": "27/Sep/20",
+  "Crag name": "Stoney Middleton"
+}, {
+  "Climb name": "Soapsuds",
+  "Grade": "E3 6a *",
+  "Style": "Lead O/S",
+  "Partner(s)": "Michael Porter",
+  "Date": "27/Sep/20",
+  "Crag name": "Stoney Middleton"
+}, {
+  "Climb name": "Green Crack",
+  "Grade": "VS 4c *",
+  "Style": "2nd O/S",
+  "Partner(s)": "Michael Porter",
+  "Date": "27/Sep/20",
+  "Crag name": "Stoney Middleton"
+}, {
+  "Climb name": "Pulsar Direct",
+  "Grade": "E6 6b ***",
+  "Style": "TR dog",
+  "Partner(s)": "Michael Porter",
+  "Notes": "Could not do the crux. Linked up to it though.",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Paddock",
+  "Grade": "VD  *",
+  "Style": "Solo O/S",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Greymalkin",
+  "Grade": "S 4a *",
+  "Style": "Solo O/S",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Wotan's Corner",
+  "Grade": "D  ",
+  "Style": "Solo O/S",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Wotan's Crack",
+  "Grade": "S 4b ",
+  "Style": "Solo O/S",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Jupiter's Crack",
+  "Grade": "HS 4c ",
+  "Style": "Solo O/S",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Doddle",
+  "Grade": "S 4a ",
+  "Style": "Solo O/S",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Piece of Cake",
+  "Grade": "HVD 4a ",
+  "Style": "Solo O/S",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "The Cotter",
+  "Grade": "HVS 5b *",
+  "Style": "Lead O/S",
+  "Partner(s)": "Michael Porter",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Freya's Corner",
+  "Grade": "D  ",
+  "Style": "Solo O/S",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Freya's Wall",
+  "Grade": "HVD 4a ",
+  "Style": "Solo O/S",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Freya's Climb",
+  "Grade": "VD  *",
+  "Style": "Solo O/S",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Loki's Way",
+  "Grade": "HS 4b *",
+  "Style": "Solo O/S",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Hecate",
+  "Grade": "VD  ",
+  "Style": "Solo O/S",
+  "Date": "26/Sep/20",
+  "Crag name": "Higgar Tor"
+}, {
+  "Climb name": "Witherslack Town",
+  "Grade": "6c  ***",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Notes": "Very thin crux. Danny had a hard time getting through it in the wet, glad I didn't have to go up there again!",
+  "Date": "23/Sep/20",
+  "Crag name": "Chapel Head Scar"
+}, {
+  "Climb name": "War Hero",
+  "Grade": "7a  ***",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Notes": "Such a good route, possibly the best 7a I've done in the UK. Sustained.",
+  "Date": "23/Sep/20",
+  "Crag name": "Chapel Head Scar"
+}, {
+  "Climb name": "Sun God",
+  "Grade": "6a  ",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Date": "23/Sep/20",
+  "Crag name": "Chapel Head Scar"
+}, {
+  "Climb name": "Starshine",
+  "Grade": "6a  ",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Date": "23/Sep/20",
+  "Crag name": "Chapel Head Scar"
+}, {
+  "Climb name": "The Heinous Penis",
+  "Grade": "6c  *",
+  "Style": "Lead dog",
+  "Partner(s)": "Danny Crump",
+  "Notes": "Short and hard and I wasn't feeling it.",
+  "Date": "23/Sep/20",
+  "Crag name": "Chapel Head Scar"
+}, {
+  "Climb name": "Essence of a Giraffe",
+  "Grade": "E3 6a *",
+  "Style": "TR O/S",
+  "Partner(s)": "Danny Crump",
+  "Date": "22/Sep/20",
+  "Crag name": "Trowbarrow"
+}, {
+  "Climb name": "Exequy",
+  "Grade": "E6 6b **",
+  "Style": "TR dog",
+  "Partner(s)": "Danny Crump",
+  "Notes": "Got the moves, ran out of light ",
+  "Date": "22/Sep/20",
+  "Crag name": "Trowbarrow"
+}, {
+  "Climb name": "Living Through the Lambada",
+  "Grade": "E2 5c **",
+  "Style": "2nd O/S",
+  "Partner(s)": "Ben the professional bridge player, Martin the Capitalist , Drexciyan",
+  "Notes": "The warm up Anna and I should have had. Lovely face climbing.",
+  "Date": "20/Sep/20",
+  "Crag name": "Rosehearty"
+}, {
+  "Climb name": "Afterglow",
+  "Grade": "E2 5b ***",
+  "Style": "Lead O/S",
+  "Partner(s)": "Anna Fleming",
+  "Notes": "Hard. And I'm not sure this is just due to having several days on.",
+  "Date": "20/Sep/20",
+  "Crag name": "Rosehearty"
+}, {
+  "Climb name": "Squareface",
+  "Grade": "VD  ***",
+  "Style": "AltLd O/S",
+  "Partner(s)": "Anna Fleming",
+  "Date": "19/Sep/20",
+  "Crag name": "Beinn a' Bhuird - Cnap a' Chleirich"
+}, {
+  "Climb name": "Chindit Direct",
+  "Grade": "E1 5b **",
+  "Style": "AltLd O/S",
+  "Partner(s)": "Anna Fleming",
+  "Date": "19/Sep/20",
+  "Crag name": "Beinn a' Bhuird - Cnap a' Chleirich"
+}, {
+  "Climb name": "The Kraken",
+  "Grade": "HVS 5a *",
+  "Style": "AltLd O/S",
+  "Partner(s)": "Drexciyan",
+  "Notes": "One big day out. Started on the route far too late, around 1pm. Every pitch other than the first was fairly wet, with fairly continuous difficulties, made harder by not having a double set of cams. Probably the most wet I've got on a route without it raining. Topped out at about 8pm, then made our way down with one head torch as Dan forgot his. Head torch slipped off my helmet and fell down a hole under a boulder, well out of reach, when in the gully. Fished it out with a long sling with a nut key on! Still took ages to negotiate the shite path along the loch, and make it back to the car around 1am. A winter day in summer.",
+  "Date": "17/Sep/20",
+  "Crag name": "Broad Cairn - Creag an Dubh-loch"
+}, {
+  "Climb name": "Afterthought Arete",
+  "Grade": "M  ***",
+  "Style": "Solo O/S",
+  "Date": "16/Sep/20",
+  "Crag name": "Stag Rocks"
+}, {
+  "Climb name": "Ben Macdui summit",
+  "Grade": "summit  ",
+  "Style": "-",
+  "Date": "15/Sep/20",
+  "Crag name": "Ben Macdui"
+}, {
+  "Climb name": "The Magic Crack",
+  "Grade": "HVS 5a ***",
+  "Style": "AltLd O/S",
+  "Partner(s)": "Anna Fleming",
+  "Notes": "Three firsts on this route. First sustained midging on a route, first time prussiking up a rope to retrieve it when it wouldn't pull, and last but not least, first Scottish summer mountain route. Long overdue.",
+  "Date": "14/Sep/20",
+  "Crag name": "Cairn Gorm - Stob Coire an t-Sneachda"
+}, {
+  "Climb name": "Bold Warrior",
+  "Grade": "E1 5b *",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Date": "13/Sep/20",
+  "Crag name": "Reecastle Crag"
+}, {
+  "Climb name": "Guillotine",
+  "Grade": "E3 5c ***",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Notes": "Crept right at the top as it was soaked. Fun climbing. ",
+  "Date": "13/Sep/20",
+  "Crag name": "Reecastle Crag"
+}, {
+  "Climb name": "Trigger Finger",
+  "Grade": "E2 5c **",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Date": "12/Sep/20",
+  "Crag name": "Humphrey Head"
+}, {
+  "Climb name": "Pork Pie",
+  "Grade": "6b  *",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Date": "12/Sep/20",
+  "Crag name": "Humphrey Head"
+}, {
+  "Climb name": "Sniffing the Saddle Direct",
+  "Grade": "6a+  ",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Date": "12/Sep/20",
+  "Crag name": "Humphrey Head"
+}, {
+  "Climb name": "Sniffing the Saddle",
+  "Grade": "6a+  *",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Date": "12/Sep/20",
+  "Crag name": "Humphrey Head"
+}, {
+  "Climb name": "January",
+  "Grade": "HVS 5a *",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Date": "12/Sep/20",
+  "Crag name": "Humphrey Head"
+}, {
+  "Climb name": "Firing Squad",
+  "Grade": "7a+  **",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Date": "12/Sep/20",
+  "Crag name": "Humphrey Head"
+}, {
+  "Climb name": "Stymen",
+  "Grade": "6c  *",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Date": "12/Sep/20",
+  "Crag name": "Humphrey Head"
+}, {
+  "Climb name": "Shooting the Load",
+  "Grade": "7a  *",
+  "Style": "Lead O/S",
+  "Partner(s)": "Danny Crump",
+  "Date": "12/Sep/20",
+  "Crag name": "Humphrey Head"
+}, {
   "Climb name": "Beacon Wall",
   "Grade": "f4  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Hidden Gem",
   "Grade": "f4  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Doug's Come-uppance",
   "Grade": "f4+  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "1000 Moomins",
   "Grade": "f5  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Kate Moss",
-  "Grade": "f5+",
+  "Grade": "f5+  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Sooty",
-  "Grade": "f6A+",
+  "Grade": "f6A+  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "West Wall",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent x",
-  "Partner(s)": "",
   "Notes": "Took a couple of tries to work out the start",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
@@ -32588,175 +32914,132 @@ module.exports = [{
   "Climb name": "Mash Potatoes",
   "Grade": "f3+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "West Valley Wall Traverse",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Stag",
   "Grade": "f4  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Stag Doo",
-  "Grade": "f6A",
+  "Grade": "f6A  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Stag Arete",
-  "Grade": "f2+",
+  "Grade": "f2+  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Herne the Hunter",
-  "Grade": "f2",
+  "Grade": "f2  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Scooped Out",
-  "Grade": "f2",
+  "Grade": "f2  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "A Day in the Park",
   "Grade": "f2  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Underverse",
   "Grade": "f5+  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Slopey Goodness",
   "Grade": "f5  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Iron Arete",
   "Grade": "f6A+  **",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Warm Up",
   "Grade": "f6A+  *",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Stonefish",
   "Grade": "f4  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Moray",
   "Grade": "f3+  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Red Snapper",
   "Grade": "f5  ***",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Minnow",
   "Grade": "f4+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Starting Block",
-  "Grade": "f2+",
+  "Grade": "f2+  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Ever So Minnow Minnow",
-  "Grade": "f2+",
+  "Grade": "f2+  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Flying Trout LHS",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Flying Trout",
   "Grade": "f5  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "Shhh I'm Taking a Little Pooh",
-  "Grade": "f6B",
+  "Grade": "f6B  ",
   "Style": "Sent dnf",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
 }, {
   "Climb name": "The Cross",
   "Grade": "f7A  **",
   "Style": "Sent dnf",
-  "Partner(s)": "",
   "Notes": "Couldn't hold the swing. Worked some of the moves after, has potential to go some day. Bring anasazi blancos or a shoe that wont slip off on the heel though.",
   "Date": "06/Sep/20",
   "Crag name": "Happy Valley Rocks"
@@ -32773,7 +33056,6 @@ module.exports = [{
   "Grade": "f6B+  ***",
   "Style": "Sent O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "01/Sep/20",
   "Crag name": "Bowles Rocks"
 }, {
@@ -32781,7 +33063,6 @@ module.exports = [{
   "Grade": "6a+ 5a **",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "01/Sep/20",
   "Crag name": "Bowles Rocks"
 }, {
@@ -32789,15 +33070,13 @@ module.exports = [{
   "Grade": "5a 4c *",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "01/Sep/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Sylvie's Slab",
-  "Grade": "5a 4c",
+  "Grade": "5a 4c ",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "01/Sep/20",
   "Crag name": "Bowles Rocks"
 }, {
@@ -32805,7 +33084,6 @@ module.exports = [{
   "Grade": "6b 5b ***",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "01/Sep/20",
   "Crag name": "Bowles Rocks"
 }, {
@@ -32813,7 +33091,6 @@ module.exports = [{
   "Grade": "6c  ***",
   "Style": "DWS O/S",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "31/Aug/20",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
@@ -32821,7 +33098,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "DWS O/S",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "31/Aug/20",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
@@ -32829,7 +33105,6 @@ module.exports = [{
   "Grade": "6c  ***",
   "Style": "DWS O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "31/Aug/20",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
@@ -32837,7 +33112,6 @@ module.exports = [{
   "Grade": "6c  ***",
   "Style": "DWS O/S",
   "Partner(s)": "Andy M, islandlynx, Michael Porter, Andrew porter",
-  "Notes": "",
   "Date": "31/Aug/20",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
@@ -32853,7 +33127,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "DWS O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "31/Aug/20",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
@@ -32877,7 +33150,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "DWS O/S",
   "Partner(s)": "Andy M, islandlynx",
-  "Notes": "",
   "Date": "31/Aug/20",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
@@ -32885,23 +33157,13 @@ module.exports = [{
   "Grade": "6a+  ***",
   "Style": "DWS rpt",
   "Partner(s)": "Andy M, islandlynx, Michael Porter, Andrew porter",
-  "Notes": "",
   "Date": "31/Aug/20",
-  "Crag name": "Berry Head (The Old Redoubt)"
-}, {
-  "Climb name": "Dreadnought",
-  "Grade": "E3 5c ***",
-  "Style": "AltLd",
-  "Partner(s)": "islandlynx",
-  "Notes": "",
-  "Date": "30/Aug/20",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
   "Climb name": "Oz Wall Traverse",
   "Grade": "6b+  ***",
   "Style": "DWS O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "30/Aug/20",
   "Crag name": "Berry Head (Coastguard Cliffs)"
 }, {
@@ -32909,7 +33171,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "DWS O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "30/Aug/20",
   "Crag name": "Berry Head (Coastguard Cliffs)"
 }, {
@@ -32917,7 +33178,6 @@ module.exports = [{
   "Grade": "4a  *",
   "Style": "DWS O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "30/Aug/20",
   "Crag name": "Berry Head (Coastguard Cliffs)"
 }, {
@@ -32933,7 +33193,13 @@ module.exports = [{
   "Grade": "5b  **",
   "Style": "DWS O/S",
   "Partner(s)": "Andy M, Andrew porter, Michael Porter, islandlynx",
-  "Notes": "",
+  "Date": "30/Aug/20",
+  "Crag name": "Berry Head (The Old Redoubt)"
+}, {
+  "Climb name": "Dreadnought",
+  "Grade": "E3 5c ***",
+  "Style": "AltLd O/S",
+  "Partner(s)": "islandlynx",
   "Date": "30/Aug/20",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
@@ -32941,7 +33207,6 @@ module.exports = [{
   "Grade": "7a  **",
   "Style": "DWS β",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "29/Aug/20",
   "Crag name": "Berry Head Quarry"
 }, {
@@ -32949,7 +33214,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "DWS O/S",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "29/Aug/20",
   "Crag name": "Berry Head Quarry"
 }, {
@@ -32957,7 +33221,7 @@ module.exports = [{
   "Grade": "E4 6b ***",
   "Style": "DWS rpt",
   "Partner(s)": "islandlynx",
-  "Notes": "Sans continuation. Pleased to have managed the crux again.",
+  "Notes": "Sans continuation. Pleased to have managed the crux again. ",
   "Date": "29/Aug/20",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
@@ -32970,10 +33234,9 @@ module.exports = [{
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
   "Climb name": "Drop Squad",
-  "Grade": "5a",
+  "Grade": "5a  ",
   "Style": "DWS O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "29/Aug/20",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
@@ -32981,7 +33244,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "DWS O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "29/Aug/20",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
@@ -32989,7 +33251,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "DWS O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "29/Aug/20",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
@@ -32997,15 +33258,13 @@ module.exports = [{
   "Grade": "6b+ 5c ***",
   "Style": "TR O/S",
   "Partner(s)": "Michael Porter, Andrew porter",
-  "Notes": "",
   "Date": "23/Aug/20",
   "Crag name": "High Rocks"
 }, {
   "Climb name": "Advertisment Wall Direct",
-  "Grade": "6b 5c",
+  "Grade": "6b 5c ",
   "Style": "TR RP",
   "Partner(s)": "Michael Porter, Andrew porter",
-  "Notes": "",
   "Date": "23/Aug/20",
   "Crag name": "High Rocks"
 }, {
@@ -33029,7 +33288,6 @@ module.exports = [{
   "Grade": "6c 5c **",
   "Style": "TR O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "23/Aug/20",
   "Crag name": "High Rocks"
 }, {
@@ -33045,14 +33303,12 @@ module.exports = [{
   "Grade": "6b 5b **",
   "Style": "TR O/S",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "23/Aug/20",
   "Crag name": "High Rocks"
 }, {
   "Climb name": "Lord",
-  "Grade": "f6A+",
+  "Grade": "f6A+  ",
   "Style": "Sent dnf",
-  "Partner(s)": "",
   "Notes": "Too hard for me at the moment, not miles off though",
   "Date": "23/Aug/20",
   "Crag name": "High Rocks"
@@ -33069,7 +33325,6 @@ module.exports = [{
   "Grade": "5a 4c **",
   "Style": "TR O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "12/Aug/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33085,7 +33340,6 @@ module.exports = [{
   "Grade": "6a+ 5a **",
   "Style": "TR O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "12/Aug/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33093,7 +33347,6 @@ module.exports = [{
   "Grade": "6c 5c ***",
   "Style": "TR rpt",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "12/Aug/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33101,7 +33354,6 @@ module.exports = [{
   "Grade": "6c+ 6a ***",
   "Style": "TR O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "12/Aug/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33109,7 +33361,6 @@ module.exports = [{
   "Grade": "6b+ 5c *",
   "Style": "TR O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "12/Aug/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33117,7 +33368,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "03/Aug/20",
   "Crag name": "Moy Rock (Dingwall)"
 }, {
@@ -33125,7 +33375,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "03/Aug/20",
   "Crag name": "Moy Rock (Dingwall)"
 }, {
@@ -33133,7 +33382,6 @@ module.exports = [{
   "Grade": "7a  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "03/Aug/20",
   "Crag name": "Moy Rock (Dingwall)"
 }, {
@@ -33141,7 +33389,6 @@ module.exports = [{
   "Grade": "6b+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "03/Aug/20",
   "Crag name": "Moy Rock (Dingwall)"
 }, {
@@ -33149,7 +33396,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "03/Aug/20",
   "Crag name": "Moy Rock (Dingwall)"
 }, {
@@ -33157,7 +33403,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "02/Aug/20",
   "Crag name": "Uig Sea Cliffs North, Aird Uig"
 }, {
@@ -33165,15 +33410,13 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "02/Aug/20",
   "Crag name": "Uig Sea Cliffs North, Aird Uig"
 }, {
   "Climb name": "Paranoid",
-  "Grade": "E2 5c",
+  "Grade": "E2 5c ",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "02/Aug/20",
   "Crag name": "Uig Sea Cliffs North, Aird Uig"
 }, {
@@ -33181,7 +33424,6 @@ module.exports = [{
   "Grade": "VS 5a **",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "02/Aug/20",
   "Crag name": "Uig Sea Cliffs North, Aird Uig"
 }, {
@@ -33189,7 +33431,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "01/Aug/20",
   "Crag name": "Creag Liam"
 }, {
@@ -33197,7 +33438,6 @@ module.exports = [{
   "Grade": "E3 5c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "01/Aug/20",
   "Crag name": "Creag Liam"
 }, {
@@ -33205,7 +33445,6 @@ module.exports = [{
   "Grade": "E4 5c ***",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "01/Aug/20",
   "Crag name": "Uig Sea Cliffs Central, Mangersta"
 }, {
@@ -33213,7 +33452,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "01/Aug/20",
   "Crag name": "Uig Sea Cliffs Central, Mangersta"
 }, {
@@ -33221,7 +33459,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "01/Aug/20",
   "Crag name": "Uig Sea Cliffs Central, Mangersta"
 }, {
@@ -33229,7 +33466,6 @@ module.exports = [{
   "Grade": "E3 5c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "31/Jul/20",
   "Crag name": "Dalbeg Sea Cliffs - Lewis"
 }, {
@@ -33237,7 +33473,6 @@ module.exports = [{
   "Grade": "E3 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "31/Jul/20",
   "Crag name": "Shawbost"
 }, {
@@ -33245,7 +33480,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "31/Jul/20",
   "Crag name": "Shawbost"
 }, {
@@ -33253,7 +33487,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "31/Jul/20",
   "Crag name": "Shawbost"
 }, {
@@ -33261,7 +33494,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "30/Jul/20",
   "Crag name": "Aird Mhor Bhragair"
 }, {
@@ -33269,15 +33501,12 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "30/Jul/20",
   "Crag name": "Aird Mhor Bhragair"
 }, {
   "Climb name": "Left Edge",
   "Grade": "HVS 5a ***",
   "Style": "2nd O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jul/20",
   "Crag name": "Aird Mhor Bhragair"
 }, {
@@ -33285,7 +33514,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "30/Jul/20",
   "Crag name": "Aird Mhor Bhragair"
 }, {
@@ -33293,7 +33521,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "29/Jul/20",
   "Crag name": "Uig Sea Cliffs Central, Mangersta"
 }, {
@@ -33301,7 +33528,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "AltLd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "29/Jul/20",
   "Crag name": "Uig Sea Cliffs Central, Mangersta"
 }, {
@@ -33309,7 +33535,6 @@ module.exports = [{
   "Grade": "E1 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "28/Jul/20",
   "Crag name": "Uig Sea Cliffs Central, Mangersta"
 }, {
@@ -33317,7 +33542,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "28/Jul/20",
   "Crag name": "Uig Sea Cliffs Central, Mangersta"
 }, {
@@ -33325,7 +33549,6 @@ module.exports = [{
   "Grade": "E3 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "28/Jul/20",
   "Crag name": "Uig Sea Cliffs Central, Mangersta"
 }, {
@@ -33333,7 +33556,6 @@ module.exports = [{
   "Grade": "E2 5b *",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "28/Jul/20",
   "Crag name": "Uig Sea Cliffs Central, Mangersta"
 }, {
@@ -33341,7 +33563,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "28/Jul/20",
   "Crag name": "Uig Sea Cliffs Central, Mangersta"
 }, {
@@ -33380,103 +33601,78 @@ module.exports = [{
   "Climb name": "Desperater Times",
   "Grade": "f6A+  ***",
   "Style": "Sent rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/Jul/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "Santa's Claws",
   "Grade": "5a 4c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Netwall",
   "Grade": "4c 4c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Corner Layback",
   "Grade": "6a+ 5a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Drosophila",
   "Grade": "6a+ 5b ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Minimum Orr",
   "Grade": "f5  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Orr Traverse",
   "Grade": "6b 5c **",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Kemp's Delight",
   "Grade": "5a 4c **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Grotto Chimney",
-  "Grade": "4c 4c",
+  "Grade": "4c 4c ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Resistance",
-  "Grade": "f5+",
+  "Grade": "f5+  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Jabba",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Inclination to Sin",
-  "Grade": "f6A+",
+  "Grade": "f6A+  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Fandango Right Hand",
   "Grade": "6c+ 6a ***",
   "Style": "Sent dnf",
-  "Partner(s)": "",
   "Notes": "Bit thin and scary at the top.",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
@@ -33484,24 +33680,18 @@ module.exports = [{
   "Climb name": "Coathanger",
   "Grade": "6b+ 5c ***",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Banana Hammock",
   "Grade": "f6C  **",
   "Style": "Sent dnf",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Tobacco Road",
   "Grade": "f6B+  ***",
   "Style": "Sent rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/Jul/20",
   "Crag name": "Bowles Rocks"
 }, {
@@ -33509,7 +33699,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent rpt",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "19/Jul/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -33517,7 +33706,6 @@ module.exports = [{
   "Grade": "f6A+  ***",
   "Style": "Sent rpt",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "19/Jul/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -33525,7 +33713,6 @@ module.exports = [{
   "Grade": "f6A  **",
   "Style": "Sent rpt",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "19/Jul/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -33533,7 +33720,6 @@ module.exports = [{
   "Grade": "f6A+  ***",
   "Style": "Sent rpt",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "19/Jul/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -33541,7 +33727,6 @@ module.exports = [{
   "Grade": "f5+  **",
   "Style": "Sent rpt",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "19/Jul/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -33556,15 +33741,12 @@ module.exports = [{
   "Climb name": "Reefer Madness",
   "Grade": "6c+  *",
   "Style": "Lead O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Jul/20",
   "Crag name": "Chapel Head Scar"
 }, {
   "Climb name": "Tufa King Hard",
   "Grade": "6c  ***",
   "Style": "Lead O/S",
-  "Partner(s)": "",
   "Notes": "Almost lived up to its name.",
   "Date": "14/Jul/20",
   "Crag name": "Chapel Head Scar"
@@ -33572,8 +33754,6 @@ module.exports = [{
   "Climb name": "La Flange en Decomposition",
   "Grade": "6b  *",
   "Style": "Lead O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Jul/20",
   "Crag name": "Chapel Head Scar"
 }, {
@@ -33581,7 +33761,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "13/Jul/20",
   "Crag name": "Hodge Close Quarry"
 }, {
@@ -33613,7 +33792,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "AltLd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "11/Jul/20",
   "Crag name": "Pikes Crag"
 }, {
@@ -33621,7 +33799,6 @@ module.exports = [{
   "Grade": "E1 5a **",
   "Style": "2nd rpt",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "10/Jul/20",
   "Crag name": "Trowbarrow"
 }, {
@@ -33629,15 +33806,13 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "10/Jul/20",
   "Crag name": "Trowbarrow"
 }, {
   "Climb name": "Warspite",
-  "Grade": "HVS 5a",
+  "Grade": "HVS 5a ",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "10/Jul/20",
   "Crag name": "Trowbarrow"
 }, {
@@ -33645,7 +33820,6 @@ module.exports = [{
   "Grade": "E3 5c *",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "10/Jul/20",
   "Crag name": "Trowbarrow"
 }, {
@@ -33653,7 +33827,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "10/Jul/20",
   "Crag name": "Trowbarrow"
 }, {
@@ -33661,7 +33834,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jul/20",
   "Crag name": "Lorry Park Quarry"
 }, {
@@ -33669,7 +33841,6 @@ module.exports = [{
   "Grade": "6c+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jul/20",
   "Crag name": "Lorry Park Quarry"
 }, {
@@ -33685,7 +33856,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jul/20",
   "Crag name": "Lorry Park Quarry"
 }, {
@@ -33693,7 +33863,6 @@ module.exports = [{
   "Grade": "7a+  *",
   "Style": "Lead RP",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jul/20",
   "Crag name": "Lorry Park Quarry"
 }, {
@@ -33717,7 +33886,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jun/20",
   "Crag name": "Shorn Cliff"
 }, {
@@ -33725,7 +33893,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jun/20",
   "Crag name": "Shorn Cliff"
 }, {
@@ -33733,7 +33900,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jun/20",
   "Crag name": "Shorn Cliff"
 }, {
@@ -33741,7 +33907,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jun/20",
   "Crag name": "Shorn Cliff"
 }, {
@@ -33749,7 +33914,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "28/Jun/20",
   "Crag name": "Shorn Cliff"
 }, {
@@ -33757,7 +33921,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "28/Jun/20",
   "Crag name": "Shorn Cliff"
 }, {
@@ -33765,7 +33928,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "28/Jun/20",
   "Crag name": "Shorn Cliff"
 }, {
@@ -33773,7 +33935,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "28/Jun/20",
   "Crag name": "Shorn Cliff"
 }, {
@@ -33781,7 +33942,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "28/Jun/20",
   "Crag name": "Shorn Cliff"
 }, {
@@ -33789,31 +33949,24 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "28/Jun/20",
   "Crag name": "Shorn Cliff"
 }, {
   "Climb name": "The Magic Tortoise Direct",
   "Grade": "f4  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "25/Jun/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "Desperater Times",
   "Grade": "f6A+  ***",
   "Style": "Sent rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "25/Jun/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "Chip of the old block",
   "Grade": "f5+  *",
   "Style": "Sent rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "25/Jun/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -33821,7 +33974,6 @@ module.exports = [{
   "Grade": "4b 4b **",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "23/Jun/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33829,7 +33981,6 @@ module.exports = [{
   "Grade": "4c 4c **",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "23/Jun/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33845,7 +33996,6 @@ module.exports = [{
   "Grade": "6c 5c ***",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "23/Jun/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33853,7 +34003,6 @@ module.exports = [{
   "Grade": "4c 4c **",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "23/Jun/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33861,7 +34010,6 @@ module.exports = [{
   "Grade": "6c+ 6a **",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "23/Jun/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33869,15 +34017,13 @@ module.exports = [{
   "Grade": "3a 3a **",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "23/Jun/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
   "Climb name": "The Bitch and the Meal Ticket",
-  "Grade": "6b 5c",
+  "Grade": "6b 5c ",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "23/Jun/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33885,7 +34031,6 @@ module.exports = [{
   "Grade": "6b 5b **",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "23/Jun/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33893,15 +34038,13 @@ module.exports = [{
   "Grade": "6c 6a *",
   "Style": "TR dog",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "23/Jun/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
   "Climb name": "Overhanging crack",
-  "Grade": "4c 4c",
+  "Grade": "4c 4c ",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "23/Jun/20",
   "Crag name": "Bulls Hollow Rocks"
 }, {
@@ -33909,7 +34052,6 @@ module.exports = [{
   "Grade": "4c  *",
   "Style": "Lead O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "14/Jun/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -33917,7 +34059,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "14/Jun/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -33925,15 +34066,13 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "14/Jun/20",
   "Crag name": "Horseshoe Quarry"
 }, {
   "Climb name": "Twyfords",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "14/Jun/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -33941,7 +34080,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "14/Jun/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -33949,7 +34087,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "14/Jun/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -33957,7 +34094,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "14/Jun/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -33965,7 +34101,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "14/Jun/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -33973,7 +34108,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "14/Jun/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -33981,15 +34115,12 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "14/Jun/20",
   "Crag name": "Horseshoe Quarry"
 }, {
   "Climb name": "Billericay Brickie",
   "Grade": "f6A+  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Jun/20",
   "Crag name": "Newland Road"
 }, {
@@ -34004,24 +34135,18 @@ module.exports = [{
   "Climb name": "Desperater times, Reversed",
   "Grade": "f6A+  **",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "03/Jun/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "Desperater Times",
   "Grade": "f6A+  ***",
   "Style": "Sent rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "03/Jun/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "To fish the possible",
   "Grade": "f5+  **",
   "Style": "Sent rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "03/Jun/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -34029,7 +34154,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent rpt",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "31/May/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -34037,7 +34161,6 @@ module.exports = [{
   "Grade": "f5+  **",
   "Style": "Sent rpt",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "31/May/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -34045,7 +34168,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "31/May/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -34053,7 +34175,6 @@ module.exports = [{
   "Grade": "f6A  **",
   "Style": "Sent x",
   "Partner(s)": "PeteLemmon",
-  "Notes": "",
   "Date": "31/May/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -34066,10 +34187,10 @@ module.exports = [{
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "You Crack Me Up",
-  "Grade": "E1 5b",
+  "Grade": "E1 5b ",
   "Style": "Lead O/S",
   "Partner(s)": "Hal",
-  "Notes": "Cleaner than expected",
+  "Notes": "Cleaner than expected ",
   "Date": "30/May/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -34077,7 +34198,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Builder Will, Sheepy",
-  "Notes": "",
   "Date": "30/May/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -34085,15 +34205,13 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead β",
   "Partner(s)": "Hal",
-  "Notes": "",
   "Date": "30/May/20",
   "Crag name": "Horseshoe Quarry"
 }, {
   "Climb name": "Foreign Tongues",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Hal",
-  "Notes": "",
   "Date": "30/May/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -34101,7 +34219,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "TR &beta;",
   "Partner(s)": "Sheepy",
-  "Notes": "",
   "Date": "30/May/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -34109,7 +34226,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Builder Will, Sheepy",
-  "Notes": "",
   "Date": "30/May/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -34117,15 +34233,13 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead rpt",
   "Partner(s)": "Builder Will, Sheepy",
-  "Notes": "",
   "Date": "30/May/20",
   "Crag name": "Horseshoe Quarry"
 }, {
   "Climb name": "Sam In You Eye",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Builder Will, Sheepy",
-  "Notes": "",
   "Date": "30/May/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -34133,15 +34247,14 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead rpt",
   "Partner(s)": "Builder Will, Sheepy",
-  "Notes": "",
   "Date": "30/May/20",
   "Crag name": "Horseshoe Quarry"
 }, {
   "Climb name": "Waves of Mutilation",
-  "Grade": "7a",
+  "Grade": "7a  ",
   "Style": "Lead RP",
   "Partner(s)": "Hal, Builder Will, Sheepy, Tom Hudson",
-  "Notes": "Flashed today after putting the clips in from rotund rooney and not inspecting. Satisfying.",
+  "Notes": "Flashed today after putting the clips in from rotund rooney and not inspecting. Satisfying. ",
   "Date": "30/May/20",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -34156,7 +34269,6 @@ module.exports = [{
   "Climb name": "Smohtaf",
   "Grade": "f5+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
   "Notes": "I hope fathoms is better than this!",
   "Date": "28/May/20",
   "Crag name": "Widwal Slabs"
@@ -34164,71 +34276,56 @@ module.exports = [{
   "Climb name": "To fish the possible",
   "Grade": "f5+  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "28/May/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "Bramble corner",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "28/May/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "Jeff Bridges",
   "Grade": "f6B+  **",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "28/May/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "The Railwayman",
   "Grade": "f6A+  ***",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "Ground up, of course.",
+  "Notes": "Ground up, of course. ",
   "Date": "28/May/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "Timelord Traverse",
-  "Grade": "f5+",
+  "Grade": "f5+  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Wright's Rock Area"
 }, {
   "Climb name": "The Daleks",
-  "Grade": "f6A+",
+  "Grade": "f6A+  ",
   "Style": "Sent dnf",
-  "Partner(s)": "",
   "Notes": "Nails",
   "Date": "25/May/20",
   "Crag name": "Wright's Rock Area"
 }, {
   "Climb name": "Cybermen",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Wright's Rock Area"
 }, {
   "Climb name": "Thorns Start",
   "Grade": "f5  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Wright's Rock Area"
 }, {
   "Climb name": "Blazes",
   "Grade": "f6A+  **",
   "Style": "Sent x",
-  "Partner(s)": "",
   "Notes": "2nd go",
   "Date": "25/May/20",
   "Crag name": "Wright's Rock Area"
@@ -34236,7 +34333,6 @@ module.exports = [{
   "Climb name": "Crumble Roof",
   "Grade": "f6A+  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
   "Notes": "Lovely big holds",
   "Date": "25/May/20",
   "Crag name": "Wright's Rock Area"
@@ -34244,32 +34340,25 @@ module.exports = [{
   "Climb name": "Last Wrights",
   "Grade": "f5+  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Wright's Rock Area"
 }, {
   "Climb name": "Little Groove",
   "Grade": "f5+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Wright's Rock Area"
 }, {
   "Climb name": "Virgin Central",
   "Grade": "f6B  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Dimmings Dale"
 }, {
   "Climb name": "Toilet Traverse",
-  "Grade": "f5+",
+  "Grade": "f5+  ",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Ousal Dale"
 }, {
@@ -34285,7 +34374,6 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Ousal Dale"
 }, {
@@ -34293,31 +34381,27 @@ module.exports = [{
   "Grade": "f6A+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Ousal Dale"
 }, {
   "Climb name": "Up Sit Creek",
-  "Grade": "f6A",
+  "Grade": "f6A  ",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Ousal Dale"
 }, {
   "Climb name": "Sitting Duck",
-  "Grade": "f6A+",
+  "Grade": "f6A+  ",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Ousal Dale"
 }, {
   "Climb name": "Be Seated",
-  "Grade": "f6A",
+  "Grade": "f6A  ",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Ousal Dale"
 }, {
@@ -34333,7 +34417,6 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Farley Woods"
 }, {
@@ -34341,78 +34424,63 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Farley Woods"
 }, {
   "Climb name": "The Blue Nile",
-  "Grade": "f5+",
+  "Grade": "f5+  ",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Farley Woods"
 }, {
   "Climb name": "The Hittites",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Farley Woods"
 }, {
   "Climb name": "Abydos Arête",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "25/May/20",
   "Crag name": "Farley Woods"
 }, {
   "Climb name": "Forest wall sit-start",
-  "Grade": "f6A",
+  "Grade": "f6A  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Forest Rock"
 }, {
   "Climb name": "Forest wall",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Forest Rock"
 }, {
   "Climb name": "Sorcerer",
   "Grade": "f5+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Forest Rock"
 }, {
   "Climb name": "Saucy (sit-start)",
   "Grade": "f6B  ***",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Forest Rock"
 }, {
   "Climb name": "Saucy (boulder problem)",
   "Grade": "f5  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Forest Rock"
 }, {
   "Climb name": "Sorceress (stand start)",
-  "Grade": "f6C",
+  "Grade": "f6C  ",
   "Style": "Sent x",
-  "Partner(s)": "",
   "Notes": "Thanks to some spotting / pad moving by a local named Ollie",
   "Date": "24/May/20",
   "Crag name": "Forest Rock"
@@ -34437,31 +34505,27 @@ module.exports = [{
   "Grade": "f5  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
   "Climb name": "The Wafer Sit-start",
-  "Grade": "f6A+",
+  "Grade": "f6A+  ",
   "Style": "Sent β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
   "Climb name": "Final Push",
-  "Grade": "f6B",
+  "Grade": "f6B  ",
   "Style": "Sent β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
   "Climb name": "Pedal Pushers",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
@@ -34469,7 +34533,6 @@ module.exports = [{
   "Grade": "f6A+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
@@ -34477,15 +34540,13 @@ module.exports = [{
   "Grade": "f6B+  ***",
   "Style": "Sent β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
   "Climb name": "The Pull",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
@@ -34493,7 +34554,6 @@ module.exports = [{
   "Grade": "f5  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
@@ -34501,7 +34561,6 @@ module.exports = [{
   "Grade": "f4  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
@@ -34509,7 +34568,6 @@ module.exports = [{
   "Grade": "f5  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
@@ -34517,7 +34575,6 @@ module.exports = [{
   "Grade": "f5  **",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
@@ -34525,7 +34582,6 @@ module.exports = [{
   "Grade": "f6B  **",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
@@ -34533,7 +34589,6 @@ module.exports = [{
   "Grade": "f6B  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
@@ -34541,295 +34596,226 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
   "Climb name": "Orange Crush",
-  "Grade": "f5+",
+  "Grade": "f5+  ",
   "Style": "Sent β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
   "Climb name": "The Wafer",
-  "Grade": "f6A",
+  "Grade": "f6A  ",
   "Style": "Sent β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/20",
   "Crag name": "Ousal Dale"
 }, {
   "Climb name": "Left Wing Pipe Wall (4)",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Left Wing Pipe Wall (3)",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Left Wing Pipe Wall (2)",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Left Wing Pipe Wall (1)",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Pipe Wall (7)",
-  "Grade": "f6A",
+  "Grade": "f6A  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Pipe Wall (6)",
-  "Grade": "f6A",
+  "Grade": "f6A  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Pipe Wall (5)",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Pipe Wall (4)",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Pipe Wall (3)",
-  "Grade": "f3+",
+  "Grade": "f3+  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Pipe Wall (2)",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Pipe Wall (1)",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Pipe Wall (10)",
-  "Grade": "f6A",
+  "Grade": "f6A  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Pipe Wall (11)",
   "Grade": "f5  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Sun Wall Traverse (stand start)",
   "Grade": "f6A  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Right Wing Sun Wall (4)",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Right Wing Sun Wall (3)",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Right Wing Sun Wall (2)",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Right Wing Sun Wall (1)",
   "Grade": "f4  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Sun Wall (7)",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Sun Wall (8)",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Sun Wall (9)",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/May/20",
   "Crag name": "Slawston Bridge"
 }, {
   "Climb name": "Hadrian's Wall",
   "Grade": "6a+ 5b ***",
   "Style": "TR rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/May/20",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Asterix",
   "Grade": "6b 5c ***",
   "Style": "TR rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/May/20",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "romulus",
-  "Grade": "6a+ 5b",
+  "Grade": "6a+ 5b ",
   "Style": "TR O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/May/20",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Remus",
   "Grade": "4c 4c **",
   "Style": "TR rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/May/20",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Good Route...Good Line",
   "Grade": "6b 5c **",
   "Style": "TR O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/May/20",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Layaway",
-  "Grade": "6a 5b",
+  "Grade": "6a 5b ",
   "Style": "TR O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/May/20",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Hipposuction",
   "Grade": "6a 5b *",
   "Style": "TR O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/May/20",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Appetite for Destruction",
   "Grade": "6c 6a *",
   "Style": "TR RP",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "22/May/20",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Azazel",
   "Grade": "f7A  **",
   "Style": "Sent dnf",
-  "Partner(s)": "",
-  "Notes": "V5 version.",
+  "Notes": "V5 version. ",
   "Date": "22/May/20",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "The profiterole",
   "Grade": "f7A  ***",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "19/May/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "The end of the eclair",
   "Grade": "f6C  **",
   "Style": "Sent rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "19/May/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "Desperater Times",
   "Grade": "f6A+  ***",
   "Style": "Sent rpt",
-  "Partner(s)": "",
   "Notes": "Did this twice today",
   "Date": "17/May/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "The uncredible hand crack",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Sent rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/May/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -34837,7 +34823,6 @@ module.exports = [{
   "Grade": "f6A+  **",
   "Style": "Sent O/S",
   "Partner(s)": "PeteLemmon, Ed Green",
-  "Notes": "",
   "Date": "17/May/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -34845,63 +34830,48 @@ module.exports = [{
   "Grade": "f5  *",
   "Style": "Sent O/S",
   "Partner(s)": "PeteLemmon, Ed Green",
-  "Notes": "",
   "Date": "17/May/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "The Essex File",
   "Grade": "VS 5a ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "15/May/20",
   "Crag name": "End of the Line Bridge"
 }, {
   "Climb name": "The Essex File sit start",
   "Grade": "f5  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "15/May/20",
   "Crag name": "End of the Line Bridge"
 }, {
   "Climb name": "Desperater Times",
   "Grade": "f6A+  ***",
   "Style": "Sent rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/May/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "The uncredible hand crack",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Sent rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/May/20",
   "Crag name": "Widwal Slabs"
 }, {
-  "Climb name": "Appointment with a doughnut",
+  "Climb name": "Appointment with a doughnut ",
   "Grade": "f6B+  **",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "08/May/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "The end of the eclair",
   "Grade": "f6C  **",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "04/May/20",
   "Crag name": "Widwal Slabs"
 }, {
   "Climb name": "Desperater Times",
   "Grade": "f6A+  ***",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "??/May/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -34916,8 +34886,6 @@ module.exports = [{
   "Climb name": "Desperate Times",
   "Grade": "f6A  **",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "??/Apr/20",
   "Crag name": "Widwal Slabs"
 }, {
@@ -34925,7 +34893,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "14/Mar/20",
   "Crag name": "Blacknor Far South"
 }, {
@@ -34933,7 +34900,6 @@ module.exports = [{
   "Grade": "7b  **",
   "Style": "TR dog",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "14/Mar/20",
   "Crag name": "Blacknor Far South"
 }, {
@@ -34941,7 +34907,6 @@ module.exports = [{
   "Grade": "7a+  **",
   "Style": "TR dog",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "14/Mar/20",
   "Crag name": "Blacknor Far South"
 }, {
@@ -34949,7 +34914,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead dog",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "14/Mar/20",
   "Crag name": "Blacknor Far South"
 }, {
@@ -34957,7 +34921,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "14/Mar/20",
   "Crag name": "Blacknor Far South"
 }, {
@@ -34965,7 +34928,6 @@ module.exports = [{
   "Grade": "7a  **",
   "Style": "Lead β",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "23/Feb/20",
   "Crag name": "The Cuttings"
 }, {
@@ -34981,7 +34943,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead rpt",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "22/Feb/20",
   "Crag name": "The Cuttings"
 }, {
@@ -34989,7 +34950,6 @@ module.exports = [{
   "Grade": "7b  ***",
   "Style": "TR dog",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "22/Feb/20",
   "Crag name": "The Cuttings"
 }, {
@@ -34997,7 +34957,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead rpt",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "22/Feb/20",
   "Crag name": "The Cuttings"
 }, {
@@ -35021,7 +34980,6 @@ module.exports = [{
   "Grade": "f6B+  *",
   "Style": "Sent x",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "01/Feb/20",
   "Crag name": "Stanton in the Woods"
 }, {
@@ -35029,15 +34987,13 @@ module.exports = [{
   "Grade": "f6B  *",
   "Style": "Sent dnf",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "01/Feb/20",
   "Crag name": "Stanton in the Woods"
 }, {
   "Climb name": "Hang on a Minute",
-  "Grade": "f6B",
+  "Grade": "f6B  ",
   "Style": "Sent x",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "01/Feb/20",
   "Crag name": "Stanton in the Woods"
 }, {
@@ -35045,7 +35001,6 @@ module.exports = [{
   "Grade": "f6B+  *",
   "Style": "Sent β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "01/Feb/20",
   "Crag name": "Stanton in the Woods"
 }, {
@@ -35053,7 +35008,6 @@ module.exports = [{
   "Grade": "f7A  *",
   "Style": "Sent dnf",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "01/Feb/20",
   "Crag name": "Stanton in the Woods"
 }, {
@@ -35061,7 +35015,6 @@ module.exports = [{
   "Grade": "f6C  *",
   "Style": "Sent dnf",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "01/Feb/20",
   "Crag name": "Stanton in the Woods"
 }, {
@@ -35069,7 +35022,6 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -35077,7 +35029,6 @@ module.exports = [{
   "Grade": "f6B  **",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
@@ -35085,7 +35036,6 @@ module.exports = [{
   "Grade": "f6C  *",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -35093,7 +35043,6 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
@@ -35101,7 +35050,6 @@ module.exports = [{
   "Grade": "f6B+  **",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -35109,7 +35057,6 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
@@ -35133,7 +35080,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -35141,7 +35087,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
@@ -35149,23 +35094,20 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Cheyne Weares Area"
 }, {
   "Climb name": "Water Horse",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
   "Climb name": "Stinking Bishop",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
@@ -35173,7 +35115,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
@@ -35181,7 +35122,6 @@ module.exports = [{
   "Grade": "f6B  *",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
@@ -35189,7 +35129,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
@@ -35197,7 +35136,6 @@ module.exports = [{
   "Grade": "f6A+  **",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
@@ -35205,7 +35143,6 @@ module.exports = [{
   "Grade": "f4  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
@@ -35213,7 +35150,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
@@ -35221,87 +35157,66 @@ module.exports = [{
   "Grade": "f4  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
   "Climb name": "Drama at the Wild Bean Cafe",
   "Grade": "f5  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
   "Climb name": "Drama at the Wild Bean Cafe, Stand-up",
   "Grade": "f3  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
   "Climb name": "Real Freaks",
   "Grade": "f4+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
   "Climb name": "Real Freaks, Stand-up",
   "Grade": "f3  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
   "Climb name": "Burning Like Fire, Stand-up",
   "Grade": "f5  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
   "Climb name": "Wake Up the Funk",
   "Grade": "f6A  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
   "Climb name": "Wake Up the Funk, Stand-up",
   "Grade": "f4+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
   "Climb name": "Nukleuz, Stand-up",
   "Grade": "f5+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
   "Climb name": "Get Wicked, Stand-up",
   "Grade": "f5+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
   "Climb name": "Deep Swarm",
   "Grade": "f4+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Dec/19",
   "Crag name": "Southwell Landslips"
 }, {
@@ -35309,7 +35224,6 @@ module.exports = [{
   "Grade": "f4+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35317,7 +35231,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35325,7 +35238,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35333,7 +35245,6 @@ module.exports = [{
   "Grade": "f5+  **",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35341,7 +35252,6 @@ module.exports = [{
   "Grade": "f6A  **",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35349,15 +35259,13 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Sans Gorilla",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35365,7 +35273,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35373,7 +35280,6 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35381,7 +35287,6 @@ module.exports = [{
   "Grade": "f4+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35389,7 +35294,6 @@ module.exports = [{
   "Grade": "f3+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35397,7 +35301,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35405,7 +35308,6 @@ module.exports = [{
   "Grade": "f5  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35413,7 +35315,6 @@ module.exports = [{
   "Grade": "f5  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35421,15 +35322,13 @@ module.exports = [{
   "Grade": "f4+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Fakir",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35437,23 +35336,20 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent dnf",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Jam Eater",
-  "Grade": "f5+",
+  "Grade": "f5+  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "The Ramp",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35461,7 +35357,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35469,7 +35364,6 @@ module.exports = [{
   "Grade": "f5  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35477,7 +35371,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35485,7 +35378,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35493,119 +35385,91 @@ module.exports = [{
   "Grade": "f7A  **",
   "Style": "Sent dnf",
   "Partner(s)": "Michael Porter",
-  "Notes": "December fatness made this a no go for the time being",
+  "Notes": "December fatness made this a no go for the time being ",
   "Date": "28/Dec/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Outside Route",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/Dec/19",
   "Crag name": "Wharncliffe Crags"
 }, {
   "Climb name": "Inside Route",
   "Grade": "D  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/Dec/19",
   "Crag name": "Wharncliffe Crags"
 }, {
   "Climb name": "Teresa's Slab",
-  "Grade": "HVD 4a",
+  "Grade": "HVD 4a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/Dec/19",
   "Crag name": "Wharncliffe Crags"
 }, {
   "Climb name": "Scarlett's Climb",
   "Grade": "HS 4c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/Dec/19",
   "Crag name": "Wharncliffe Crags"
 }, {
   "Climb name": "Alpha Crack",
   "Grade": "D  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/Dec/19",
   "Crag name": "Wharncliffe Crags"
 }, {
   "Climb name": "Beta Crack",
   "Grade": "S 4a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/Dec/19",
   "Crag name": "Wharncliffe Crags"
 }, {
   "Climb name": "Remus",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/Dec/19",
   "Crag name": "Wharncliffe Crags"
 }, {
   "Climb name": "Black Slab Left",
   "Grade": "HVD 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/Dec/19",
   "Crag name": "Wharncliffe Crags"
 }, {
   "Climb name": "Black Slab Centre",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/Dec/19",
   "Crag name": "Wharncliffe Crags"
 }, {
   "Climb name": "Black Slab Right",
   "Grade": "M  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "23/Dec/19",
   "Crag name": "Wharncliffe Crags"
 }, {
   "Climb name": "Route 1",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "21/Dec/19",
   "Crag name": "Baslow Edge"
 }, {
   "Climb name": "Route 2",
   "Grade": "D 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "21/Dec/19",
   "Crag name": "Baslow Edge"
 }, {
   "Climb name": "Route 3.5",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "21/Dec/19",
   "Crag name": "Baslow Edge"
 }, {
   "Climb name": "Men Only",
   "Grade": "f3+  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "21/Dec/19",
   "Crag name": "Baslow Edge"
 }, {
@@ -35613,7 +35477,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "29/Oct/19",
   "Crag name": "Stackpole Head"
 }, {
@@ -35621,7 +35484,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "29/Oct/19",
   "Crag name": "Stackpole Head"
 }, {
@@ -35629,7 +35491,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "29/Oct/19",
   "Crag name": "Mowingword"
 }, {
@@ -35637,7 +35498,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "28/Oct/19",
   "Crag name": "Carreg-y-Barcud Area"
 }, {
@@ -35645,7 +35505,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "28/Oct/19",
   "Crag name": "Carreg-y-Barcud Area"
 }, {
@@ -35653,7 +35512,6 @@ module.exports = [{
   "Grade": "E5 6a ***",
   "Style": "2nd &beta;",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "28/Oct/19",
   "Crag name": "Carreg-y-Barcud Area"
 }, {
@@ -35661,7 +35519,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "28/Oct/19",
   "Crag name": "Carreg-y-Barcud Area"
 }, {
@@ -35685,7 +35542,6 @@ module.exports = [{
   "Grade": "E3 5c *",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "27/Oct/19",
   "Crag name": "St. Govan's Head"
 }, {
@@ -35693,7 +35549,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "27/Oct/19",
   "Crag name": "St. Govan's Head"
 }, {
@@ -35701,7 +35556,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "27/Oct/19",
   "Crag name": "Trevallen Cliff"
 }, {
@@ -35709,7 +35563,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "Blacknor Central"
 }, {
@@ -35717,7 +35570,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "Blacknor Central"
 }, {
@@ -35741,7 +35593,6 @@ module.exports = [{
   "Grade": "f7A  **",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35749,7 +35600,6 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent rpt",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35757,7 +35607,6 @@ module.exports = [{
   "Grade": "f6C  **",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35765,31 +35614,27 @@ module.exports = [{
   "Grade": "f7A  **",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Make it Snappy",
-  "Grade": "f5+",
+  "Grade": "f5+  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Boris the Crowbar",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Snapping at Your Toes",
-  "Grade": "f6A",
+  "Grade": "f6A  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35797,23 +35642,20 @@ module.exports = [{
   "Grade": "f3  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Parky's Pitstop",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Another Ton of Rock",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35821,23 +35663,20 @@ module.exports = [{
   "Grade": "f4  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Noisy Bastards",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Sunshine Traverse",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35845,15 +35684,13 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Deep Freeze",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35861,7 +35698,6 @@ module.exports = [{
   "Grade": "f6C+  **",
   "Style": "Sent dnf",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Oct/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -35869,7 +35705,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "12/Oct/19",
   "Crag name": "High Tor"
 }, {
@@ -35877,7 +35712,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "2nd rpt",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "12/Oct/19",
   "Crag name": "High Tor"
 }, {
@@ -35914,7 +35748,7 @@ module.exports = [{
   "Crag name": "Wallsend South"
 }, {
   "Climb name": "White Unconquerable",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
   "Notes": "The shite unconquerable would be a better name for this one.",
@@ -35922,26 +35756,23 @@ module.exports = [{
   "Crag name": "Wallsend South"
 }, {
   "Climb name": "Trees are green",
-  "Grade": "4a 4a",
+  "Grade": "4a 4a ",
   "Style": "Solo O/S",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "14/Sep/19",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Photinia",
-  "Grade": "6c+ 6a",
+  "Grade": "6c+ 6a ",
   "Style": "TR RP",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "14/Sep/19",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "New Hat",
-  "Grade": "6c+ 6a",
+  "Grade": "6c+ 6a ",
   "Style": "TR O/S",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "14/Sep/19",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -35949,31 +35780,28 @@ module.exports = [{
   "Grade": "6b 5c *",
   "Style": "TR RP",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "14/Sep/19",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Usurper",
-  "Grade": "6a 5b",
+  "Grade": "6a 5b ",
   "Style": "TR O/S",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "14/Sep/19",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Sticky Wicket",
-  "Grade": "6b 5c",
+  "Grade": "6b 5c ",
   "Style": "TR RP",
   "Partner(s)": "Andy M",
-  "Notes": "Tried climbing it like a crack, but it was too flared to get jams in on the hard bit. After Andy tried laybacking, it seemed like that was the way forward.",
+  "Notes": "Tried climbing it like a crack, but it was too flared to get jams in on the hard bit. After Andy tried laybacking, it seemed like that was the way forward. ",
   "Date": "14/Sep/19",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "rotten stump wall",
-  "Grade": "6b+ 5c",
+  "Grade": "6b+ 5c ",
   "Style": "TR O/S",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "14/Sep/19",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -35981,15 +35809,12 @@ module.exports = [{
   "Grade": "6b 5b **",
   "Style": "TR O/S",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "14/Sep/19",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Fingernail Crack",
-  "Grade": "3a 3a",
+  "Grade": "3a 3a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Sep/19",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -35997,7 +35822,7 @@ module.exports = [{
   "Grade": "6b+ 5c **",
   "Style": "TR O/S",
   "Partner(s)": "Andy M",
-  "Notes": "One of the best routes I\\'ve  done at Harrison\\'s.",
+  "Notes": "One of the best routes I\\'ve  done at Harrison\\'s. ",
   "Date": "14/Sep/19",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -36005,7 +35830,6 @@ module.exports = [{
   "Grade": "5a 4c ***",
   "Style": "TR rpt",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "14/Sep/19",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -36013,7 +35837,6 @@ module.exports = [{
   "Grade": "5a 4c **",
   "Style": "TR O/S",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "14/Sep/19",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -36021,7 +35844,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead rpt",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "08/Sep/19",
   "Crag name": "Kilnsey"
 }, {
@@ -36029,7 +35851,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "08/Sep/19",
   "Crag name": "Kilnsey"
 }, {
@@ -36069,7 +35890,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "07/Sep/19",
   "Crag name": "Kilnsey"
 }, {
@@ -36093,7 +35913,7 @@ module.exports = [{
   "Grade": "E3 5c **",
   "Style": "Lead dnf",
   "Partner(s)": "RevTyler",
-  "Notes": "Placed cams above me in the upper crack, which got the rope involved in one of the thin hand jams, then took a slip when adjusting. Balls. Abbed for gear as I lost my mojo. Guess it\\'s been a while since I pushed myself on a crack. Great route though",
+  "Notes": "Placed cams above me in the upper crack, which got the rope involved in one of the thin hand jams, then took a slip when adjusting. Balls. Abbed for gear as I lost my mojo. Guess it\\'s been a while since I pushed myself on a crack. Great route though ",
   "Date": "01/Sep/19",
   "Crag name": "Millstone Edge"
 }, {
@@ -36101,7 +35921,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "2nd rpt",
   "Partner(s)": "RevTyler",
-  "Notes": "",
   "Date": "01/Sep/19",
   "Crag name": "Millstone Edge"
 }, {
@@ -36109,7 +35928,6 @@ module.exports = [{
   "Grade": "VS 4b *",
   "Style": "2nd O/S",
   "Partner(s)": "RevTyler",
-  "Notes": "",
   "Date": "31/Aug/19",
   "Crag name": "Burbage North"
 }, {
@@ -36117,7 +35935,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "RevTyler",
-  "Notes": "",
   "Date": "31/Aug/19",
   "Crag name": "Burbage North"
 }, {
@@ -36125,7 +35942,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "RevTyler",
-  "Notes": "",
   "Date": "31/Aug/19",
   "Crag name": "Burbage North"
 }, {
@@ -36133,7 +35949,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "RevTyler",
-  "Notes": "",
   "Date": "31/Aug/19",
   "Crag name": "Burbage North"
 }, {
@@ -36141,7 +35956,6 @@ module.exports = [{
   "Grade": "VS 4b **",
   "Style": "2nd rpt",
   "Partner(s)": "RevTyler",
-  "Notes": "",
   "Date": "31/Aug/19",
   "Crag name": "Burbage North"
 }, {
@@ -36149,7 +35963,6 @@ module.exports = [{
   "Grade": "VS 4b *",
   "Style": "2nd O/S",
   "Partner(s)": "RevTyler",
-  "Notes": "",
   "Date": "31/Aug/19",
   "Crag name": "Burbage North"
 }, {
@@ -36157,7 +35970,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "2nd rpt",
   "Partner(s)": "RevTyler",
-  "Notes": "",
   "Date": "31/Aug/19",
   "Crag name": "Burbage North"
 }, {
@@ -36165,7 +35977,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "2nd rpt",
   "Partner(s)": "RevTyler",
-  "Notes": "",
   "Date": "31/Aug/19",
   "Crag name": "Burbage North"
 }, {
@@ -36173,7 +35984,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "RevTyler",
-  "Notes": "",
   "Date": "31/Aug/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -36181,15 +35991,12 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "2nd rpt",
   "Partner(s)": "RevTyler",
-  "Notes": "",
   "Date": "31/Aug/19",
   "Crag name": "Stanage Plantation"
 }, {
   "Climb name": "Bridle Piton Slab",
   "Grade": "D  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "27/Aug/19",
   "Crag name": "Haytor (aka Hay Tor) and Low Man"
 }, {
@@ -36197,7 +36004,6 @@ module.exports = [{
   "Grade": "VD  **",
   "Style": "Solo O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "27/Aug/19",
   "Crag name": "Haytor (aka Hay Tor) and Low Man"
 }, {
@@ -36205,7 +36011,6 @@ module.exports = [{
   "Grade": "VD  **",
   "Style": "Solo O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "27/Aug/19",
   "Crag name": "Haytor (aka Hay Tor) and Low Man"
 }, {
@@ -36213,7 +36018,6 @@ module.exports = [{
   "Grade": "D  *",
   "Style": "Solo O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "27/Aug/19",
   "Crag name": "Haytor (aka Hay Tor) and Low Man"
 }, {
@@ -36221,7 +36025,6 @@ module.exports = [{
   "Grade": "VD  *",
   "Style": "Solo O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "27/Aug/19",
   "Crag name": "Haytor (aka Hay Tor) and Low Man"
 }, {
@@ -36229,7 +36032,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "2nd rpt",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "27/Aug/19",
   "Crag name": "Haytor (aka Hay Tor) and Low Man"
 }, {
@@ -36237,7 +36039,6 @@ module.exports = [{
   "Grade": "VS 4b **",
   "Style": "Solo O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "27/Aug/19",
   "Crag name": "Haytor (aka Hay Tor) and Low Man"
 }, {
@@ -36261,7 +36062,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "26/Aug/19",
   "Crag name": "Berry Head (The Old Redoubt)"
 }, {
@@ -36277,7 +36077,6 @@ module.exports = [{
   "Grade": "E3 5c ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "25/Aug/19",
   "Crag name": "Long Quarry Point"
 }, {
@@ -36285,11 +36084,10 @@ module.exports = [{
   "Grade": "VD  ***",
   "Style": "DWS O/S",
   "Partner(s)": "Katarina, AJ",
-  "Notes": "",
   "Date": "25/Aug/19",
   "Crag name": "Long Quarry Point"
 }, {
-  "Climb name": "Arapiles, Oh Arapiles",
+  "Climb name": "Arapiles, Oh Arapiles ",
   "Grade": "7a+ S0 ***",
   "Style": "DWS dnf",
   "Partner(s)": "Dohnny_Jawes, Andy M, Wil Treasure, Michael Porter, AJ, Terri Chiam",
@@ -36297,11 +36095,10 @@ module.exports = [{
   "Date": "25/Aug/19",
   "Crag name": "Long Quarry Point"
 }, {
-  "Climb name": "Honour Bright",
+  "Climb name": "Honour Bright ",
   "Grade": "6a+ S1 **",
   "Style": "DWS O/S",
   "Partner(s)": "Dohnny_Jawes, Andy M, Wil Treasure, Terri Chiam",
-  "Notes": "",
   "Date": "25/Aug/19",
   "Crag name": "Long Quarry Point"
 }, {
@@ -36313,11 +36110,10 @@ module.exports = [{
   "Date": "25/Aug/19",
   "Crag name": "Long Quarry Point"
 }, {
-  "Climb name": "Crystal Pockets",
+  "Climb name": "Crystal Pockets ",
   "Grade": "5c S2 **",
   "Style": "DWS O/S",
   "Partner(s)": "Dohnny_Jawes, Andy M, Wil Treasure, Michael Porter, Terri Chiam",
-  "Notes": "",
   "Date": "25/Aug/19",
   "Crag name": "Long Quarry Point"
 }, {
@@ -36341,7 +36137,6 @@ module.exports = [{
   "Grade": "E2 5c *",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "23/Aug/19",
   "Crag name": "Doyden Point"
 }, {
@@ -36349,7 +36144,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "23/Aug/19",
   "Crag name": "Doyden Point"
 }, {
@@ -36357,7 +36151,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "23/Aug/19",
   "Crag name": "Doyden Point"
 }, {
@@ -36373,7 +36166,6 @@ module.exports = [{
   "Grade": "6c+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "21/Jul/19",
   "Crag name": "Chee Dale Lower"
 }, {
@@ -36397,7 +36189,7 @@ module.exports = [{
   "Grade": "7a  ***",
   "Style": "Lead RP",
   "Partner(s)": "Michael Porter",
-  "Notes": "1st RP. Found the lower wall ok, got stuck passing the overhang.",
+  "Notes": "1st RP. Found the lower wall ok, got stuck passing the overhang. ",
   "Date": "21/Jul/19",
   "Crag name": "Chee Dale Lower"
 }, {
@@ -36405,7 +36197,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "21/Jul/19",
   "Crag name": "Chee Dale Lower"
 }, {
@@ -36453,7 +36244,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "06/Jul/19",
   "Crag name": "La Joux"
 }, {
@@ -36461,7 +36251,6 @@ module.exports = [{
   "Grade": "4c  **",
   "Style": "Lead O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "06/Jul/19",
   "Crag name": "La Joux"
 }, {
@@ -36469,7 +36258,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "06/Jul/19",
   "Crag name": "La Joux"
 }, {
@@ -36477,7 +36265,6 @@ module.exports = [{
   "Grade": "5c  **",
   "Style": "Lead β",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "06/Jul/19",
   "Crag name": "La Joux"
 }, {
@@ -36485,7 +36272,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead G/U",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "06/Jul/19",
   "Crag name": "La Joux"
 }, {
@@ -36509,12 +36295,11 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "30/Jun/19",
   "Crag name": "Blacknor Central"
 }, {
   "Climb name": "Portland Exclusion Zone",
-  "Grade": "6c",
+  "Grade": "6c  ",
   "Style": "Lead dog",
   "Partner(s)": "Michael Porter",
   "Notes": "Made it past the tricky bit to be spat off by chossy footholds",
@@ -36522,10 +36307,9 @@ module.exports = [{
   "Crag name": "Cheyne Weares Area"
 }, {
   "Climb name": "Leonardo",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Jun/19",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -36541,7 +36325,6 @@ module.exports = [{
   "Grade": "E1 5c **",
   "Style": "DWS rpt",
   "Partner(s)": "Andrew porter, Andy M, Michael Porter",
-  "Notes": "",
   "Date": "29/Jun/19",
   "Crag name": "Cave Hole"
 }, {
@@ -36556,16 +36339,12 @@ module.exports = [{
   "Climb name": "The Little Hard",
   "Grade": "E3 5c *",
   "Style": "DWS O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Jun/19",
   "Crag name": "Cave Hole"
 }, {
   "Climb name": "Temporary Lifestyle",
   "Grade": "HS 4b **",
   "Style": "DWS rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Jun/19",
   "Crag name": "Cave Hole"
 }, {
@@ -36573,7 +36352,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "23/Jun/19",
   "Crag name": "Staden Quarry"
 }, {
@@ -36581,7 +36359,6 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "23/Jun/19",
   "Crag name": "Staden Quarry"
 }, {
@@ -36589,7 +36366,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "23/Jun/19",
   "Crag name": "Staden Quarry"
 }, {
@@ -36597,7 +36373,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "23/Jun/19",
   "Crag name": "Staden Quarry"
 }, {
@@ -36605,7 +36380,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "22/Jun/19",
   "Crag name": "High Tor"
 }, {
@@ -36621,7 +36395,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "22/Jun/19",
   "Crag name": "High Tor"
 }, {
@@ -36637,7 +36410,6 @@ module.exports = [{
   "Grade": "f6A+  **",
   "Style": "Sent x",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
@@ -36645,7 +36417,6 @@ module.exports = [{
   "Grade": "f6B+  ***",
   "Style": "Sent rpt",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
@@ -36653,7 +36424,6 @@ module.exports = [{
   "Grade": "6a+ 5b ***",
   "Style": "TR rpt",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
@@ -36661,7 +36431,6 @@ module.exports = [{
   "Grade": "4c 4c **",
   "Style": "TR O/S",
   "Partner(s)": "Grim, AJ",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
@@ -36669,7 +36438,6 @@ module.exports = [{
   "Grade": "6b+ 5c **",
   "Style": "TR O/S",
   "Partner(s)": "Grim, Andy M",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
@@ -36677,7 +36445,6 @@ module.exports = [{
   "Grade": "6c 5c **",
   "Style": "TR O/S",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
@@ -36685,7 +36452,6 @@ module.exports = [{
   "Grade": "5a 4c **",
   "Style": "TR O/S",
   "Partner(s)": "Grim, Andy M",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
@@ -36693,7 +36459,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR O/S",
   "Partner(s)": "Grim, Andy M",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
@@ -36701,7 +36466,6 @@ module.exports = [{
   "Grade": "6a+ 5b ***",
   "Style": "TR O/S",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
@@ -36709,15 +36473,12 @@ module.exports = [{
   "Grade": "7a+ 6b **",
   "Style": "TR RP",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Charlie's Chimney",
   "Grade": "4a 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
@@ -36725,7 +36486,6 @@ module.exports = [{
   "Grade": "6c+ 6a ***",
   "Style": "TR rpt",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
@@ -36733,7 +36493,6 @@ module.exports = [{
   "Grade": "6b+ 5c ***",
   "Style": "TR rpt",
   "Partner(s)": "Andy M",
-  "Notes": "",
   "Date": "02/Jun/19",
   "Crag name": "Bowles Rocks"
 }, {
@@ -36749,15 +36508,13 @@ module.exports = [{
   "Grade": "VF1A  ***",
   "Style": "Solo rpt",
   "Partner(s)": "Terri Chiam, Matthew Porter, AJ, Michael Porter, Lottie Porter",
-  "Notes": "",
   "Date": "27/May/19",
   "Crag name": "Dali's Hole"
 }, {
   "Climb name": "Snakes and Ladders Approach",
-  "Grade": "HVS 5a",
+  "Grade": "HVS 5a ",
   "Style": "2nd rpt",
   "Partner(s)": "Dohnny_Jawes, Lottie Porter, Michael Porter, AJ",
-  "Notes": "",
   "Date": "27/May/19",
   "Crag name": "California"
 }, {
@@ -36773,7 +36530,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "26/May/19",
   "Crag name": "Dali's Hole"
 }, {
@@ -36781,7 +36537,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "26/May/19",
   "Crag name": "Bus Stop Quarry"
 }, {
@@ -36789,7 +36544,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "25/May/19",
   "Crag name": "Clogwyn y Grochan"
 }, {
@@ -36797,7 +36551,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead β",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "25/May/19",
   "Crag name": "Clogwyn y Grochan"
 }, {
@@ -36821,7 +36574,6 @@ module.exports = [{
   "Grade": "E4 5c ***",
   "Style": "2nd O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "21/Apr/19",
   "Crag name": "Pen Olver"
 }, {
@@ -36829,7 +36581,6 @@ module.exports = [{
   "Grade": "E3 5c ***",
   "Style": "2nd O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "21/Apr/19",
   "Crag name": "Pen Olver"
 }, {
@@ -36837,7 +36588,6 @@ module.exports = [{
   "Grade": "E3 5c ***",
   "Style": "Lead O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "21/Apr/19",
   "Crag name": "Pen Olver"
 }, {
@@ -36853,7 +36603,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "20/Apr/19",
   "Crag name": "Gurnard's Head"
 }, {
@@ -36861,7 +36610,6 @@ module.exports = [{
   "Grade": "E3 5c **",
   "Style": "2nd O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "20/Apr/19",
   "Crag name": "Bosigran"
 }, {
@@ -36895,7 +36643,7 @@ module.exports = [{
   "Partner(s)": "islandlynx",
   "Notes": "For maximum adventure points, start at 6.30/7 and finish in the dark!",
   "Date": "19/Apr/19",
-  "Crag name": "Zawn Duel and Carn Gloose"
+  "Crag name": "Zawn Duel and Carn Gloose Area"
 }, {
   "Climb name": "Mercury",
   "Grade": "E2 5b ***",
@@ -36917,7 +36665,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead rpt",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "14/Apr/19",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -36933,7 +36680,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead rpt",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "13/Apr/19",
   "Crag name": "Blacknor North"
 }, {
@@ -36957,7 +36703,6 @@ module.exports = [{
   "Grade": "VS 5a **",
   "Style": "AltLd O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "12/Apr/19",
   "Crag name": "Boulder Ruckle"
 }, {
@@ -36965,7 +36710,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "12/Apr/19",
   "Crag name": "Boulder Ruckle"
 }, {
@@ -36973,7 +36717,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "31/Mar/19",
   "Crag name": "Burbage South Edge"
 }, {
@@ -36981,7 +36724,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "31/Mar/19",
   "Crag name": "Burbage South Edge"
 }, {
@@ -36989,7 +36731,6 @@ module.exports = [{
   "Grade": "HVS 5b **",
   "Style": "TR O/S",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "31/Mar/19",
   "Crag name": "Burbage South Edge"
 }, {
@@ -36997,7 +36738,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "TR O/S",
   "Partner(s)": "Michael Porter, Matthew Porter",
-  "Notes": "",
   "Date": "31/Mar/19",
   "Crag name": "Burbage South Edge"
 }, {
@@ -37005,7 +36745,6 @@ module.exports = [{
   "Grade": "VS 4b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "31/Mar/19",
   "Crag name": "Burbage South Edge"
 }, {
@@ -37013,7 +36752,6 @@ module.exports = [{
   "Grade": "f6A+  **",
   "Style": "Sent x",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "31/Mar/19",
   "Crag name": "Burbage South Edge"
 }, {
@@ -37021,14 +36759,12 @@ module.exports = [{
   "Grade": "S 4a *",
   "Style": "2nd O/S",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "31/Mar/19",
   "Crag name": "Burbage South Edge"
 }, {
   "Climb name": "The Kursk",
-  "Grade": "f6C",
+  "Grade": "f6C  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
   "Notes": "Separate Burbality",
   "Date": "31/Mar/19",
   "Crag name": "Burbage South Edge"
@@ -37045,7 +36781,6 @@ module.exports = [{
   "Grade": "f5+  ***",
   "Style": "Sent O/S",
   "Partner(s)": "Grim, Michael Porter, Matthew Porter",
-  "Notes": "",
   "Date": "30/Mar/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37053,7 +36788,6 @@ module.exports = [{
   "Grade": "f5+  ***",
   "Style": "Sent O/S",
   "Partner(s)": "Grim, Michael Porter, Matthew Porter",
-  "Notes": "",
   "Date": "30/Mar/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37061,7 +36795,6 @@ module.exports = [{
   "Grade": "f4+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Grim, Michael Porter, Matthew Porter",
-  "Notes": "",
   "Date": "30/Mar/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37069,7 +36802,6 @@ module.exports = [{
   "Grade": "f3  **",
   "Style": "Sent O/S",
   "Partner(s)": "Grim, Michael Porter, Matthew Porter",
-  "Notes": "",
   "Date": "30/Mar/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37077,7 +36809,6 @@ module.exports = [{
   "Grade": "f4  **",
   "Style": "Sent O/S",
   "Partner(s)": "Grim, Michael Porter, Matthew Porter",
-  "Notes": "",
   "Date": "30/Mar/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37085,7 +36816,6 @@ module.exports = [{
   "Grade": "f3+  **",
   "Style": "Sent O/S",
   "Partner(s)": "Grim, Michael Porter, Matthew Porter",
-  "Notes": "",
   "Date": "30/Mar/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37093,7 +36823,6 @@ module.exports = [{
   "Grade": "f4  ***",
   "Style": "Sent O/S",
   "Partner(s)": "Grim, Michael Porter, Matthew Porter",
-  "Notes": "",
   "Date": "30/Mar/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37101,7 +36830,6 @@ module.exports = [{
   "Grade": "f4+  **",
   "Style": "Sent O/S",
   "Partner(s)": "Grim, Michael Porter, Matthew Porter",
-  "Notes": "",
   "Date": "30/Mar/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37109,7 +36837,6 @@ module.exports = [{
   "Grade": "f5+  ***",
   "Style": "Sent β",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "30/Mar/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37117,7 +36844,6 @@ module.exports = [{
   "Grade": "f6C+  **",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter, AJ, Matthew Porter",
-  "Notes": "",
   "Date": "30/Mar/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37125,7 +36851,6 @@ module.exports = [{
   "Grade": "f4+  **",
   "Style": "Sent O/S",
   "Partner(s)": "Matthew Porter, Grim, Michael Porter",
-  "Notes": "",
   "Date": "30/Mar/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37133,7 +36858,6 @@ module.exports = [{
   "Grade": "f6C  ***",
   "Style": "Sent dnf",
   "Partner(s)": "AJ, Matthew Porter, Michael Porter",
-  "Notes": "",
   "Date": "30/Mar/19",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37146,10 +36870,9 @@ module.exports = [{
   "Crag name": "Stanage Plantation"
 }, {
   "Climb name": "Cranberry Crack",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "Lead O/S",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "29/Mar/19",
   "Crag name": "Burbage North"
 }, {
@@ -37165,7 +36888,6 @@ module.exports = [{
   "Grade": "HS 4b ***",
   "Style": "Lead rpt",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "29/Mar/19",
   "Crag name": "Burbage North"
 }, {
@@ -37173,7 +36895,6 @@ module.exports = [{
   "Grade": "VS 4b *",
   "Style": "Lead rpt",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "29/Mar/19",
   "Crag name": "Burbage North"
 }, {
@@ -37181,15 +36902,12 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "29/Mar/19",
   "Crag name": "Burbage North"
 }, {
   "Climb name": "Wall Chimney",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Mar/19",
   "Crag name": "Burbage North"
 }, {
@@ -37197,15 +36915,12 @@ module.exports = [{
   "Grade": "S 4a **",
   "Style": "Lead O/S",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "29/Mar/19",
   "Crag name": "Burbage North"
 }, {
   "Climb name": "Ash Tree Crack",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Mar/19",
   "Crag name": "Burbage North"
 }, {
@@ -37221,7 +36936,6 @@ module.exports = [{
   "Grade": "HS 4b ***",
   "Style": "Lead rpt",
   "Partner(s)": "Grim",
-  "Notes": "",
   "Date": "29/Mar/19",
   "Crag name": "Burbage North"
 }, {
@@ -37233,43 +36947,33 @@ module.exports = [{
   "Date": "29/Mar/19",
   "Crag name": "Burbage North"
 }, {
-  "Climb name": "Ian's Arete",
-  "Grade": "f5",
+  "Climb name": "Ian's Arête",
+  "Grade": "f5  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "27/Feb/19",
   "Crag name": "Shoreditch Park Boulder"
 }, {
   "Climb name": "Borehole Wall",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "27/Feb/19",
   "Crag name": "Shoreditch Park Boulder"
 }, {
   "Climb name": "Porter's Climb",
   "Grade": "f6A  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "27/Feb/19",
   "Crag name": "Shoreditch Park Boulder"
 }, {
   "Climb name": "Inner City Pressure",
   "Grade": "f5+  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "27/Feb/19",
   "Crag name": "Shoreditch Park Boulder"
 }, {
   "Climb name": "The Highgate Shake",
-  "Grade": "f6A",
+  "Grade": "f6A  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "27/Feb/19",
   "Crag name": "Shoreditch Park Boulder"
 }, {
@@ -37277,7 +36981,6 @@ module.exports = [{
   "Grade": "E4 6a **",
   "Style": "TR O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "17/Feb/19",
   "Crag name": "Guillemot Ledge"
 }, {
@@ -37293,7 +36996,6 @@ module.exports = [{
   "Grade": "E2 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "17/Feb/19",
   "Crag name": "Guillemot Ledge"
 }, {
@@ -37301,7 +37003,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "06/Jan/19",
   "Crag name": "Blacknor Far South"
 }, {
@@ -37333,7 +37034,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "06/Jan/19",
   "Crag name": "Blacknor Far South"
 }, {
@@ -37341,7 +37041,6 @@ module.exports = [{
   "Grade": "f6A  *",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "Grove Point"
 }, {
@@ -37349,7 +37048,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "Grove Point"
 }, {
@@ -37357,15 +37055,13 @@ module.exports = [{
   "Grade": "f3  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "Grove Point"
 }, {
   "Climb name": "Rubblemaker",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "Grove Point"
 }, {
@@ -37373,7 +37069,6 @@ module.exports = [{
   "Grade": "f4+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "Grove Point"
 }, {
@@ -37381,23 +37076,20 @@ module.exports = [{
   "Grade": "f6A+  **",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "Grove Point"
 }, {
   "Climb name": "Warm-up Arête Right",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "One in Ten",
-  "Grade": "f5+",
+  "Grade": "f5+  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37405,7 +37097,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37413,31 +37104,27 @@ module.exports = [{
   "Grade": "f5  *",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Warm-up Escape",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Warm-up Arête Left",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Canine",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37445,7 +37132,6 @@ module.exports = [{
   "Grade": "f5  *",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37453,7 +37139,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37461,7 +37146,6 @@ module.exports = [{
   "Grade": "f6B+  ***",
   "Style": "Sent rpt",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37469,7 +37153,6 @@ module.exports = [{
   "Grade": "f6A  **",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37477,7 +37160,6 @@ module.exports = [{
   "Grade": "f4+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "Grove Point"
 }, {
@@ -37493,15 +37175,13 @@ module.exports = [{
   "Grade": "f4+  *",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "Grove Point"
 }, {
   "Climb name": "Big Rubble in Little China",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "Grove Point"
 }, {
@@ -37509,15 +37189,13 @@ module.exports = [{
   "Grade": "f4  *",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "Grove Point"
 }, {
   "Climb name": "Right Arête of the Slab",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "Grove Point"
 }, {
@@ -37533,23 +37211,20 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Sheriff Fat Man",
-  "Grade": "f5+",
+  "Grade": "f5+  ",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Warm-up Wall",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37562,10 +37237,9 @@ module.exports = [{
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Incisor",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37573,7 +37247,6 @@ module.exports = [{
   "Grade": "f6A+  *",
   "Style": "Sent β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37581,7 +37254,6 @@ module.exports = [{
   "Grade": "f6A  **",
   "Style": "Sent x",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37589,7 +37261,6 @@ module.exports = [{
   "Grade": "f5+  ***",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37597,7 +37268,6 @@ module.exports = [{
   "Grade": "f6C  **",
   "Style": "Sent dnf",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "05/Jan/19",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -37605,7 +37275,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "31/Dec/18",
   "Crag name": "Battleship Edge"
 }, {
@@ -37613,7 +37282,6 @@ module.exports = [{
   "Grade": "7a+  **",
   "Style": "Lead RP",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "31/Dec/18",
   "Crag name": "Battleship Edge"
 }, {
@@ -37621,7 +37289,6 @@ module.exports = [{
   "Grade": "7a+  *",
   "Style": "Lead RP",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "31/Dec/18",
   "Crag name": "Battleship Edge"
 }, {
@@ -37637,7 +37304,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "31/Dec/18",
   "Crag name": "Battleship Edge"
 }, {
@@ -37645,15 +37311,13 @@ module.exports = [{
   "Grade": "S  **",
   "Style": "Solo β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "30/Dec/18",
   "Crag name": "Tout Quarry"
 }, {
   "Climb name": "Chasing the Sun",
-  "Grade": "6c+",
+  "Grade": "6c+  ",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "30/Dec/18",
   "Crag name": "Blacknor Central"
 }, {
@@ -37666,7 +37330,7 @@ module.exports = [{
   "Crag name": "Blacknor South"
 }, {
   "Climb name": "Memories of Blue",
-  "Grade": "5a",
+  "Grade": "5a  ",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
   "Notes": "Best route on Portland!",
@@ -37674,10 +37338,9 @@ module.exports = [{
   "Crag name": "Blacknor South"
 }, {
   "Climb name": "The Angry Sea",
-  "Grade": "6c",
+  "Grade": "6c  ",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "30/Dec/18",
   "Crag name": "Blacknor Central"
 }, {
@@ -37693,12 +37356,11 @@ module.exports = [{
   "Grade": "7a  *",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "30/Dec/18",
   "Crag name": "Blacknor South"
 }, {
   "Climb name": "The Wrecked Finger",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
   "Notes": "Swear I had done this before, didn't log it though.",
@@ -37725,7 +37387,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Matthew Porter",
-  "Notes": "",
   "Date": "28/Oct/18",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37733,7 +37394,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "2nd rpt",
   "Partner(s)": "Matthew Porter",
-  "Notes": "",
   "Date": "28/Oct/18",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37749,7 +37409,6 @@ module.exports = [{
   "Grade": "f5+  ***",
   "Style": "Solo β",
   "Partner(s)": "Michael Porter, Matthew Porter, Andrew porter",
-  "Notes": "",
   "Date": "28/Oct/18",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37757,7 +37416,6 @@ module.exports = [{
   "Grade": "HVS 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "27/Oct/18",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37773,7 +37431,6 @@ module.exports = [{
   "Grade": "E4 6a ***",
   "Style": "TR &beta;",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "27/Oct/18",
   "Crag name": "Stanage Plantation"
 }, {
@@ -37789,7 +37446,6 @@ module.exports = [{
   "Grade": "6b+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "22/Oct/18",
   "Crag name": "Llanymynech Quarry"
 }, {
@@ -37797,7 +37453,6 @@ module.exports = [{
   "Grade": "6c+  ***",
   "Style": "Lead β",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "22/Oct/18",
   "Crag name": "Llanymynech Quarry"
 }, {
@@ -37805,7 +37460,6 @@ module.exports = [{
   "Grade": "7a  ***",
   "Style": "Lead β",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "22/Oct/18",
   "Crag name": "Llanymynech Quarry"
 }, {
@@ -37821,7 +37475,6 @@ module.exports = [{
   "Grade": "E3 6a ***",
   "Style": "2nd O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "21/Oct/18",
   "Crag name": "Monk's Buttress"
 }, {
@@ -37829,7 +37482,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "21/Oct/18",
   "Crag name": "Monk's Buttress"
 }, {
@@ -37837,7 +37489,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "Lead O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "21/Oct/18",
   "Crag name": "Llanymynech Quarry"
 }, {
@@ -37861,7 +37512,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "Lead O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "20/Oct/18",
   "Crag name": "Craig Arthur"
 }, {
@@ -37877,7 +37527,6 @@ module.exports = [{
   "Grade": "E2 5c *",
   "Style": "2nd O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "07/Oct/18",
   "Crag name": "Avon Gorge (Suspension Bridge Area)"
 }, {
@@ -37885,7 +37534,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "07/Oct/18",
   "Crag name": "Avon Gorge (Suspension Bridge Area)"
 }, {
@@ -37893,7 +37541,6 @@ module.exports = [{
   "Grade": "E3 5c *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "07/Oct/18",
   "Crag name": "Avon Gorge (Suspension Bridge Area)"
 }, {
@@ -37909,7 +37556,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "30/Sep/18",
   "Crag name": "Curbar Edge"
 }, {
@@ -37917,7 +37563,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "30/Sep/18",
   "Crag name": "Curbar Edge"
 }, {
@@ -37925,7 +37570,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "30/Sep/18",
   "Crag name": "Curbar Edge"
 }, {
@@ -37933,7 +37577,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "30/Sep/18",
   "Crag name": "Curbar Edge"
 }, {
@@ -37948,16 +37591,12 @@ module.exports = [{
   "Climb name": "Martello Cracks",
   "Grade": "M  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Sep/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Mistella",
-  "Grade": "VS 5a",
+  "Grade": "VS 5a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Sep/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -37965,7 +37604,6 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "2nd rpt",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "29/Sep/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -37973,7 +37611,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "29/Sep/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -37981,7 +37618,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "29/Sep/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -37989,7 +37625,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "29/Sep/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -37997,7 +37632,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd rpt",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "29/Sep/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -38005,7 +37639,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "29/Sep/18",
   "Crag name": "Stanage Plantation"
 }, {
@@ -38013,15 +37646,12 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "29/Sep/18",
   "Crag name": "Stanage Plantation"
 }, {
   "Climb name": "Curving Chimney",
   "Grade": "VD  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Sep/18",
   "Crag name": "Stanage Plantation"
 }, {
@@ -38029,7 +37659,6 @@ module.exports = [{
   "Grade": "E2 5c *",
   "Style": "Lead rpt",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "09/Sep/18",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -38037,7 +37666,6 @@ module.exports = [{
   "Grade": "E3 6a ***",
   "Style": "2nd O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "09/Sep/18",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -38045,7 +37673,6 @@ module.exports = [{
   "Grade": "E3 6a **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "09/Sep/18",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -38061,15 +37688,13 @@ module.exports = [{
   "Grade": "E2 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "09/Sep/18",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
   "Climb name": "What about Me?",
-  "Grade": "E2 5b",
+  "Grade": "E2 5b ",
   "Style": "2nd O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "09/Sep/18",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -38077,7 +37702,6 @@ module.exports = [{
   "Grade": "E3 5c *",
   "Style": "2nd rpt",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "09/Sep/18",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -38085,7 +37709,6 @@ module.exports = [{
   "Grade": "E3 5c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "25/Aug/18",
   "Crag name": "Lower Sharpnose Point"
 }, {
@@ -38093,7 +37716,6 @@ module.exports = [{
   "Grade": "E3 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "25/Aug/18",
   "Crag name": "Lower Sharpnose Point"
 }, {
@@ -38101,7 +37723,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "2nd O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "25/Aug/18",
   "Crag name": "Lower Sharpnose Point"
 }, {
@@ -38117,7 +37738,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "24/Aug/18",
   "Crag name": "Lower Sharpnose Point"
 }, {
@@ -38133,7 +37753,6 @@ module.exports = [{
   "Grade": "HVS 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "23/Aug/18",
   "Crag name": "Baggy Point"
 }, {
@@ -38141,7 +37760,6 @@ module.exports = [{
   "Grade": "VS 5a ***",
   "Style": "2nd rpt",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "23/Aug/18",
   "Crag name": "Baggy Point"
 }, {
@@ -38149,23 +37767,18 @@ module.exports = [{
   "Grade": "6b S1 **",
   "Style": "DWS O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "05/Aug/18",
   "Crag name": "Lydstep Cavern Bay"
 }, {
   "Climb name": "Nobody's Hero",
   "Grade": "6a+ S1 *",
   "Style": "DWS O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "05/Aug/18",
   "Crag name": "Lydstep Cavern Bay"
 }, {
   "Climb name": "The Medic",
   "Grade": "5c S1 *",
   "Style": "DWS O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "05/Aug/18",
   "Crag name": "Lydstep Cavern Bay"
 }, {
@@ -38173,7 +37786,6 @@ module.exports = [{
   "Grade": "6a+ S0 *",
   "Style": "DWS O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "05/Aug/18",
   "Crag name": "Lydstep Cavern Bay"
 }, {
@@ -38181,7 +37793,6 @@ module.exports = [{
   "Grade": "5c S0 *",
   "Style": "DWS O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "05/Aug/18",
   "Crag name": "Lydstep Cavern Bay"
 }, {
@@ -38189,7 +37800,6 @@ module.exports = [{
   "Grade": "4c S0 *",
   "Style": "DWS O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "05/Aug/18",
   "Crag name": "Lydstep Cavern Bay"
 }, {
@@ -38197,7 +37807,6 @@ module.exports = [{
   "Grade": "3c S0 *",
   "Style": "DWS O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "05/Aug/18",
   "Crag name": "Lydstep Cavern Bay"
 }, {
@@ -38205,7 +37814,6 @@ module.exports = [{
   "Grade": "6a+ S2 **",
   "Style": "DWS O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "05/Aug/18",
   "Crag name": "Lydstep Cavern Bay"
 }, {
@@ -38229,7 +37837,6 @@ module.exports = [{
   "Grade": "HVS 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "04/Aug/18",
   "Crag name": "Trevallen Cliff"
 }, {
@@ -38237,7 +37844,6 @@ module.exports = [{
   "Grade": "E3 6a *",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "04/Aug/18",
   "Crag name": "Huntsman's Leap"
 }, {
@@ -38245,7 +37851,6 @@ module.exports = [{
   "Grade": "E3 5c ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "04/Aug/18",
   "Crag name": "Stennis Ford"
 }, {
@@ -38261,7 +37866,6 @@ module.exports = [{
   "Grade": "6a S1 *",
   "Style": "DWS β",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "04/Aug/18",
   "Crag name": "Stennis Ford"
 }, {
@@ -38269,7 +37873,6 @@ module.exports = [{
   "Grade": "3c S1 **",
   "Style": "DWS β",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "04/Aug/18",
   "Crag name": "Stennis Ford"
 }, {
@@ -38285,7 +37888,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "03/Aug/18",
   "Crag name": "St. Govan's East"
 }, {
@@ -38293,7 +37895,6 @@ module.exports = [{
   "Grade": "HS 4a *",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "03/Aug/18",
   "Crag name": "Bosherston Head"
 }, {
@@ -38306,10 +37907,9 @@ module.exports = [{
   "Crag name": "Bosherston Head"
 }, {
   "Climb name": "Atmospheric Tent Direct",
-  "Grade": "E1 5c",
+  "Grade": "E1 5c ",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "01/Aug/18",
   "Crag name": "The Castle"
 }, {
@@ -38317,7 +37917,6 @@ module.exports = [{
   "Grade": "E1 5a **",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "01/Aug/18",
   "Crag name": "The Castle"
 }, {
@@ -38341,7 +37940,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "31/Jul/18",
   "Crag name": "Mother Carey's Kitchen"
 }, {
@@ -38349,7 +37947,6 @@ module.exports = [{
   "Grade": "E3 5c ***",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "31/Jul/18",
   "Crag name": "Mother Carey's Kitchen"
 }, {
@@ -38365,7 +37962,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "30/Jul/18",
   "Crag name": "St. Govan's East"
 }, {
@@ -38373,7 +37969,6 @@ module.exports = [{
   "Grade": "E3 6a **",
   "Style": "2nd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "30/Jul/18",
   "Crag name": "St. Govan's East"
 }, {
@@ -38405,7 +38000,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead rpt",
   "Partner(s)": "Katarina, Dan Gibson",
-  "Notes": "",
   "Date": "22/Jul/18",
   "Crag name": "Blacknor North"
 }, {
@@ -38413,7 +38007,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "DWS O/S",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "22/Jul/18",
   "Crag name": "Cave Hole"
 }, {
@@ -38421,14 +38014,12 @@ module.exports = [{
   "Grade": "E1 5c **",
   "Style": "DWS O/S",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "22/Jul/18",
   "Crag name": "Cave Hole"
 }, {
   "Climb name": "Bare Reputation",
   "Grade": "E4 6b ***",
   "Style": "DWS dnf",
-  "Partner(s)": "",
   "Notes": "Ballsed up the move to the jug out right. Couldn't work out where to put my left foot.",
   "Date": "22/Jul/18",
   "Crag name": "Cave Hole"
@@ -38445,7 +38036,6 @@ module.exports = [{
   "Grade": "HS 4b **",
   "Style": "DWS rpt",
   "Partner(s)": "Andy M, Katarina, Dan Gibson, Michael Porter, AJ, Matthew Porter",
-  "Notes": "",
   "Date": "21/Jul/18",
   "Crag name": "Cave Hole"
 }, {
@@ -38453,7 +38043,6 @@ module.exports = [{
   "Grade": "E1 5c **",
   "Style": "DWS β",
   "Partner(s)": "Andy M, Katarina, Dan Gibson, Michael Porter, AJ, Matthew Porter",
-  "Notes": "",
   "Date": "21/Jul/18",
   "Crag name": "Cave Hole"
 }, {
@@ -38461,7 +38050,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "DWS β",
   "Partner(s)": "Andy M, Katarina, Dan Gibson, Michael Porter, AJ, Matthew Porter",
-  "Notes": "",
   "Date": "21/Jul/18",
   "Crag name": "Cave Hole"
 }, {
@@ -38482,34 +38070,26 @@ module.exports = [{
   "Crag name": "Cave Hole"
 }, {
   "Climb name": "Easy Slab",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Jul/18",
   "Crag name": "Mabley Green Boulder"
 }, {
   "Climb name": "Left arete of Mantel Face",
   "Grade": "f4+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Jul/18",
   "Crag name": "Mabley Green Boulder"
 }, {
   "Climb name": "Mantel Face direct",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Jul/18",
   "Crag name": "Mabley Green Boulder"
 }, {
   "Climb name": "Right Arete Of Mantel Face",
   "Grade": "f3  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Jul/18",
   "Crag name": "Mabley Green Boulder"
 }, {
@@ -38524,7 +38104,6 @@ module.exports = [{
   "Climb name": "Scimitar Crack",
   "Grade": "VS 4c **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
   "Notes": "Nice secure climbing, consolation for not doing suicide wall as Dan wanted to get going. Probably better that Hertford's crack, think this one is more sustained from what I recall.",
   "Date": "01/Jul/18",
   "Crag name": "Sub Cneifion Rib"
@@ -38562,10 +38141,9 @@ module.exports = [{
   "Crag name": "Llech Ddu (Black Slab)"
 }, {
   "Climb name": "Brown's Crack",
-  "Grade": "f5  ***",
+  "Grade": "f5  **",
   "Style": "Solo β",
   "Partner(s)": "Michael Porter, Matthew Porter",
-  "Notes": "",
   "Date": "24/Jun/18",
   "Crag name": "Cromlech boulders"
 }, {
@@ -38573,15 +38151,13 @@ module.exports = [{
   "Grade": "f5  ***",
   "Style": "Solo β",
   "Partner(s)": "Michael Porter, Matthew Porter",
-  "Notes": "",
   "Date": "24/Jun/18",
   "Crag name": "Cromlech boulders"
 }, {
-  "Climb name": "NWB Roadside P21",
+  "Climb name": "Roadside Problem 33 (Easy Flake)",
   "Grade": "f3+  *",
   "Style": "Solo β",
   "Partner(s)": "Michael Porter, Matthew Porter, Andrew porter",
-  "Notes": "",
   "Date": "24/Jun/18",
   "Crag name": "Cromlech boulders"
 }, {
@@ -38612,23 +38188,18 @@ module.exports = [{
   "Climb name": "Camel",
   "Grade": "f6B+  **",
   "Style": "Solo",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "19/Jun/18",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Tobacco Road",
   "Grade": "f6B+  ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "19/Jun/18",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Maximum Orr",
   "Grade": "f6A+  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
   "Notes": "Harder than tobacco road.",
   "Date": "19/Jun/18",
   "Crag name": "Bowles Rocks"
@@ -38645,15 +38216,12 @@ module.exports = [{
   "Grade": "6c+ 6a ***",
   "Style": "TR RP",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Jun/18",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Devaluation",
   "Grade": "6a+ 5b ***",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "19/Jun/18",
   "Crag name": "Bowles Rocks"
 }, {
@@ -38661,7 +38229,6 @@ module.exports = [{
   "Grade": "6c+ 6a ***",
   "Style": "TR &beta;",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "19/Jun/18",
   "Crag name": "Bowles Rocks"
 }, {
@@ -38669,7 +38236,6 @@ module.exports = [{
   "Grade": "6b+ 5c ***",
   "Style": "TR rpt",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "19/Jun/18",
   "Crag name": "Bowles Rocks"
 }, {
@@ -38677,7 +38243,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR &beta;",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "19/Jun/18",
   "Crag name": "Bowles Rocks"
 }, {
@@ -38685,111 +38250,85 @@ module.exports = [{
   "Grade": "5c 5a ***",
   "Style": "TR &beta;",
   "Partner(s)": "AJ",
-  "Notes": "",
   "Date": "19/Jun/18",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Gore Brothers",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Solo β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "19/Jun/18",
   "Crag name": "Bowles Rocks"
 }, {
   "Climb name": "Wooden Stump",
-  "Grade": "f3+",
+  "Grade": "f3+  ",
   "Style": "Solo G/U",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Passage Direct",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Slab - Left",
-  "Grade": "f2",
+  "Grade": "f2  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Slab - Centre",
   "Grade": "f2  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Slab - Right",
-  "Grade": "f2",
+  "Grade": "f2  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "The Ramp",
-  "Grade": "3a 3a",
+  "Grade": "3a 3a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Central Route",
   "Grade": "3a 3a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Rampette Direct",
-  "Grade": "4a 4a",
+  "Grade": "4a 4a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Wizard's Little Apprentice",
-  "Grade": "3a 3a",
+  "Grade": "3a 3a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Graham",
   "Grade": "4a 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Golden Graham's",
-  "Grade": "4b 4b",
+  "Grade": "4b 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Root Route 2",
   "Grade": "6c 6a *",
   "Style": "Solo G/U",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -38797,7 +38336,6 @@ module.exports = [{
   "Grade": "7b+ 6b **",
   "Style": "TR dog",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -38805,15 +38343,13 @@ module.exports = [{
   "Grade": "6b 5b ***",
   "Style": "TR rpt",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Jingowobbly",
-  "Grade": "7a 6b",
+  "Grade": "7a 6b ",
   "Style": "TR &beta;",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -38821,23 +38357,20 @@ module.exports = [{
   "Grade": "6c+ 6a **",
   "Style": "TR rpt",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Max",
-  "Grade": "6c+ 6a",
+  "Grade": "6c+ 6a ",
   "Style": "TR dog",
   "Partner(s)": "Matthew Porter",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Neutral",
-  "Grade": "7a 6a",
+  "Grade": "7a 6a ",
   "Style": "TR dog",
   "Partner(s)": "Matthew Porter",
-  "Notes": "",
   "Date": "17/Jun/18",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -38845,7 +38378,6 @@ module.exports = [{
   "Grade": "6b 5b **",
   "Style": "TR rpt",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "12/Jun/18",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -38860,392 +38392,296 @@ module.exports = [{
   "Climb name": "Hadrian's Wall",
   "Grade": "6a+ 5b ***",
   "Style": "TR rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Jun/18",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Verandah Cracks Right",
-  "Grade": "D",
+  "Grade": "D  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Amazon Crack",
   "Grade": "S 4a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Balcony Buttress",
   "Grade": "S 4a ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "The Flue",
   "Grade": "HVD 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Balcony Corner",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Upanover Crack",
-  "Grade": "S 4b",
+  "Grade": "S 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Crack and Cave",
   "Grade": "HVD 4a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Left Twin Chimney",
   "Grade": "D  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Right Twin Chimney",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Awl",
   "Grade": "HVD 3c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Bean",
   "Grade": "VS 4c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Dun",
   "Grade": "HS 4b *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Bee",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Four",
   "Grade": "VS 4c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Flying Buttress",
   "Grade": "HVD 4a ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Black Hawk Hell Crack",
   "Grade": "S 4a ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Grotto Slab",
   "Grade": "M  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Capstone Chimney",
   "Grade": "D  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Little Ernie",
-  "Grade": "S 4a",
+  "Grade": "S 4a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Recess Wall",
   "Grade": "HVD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Right Wall Route",
   "Grade": "HVD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Black Chimney",
   "Grade": "D  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "The Cristiana Swing",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Fragile Mantel",
   "Grade": "HS 4c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Mantelpiece Right",
-  "Grade": "HVD",
+  "Grade": "HVD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Zip Crack",
   "Grade": "M  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Button Wall",
-  "Grade": "HVD",
+  "Grade": "HVD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Toggle",
-  "Grade": "VS 4b",
+  "Grade": "VS 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Velcro Arête",
-  "Grade": "HS 4c",
+  "Grade": "HS 4c ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Square Chimney Arête",
-  "Grade": "S 4b",
+  "Grade": "S 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Square Chimney",
-  "Grade": "D",
+  "Grade": "D  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Monkey Crack",
   "Grade": "VD 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Square Buttress Arête",
   "Grade": "VS 4c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Square Buttress Wall",
-  "Grade": "HS 4b",
+  "Grade": "HS 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Square Buttress Corner",
-  "Grade": "D",
+  "Grade": "D  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Gashed Crack",
-  "Grade": "HS 5a",
+  "Grade": "HS 5a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Fire Curtain",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "The Be All and End All",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Needle Crack (N Route)",
   "Grade": "VS 4c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
   "Notes": "Pointless leading this one - no gear til all the difficulties are over, and a nasty landing beneath. A VS for the E1 leader.",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Verandah Cracks Left",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
   "Notes": "Rained off on this one. Regardless, Stanage probably isn't the best venue to tick off a load of routes - they are too long and far between.",
   "Date": "11/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Hoaxer's Crack",
-  "Grade": "HS 4b",
+  "Grade": "HS 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Small Crack",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Ground Glass",
   "Grade": "VS 4c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Plate Glass Slab",
   "Grade": "VS 4c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Carborundum",
-  "Grade": "VS 5a",
+  "Grade": "VS 5a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Mantelpiece Crack",
   "Grade": "D  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Mantelpiece Buttress",
   "Grade": "D  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Mantelpiece Upper Traverse",
-  "Grade": "HVS 5a",
+  "Grade": "HVS 5a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -39253,7 +38689,6 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "2nd rpt",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -39261,7 +38696,6 @@ module.exports = [{
   "Grade": "HS 4b ***",
   "Style": "2nd rpt",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -39269,31 +38703,24 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Easy Jamming",
   "Grade": "HVD 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "Trainer Failure",
   "Grade": "VS 5a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
   "Climb name": "The Real 20-foot Crack",
   "Grade": "VS 4c **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -39309,7 +38736,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd rpt",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "09/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -39317,7 +38743,6 @@ module.exports = [{
   "Grade": "VD  **",
   "Style": "Solo O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "09/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -39325,7 +38750,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "09/Jun/18",
   "Crag name": "Stanage Popular"
 }, {
@@ -39333,7 +38757,6 @@ module.exports = [{
   "Grade": "6b+ 5c ***",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "02/Jun/18",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -39341,7 +38764,6 @@ module.exports = [{
   "Grade": "6c 6a **",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "02/Jun/18",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -39357,7 +38779,6 @@ module.exports = [{
   "Grade": "6a 5b **",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "02/Jun/18",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -39373,7 +38794,6 @@ module.exports = [{
   "Grade": "6a+ 5b ***",
   "Style": "TR rpt",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "02/Jun/18",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -39381,7 +38801,6 @@ module.exports = [{
   "Grade": "4c 4c **",
   "Style": "TR rpt",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "02/Jun/18",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -39389,7 +38808,6 @@ module.exports = [{
   "Grade": "f4+  ***",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "02/Jun/18",
   "Crag name": "High Rocks Annexe"
 }, {
@@ -39437,7 +38855,6 @@ module.exports = [{
   "Grade": "E1 5c **",
   "Style": "2nd &beta;",
   "Partner(s)": "Katarina, Dan Gibson",
-  "Notes": "",
   "Date": "27/May/18",
   "Crag name": "Curbar Edge"
 }, {
@@ -39445,7 +38862,6 @@ module.exports = [{
   "Grade": "VS 5a *",
   "Style": "2nd rpt",
   "Partner(s)": "AJ, Andrew porter",
-  "Notes": "",
   "Date": "27/May/18",
   "Crag name": "Curbar Edge"
 }, {
@@ -39461,7 +38877,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "AnitaClimb",
-  "Notes": "",
   "Date": "26/May/18",
   "Crag name": "Robin Proctor's Scar"
 }, {
@@ -39469,7 +38884,6 @@ module.exports = [{
   "Grade": "6a+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "AnitaClimb",
-  "Notes": "",
   "Date": "26/May/18",
   "Crag name": "Robin Proctor's Scar"
 }, {
@@ -39477,7 +38891,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead O/S",
   "Partner(s)": "AnitaClimb",
-  "Notes": "",
   "Date": "26/May/18",
   "Crag name": "Robin Proctor's Scar"
 }, {
@@ -39485,7 +38898,6 @@ module.exports = [{
   "Grade": "6c  ***",
   "Style": "Lead O/S",
   "Partner(s)": "AnitaClimb",
-  "Notes": "",
   "Date": "26/May/18",
   "Crag name": "Robin Proctor's Scar"
 }, {
@@ -39493,7 +38905,6 @@ module.exports = [{
   "Grade": "7a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "AnitaClimb",
-  "Notes": "",
   "Date": "26/May/18",
   "Crag name": "Robin Proctor's Scar"
 }, {
@@ -39501,7 +38912,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "AnitaClimb",
-  "Notes": "",
   "Date": "26/May/18",
   "Crag name": "Robin Proctor's Scar"
 }, {
@@ -39525,7 +38935,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "24/May/18",
   "Crag name": "Gimmer Crag"
 }, {
@@ -39549,7 +38958,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "AltLd O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "23/May/18",
   "Crag name": "North Buttress/Cambridge Crag"
 }, {
@@ -39557,7 +38965,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "22/May/18",
   "Crag name": "Giggleswick North"
 }, {
@@ -39565,7 +38972,6 @@ module.exports = [{
   "Grade": "7a  *",
   "Style": "Lead RP",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "22/May/18",
   "Crag name": "Giggleswick North"
 }, {
@@ -39573,15 +38979,13 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "22/May/18",
   "Crag name": "Giggleswick North"
 }, {
   "Climb name": "Poison Ivy (sport)",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "22/May/18",
   "Crag name": "Giggleswick North"
 }, {
@@ -39589,7 +38993,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "22/May/18",
   "Crag name": "Giggleswick North"
 }, {
@@ -39597,7 +39000,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "22/May/18",
   "Crag name": "Giggleswick North"
 }, {
@@ -39605,7 +39007,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "22/May/18",
   "Crag name": "Giggleswick North"
 }, {
@@ -39613,7 +39014,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "22/May/18",
   "Crag name": "Giggleswick North"
 }, {
@@ -39621,7 +39021,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "22/May/18",
   "Crag name": "Giggleswick North"
 }, {
@@ -39629,7 +39028,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "22/May/18",
   "Crag name": "Giggleswick North"
 }, {
@@ -39637,7 +39035,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "AnitaClimb",
-  "Notes": "",
   "Date": "21/May/18",
   "Crag name": "Pavey Ark"
 }, {
@@ -39645,7 +39042,6 @@ module.exports = [{
   "Grade": "HVS 4c ***",
   "Style": "AltLd rpt",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "18/May/18",
   "Crag name": "Scafell East Buttress"
 }, {
@@ -39693,7 +39089,6 @@ module.exports = [{
   "Grade": "E2 5c *",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "15/May/18",
   "Crag name": "Trowbarrow"
 }, {
@@ -39709,7 +39104,6 @@ module.exports = [{
   "Grade": "E1 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "15/May/18",
   "Crag name": "Trowbarrow"
 }, {
@@ -39717,7 +39111,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "2nd O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "15/May/18",
   "Crag name": "Trowbarrow"
 }, {
@@ -39725,7 +39118,6 @@ module.exports = [{
   "Grade": "6c  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "14/May/18",
   "Crag name": "Kilnsey"
 }, {
@@ -39733,7 +39125,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "14/May/18",
   "Crag name": "Kilnsey"
 }, {
@@ -39741,7 +39132,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead β",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "14/May/18",
   "Crag name": "Kilnsey"
 }, {
@@ -39754,10 +39144,9 @@ module.exports = [{
   "Crag name": "Kilnsey"
 }, {
   "Climb name": "Brilliant, Brilliant",
-  "Grade": "6c",
+  "Grade": "6c  ",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "13/May/18",
   "Crag name": "Malham Cove"
 }, {
@@ -39765,7 +39154,6 @@ module.exports = [{
   "Grade": "7a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "13/May/18",
   "Crag name": "Malham Cove"
 }, {
@@ -39773,15 +39161,13 @@ module.exports = [{
   "Grade": "6c+  *",
   "Style": "Lead RP",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "13/May/18",
   "Crag name": "Malham Cove"
 }, {
   "Climb name": "Begozi and the Ledge Lizards",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead β",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "13/May/18",
   "Crag name": "Malham Cove"
 }, {
@@ -39789,7 +39175,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "12/May/18",
   "Crag name": "Wimberry Rocks"
 }, {
@@ -39797,7 +39182,6 @@ module.exports = [{
   "Grade": "VS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "12/May/18",
   "Crag name": "Wimberry Rocks"
 }, {
@@ -39805,7 +39189,6 @@ module.exports = [{
   "Grade": "VS 5a ***",
   "Style": "2nd O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "12/May/18",
   "Crag name": "Wimberry Rocks"
 }, {
@@ -39813,7 +39196,6 @@ module.exports = [{
   "Grade": "HS 4b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "12/May/18",
   "Crag name": "Wimberry Rocks"
 }, {
@@ -39836,623 +39218,468 @@ module.exports = [{
   "Climb name": "The Flywalk",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "The Niche",
   "Grade": "S 4a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Niche Arête",
   "Grade": "VS 5a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Studio",
   "Grade": "HS 4b **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "No Name",
-  "Grade": "S 4b",
+  "Grade": "S 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Keep Corner",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Keep Arête",
   "Grade": "VS 4b **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Scoop Face",
   "Grade": "HVS 5a ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Footstool Left",
-  "Grade": "S 4a",
+  "Grade": "S 4a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Footstool Right",
   "Grade": "HVD 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Combs Climb",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Staircase",
-  "Grade": "HVD",
+  "Grade": "HVD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Nozag",
   "Grade": "VS 4c ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Zigzag Crack",
   "Grade": "HS 4b **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Zig-a-Zag-a",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Long Climb",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "Central Tower",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Castle Naze"
 }, {
   "Climb name": "The Rib",
   "Grade": "VS 5a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "The Rib Right-hand",
-  "Grade": "HVD 4a",
+  "Grade": "HVD 4a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "The Staircase",
   "Grade": "M  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Green Slab",
   "Grade": "S 4b *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Black Slab",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Green Crack",
   "Grade": "S 4a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "North Buttress Arête Direct",
   "Grade": "VS 5a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "North Buttress Arête",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Chimney and Crack",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Heather Buttress",
-  "Grade": "D",
+  "Grade": "D  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Taller Overhang",
-  "Grade": "VS 5a",
+  "Grade": "VS 5a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Small Wall",
-  "Grade": "S 4b",
+  "Grade": "S 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "The Other Corner",
-  "Grade": "M",
+  "Grade": "M  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Portfolio",
   "Grade": "HVS 5a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Wall Climb Variation",
-  "Grade": "HS 4b",
+  "Grade": "HS 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Wall Climb",
   "Grade": "HVD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "The Slant Start",
   "Grade": "HVD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Centre Route",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Chockstone Chimney",
   "Grade": "D  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Mississippi Crack",
   "Grade": "S 4a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "The Medicine",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Middle Buttress Arête",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Bulging Arête",
-  "Grade": "S 4a",
+  "Grade": "S 4a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "The Corner",
   "Grade": "M  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Zigzag",
   "Grade": "D  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Toe Nail",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Footprint",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Nose Direct",
   "Grade": "HVD  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Director",
   "Grade": "VS 4b *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "High Buttress Arête",
   "Grade": "D  ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Heather Face",
-  "Grade": "HVD",
+  "Grade": "HVD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Rib and Slab",
-  "Grade": "M",
+  "Grade": "M  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Buttress Two Gully",
   "Grade": "M  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Leg Stump",
   "Grade": "D  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Middle and Leg",
   "Grade": "D  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Centre",
   "Grade": "HVD 3c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Squashed Finger",
   "Grade": "HVD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Struggle",
-  "Grade": "VS 4c",
+  "Grade": "VS 4c ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Corner Crack",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Aged Crack",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Traditional",
   "Grade": "HS 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Broken Groove",
   "Grade": "D  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Cheek",
   "Grade": "VS 5a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Face Route 2",
-  "Grade": "D",
+  "Grade": "D  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Face Route 1",
   "Grade": "HVD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "First's Arête",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Side Face",
-  "Grade": "HVD 3c",
+  "Grade": "HVD 3c ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Overhanging Arête",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Leg Up",
-  "Grade": "VS 5a",
+  "Grade": "VS 5a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Route 2",
-  "Grade": "VS 4b",
+  "Grade": "VS 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Route 1.5",
   "Grade": "VS 4c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Editor's Note",
   "Grade": "VS 5a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "South Buttress Arête Direct",
-  "Grade": "E1 5b",
+  "Grade": "E1 5b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Route 1",
-  "Grade": "HS 4a",
+  "Grade": "HS 4a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "South Buttress Crack",
   "Grade": "M  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Left Triplet Crack",
-  "Grade": "M",
+  "Grade": "M  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Middle Triplet Crack",
-  "Grade": "S 3c",
+  "Grade": "S 3c ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Right Triplet Crack",
-  "Grade": "S 4a",
+  "Grade": "S 4a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Overlapping Wall",
-  "Grade": "S 4a",
+  "Grade": "S 4a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Groove",
-  "Grade": "M",
+  "Grade": "M  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "11/May/18",
   "Crag name": "Windgather Rocks"
 }, {
   "Climb name": "Amphitheatre Buttress",
   "Grade": "VD  ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
   "Notes": "Quite good value actually, especially with the alpine ridge thing at the end, and going past bail tat midway - possible harder variation? Col to col one hour.",
   "Date": "10/May/18",
   "Crag name": "Craig Yr Ysfa"
@@ -40460,15 +39687,12 @@ module.exports = [{
   "Climb name": "Zip Wall",
   "Grade": "HS 4b *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/May/18",
   "Crag name": "Carreg Mianog"
 }, {
   "Climb name": "Cyfrwy Arête (Summer)",
   "Grade": "D  ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
   "Notes": "1st multipitch solo, nice views between the clouds. 2hours 20 car to car, with a bit of faff when I missed the path left to the lake.",
   "Date": "09/May/18",
   "Crag name": "Cader Idris (Cyfrwy)"
@@ -40476,32 +39700,24 @@ module.exports = [{
   "Climb name": "Crack 3",
   "Grade": "D  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "08/May/18",
   "Crag name": "Barmouth Slabs"
 }, {
   "Climb name": "Zig Zag",
   "Grade": "VD  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "08/May/18",
   "Crag name": "Barmouth Slabs"
 }, {
   "Climb name": "Crack 4",
   "Grade": "D  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "08/May/18",
   "Crag name": "Barmouth Slabs"
 }, {
   "Climb name": "Crack 5",
-  "Grade": "D",
+  "Grade": "D  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "08/May/18",
   "Crag name": "Barmouth Slabs"
 }, {
@@ -40509,7 +39725,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Adam Butterworth",
-  "Notes": "",
   "Date": "07/May/18",
   "Crag name": "Stennis Head"
 }, {
@@ -40573,7 +39788,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Adam Butterworth",
-  "Notes": "",
   "Date": "05/May/18",
   "Crag name": "Stennis Head"
 }, {
@@ -40581,7 +39795,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "2nd O/S",
   "Partner(s)": "Adam Butterworth",
-  "Notes": "",
   "Date": "05/May/18",
   "Crag name": "Stennis Head"
 }, {
@@ -40610,10 +39823,9 @@ module.exports = [{
   "Crag name": "Dancing Ledge"
 }, {
   "Climb name": "Here Comes the Hezbollah",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "22/Apr/18",
   "Crag name": "Dancing Ledge"
 }, {
@@ -40642,10 +39854,9 @@ module.exports = [{
   "Crag name": "Dancing Ledge"
 }, {
   "Climb name": "Fire-Fox",
-  "Grade": "5b",
+  "Grade": "5b  ",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "22/Apr/18",
   "Crag name": "Dancing Ledge"
 }, {
@@ -40693,7 +39904,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "21/Apr/18",
   "Crag name": "Boulder Ruckle"
 }, {
@@ -40706,7 +39916,7 @@ module.exports = [{
   "Crag name": "Winspit"
 }, {
   "Climb name": "Book 3",
-  "Grade": "6c+",
+  "Grade": "6c+  ",
   "Style": "Lead dnf",
   "Partner(s)": "Michael Porter",
   "Notes": "Fell, then couldn't be arsed to try again. Contrived as hell, looks like everyone skips the hard climbing and goes up the left side fo the face at mid height.",
@@ -40721,7 +39931,7 @@ module.exports = [{
   "Date": "14/Mar/18",
   "Crag name": "Chulilla"
 }, {
-  "Climb name": "Cap I Cua",
+  "Climb name": "Cap I Cua ",
   "Grade": "7a+  **",
   "Style": "Lead G/U",
   "Partner(s)": "Dan Carroll",
@@ -40733,7 +39943,6 @@ module.exports = [{
   "Grade": "6c+  ***",
   "Style": "Lead β",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "14/Mar/18",
   "Crag name": "Chulilla"
 }, {
@@ -40741,7 +39950,6 @@ module.exports = [{
   "Grade": "6c+  **",
   "Style": "Lead β",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "14/Mar/18",
   "Crag name": "Chulilla"
 }, {
@@ -40749,15 +39957,13 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "13/Mar/18",
   "Crag name": "Chulilla"
 }, {
   "Climb name": "Tracy family",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "13/Mar/18",
   "Crag name": "Chulilla"
 }, {
@@ -40765,7 +39971,6 @@ module.exports = [{
   "Grade": "6c+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "13/Mar/18",
   "Crag name": "Chulilla"
 }, {
@@ -40773,7 +39978,6 @@ module.exports = [{
   "Grade": "7c  ***",
   "Style": "Lead dog",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "13/Mar/18",
   "Crag name": "Chulilla"
 }, {
@@ -40781,15 +39985,13 @@ module.exports = [{
   "Grade": "7a  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "12/Mar/18",
   "Crag name": "Chulilla"
 }, {
   "Climb name": "Tururu que no te vi",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "12/Mar/18",
   "Crag name": "Chulilla"
 }, {
@@ -40797,7 +39999,6 @@ module.exports = [{
   "Grade": "6b+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "12/Mar/18",
   "Crag name": "Chulilla"
 }, {
@@ -40813,7 +40014,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "11/Mar/18",
   "Crag name": "Chulilla"
 }, {
@@ -40837,12 +40037,11 @@ module.exports = [{
   "Grade": "7a  **",
   "Style": "Lead β",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "11/Mar/18",
   "Crag name": "Chulilla"
 }, {
   "Climb name": "La flauta de Bartola",
-  "Grade": "6c",
+  "Grade": "6c  ",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
   "Notes": "Poor choice of warm up and crag.",
@@ -40850,10 +40049,9 @@ module.exports = [{
   "Crag name": "Chulilla"
 }, {
   "Climb name": "La Caida del melon",
-  "Grade": "6c",
+  "Grade": "6c  ",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "09/Mar/18",
   "Crag name": "Chulilla"
 }, {
@@ -40866,15 +40064,14 @@ module.exports = [{
   "Crag name": "Chulilla"
 }, {
   "Climb name": "Terreros royos",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "09/Mar/18",
   "Crag name": "Chulilla"
 }, {
   "Climb name": "Animalversion",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
   "Notes": "In the dark",
@@ -40882,7 +40079,7 @@ module.exports = [{
   "Crag name": "Chulilla"
 }, {
   "Climb name": "Dumbo love",
-  "Grade": "7a",
+  "Grade": "7a  ",
   "Style": "Lead dog",
   "Partner(s)": "Dan Carroll",
   "Notes": "CBA to RP but should have. Hard putting the crux clip in. Gave Dan all the beta required to flash.",
@@ -40901,7 +40098,6 @@ module.exports = [{
   "Grade": "6c+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "08/Mar/18",
   "Crag name": "Chulilla"
 }, {
@@ -40914,18 +40110,16 @@ module.exports = [{
   "Crag name": "Chulilla"
 }, {
   "Climb name": "El paseo",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "07/Mar/18",
   "Crag name": "Chulilla"
 }, {
   "Climb name": "Nazgul",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "07/Mar/18",
   "Crag name": "Chulilla"
 }, {
@@ -40941,7 +40135,6 @@ module.exports = [{
   "Grade": "7a  ***",
   "Style": "Lead β",
   "Partner(s)": "Dan Carroll",
-  "Notes": "",
   "Date": "07/Mar/18",
   "Crag name": "Chulilla"
 }, {
@@ -40949,7 +40142,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead rpt",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "25/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -40957,7 +40149,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead rpt",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "25/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -40981,15 +40172,13 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "2nd O/S",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "25/Feb/18",
   "Crag name": "Brean Down"
 }, {
   "Climb name": "Do you get Vouchers with This?",
-  "Grade": "5c",
+  "Grade": "5c  ",
   "Style": "Lead rpt",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "24/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -40997,7 +40186,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead rpt",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "24/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -41005,7 +40193,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead rpt",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "24/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -41013,7 +40200,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead rpt",
   "Partner(s)": "Andrew porter",
-  "Notes": "",
   "Date": "24/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -41029,7 +40215,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead rpt",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "18/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -41037,7 +40222,6 @@ module.exports = [{
   "Grade": "7a  ***",
   "Style": "Lead rpt",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "18/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -41045,23 +40229,20 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead rpt",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "18/Feb/18",
   "Crag name": "Brean Down"
 }, {
   "Climb name": "What the Hell is a Womper?",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "18/Feb/18",
   "Crag name": "Brean Down"
 }, {
   "Climb name": "Join the Union, Jack",
-  "Grade": "6b",
+  "Grade": "6b  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed from Hereford but actually Hull",
-  "Notes": "",
   "Date": "17/Feb/18",
   "Crag name": "Ban-y-gor"
 }, {
@@ -41069,7 +40250,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead rpt",
   "Partner(s)": "Ed from Hereford but actually Hull",
-  "Notes": "",
   "Date": "17/Feb/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
@@ -41093,7 +40273,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead rpt",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "16/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -41117,7 +40296,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "TR rpt",
   "Partner(s)": "Maciek",
-  "Notes": "",
   "Date": "15/Feb/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
@@ -41125,7 +40303,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "TR rpt",
   "Partner(s)": "Maciek",
-  "Notes": "",
   "Date": "15/Feb/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
@@ -41133,15 +40310,13 @@ module.exports = [{
   "Grade": "HS 4a *",
   "Style": "TR rpt",
   "Partner(s)": "Maciek",
-  "Notes": "",
   "Date": "15/Feb/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "In Between",
-  "Grade": "HVS 5b",
+  "Grade": "HVS 5b ",
   "Style": "TR rpt",
   "Partner(s)": "Maciek",
-  "Notes": "",
   "Date": "15/Feb/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
@@ -41149,7 +40324,6 @@ module.exports = [{
   "Grade": "E2 6a *",
   "Style": "TR O/S",
   "Partner(s)": "Maciek",
-  "Notes": "",
   "Date": "15/Feb/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
@@ -41157,7 +40331,6 @@ module.exports = [{
   "Grade": "E2 6a *",
   "Style": "TR O/S",
   "Partner(s)": "Maciek",
-  "Notes": "",
   "Date": "15/Feb/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
@@ -41165,7 +40338,6 @@ module.exports = [{
   "Grade": "E3 5c *",
   "Style": "TR O/S",
   "Partner(s)": "Maciek",
-  "Notes": "",
   "Date": "15/Feb/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
@@ -41173,31 +40345,27 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "TR O/S",
   "Partner(s)": "Maciek",
-  "Notes": "",
   "Date": "15/Feb/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Eliminate 2",
-  "Grade": "E2 5c",
+  "Grade": "E2 5c ",
   "Style": "TR O/S",
   "Partner(s)": "Maciek",
-  "Notes": "",
   "Date": "15/Feb/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Niche",
-  "Grade": "E2 6a",
+  "Grade": "E2 6a ",
   "Style": "TR O/S",
   "Partner(s)": "Maciek",
-  "Notes": "",
   "Date": "15/Feb/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Eliminate 3",
-  "Grade": "E2 5c",
+  "Grade": "E2 5c ",
   "Style": "TR O/S",
   "Partner(s)": "Maciek",
-  "Notes": "",
   "Date": "15/Feb/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
@@ -41205,15 +40373,13 @@ module.exports = [{
   "Grade": "VS 5a **",
   "Style": "TR O/S",
   "Partner(s)": "Maciek",
-  "Notes": "",
   "Date": "15/Feb/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Bikini Atoll",
-  "Grade": "6c+",
+  "Grade": "6c+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "11/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -41245,7 +40411,6 @@ module.exports = [{
   "Grade": "6c+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "11/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -41253,7 +40418,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead rpt",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "05/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -41261,7 +40425,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead rpt",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "05/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -41269,7 +40432,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "05/Feb/18",
   "Crag name": "Brean Down"
 }, {
@@ -41293,7 +40455,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "02/Feb/18",
   "Crag name": "Portishead Quarry"
 }, {
@@ -41301,7 +40462,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "2nd O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "02/Feb/18",
   "Crag name": "Portishead Quarry"
 }, {
@@ -41309,7 +40469,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead rpt",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "02/Feb/18",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -41324,40 +40483,30 @@ module.exports = [{
   "Climb name": "The Overhang",
   "Grade": "E1 5b *",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jan/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "The Hand Jam",
   "Grade": "HS 4a *",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jan/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Easy Right",
-  "Grade": "HS 4a",
+  "Grade": "HS 4a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jan/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "In Between",
-  "Grade": "HVS 5b",
+  "Grade": "HVS 5b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jan/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Black Wall",
   "Grade": "E1 5b *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jan/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
@@ -41365,23 +40514,20 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "bpmclimb",
-  "Notes": "",
   "Date": "17/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
   "Climb name": "It's Ovah for Jehovah",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "bpmclimb",
-  "Notes": "",
   "Date": "17/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
   "Climb name": "Head Full of Hedda",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "bpmclimb",
-  "Notes": "",
   "Date": "17/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
@@ -41389,7 +40535,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "bpmclimb",
-  "Notes": "",
   "Date": "17/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
@@ -41397,23 +40542,20 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "bpmclimb",
-  "Notes": "",
   "Date": "17/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
   "Climb name": "THE END",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "bpmclimb",
-  "Notes": "",
   "Date": "17/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
   "Climb name": "Chepstow Killer Appliances",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "bpmclimb",
-  "Notes": "",
   "Date": "17/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
@@ -41421,15 +40563,13 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "bpmclimb",
-  "Notes": "",
   "Date": "17/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
   "Climb name": "Dog Face",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead O/S",
   "Partner(s)": "bpmclimb",
-  "Notes": "",
   "Date": "17/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
@@ -41437,7 +40577,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "bpmclimb",
-  "Notes": "",
   "Date": "17/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
@@ -41450,10 +40589,9 @@ module.exports = [{
   "Crag name": "Wyndcliff Quarry"
 }, {
   "Climb name": "One Tooth Short of a Smile",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "14/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
@@ -41461,7 +40599,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "14/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
@@ -41469,23 +40606,20 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "14/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
   "Climb name": "Same Old Story",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "14/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
   "Climb name": "Mr Whippy",
-  "Grade": "6c+",
+  "Grade": "6c+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "14/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
@@ -41493,7 +40627,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "14/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
@@ -41501,15 +40634,13 @@ module.exports = [{
   "Grade": "6c+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "14/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
   "Climb name": "Sweet FA",
-  "Grade": "HVS 4c",
+  "Grade": "HVS 4c ",
   "Style": "Lead O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "14/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
@@ -41525,38 +40656,30 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead β",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "14/Jan/18",
   "Crag name": "Wyndcliff Quarry"
 }, {
   "Climb name": "Right Crack",
   "Grade": "S  *",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "07/Jan/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Middle Crack",
   "Grade": "S 4a *",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "07/Jan/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "The Hand Jam",
   "Grade": "HS 4a *",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "07/Jan/18",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Chelmsfordian Arete",
   "Grade": "HVS 4b **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
   "Notes": "Definitely climbed it a few years ago, when pissed of course.",
   "Date": "25/Dec/17",
   "Crag name": "Baddow Road Continuation Wall"
@@ -41564,7 +40687,6 @@ module.exports = [{
   "Climb name": "2:59 AM Crack",
   "Grade": "VS 4c **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
   "Notes": "Another classic Essex crack climb FA.",
   "Date": "25/Dec/17",
   "Crag name": "Baddow Road Annex"
@@ -41573,7 +40695,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead rpt",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "17/Dec/17",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -41581,7 +40702,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "17/Dec/17",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -41589,7 +40709,6 @@ module.exports = [{
   "Grade": "6c+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "16/Dec/17",
   "Crag name": "Brean Down"
 }, {
@@ -41605,7 +40724,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead rpt",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "16/Dec/17",
   "Crag name": "Brean Down"
 }, {
@@ -41645,15 +40763,13 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "S.Kew",
-  "Notes": "",
   "Date": "09/Dec/17",
   "Crag name": "Anstey's Cove"
 }, {
   "Climb name": "End of an Era",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "luke glaister, Jim Smith",
-  "Notes": "",
   "Date": "19/Nov/17",
   "Crag name": "Anstey's Cove"
 }, {
@@ -41661,7 +40777,6 @@ module.exports = [{
   "Grade": "E3 6a ***",
   "Style": "Lead O/S",
   "Partner(s)": "luke glaister, Jim Smith",
-  "Notes": "",
   "Date": "19/Nov/17",
   "Crag name": "Anstey's Cove"
 }, {
@@ -41693,7 +40808,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "AltLd O/S",
   "Partner(s)": "Wil Treasure",
-  "Notes": "",
   "Date": "06/Nov/17",
   "Crag name": "Wintour's Leap"
 }, {
@@ -41701,7 +40815,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Oct/17",
   "Crag name": "Avon Gorge (Main Area)"
 }, {
@@ -41725,7 +40838,6 @@ module.exports = [{
   "Grade": "E3 5c ***",
   "Style": "2nd O/S",
   "Partner(s)": "islandlynx",
-  "Notes": "",
   "Date": "22/Oct/17",
   "Crag name": "Split Rock (Milton Hill Quarry)"
 }, {
@@ -41770,7 +40882,7 @@ module.exports = [{
   "Crag name": "Cheddar Gorge South"
 }, {
   "Climb name": "Islands in the City",
-  "Grade": "7a+",
+  "Grade": "7a+  ",
   "Style": "Lead dog",
   "Partner(s)": "S.Kew",
   "Notes": "Almost flashed, but was scuppered by the top bit. And then scupped again on RP attempt 1 and 2. Out of beans.",
@@ -41781,7 +40893,6 @@ module.exports = [{
   "Grade": "7a  ***",
   "Style": "Lead O/S",
   "Partner(s)": "S.Kew",
-  "Notes": "",
   "Date": "08/Oct/17",
   "Crag name": "Brean Down"
 }, {
@@ -41789,7 +40900,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "S.Kew",
-  "Notes": "",
   "Date": "08/Oct/17",
   "Crag name": "Brean Down"
 }, {
@@ -41797,7 +40907,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "S.Kew",
-  "Notes": "",
   "Date": "08/Oct/17",
   "Crag name": "Brean Down"
 }, {
@@ -41805,7 +40914,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead rpt",
   "Partner(s)": "S.Kew",
-  "Notes": "",
   "Date": "08/Oct/17",
   "Crag name": "Brean Down"
 }, {
@@ -41826,10 +40934,9 @@ module.exports = [{
   "Crag name": "Brean Down"
 }, {
   "Climb name": "Ambiguously Straightforward",
-  "Grade": "6b",
+  "Grade": "6b  ",
   "Style": "Lead β",
   "Partner(s)": "S.Kew, Fakey Rocks",
-  "Notes": "",
   "Date": "17/Sep/17",
   "Crag name": "Cheddar Gorge South"
 }, {
@@ -41837,7 +40944,6 @@ module.exports = [{
   "Grade": "7a  *",
   "Style": "Lead β",
   "Partner(s)": "S.Kew, Fakey Rocks",
-  "Notes": "",
   "Date": "17/Sep/17",
   "Crag name": "Cheddar Gorge South"
 }, {
@@ -41845,7 +40951,6 @@ module.exports = [{
   "Grade": "7a+  *",
   "Style": "Lead β",
   "Partner(s)": "S.Kew, Fakey Rocks",
-  "Notes": "",
   "Date": "17/Sep/17",
   "Crag name": "Cheddar Gorge South"
 }, {
@@ -41869,7 +40974,6 @@ module.exports = [{
   "Grade": "n6  **",
   "Style": "Lead O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "26/Aug/17",
   "Crag name": "Ulorna"
 }, {
@@ -41877,15 +40981,13 @@ module.exports = [{
   "Grade": "n6+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "26/Aug/17",
   "Crag name": "Ulorna"
 }, {
   "Climb name": "Upp och ner",
-  "Grade": "n7+",
+  "Grade": "n7+  ",
   "Style": "TR O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "26/Aug/17",
   "Crag name": "Ulorna"
 }, {
@@ -41893,7 +40995,6 @@ module.exports = [{
   "Grade": "n6-  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "25/Aug/17",
   "Crag name": "Välseröd"
 }, {
@@ -41901,71 +41002,57 @@ module.exports = [{
   "Grade": "n5  ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "25/Aug/17",
   "Crag name": "Välseröd"
 }, {
   "Climb name": "Till de Utpsykade Cragråttorna",
-  "Grade": "n5-",
+  "Grade": "n5-  ",
   "Style": "2nd O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "25/Aug/17",
   "Crag name": "Ragardsdal"
 }, {
   "Climb name": "The Overhang",
   "Grade": "E1 5b *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Aug/17",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "The Hand Jam",
   "Grade": "HS 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Aug/17",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Middle Crack",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Aug/17",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Right Crack",
   "Grade": "S  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Aug/17",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Short Crack",
-  "Grade": "HS 4b",
+  "Grade": "HS 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Aug/17",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Dislocation",
   "Grade": "E1 5b *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
   "Notes": "Never e1",
   "Date": "12/Aug/17",
   "Crag name": "Castle Rock, Gloucestershire"
 }, {
   "Climb name": "Cymbeline",
-  "Grade": "6c+",
+  "Grade": "6c+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "11/Aug/17",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -41973,7 +41060,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "11/Aug/17",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -41981,7 +41067,6 @@ module.exports = [{
   "Grade": "6c+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "11/Aug/17",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -41989,7 +41074,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead β",
   "Partner(s)": "Fakey Rocks",
-  "Notes": "",
   "Date": "11/Aug/17",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -42005,7 +41089,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "06/Aug/17",
   "Crag name": "The Brand"
 }, {
@@ -42013,7 +41096,6 @@ module.exports = [{
   "Grade": "6b  ***",
   "Style": "Lead O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "06/Aug/17",
   "Crag name": "Hangingstone Quarry"
 }, {
@@ -42021,7 +41103,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead RP",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "06/Aug/17",
   "Crag name": "Hangingstone Quarry"
 }, {
@@ -42029,15 +41110,13 @@ module.exports = [{
   "Grade": "6b+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "06/Aug/17",
   "Crag name": "Hangingstone Quarry"
 }, {
   "Climb name": "Pertex",
-  "Grade": "4c",
+  "Grade": "4c  ",
   "Style": "Lead β",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "06/Aug/17",
   "Crag name": "Hangingstone Quarry"
 }, {
@@ -42045,7 +41124,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "30/Jul/17",
   "Crag name": "Millstone Edge"
 }, {
@@ -42053,7 +41131,6 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "30/Jul/17",
   "Crag name": "Millstone Edge"
 }, {
@@ -42068,8 +41145,6 @@ module.exports = [{
   "Climb name": "Bond Street",
   "Grade": "HVS 5a ***",
   "Style": "Lead rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jul/17",
   "Crag name": "Millstone Edge"
 }, {
@@ -42077,7 +41152,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
@@ -42085,15 +41159,13 @@ module.exports = [{
   "Grade": "VS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "May Crack",
-  "Grade": "VS 4c",
+  "Grade": "VS 4c ",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
@@ -42101,15 +41173,13 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "Spring Sunshine",
-  "Grade": "VS 4c",
+  "Grade": "VS 4c ",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
@@ -42117,7 +41187,6 @@ module.exports = [{
   "Grade": "HS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
@@ -42125,7 +41194,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
@@ -42133,7 +41201,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
@@ -42141,7 +41208,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
@@ -42149,7 +41215,6 @@ module.exports = [{
   "Grade": "VS 4b *",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
@@ -42157,79 +41222,61 @@ module.exports = [{
   "Grade": "HS 4b **",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "Big Al",
-  "Grade": "HVS 5a",
+  "Grade": "HVS 5a ",
   "Style": "2nd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "Kelly's Crack",
   "Grade": "VD  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "Kelly's Eye",
   "Grade": "HS 4b *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "Kelly's Eliminate",
   "Grade": "HS 4b **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "October Crack",
   "Grade": "D  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "Bent Crack",
   "Grade": "HVD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "New Year's Eve",
-  "Grade": "S 4b",
+  "Grade": "S 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "Autumn Gold",
   "Grade": "HS 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "Bright Eyed",
   "Grade": "HS 4b *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
@@ -42237,7 +41284,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "Lead dog",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
@@ -42245,7 +41291,6 @@ module.exports = [{
   "Grade": "HS 4b **",
   "Style": "2nd rpt",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "29/Jul/17",
   "Crag name": "Stanage North"
 }, {
@@ -42253,7 +41298,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "09/Jul/17",
   "Crag name": "Coastguard South"
 }, {
@@ -42261,7 +41305,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "09/Jul/17",
   "Crag name": "Coastguard South"
 }, {
@@ -42269,7 +41312,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "09/Jul/17",
   "Crag name": "Coastguard South"
 }, {
@@ -42277,7 +41319,6 @@ module.exports = [{
   "Grade": "6c+  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "09/Jul/17",
   "Crag name": "Coastguard South"
 }, {
@@ -42293,7 +41334,6 @@ module.exports = [{
   "Grade": "6a  ***",
   "Style": "Lead rpt",
   "Partner(s)": "Michael Porter, Andrew porter",
-  "Notes": "",
   "Date": "09/Jul/17",
   "Crag name": "Coastguard South"
 }, {
@@ -42301,14 +41341,12 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "DWS O/S",
   "Partner(s)": "Andrew porter, Michael Porter",
-  "Notes": "",
   "Date": "08/Jul/17",
   "Crag name": "Lulworth"
 }, {
   "Climb name": "I Love Eszta",
-  "Grade": "E3 5c",
+  "Grade": "E3 5c ",
   "Style": "DWS dnf",
-  "Partner(s)": "",
   "Notes": "Hindered by some shit beta, and a bit of a slippery foothold.",
   "Date": "08/Jul/17",
   "Crag name": "Lulworth"
@@ -42316,7 +41354,6 @@ module.exports = [{
   "Climb name": "Captain Bastard Got There First",
   "Grade": "E2 5c *",
   "Style": "DWS O/S",
-  "Partner(s)": "",
   "Notes": "Did this a cop out way on the left before I found the right line.",
   "Date": "08/Jul/17",
   "Crag name": "Lulworth"
@@ -42324,8 +41361,6 @@ module.exports = [{
   "Climb name": "Horny Lil' Devil",
   "Grade": "7a  ***",
   "Style": "DWS dnf",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "08/Jul/17",
   "Crag name": "Lulworth"
 }, {
@@ -42340,296 +41375,222 @@ module.exports = [{
   "Climb name": "Wet Nurse Crack",
   "Grade": "f6A  **",
   "Style": "Solo β",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "02/Jul/17",
   "Crag name": "Broomhills Ind Est"
 }, {
   "Climb name": "Supercrack of Essex",
   "Grade": "E2 6b **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "02/Jul/17",
   "Crag name": "Broomhills Ind Est"
 }, {
   "Climb name": "Red Star Crack",
   "Grade": "f6C+  **",
   "Style": "Solo dnf",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "02/Jul/17",
   "Crag name": "Broomhills Ind Est"
 }, {
   "Climb name": "a Porter Corner",
   "Grade": "VS 5a ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "02/Jul/17",
   "Crag name": "Disused Railway Bridge Braintree"
 }, {
   "Climb name": "Left hand problem",
   "Grade": "f6A  **",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "02/Jul/17",
   "Crag name": "Disused Railway Bridge Braintree"
 }, {
   "Climb name": "Typical Brick",
   "Grade": "E2 5c ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "02/Jul/17",
   "Crag name": "Francis bridger"
 }, {
   "Climb name": "Tom",
   "Grade": "E1 5c **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "02/Jul/17",
   "Crag name": "Francis bridger"
 }, {
   "Climb name": "Open Chimney",
   "Grade": "4b 4b **",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Root Route 3",
   "Grade": "6b+ 5c **",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Right-hand Crack",
   "Grade": "5b 5a **",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Slab",
   "Grade": "5c 5a *",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Slab Direct",
   "Grade": "6a+ 5b **",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Long Layback",
   "Grade": "6a+ 5a ***",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Dark Chimney",
   "Grade": "3b 3b ***",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Bow Window",
   "Grade": "4a 4a ***",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Birch Tree Crack",
   "Grade": "4c 4c **",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Hell Wall",
   "Grade": "5a 4c **",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Eyelet",
   "Grade": "4b 4b ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Dave",
   "Grade": "f2+  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Don",
   "Grade": "f2+  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Tight Chimney",
   "Grade": "f3  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Tight Chimney Slab",
-  "Grade": "none 4b",
+  "Grade": "none 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Ejector",
   "Grade": "f4  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Root Route 1.5",
-  "Grade": "6a+ 5a",
+  "Grade": "6a+ 5a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Root Route 1",
   "Grade": "4a 4a ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Windowside Spout",
   "Grade": "3c 3c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Sashcord Crack",
   "Grade": "4a 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Big crack",
-  "Grade": "4c 4c",
+  "Grade": "4c 4c ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Original Route",
-  "Grade": "3c 3c",
+  "Grade": "3c 3c ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Giant's Ear",
-  "Grade": "5b 5a",
+  "Grade": "5b 5a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Small Chimney",
   "Grade": "3c 3c ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "small wall",
   "Grade": "6b 5b *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Giant's Staircase",
   "Grade": "3a 3a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Arrow Crack",
-  "Grade": "3a 3a",
+  "Grade": "3a 3a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Long Crack",
   "Grade": "4c 4c **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Icy Crack",
   "Grade": "VS 4c *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "24/Jun/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "Point Five Crack",
-  "Grade": "VS 5a",
+  "Grade": "VS 5a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "24/Jun/17",
   "Crag name": "Stanage North"
 }, {
@@ -42637,7 +41598,6 @@ module.exports = [{
   "Grade": "E4 6a ***",
   "Style": "TR RP",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/Jun/17",
   "Crag name": "Stanage North"
 }, {
@@ -42645,7 +41605,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/Jun/17",
   "Crag name": "Stanage North"
 }, {
@@ -42653,7 +41612,6 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/Jun/17",
   "Crag name": "Stanage North"
 }, {
@@ -42661,103 +41619,78 @@ module.exports = [{
   "Grade": "HVS 5c *",
   "Style": "2nd O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/Jun/17",
   "Crag name": "Stanage North"
 }, {
   "Climb name": "Curling Crack",
   "Grade": "4a 4a **",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
   "Climb name": "Thin",
   "Grade": "6b+ 5c **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
   "Climb name": "Bulging Corner",
   "Grade": "f4+  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
   "Climb name": "Bulging Wall",
   "Grade": "f6A  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
   "Climb name": "Ashdown Wall",
   "Grade": "f4+  ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
   "Climb name": "Introductory Climb",
   "Grade": "f2+  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
   "Climb name": "Dinosaurs Don't Dyno",
   "Grade": "f2  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
   "Climb name": "Leaning Crack",
   "Grade": "6a+ 5b **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
   "Climb name": "SW Corner Scoop",
   "Grade": "6a+ 5a ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
   "Climb name": "Primitive Groove",
   "Grade": "4b 4b *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
   "Climb name": "SE Corner Crack",
   "Grade": "4b 4b **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
   "Climb name": "NE Corner",
-  "Grade": "5c 5a",
+  "Grade": "5c 5a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
@@ -42765,7 +41698,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
@@ -42773,7 +41705,6 @@ module.exports = [{
   "Grade": "6c 6a *",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
@@ -42786,10 +41717,8 @@ module.exports = [{
   "Crag name": "Stone Farm"
 }, {
   "Climb name": "Inside Out",
-  "Grade": "3a 3a",
+  "Grade": "3a 3a ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/17",
   "Crag name": "Stone Farm"
 }, {
@@ -42797,7 +41726,6 @@ module.exports = [{
   "Grade": "6b 5b ***",
   "Style": "TR rpt",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "13/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -42805,31 +41733,24 @@ module.exports = [{
   "Grade": "6c 5c ***",
   "Style": "TR rpt",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "13/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "The Chimney",
   "Grade": "4a 4a ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "13/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Two-Toed Sloth",
   "Grade": "5b 5a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "13/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Sunshine Crack",
   "Grade": "5a 4c **",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "13/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -42837,7 +41758,6 @@ module.exports = [{
   "Grade": "6b+ 5c **",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "13/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -42845,7 +41765,6 @@ module.exports = [{
   "Grade": "7a 6a *",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "13/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -42853,7 +41772,6 @@ module.exports = [{
   "Grade": "6b 5c *",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "13/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -42861,7 +41779,6 @@ module.exports = [{
   "Grade": "6c 5c *",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "13/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -42869,15 +41786,12 @@ module.exports = [{
   "Grade": "6b 5c ***",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "13/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Boulder Bridge Route",
   "Grade": "3a 3a ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "13/Jun/17",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -42901,7 +41815,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "10/Jun/17",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -42917,7 +41830,6 @@ module.exports = [{
   "Grade": "E2 5c *",
   "Style": "2nd rpt",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "10/Jun/17",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -42925,7 +41837,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead β",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "10/Jun/17",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -42941,7 +41852,6 @@ module.exports = [{
   "Grade": "6b+ 5c ***",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "04/Jun/17",
   "Crag name": "Under Rockes"
 }, {
@@ -42949,7 +41859,6 @@ module.exports = [{
   "Grade": "6c 5c *",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "04/Jun/17",
   "Crag name": "Under Rockes"
 }, {
@@ -42957,7 +41866,6 @@ module.exports = [{
   "Grade": "6b 5c ***",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "04/Jun/17",
   "Crag name": "Under Rockes"
 }, {
@@ -42965,7 +41873,6 @@ module.exports = [{
   "Grade": "6b 5c *",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "04/Jun/17",
   "Crag name": "Under Rockes"
 }, {
@@ -42973,7 +41880,6 @@ module.exports = [{
   "Grade": "6a 5b **",
   "Style": "TR O/S",
   "Partner(s)": "danimal",
-  "Notes": "",
   "Date": "04/Jun/17",
   "Crag name": "Under Rockes"
 }, {
@@ -42988,40 +41894,30 @@ module.exports = [{
   "Climb name": "Equilibrium Wall",
   "Grade": "6b 5b **",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "04/Jun/17",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Hanging Crack",
   "Grade": "5b 5a **",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "04/Jun/17",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "6:00 a.m Route",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "04/Jun/17",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Flake Crack",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "04/Jun/17",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Geronimo",
   "Grade": "f3  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "04/Jun/17",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -43053,7 +41949,6 @@ module.exports = [{
   "Grade": "HVS 4c ***",
   "Style": "AltLd O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "28/May/17",
   "Crag name": "Gogarth North Stack and Main Cliff"
 }, {
@@ -43068,8 +41963,6 @@ module.exports = [{
   "Climb name": "Car Park Original",
   "Grade": "f5  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "07/May/17",
   "Crag name": "Dinas Rock"
 }, {
@@ -43077,7 +41970,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "07/May/17",
   "Crag name": "Dinas Rock"
 }, {
@@ -43085,7 +41977,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "07/May/17",
   "Crag name": "Dinas Rock"
 }, {
@@ -43109,7 +42000,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "06/May/17",
   "Crag name": "Rhossili Beach"
 }, {
@@ -43117,7 +42007,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "06/May/17",
   "Crag name": "Rhossili Beach"
 }, {
@@ -43125,7 +42014,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "06/May/17",
   "Crag name": "Rhossili Beach"
 }, {
@@ -43157,7 +42045,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "17/Apr/17",
   "Crag name": "Coastguard North"
 }, {
@@ -43173,7 +42060,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "17/Apr/17",
   "Crag name": "Coastguard North"
 }, {
@@ -43197,7 +42083,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "16/Apr/17",
   "Crag name": "Wallsend South"
 }, {
@@ -43205,7 +42090,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "16/Apr/17",
   "Crag name": "Wallsend South"
 }, {
@@ -43221,7 +42105,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "16/Apr/17",
   "Crag name": "Wallsend South"
 }, {
@@ -43237,7 +42120,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "15/Apr/17",
   "Crag name": "Subluminal and Lighthouse Cliff"
 }, {
@@ -43245,15 +42127,13 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "15/Apr/17",
   "Crag name": "Subluminal and Lighthouse Cliff"
 }, {
   "Climb name": "Paralysis",
-  "Grade": "E2 5c",
+  "Grade": "E2 5c ",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "15/Apr/17",
   "Crag name": "Subluminal and Lighthouse Cliff"
 }, {
@@ -43261,7 +42141,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "2nd O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "15/Apr/17",
   "Crag name": "Subluminal and Lighthouse Cliff"
 }, {
@@ -43277,7 +42156,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "14/Apr/17",
   "Crag name": "The Promenade"
 }, {
@@ -43285,7 +42163,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "14/Apr/17",
   "Crag name": "The Promenade"
 }, {
@@ -43301,15 +42178,13 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "09/Apr/17",
   "Crag name": "The Promenade"
 }, {
   "Climb name": "My New Top",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "09/Apr/17",
   "Crag name": "The Promenade"
 }, {
@@ -43325,7 +42200,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "08/Apr/17",
   "Crag name": "Blacknor Central"
 }, {
@@ -43349,7 +42223,6 @@ module.exports = [{
   "Grade": "7a  *",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "08/Apr/17",
   "Crag name": "Blacknor North"
 }, {
@@ -43357,7 +42230,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "08/Apr/17",
   "Crag name": "Blacknor North"
 }, {
@@ -43365,7 +42237,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead β",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "08/Apr/17",
   "Crag name": "Blacknor North"
 }, {
@@ -43373,7 +42244,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead O/S",
   "Partner(s)": "superturbo",
-  "Notes": "",
   "Date": "08/Apr/17",
   "Crag name": "Blacknor North"
 }, {
@@ -43381,7 +42251,6 @@ module.exports = [{
   "Grade": "4c 4c **",
   "Style": "TR O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Apr/17",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -43389,7 +42258,6 @@ module.exports = [{
   "Grade": "6c 6a *",
   "Style": "TR O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Apr/17",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -43397,7 +42265,6 @@ module.exports = [{
   "Grade": "6a+ 5a ***",
   "Style": "TR O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Apr/17",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -43405,7 +42272,6 @@ module.exports = [{
   "Grade": "6b+ 5c ***",
   "Style": "TR O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Apr/17",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -43413,15 +42279,12 @@ module.exports = [{
   "Grade": "6a+ 5b ***",
   "Style": "TR rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Apr/17",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Parisian Affair",
   "Grade": "f6A+  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "02/Apr/17",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -43437,7 +42300,6 @@ module.exports = [{
   "Grade": "4c 4c **",
   "Style": "TR rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Apr/17",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -43474,42 +42336,37 @@ module.exports = [{
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
   "Climb name": "Think Again",
-  "Grade": "4a",
+  "Grade": "4a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "15/Mar/17",
   "Crag name": "Cheddar Gorge North"
 }, {
   "Climb name": "Busking for bolts",
-  "Grade": "4c",
+  "Grade": "4c  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "15/Mar/17",
   "Crag name": "Cheddar Gorge North"
 }, {
   "Climb name": "Arcadia",
-  "Grade": "5a",
+  "Grade": "5a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "15/Mar/17",
   "Crag name": "Cheddar Gorge North"
 }, {
   "Climb name": "Mojave Dust",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "15/Mar/17",
   "Crag name": "Cheddar Gorge North"
 }, {
   "Climb name": "Berlin Wall",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "15/Mar/17",
   "Crag name": "Cheddar Gorge North"
 }, {
@@ -43517,7 +42374,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "15/Mar/17",
   "Crag name": "Cheddar Gorge North"
 }, {
@@ -43525,7 +42381,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "15/Mar/17",
   "Crag name": "Cheddar Gorge North"
 }, {
@@ -43533,15 +42388,13 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "15/Mar/17",
   "Crag name": "Cheddar Gorge North"
 }, {
   "Climb name": "The Heavy Brigade",
-  "Grade": "6b",
+  "Grade": "6b  ",
   "Style": "Lead β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "15/Mar/17",
   "Crag name": "Cheddar Gorge North"
 }, {
@@ -43565,7 +42418,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "21/Feb/17",
   "Crag name": "Winspit"
 }, {
@@ -43578,7 +42430,7 @@ module.exports = [{
   "Crag name": "Winspit"
 }, {
   "Climb name": "Mini Line",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
   "Notes": "Pointless.",
@@ -43621,7 +42473,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "20/Feb/17",
   "Crag name": "Blacknor Far South"
 }, {
@@ -43629,7 +42480,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "20/Feb/17",
   "Crag name": "Blacknor Far South"
 }, {
@@ -43637,7 +42487,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "20/Feb/17",
   "Crag name": "Blacknor Far South"
 }, {
@@ -43645,7 +42494,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "20/Feb/17",
   "Crag name": "Blacknor Far South"
 }, {
@@ -43653,7 +42501,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead rpt",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "20/Feb/17",
   "Crag name": "Blacknor Far South"
 }, {
@@ -43677,7 +42524,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "19/Feb/17",
   "Crag name": "The Cuttings"
 }, {
@@ -43685,7 +42531,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "19/Feb/17",
   "Crag name": "The Cuttings"
 }, {
@@ -43693,7 +42538,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "19/Feb/17",
   "Crag name": "The Cuttings"
 }, {
@@ -43701,7 +42545,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "19/Feb/17",
   "Crag name": "The Cuttings"
 }, {
@@ -43714,7 +42557,7 @@ module.exports = [{
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "True Love",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead β",
   "Partner(s)": "Tom Hudson",
   "Notes": "Tom put the clips in.",
@@ -43738,10 +42581,9 @@ module.exports = [{
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "Rules is Rules",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "18/Feb/17",
   "Crag name": "The Cuttings"
 }, {
@@ -43749,7 +42591,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "18/Feb/17",
   "Crag name": "The Cuttings"
 }, {
@@ -43757,7 +42598,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "18/Feb/17",
   "Crag name": "The Cuttings"
 }, {
@@ -43765,7 +42605,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "18/Feb/17",
   "Crag name": "The Cuttings"
 }, {
@@ -43773,7 +42612,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "18/Feb/17",
   "Crag name": "The Cuttings"
 }, {
@@ -43781,15 +42619,12 @@ module.exports = [{
   "Grade": "5c  **",
   "Style": "Lead rpt",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "18/Feb/17",
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "Belly Full of Brilliant Beer",
   "Grade": "VS 4c **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "17/Feb/17",
   "Crag name": "Baddow Road"
 }, {
@@ -43797,7 +42632,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "18/Dec/16",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -43805,7 +42639,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "18/Dec/16",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -43813,7 +42646,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "18/Dec/16",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -43821,7 +42653,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "18/Dec/16",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -43829,7 +42660,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead rpt",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "18/Dec/16",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -43845,15 +42675,13 @@ module.exports = [{
   "Grade": "E4 6a ***",
   "Style": "TR RP",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "17/Dec/16",
   "Crag name": "Burbage South Edge"
 }, {
   "Climb name": "Micro Mill",
-  "Grade": "f4+",
+  "Grade": "f4+  ",
   "Style": "Sent O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "17/Dec/16",
   "Crag name": "Burbage South Edge"
 }, {
@@ -43868,47 +42696,36 @@ module.exports = [{
   "Climb name": "Pock",
   "Grade": "f5+  **",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
 }, {
   "Climb name": "The Shearing",
   "Grade": "f5+  *",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
 }, {
   "Climb name": "Whale Rib",
   "Grade": "f4+  *",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
 }, {
   "Climb name": "Vague Rib",
   "Grade": "f5+  *",
   "Style": "Sent x",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
 }, {
   "Climb name": "Pick",
   "Grade": "f3+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
 }, {
   "Climb name": "Puck",
   "Grade": "f6A  **",
   "Style": "Sent dnf",
-  "Partner(s)": "",
   "Notes": "Given 6b in Boulder Britain guide, and felt more like it. Could not do it.",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
@@ -43916,55 +42733,42 @@ module.exports = [{
   "Climb name": "The Sheep Slab",
   "Grade": "f2+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
 }, {
   "Climb name": "Sheep Easy",
-  "Grade": "f3+",
+  "Grade": "f3+  ",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
 }, {
   "Climb name": "Wall Past Flake",
   "Grade": "f4+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
 }, {
   "Climb name": "Big Flakes",
   "Grade": "f2+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
 }, {
   "Climb name": "Peasy Flake",
   "Grade": "f2+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
 }, {
   "Climb name": "Easy Flake",
   "Grade": "f2+  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
 }, {
   "Climb name": "Open Flakeline",
   "Grade": "f5+  **",
   "Style": "Sent x",
-  "Partner(s)": "",
   "Notes": "like with vague rib on the Brick, just go up to the better flatter holds",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
@@ -43972,15 +42776,12 @@ module.exports = [{
   "Climb name": "Northern",
   "Grade": "f5  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
 }, {
   "Climb name": "KBHR",
   "Grade": "f5  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
   "Notes": "easier than a 5",
   "Date": "14/Dec/16",
   "Crag name": "Burbage South Valley Boulders"
@@ -43989,7 +42790,6 @@ module.exports = [{
   "Grade": "f5  **",
   "Style": "Sent x",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "12/Dec/16",
   "Crag name": "Almscliff"
 }, {
@@ -43997,7 +42797,6 @@ module.exports = [{
   "Grade": "f4+  **",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "12/Dec/16",
   "Crag name": "Almscliff"
 }, {
@@ -44005,7 +42804,6 @@ module.exports = [{
   "Grade": "f7C  ***",
   "Style": "Sent dnf",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "12/Dec/16",
   "Crag name": "Almscliff"
 }, {
@@ -44021,7 +42819,7 @@ module.exports = [{
   "Grade": "f7A  ***",
   "Style": "Sent dnf",
   "Partner(s)": "Tom Hudson",
-  "Notes": "Too weak",
+  "Notes": "Too weak ",
   "Date": "30/Nov/16",
   "Crag name": "Bowles Rocks"
 }, {
@@ -44029,7 +42827,6 @@ module.exports = [{
   "Grade": "f6B  ***",
   "Style": "Sent x",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "30/Nov/16",
   "Crag name": "Bowles Rocks"
 }, {
@@ -44058,7 +42855,7 @@ module.exports = [{
   "Crag name": "Indian Creek"
 }, {
   "Climb name": "Comfortably Numb",
-  "Grade": "5.10b",
+  "Grade": "5.10b  ",
   "Style": "Lead O/S",
   "Partner(s)": "Matt from the Bay Area",
   "Notes": "Only placed 17 pieces of gear on this one! Need to run it out more. Kiwi guy Duncan hauled up his amp to this crag - one of the longer walk ins in Indian Creek, and played the wall album which was a great touch. 'Comfortably Numb' came on as I was about two thirds the way up. Awesome!",
@@ -44077,7 +42874,6 @@ module.exports = [{
   "Grade": "5.10a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Matt from the Bay Area",
-  "Notes": "",
   "Date": "11/Nov/16",
   "Crag name": "Indian Creek"
 }, {
@@ -44085,7 +42881,6 @@ module.exports = [{
   "Grade": "5.9  *",
   "Style": "Lead O/S",
   "Partner(s)": "Matt from the Bay Area",
-  "Notes": "",
   "Date": "11/Nov/16",
   "Crag name": "Indian Creek"
 }, {
@@ -44106,7 +42901,7 @@ module.exports = [{
   "Crag name": "Indian Creek"
 }, {
   "Climb name": "Nagasaki",
-  "Grade": "5.10d",
+  "Grade": "5.10d  ",
   "Style": "Lead G/U",
   "Partner(s)": "Colin Landeck",
   "Notes": "Had a slip on the calcite shit at the start of this. Kinda pumpy with the thin hands towards the top. Nice to be in the shade for this one, its long.",
@@ -44114,7 +42909,7 @@ module.exports = [{
   "Crag name": "Indian Creek"
 }, {
   "Climb name": "Piano",
-  "Grade": "5.10d",
+  "Grade": "5.10d  ",
   "Style": "Lead O/S",
   "Partner(s)": "Colin Landeck",
   "Notes": "A beautiful, short and technical climb. Right facing finger corner, roof, then left facing finger corner. Got told this was 11a before getting on it, and it may as well have been. Quite different to the standard finger crack with no feet.",
@@ -44122,10 +42917,9 @@ module.exports = [{
   "Crag name": "Indian Creek"
 }, {
   "Climb name": "Spam",
-  "Grade": 5.9,
+  "Grade": "5.9  ",
   "Style": "Lead O/S",
   "Partner(s)": "Dave from Wenatchee, WA",
-  "Notes": "",
   "Date": "09/Nov/16",
   "Crag name": "Indian Creek"
 }, {
@@ -44133,7 +42927,6 @@ module.exports = [{
   "Grade": "5.10b  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Dave from Wenatchee, WA",
-  "Notes": "",
   "Date": "09/Nov/16",
   "Crag name": "Indian Creek"
 }, {
@@ -44165,7 +42958,6 @@ module.exports = [{
   "Grade": "5.10c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Dave from Wenatchee, WA",
-  "Notes": "",
   "Date": "09/Nov/16",
   "Crag name": "Indian Creek"
 }, {
@@ -44205,7 +42997,6 @@ module.exports = [{
   "Grade": "5.10b  **",
   "Style": "TR O/S",
   "Partner(s)": "Duncan from New Zealand",
-  "Notes": "",
   "Date": "08/Nov/16",
   "Crag name": "Indian Creek"
 }, {
@@ -44221,7 +43012,6 @@ module.exports = [{
   "Grade": "5.10c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Humpus from Sweden",
-  "Notes": "",
   "Date": "04/Nov/16",
   "Crag name": "Indian Creek"
 }, {
@@ -44229,7 +43019,6 @@ module.exports = [{
   "Grade": "5.11d  ***",
   "Style": "TR RP",
   "Partner(s)": "Humpus from Sweden",
-  "Notes": "",
   "Date": "04/Nov/16",
   "Crag name": "Indian Creek"
 }, {
@@ -44245,15 +43034,13 @@ module.exports = [{
   "Grade": "5.10c  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Lena from Canada, Stu from Canada",
-  "Notes": "",
   "Date": "03/Nov/16",
   "Crag name": "Indian Creek"
 }, {
   "Climb name": "Unnamed",
-  "Grade": "5.10a",
+  "Grade": "5.10a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Lena from Canada, Stu from Canada",
-  "Notes": "",
   "Date": "03/Nov/16",
   "Crag name": "Indian Creek"
 }, {
@@ -44261,7 +43048,6 @@ module.exports = [{
   "Grade": "5.10a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Lena from Canada, Stu from Canada",
-  "Notes": "",
   "Date": "03/Nov/16",
   "Crag name": "Indian Creek"
 }, {
@@ -44285,12 +43071,11 @@ module.exports = [{
   "Grade": "5.10c  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Shira Biner",
-  "Notes": "",
   "Date": "01/Nov/16",
   "Crag name": "Indian Creek"
 }, {
   "Climb name": "The Wave",
-  "Grade": "5.10d",
+  "Grade": "5.10d  ",
   "Style": "Lead dog",
   "Partner(s)": "Shira Biner",
   "Notes": "Got sandbagged by the book. Fuck the nuts, bring a load of .75 cams. Ran out of gear for the crux bulge at the top, had to take a rest to retrieve some. Would have probably been another e3 onsight.",
@@ -44309,28 +43094,25 @@ module.exports = [{
   "Grade": "5.10d  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Shira Biner",
-  "Notes": "",
   "Date": "31/Oct/16",
   "Crag name": "Indian Creek"
 }, {
   "Climb name": "Binou's Crack",
-  "Grade": 5.9,
+  "Grade": "5.9  ",
   "Style": "Lead O/S",
   "Partner(s)": "Shira Biner",
-  "Notes": "",
   "Date": "31/Oct/16",
   "Crag name": "Indian Creek"
 }, {
   "Climb name": "Chocolate Corner",
-  "Grade": "5.10a",
+  "Grade": "5.10a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Shira Biner",
-  "Notes": "",
   "Date": "31/Oct/16",
   "Crag name": "Indian Creek"
 }, {
   "Climb name": "Generic Crack",
-  "Grade": 5.9,
+  "Grade": "5.9  ",
   "Style": "Lead O/S",
   "Partner(s)": "Shira Biner",
   "Notes": "Not actually that generic, lots of pods and roundedness. First climb in the creek and a good one to start on.",
@@ -44341,7 +43123,6 @@ module.exports = [{
   "Grade": "5.11b  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Mark from Truckee, Ben from Boulder",
-  "Notes": "",
   "Date": "29/Oct/16",
   "Crag name": "Lime Kiln Canyon"
 }, {
@@ -44349,7 +43130,6 @@ module.exports = [{
   "Grade": "5.10c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Mark from Truckee, Ben from Boulder",
-  "Notes": "",
   "Date": "29/Oct/16",
   "Crag name": "Lime Kiln Canyon"
 }, {
@@ -44357,7 +43137,6 @@ module.exports = [{
   "Grade": "5.12a  ***",
   "Style": "Lead dog",
   "Partner(s)": "Mark from Truckee, Ben from Boulder",
-  "Notes": "",
   "Date": "29/Oct/16",
   "Crag name": "Lime Kiln Canyon"
 }, {
@@ -44381,15 +43160,13 @@ module.exports = [{
   "Grade": "5.9  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ben from Boulder",
-  "Notes": "",
   "Date": "27/Oct/16",
   "Crag name": "Calico Hills, Second Pullout"
 }, {
   "Climb name": "Friend",
-  "Grade": "5.10d",
+  "Grade": "5.10d  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ben from Boulder",
-  "Notes": "",
   "Date": "27/Oct/16",
   "Crag name": "Calico Hills, Second Pullout"
 }, {
@@ -44397,12 +43174,11 @@ module.exports = [{
   "Grade": "5.11a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ben from Boulder",
-  "Notes": "",
   "Date": "27/Oct/16",
   "Crag name": "Calico Hills, Second Pullout"
 }, {
   "Climb name": "Black Corridor #4",
-  "Grade": "5.11a",
+  "Grade": "5.11a  ",
   "Style": "Lead G/U",
   "Partner(s)": "Ben from Boulder",
   "Notes": "One slip on the polished crux",
@@ -44413,7 +43189,6 @@ module.exports = [{
   "Grade": "5.11b  *",
   "Style": "Lead dog",
   "Partner(s)": "Ben from Boulder",
-  "Notes": "",
   "Date": "27/Oct/16",
   "Crag name": "Calico Hills, Second Pullout"
 }, {
@@ -44437,7 +43212,6 @@ module.exports = [{
   "Grade": "5.11b  *",
   "Style": "Lead dog",
   "Partner(s)": "Ben from Boulder",
-  "Notes": "",
   "Date": "27/Oct/16",
   "Crag name": "Calico Hills, Second Pullout"
 }, {
@@ -44450,10 +43224,9 @@ module.exports = [{
   "Crag name": "The Southern Outcrops & Mud Springs Canyon"
 }, {
   "Climb name": "Carrie Fissure",
-  "Grade": 5.8,
+  "Grade": "5.8  ",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
-  "Notes": "",
   "Date": "25/Oct/16",
   "Crag name": "Calico Basin, Red Springs"
 }, {
@@ -44461,7 +43234,6 @@ module.exports = [{
   "Grade": "5.9  *",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
-  "Notes": "",
   "Date": "25/Oct/16",
   "Crag name": "Calico Basin, Red Springs"
 }, {
@@ -44469,20 +43241,18 @@ module.exports = [{
   "Grade": "5.8  *",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
-  "Notes": "",
   "Date": "25/Oct/16",
   "Crag name": "Calico Basin, Red Springs"
 }, {
   "Climb name": "Mac And Ronnie In Cheese",
-  "Grade": "5.10a",
+  "Grade": "5.10a  ",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
-  "Notes": "",
   "Date": "25/Oct/16",
   "Crag name": "Calico Basin, Red Springs"
 }, {
   "Climb name": "Hans Soloing",
-  "Grade": 5.8,
+  "Grade": "5.8  ",
   "Style": "Solo O/S",
   "Partner(s)": "David Carrier",
   "Notes": "This is listed as a 5.4 in the guidebook, on Jabba the Hut Rock.",
@@ -44490,10 +43260,9 @@ module.exports = [{
   "Crag name": "Calico Basin, Red Springs"
 }, {
   "Climb name": "Hop Route",
-  "Grade": 5.7,
+  "Grade": "5.7  ",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
-  "Notes": "",
   "Date": "23/Oct/16",
   "Crag name": "Icebox Canyon"
 }, {
@@ -44525,7 +43294,6 @@ module.exports = [{
   "Grade": "5.9  *",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
-  "Notes": "",
   "Date": "21/Oct/16",
   "Crag name": "Calico Hills, Second Pullout"
 }, {
@@ -44533,44 +43301,39 @@ module.exports = [{
   "Grade": "5.8  *",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
-  "Notes": "",
   "Date": "21/Oct/16",
   "Crag name": "Calico Hills, Second Pullout"
 }, {
   "Climb name": "Zipper Head",
-  "Grade": 5.8,
+  "Grade": "5.8  ",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
-  "Notes": "",
   "Date": "21/Oct/16",
   "Crag name": "Calico Hills, Second Pullout"
 }, {
   "Climb name": "Ken Queasy",
-  "Grade": 5.8,
+  "Grade": "5.8  ",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
-  "Notes": "",
   "Date": "21/Oct/16",
   "Crag name": "Calico Hills, Second Pullout"
 }, {
   "Climb name": "Queasy Sunrise",
-  "Grade": 5.9,
+  "Grade": "5.9  ",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
-  "Notes": "",
   "Date": "21/Oct/16",
   "Crag name": "Calico Hills, Second Pullout"
 }, {
   "Climb name": "Heavy Hitter",
-  "Grade": "5.10d",
+  "Grade": "5.10d  ",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
-  "Notes": "",
   "Date": "21/Oct/16",
   "Crag name": "Calico Hills, Second Pullout"
 }, {
   "Climb name": "Punch Drunk",
-  "Grade": "5.11c",
+  "Grade": "5.11c  ",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
   "Notes": "Awesome juggy climbing that I have only done on limestone until now, much like the previous climb. Looked more juggy from the ground than it turned out to be though!",
@@ -44578,7 +43341,7 @@ module.exports = [{
   "Crag name": "Calico Hills, Second Pullout"
 }, {
   "Climb name": "Blonde Dwarf",
-  "Grade": 5.9,
+  "Grade": "5.9  ",
   "Style": "Lead O/S",
   "Partner(s)": "David Carrier",
   "Notes": "I think this was listed as a 10a in the Falcon guide, and is the best line at the crag, following a right diagonal thin crack to two bolts. Easier than the 5.9.",
@@ -44605,7 +43368,6 @@ module.exports = [{
   "Grade": "5.10a  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Rachel from Cape Cod",
-  "Notes": "",
   "Date": "18/Oct/16",
   "Crag name": "El Capitan"
 }, {
@@ -44613,20 +43375,18 @@ module.exports = [{
   "Grade": "5.7  **",
   "Style": "2nd rpt",
   "Partner(s)": "Rachel from Cape Cod",
-  "Notes": "",
   "Date": "18/Oct/16",
   "Crag name": "El Capitan"
 }, {
   "Climb name": "Unnamed Thin Crack",
-  "Grade": "5.10a",
+  "Grade": "5.10a  ",
   "Style": "TR rpt",
   "Partner(s)": "Roberto from Granada",
-  "Notes": "",
   "Date": "17/Oct/16",
   "Crag name": "Swan Slab"
 }, {
   "Climb name": "Unnamed Seam",
-  "Grade": "5.10c",
+  "Grade": "5.10c  ",
   "Style": "Lead dnf",
   "Partner(s)": "Roberto from Granada",
   "Notes": "Lead did not start. Roberto made it look hard then told me later that he used to climb 8c when he was younger.",
@@ -44650,7 +43410,7 @@ module.exports = [{
   "Crag name": "Cookie Cliff"
 }, {
   "Climb name": "Twinkie",
-  "Grade": 5.9,
+  "Grade": "5.9  ",
   "Style": "Lead O/S",
   "Partner(s)": "Franjo",
   "Notes": "1st 5.8 pitch only",
@@ -44685,7 +43445,6 @@ module.exports = [{
   "Grade": "5.10b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Andrey Romanuik",
-  "Notes": "",
   "Date": "12/Oct/16",
   "Crag name": "Pat and Jack Pinnacle"
 }, {
@@ -44693,7 +43452,6 @@ module.exports = [{
   "Grade": "5.8  **",
   "Style": "Lead O/S",
   "Partner(s)": "Andrey Romanuik",
-  "Notes": "",
   "Date": "12/Oct/16",
   "Crag name": "Pat and Jack Pinnacle"
 }, {
@@ -44714,7 +43472,7 @@ module.exports = [{
   "Crag name": "Eichorn Pinnacle"
 }, {
   "Climb name": "Super Slide",
-  "Grade": 5.9,
+  "Grade": "5.9  ",
   "Style": "AltLd O/S",
   "Partner(s)": "Shira Biner",
   "Notes": "Quite a cruise until the last 8 or so metres of thin hands. Led p 2, 4 and 5.",
@@ -44738,10 +43496,9 @@ module.exports = [{
   "Crag name": "Tenaya Peak"
 }, {
   "Climb name": "The Hanging Teeth",
-  "Grade": 5.8,
+  "Grade": "5.8  ",
   "Style": "AltLd O/S",
   "Partner(s)": "Andrey Romanuik",
-  "Notes": "",
   "Date": "08/Oct/16",
   "Crag name": "Five Open Books"
 }, {
@@ -44751,7 +43508,7 @@ module.exports = [{
   "Partner(s)": "Michael Porter",
   "Notes": "Fun upside down hand and foot jamming until halfway along where they thin out. One that I definitely have to get clean at some point in the future.",
   "Date": "07/Oct/16",
-  "Crag name": "Above the Cookie"
+  "Crag name": "Above the Cookie "
 }, {
   "Climb name": "Separate Reality",
   "Grade": "5.12a 6b ***",
@@ -44759,13 +43516,12 @@ module.exports = [{
   "Partner(s)": "Michael Porter",
   "Notes": "To retrieve gear. Aid practice.",
   "Date": "07/Oct/16",
-  "Crag name": "Above the Cookie"
+  "Crag name": "Above the Cookie "
 }, {
   "Climb name": "John Muir / Mountaineers Route",
   "Grade": "5.1  **",
   "Style": "AltLd O/S",
   "Partner(s)": "Matthew Porter",
-  "Notes": "",
   "Date": "06/Oct/16",
   "Crag name": "Cathedral Peak"
 }, {
@@ -44789,7 +43545,6 @@ module.exports = [{
   "Grade": "5.10d  ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "01/Oct/16",
   "Crag name": "Royal Arches Area"
 }, {
@@ -44805,15 +43560,13 @@ module.exports = [{
   "Grade": "5.9  **",
   "Style": "Lead O/S",
   "Partner(s)": "Matthew Porter",
-  "Notes": "",
   "Date": "30/Sep/16",
   "Crag name": "Swan Slab"
 }, {
   "Climb name": "Unnamed Thin Crack",
-  "Grade": "5.10a",
+  "Grade": "5.10a  ",
   "Style": "TR O/S",
   "Partner(s)": "Matthew Porter",
-  "Notes": "",
   "Date": "30/Sep/16",
   "Crag name": "Swan Slab"
 }, {
@@ -44829,7 +43582,6 @@ module.exports = [{
   "Grade": "5.10b  **",
   "Style": "2nd O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Sep/16",
   "Crag name": "Church Bowl"
 }, {
@@ -44837,7 +43589,6 @@ module.exports = [{
   "Grade": "5.8  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Sep/16",
   "Crag name": "Church Bowl"
 }, {
@@ -44853,7 +43604,6 @@ module.exports = [{
   "Grade": "5.10a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "29/Sep/16",
   "Crag name": "Church Bowl"
 }, {
@@ -44882,7 +43632,7 @@ module.exports = [{
   "Crag name": "Middle Cathedral Rock"
 }, {
   "Climb name": "La Cosita (Left Side)",
-  "Grade": 5.7,
+  "Grade": "5.7  ",
   "Style": "2nd rpt",
   "Partner(s)": "Michael Porter",
   "Notes": "Stiff for 5.7",
@@ -44909,7 +43659,6 @@ module.exports = [{
   "Grade": "5.7  *",
   "Style": "2nd",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "25/Sep/16",
   "Crag name": "El Capitan"
 }, {
@@ -44930,7 +43679,7 @@ module.exports = [{
   "Crag name": "West Chief"
 }, {
   "Climb name": "Butt Light",
-  "Grade": "5.10a",
+  "Grade": "5.10a  ",
   "Style": "AltLd O/S",
   "Partner(s)": "Mike Rohs (from Calgary)",
   "Notes": "Lead crux pitch one. Topped out at 12.47am after starting from the bottom of the Apron at about 7.45am.",
@@ -44989,7 +43738,6 @@ module.exports = [{
   "Grade": "5.8  **",
   "Style": "Lead O/S",
   "Partner(s)": "Mike Rohs (from Calgary)",
-  "Notes": "",
   "Date": "20/Sep/16",
   "Crag name": "Smoke Bluffs"
 }, {
@@ -44997,7 +43745,6 @@ module.exports = [{
   "Grade": "5.10a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Chuck from Vancouver",
-  "Notes": "",
   "Date": "19/Sep/16",
   "Crag name": "Cheakamus Canyon"
 }, {
@@ -45005,7 +43752,6 @@ module.exports = [{
   "Grade": "5.11a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Chuck from Vancouver",
-  "Notes": "",
   "Date": "19/Sep/16",
   "Crag name": "Cheakamus Canyon"
 }, {
@@ -45013,7 +43759,6 @@ module.exports = [{
   "Grade": "5.8  *",
   "Style": "Lead O/S",
   "Partner(s)": "Chuck from Vancouver",
-  "Notes": "",
   "Date": "19/Sep/16",
   "Crag name": "Cheakamus Canyon"
 }, {
@@ -45021,7 +43766,6 @@ module.exports = [{
   "Grade": "5.10d  *",
   "Style": "Lead O/S",
   "Partner(s)": "Chuck from Vancouver",
-  "Notes": "",
   "Date": "19/Sep/16",
   "Crag name": "Cheakamus Canyon"
 }, {
@@ -45029,7 +43773,6 @@ module.exports = [{
   "Grade": "5.10c  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Chuck from Vancouver",
-  "Notes": "",
   "Date": "19/Sep/16",
   "Crag name": "Cheakamus Canyon"
 }, {
@@ -45037,7 +43780,6 @@ module.exports = [{
   "Grade": "5.11a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Chuck from Vancouver",
-  "Notes": "",
   "Date": "19/Sep/16",
   "Crag name": "Cheakamus Canyon"
 }, {
@@ -45045,7 +43787,6 @@ module.exports = [{
   "Grade": "5.11b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Chuck from Vancouver",
-  "Notes": "",
   "Date": "19/Sep/16",
   "Crag name": "Cheakamus Canyon"
 }, {
@@ -45065,7 +43806,7 @@ module.exports = [{
   "Date": "15/Sep/16",
   "Crag name": "Washington Pass"
 }, {
-  "Climb name": "North Face",
+  "Climb name": "North Face ",
   "Grade": "5.7  **",
   "Style": "AltLd O/S",
   "Partner(s)": "David Carrier",
@@ -45092,87 +43833,66 @@ module.exports = [{
   "Climb name": "There Must be a Catch",
   "Grade": "f5  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Sep/16",
   "Crag name": "The Mother Lode"
 }, {
   "Climb name": "The Big Rack Crack",
   "Grade": "f5  ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Sep/16",
   "Crag name": "The Mother Lode"
 }, {
   "Climb name": "Steppin' Up",
   "Grade": "5.7  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Sep/16",
   "Crag name": "The Mother Lode"
 }, {
   "Climb name": "Stem to Stern",
   "Grade": "f5+  ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Sep/16",
   "Crag name": "The Mother Lode"
 }, {
   "Climb name": "All Hands off the Deck",
   "Grade": "f5  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Sep/16",
   "Crag name": "The Mother Lode"
 }, {
   "Climb name": "Smooth Sailing",
   "Grade": "5.9  ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Sep/16",
   "Crag name": "The Mother Lode"
 }, {
   "Climb name": "Gore-Tex Hornet Funnel",
   "Grade": "5.7  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Sep/16",
   "Crag name": "The Mother Lode"
 }, {
   "Climb name": "The Bird",
   "Grade": "5.8  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Sep/16",
   "Crag name": "The Mother Lode"
 }, {
   "Climb name": "Taste Test",
   "Grade": "5.9  ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Sep/16",
   "Crag name": "The Mother Lode"
 }, {
   "Climb name": "Hyperglycemia",
   "Grade": "f5+  ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "12/Sep/16",
   "Crag name": "The Mother Lode"
 }, {
   "Climb name": "Creme Broule",
   "Grade": "f6A+  ***",
   "Style": "Solo dnf",
-  "Partner(s)": "",
   "Notes": "Bit too high to want to make a lunge to an unknown hold on the crux, so I backed off.",
   "Date": "12/Sep/16",
   "Crag name": "The Mother Lode"
@@ -45189,7 +43909,6 @@ module.exports = [{
   "Grade": "5.10c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Alex Mckee",
-  "Notes": "",
   "Date": "10/Sep/16",
   "Crag name": "Fun Rock"
 }, {
@@ -45197,7 +43916,6 @@ module.exports = [{
   "Grade": "5.10b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Alex Mckee",
-  "Notes": "",
   "Date": "10/Sep/16",
   "Crag name": "Fun Rock"
 }, {
@@ -45205,7 +43923,6 @@ module.exports = [{
   "Grade": "5.10c  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Alex Mckee",
-  "Notes": "",
   "Date": "10/Sep/16",
   "Crag name": "Fun Rock"
 }, {
@@ -45213,7 +43930,6 @@ module.exports = [{
   "Grade": "5.10a  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Alex Mckee",
-  "Notes": "",
   "Date": "10/Sep/16",
   "Crag name": "Fun Rock"
 }, {
@@ -45221,7 +43937,6 @@ module.exports = [{
   "Grade": "5.11a  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Alex Mckee",
-  "Notes": "",
   "Date": "10/Sep/16",
   "Crag name": "Fun Rock"
 }, {
@@ -45229,7 +43944,6 @@ module.exports = [{
   "Grade": "5.10c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Alex Mckee",
-  "Notes": "",
   "Date": "10/Sep/16",
   "Crag name": "Fun Rock"
 }, {
@@ -45237,7 +43951,6 @@ module.exports = [{
   "Grade": "5.10c  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Alex Mckee",
-  "Notes": "",
   "Date": "10/Sep/16",
   "Crag name": "Fun Rock"
 }, {
@@ -45245,7 +43958,6 @@ module.exports = [{
   "Grade": "5.10b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Alex Mckee",
-  "Notes": "",
   "Date": "10/Sep/16",
   "Crag name": "Fun Rock"
 }, {
@@ -45269,11 +43981,11 @@ module.exports = [{
   "Grade": "5.9  ***",
   "Style": "AltLd O/S",
   "Partner(s)": "David Carrier",
-  "Notes": "Got snowed on on the 2nd belay!",
+  "Notes": "Got snowed on on the 2nd belay!\n",
   "Date": "08/Sep/16",
   "Crag name": "Washington Pass"
 }, {
-  "Climb name": "South Face",
+  "Climb name": "South Face ",
   "Grade": "5.6  *",
   "Style": "AltLd O/S",
   "Partner(s)": "David Carrier",
@@ -45301,7 +44013,6 @@ module.exports = [{
   "Grade": "5.9  ***",
   "Style": "TR O/S",
   "Partner(s)": "Mark Strahan",
-  "Notes": "",
   "Date": "25/Aug/16",
   "Crag name": "Section 13"
 }, {
@@ -45309,7 +44020,6 @@ module.exports = [{
   "Grade": "5.10a  ***",
   "Style": "TR O/S",
   "Partner(s)": "Mark Strahan",
-  "Notes": "",
   "Date": "25/Aug/16",
   "Crag name": "Section 13"
 }, {
@@ -45317,7 +44027,6 @@ module.exports = [{
   "Grade": "5.10c  **",
   "Style": "TR O/S",
   "Partner(s)": "Mark Strahan",
-  "Notes": "",
   "Date": "25/Aug/16",
   "Crag name": "Section 13"
 }, {
@@ -45381,7 +44090,6 @@ module.exports = [{
   "Grade": "5.8  *",
   "Style": "TR O/S",
   "Partner(s)": "Ronnie from Vertical Endeavours Duluth, Alex from Vertical Endeavours Duluth",
-  "Notes": "",
   "Date": "21/Aug/16",
   "Crag name": "Palisade Head"
 }, {
@@ -45389,7 +44097,6 @@ module.exports = [{
   "Grade": "5.8  *",
   "Style": "TR O/S",
   "Partner(s)": "Alex from Vertical Endeavours Duluth",
-  "Notes": "",
   "Date": "21/Aug/16",
   "Crag name": "Palisade Head"
 }, {
@@ -45413,12 +44120,11 @@ module.exports = [{
   "Grade": "5.7  *",
   "Style": "Lead O/S",
   "Partner(s)": "Benjamin Field",
-  "Notes": "",
   "Date": "20/Aug/16",
   "Crag name": "Palisade Head"
 }, {
   "Climb name": "Quietico Crack",
-  "Grade": 5.8,
+  "Grade": "5.8  ",
   "Style": "Lead O/S",
   "Partner(s)": "Benjamin Field",
   "Notes": "Could be anything between HVS and E2, who knows? Probably E1. Meant to log as 5.8.",
@@ -45429,7 +44135,6 @@ module.exports = [{
   "Grade": "5.9  *",
   "Style": "Lead O/S",
   "Partner(s)": "Benjamin Field",
-  "Notes": "",
   "Date": "18/Aug/16",
   "Crag name": "Red Wing"
 }, {
@@ -45437,15 +44142,13 @@ module.exports = [{
   "Grade": "5.10b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Benjamin Field",
-  "Notes": "",
   "Date": "18/Aug/16",
   "Crag name": "Red Wing"
 }, {
   "Climb name": "Do you get Vouchers with This?",
-  "Grade": "5c",
+  "Grade": "5c  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "09/Aug/16",
   "Crag name": "Brean Down"
 }, {
@@ -45453,7 +44156,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "09/Aug/16",
   "Crag name": "Brean Down"
 }, {
@@ -45461,7 +44163,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "09/Aug/16",
   "Crag name": "Brean Down"
 }, {
@@ -45469,7 +44170,6 @@ module.exports = [{
   "Grade": "E1 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "08/Aug/16",
   "Crag name": "Lower Sharpnose Point"
 }, {
@@ -45477,7 +44177,6 @@ module.exports = [{
   "Grade": "E1 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "08/Aug/16",
   "Crag name": "Lower Sharpnose Point"
 }, {
@@ -45485,7 +44184,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Aug/16",
   "Crag name": "Gull Rock - Marsland"
 }, {
@@ -45493,7 +44191,6 @@ module.exports = [{
   "Grade": "VS 4b **",
   "Style": "2nd O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Aug/16",
   "Crag name": "Gull Rock - Marsland"
 }, {
@@ -45501,7 +44198,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "06/Aug/16",
   "Crag name": "Screda Point"
 }, {
@@ -45509,7 +44205,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "06/Aug/16",
   "Crag name": "Screda Point"
 }, {
@@ -45517,7 +44212,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "05/Aug/16",
   "Crag name": "Fairy Cave Quarry"
 }, {
@@ -45533,7 +44227,6 @@ module.exports = [{
   "Grade": "f5+  **",
   "Style": "TR O/S",
   "Partner(s)": "Jadey Lewis, Ed Green",
-  "Notes": "",
   "Date": "31/Jul/16",
   "Crag name": "Stone Farm"
 }, {
@@ -45541,7 +44234,6 @@ module.exports = [{
   "Grade": "6b+ 5c **",
   "Style": "TR O/S",
   "Partner(s)": "Jadey Lewis, Ed Green",
-  "Notes": "",
   "Date": "31/Jul/16",
   "Crag name": "Stone Farm"
 }, {
@@ -45549,7 +44241,6 @@ module.exports = [{
   "Grade": "6b 5c *",
   "Style": "TR O/S",
   "Partner(s)": "Jadey Lewis, Ed Green",
-  "Notes": "",
   "Date": "31/Jul/16",
   "Crag name": "Stone Farm"
 }, {
@@ -45557,7 +44248,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR O/S",
   "Partner(s)": "Jadey Lewis, Ed Green",
-  "Notes": "",
   "Date": "31/Jul/16",
   "Crag name": "Stone Farm"
 }, {
@@ -45565,7 +44255,6 @@ module.exports = [{
   "Grade": "6a+ 5a ***",
   "Style": "TR O/S",
   "Partner(s)": "Jadey Lewis, Ed Green",
-  "Notes": "",
   "Date": "31/Jul/16",
   "Crag name": "Stone Farm"
 }, {
@@ -45573,7 +44262,6 @@ module.exports = [{
   "Grade": "4b 4b **",
   "Style": "Solo O/S",
   "Partner(s)": "Jadey Lewis, Ed Green",
-  "Notes": "",
   "Date": "31/Jul/16",
   "Crag name": "Stone Farm"
 }, {
@@ -45581,7 +44269,6 @@ module.exports = [{
   "Grade": "4c 4c *",
   "Style": "Solo O/S",
   "Partner(s)": "Jadey Lewis, Ed Green",
-  "Notes": "",
   "Date": "31/Jul/16",
   "Crag name": "Stone Farm"
 }, {
@@ -45589,7 +44276,6 @@ module.exports = [{
   "Grade": "f2+  *",
   "Style": "Solo O/S",
   "Partner(s)": "Jadey Lewis, Ed Green",
-  "Notes": "",
   "Date": "31/Jul/16",
   "Crag name": "Stone Farm"
 }, {
@@ -45597,7 +44283,6 @@ module.exports = [{
   "Grade": "f3  *",
   "Style": "Solo O/S",
   "Partner(s)": "Jadey Lewis, Ed Green",
-  "Notes": "",
   "Date": "31/Jul/16",
   "Crag name": "Stone Farm"
 }, {
@@ -45613,7 +44298,6 @@ module.exports = [{
   "Grade": "4a 4a **",
   "Style": "Solo O/S",
   "Partner(s)": "Jadey Lewis, Ed Green",
-  "Notes": "",
   "Date": "31/Jul/16",
   "Crag name": "Stone Farm"
 }, {
@@ -45621,7 +44305,6 @@ module.exports = [{
   "Grade": "4b 4b **",
   "Style": "Solo O/S",
   "Partner(s)": "Jadey Lewis, Ed Green",
-  "Notes": "",
   "Date": "31/Jul/16",
   "Crag name": "Stone Farm"
 }, {
@@ -45629,7 +44312,6 @@ module.exports = [{
   "Grade": "6a+ 5b ***",
   "Style": "TR O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "24/Jul/16",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -45637,7 +44319,6 @@ module.exports = [{
   "Grade": "6b 5c ***",
   "Style": "TR O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "24/Jul/16",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -45645,7 +44326,6 @@ module.exports = [{
   "Grade": "4c 4c **",
   "Style": "TR O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "24/Jul/16",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -45653,7 +44333,6 @@ module.exports = [{
   "Grade": "6a 5a *",
   "Style": "TR O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "24/Jul/16",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -45661,7 +44340,6 @@ module.exports = [{
   "Grade": "6a+ 5b *",
   "Style": "TR O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "24/Jul/16",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -45669,7 +44347,6 @@ module.exports = [{
   "Grade": "6b 5b **",
   "Style": "TR O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "24/Jul/16",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -45677,15 +44354,13 @@ module.exports = [{
   "Grade": "6a+ 5b ***",
   "Style": "TR O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "24/Jul/16",
   "Crag name": "Eridge Green Rocks"
 }, {
   "Climb name": "Too Short",
-  "Grade": "6b+ 5c",
+  "Grade": "6b+ 5c ",
   "Style": "TR O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "24/Jul/16",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -45693,7 +44368,6 @@ module.exports = [{
   "Grade": "5b 5a **",
   "Style": "TR O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "24/Jul/16",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -45701,7 +44375,6 @@ module.exports = [{
   "Grade": "6b 5c **",
   "Style": "TR RP",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "24/Jul/16",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -45709,7 +44382,6 @@ module.exports = [{
   "Grade": "7a 6a *",
   "Style": "TR RP",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "24/Jul/16",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -45717,7 +44389,6 @@ module.exports = [{
   "Grade": "6b 5c *",
   "Style": "TR RP",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "24/Jul/16",
   "Crag name": "Eridge Green Rocks"
 }, {
@@ -45733,7 +44404,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "Lead O/S",
   "Partner(s)": "tomdude",
-  "Notes": "",
   "Date": "21/Jul/16",
   "Crag name": "Craig Bwlch y Moch (Tremadog)"
 }, {
@@ -45749,7 +44419,6 @@ module.exports = [{
   "Grade": "S 4a ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Ben from Bristol",
-  "Notes": "",
   "Date": "18/Jul/16",
   "Crag name": "Carreg Wastad"
 }, {
@@ -45773,15 +44442,13 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "AltLd O/S",
   "Partner(s)": "Ben from Bristol, tomdude",
-  "Notes": "",
   "Date": "17/Jul/16",
   "Crag name": "Tryfan"
 }, {
   "Climb name": "Dusty Fred's Winter Collection",
-  "Grade": "6c",
+  "Grade": "6c  ",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "10/Jul/16",
   "Crag name": "The Cuttings"
 }, {
@@ -45789,7 +44456,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "10/Jul/16",
   "Crag name": "The Cuttings"
 }, {
@@ -45797,12 +44463,11 @@ module.exports = [{
   "Grade": "7a+  *",
   "Style": "TR dog",
   "Partner(s)": "AJ, Michael Porter",
-  "Notes": "",
   "Date": "10/Jul/16",
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "Finesse",
-  "Grade": "7a",
+  "Grade": "7a  ",
   "Style": "TR dog",
   "Partner(s)": "Michael Porter",
   "Notes": "Had a couple goes working out moves, but thought I'd best save the fingers for later.",
@@ -45813,7 +44478,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead rpt",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "10/Jul/16",
   "Crag name": "The Cuttings"
 }, {
@@ -45828,8 +44492,6 @@ module.exports = [{
   "Climb name": "The Unworthy",
   "Grade": "6c  **",
   "Style": "Lead RP",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "10/Jul/16",
   "Crag name": "The New Cuttings"
 }, {
@@ -45837,7 +44499,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "AJ, Michael Porter",
-  "Notes": "",
   "Date": "10/Jul/16",
   "Crag name": "The Cuttings"
 }, {
@@ -45845,7 +44506,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "DWS O/S",
   "Partner(s)": "Michael Porter, AJ",
-  "Notes": "",
   "Date": "09/Jul/16",
   "Crag name": "White Hole"
 }, {
@@ -45861,7 +44521,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "09/Jul/16",
   "Crag name": "Wallsend South"
 }, {
@@ -45917,7 +44576,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Jul/16",
   "Crag name": "Rusty Walls"
 }, {
@@ -45933,7 +44591,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "01/Jul/16",
   "Crag name": "St. Govan's Head"
 }, {
@@ -45965,7 +44622,6 @@ module.exports = [{
   "Grade": "6b+  ***",
   "Style": "Lead β",
   "Partner(s)": "Andrew porter, Michael Porter, Matthew Porter",
-  "Notes": "",
   "Date": "19/Jun/16",
   "Crag name": "Dovedale"
 }, {
@@ -45989,7 +44645,6 @@ module.exports = [{
   "Grade": "HVS 5b **",
   "Style": "2nd O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "18/Jun/16",
   "Crag name": "Millstone Edge"
 }, {
@@ -46053,7 +44708,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "2nd rpt",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "06/Jun/16",
   "Crag name": "Fair Head"
 }, {
@@ -46085,7 +44739,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "03/Jun/16",
   "Crag name": "Fair Head"
 }, {
@@ -46261,7 +44914,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/16",
   "Crag name": "Nesscliffe"
 }, {
@@ -46269,7 +44921,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "24/May/16",
   "Crag name": "Idwal Slabs (aka Cwm Idwal)"
 }, {
@@ -46313,7 +44964,7 @@ module.exports = [{
   "Date": "22/May/16",
   "Crag name": "Rhoscolyn"
 }, {
-  "Climb name": "The Savage Sunbird",
+  "Climb name": "Savage Sunbird",
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green, Katsmiff",
@@ -46322,7 +44973,7 @@ module.exports = [{
   "Crag name": "Rhoscolyn"
 }, {
   "Climb name": "Relief",
-  "Grade": "E2 5c",
+  "Grade": "E2 5c ",
   "Style": "Lead O/S",
   "Partner(s)": "Mark Hounslea",
   "Notes": "very easy for the grade, 2 inches of e2 on it.",
@@ -46330,7 +44981,7 @@ module.exports = [{
   "Crag name": "Holyhead Mountain"
 }, {
   "Climb name": "The Unblue Crack",
-  "Grade": "E1 5b",
+  "Grade": "E1 5b ",
   "Style": "2nd O/S",
   "Partner(s)": "Mark Hounslea",
   "Notes": "hard pull on the crux",
@@ -46373,7 +45024,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/May/16",
   "Crag name": "Guillemot Ledge"
 }, {
@@ -46381,7 +45031,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/May/16",
   "Crag name": "Guillemot Ledge"
 }, {
@@ -46394,18 +45043,16 @@ module.exports = [{
   "Crag name": "Guillemot Ledge"
 }, {
   "Climb name": "Streamline",
-  "Grade": "E1 5b",
+  "Grade": "E1 5b ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "02/May/16",
   "Crag name": "Cheddar Gorge North"
 }, {
   "Climb name": "Matanuska",
-  "Grade": "VS 4c",
+  "Grade": "VS 4c ",
   "Style": "2nd O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "02/May/16",
   "Crag name": "Cheddar Gorge North"
 }, {
@@ -46421,7 +45068,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "01/May/16",
   "Crag name": "Fairy Cave Quarry"
 }, {
@@ -46429,7 +45075,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "01/May/16",
   "Crag name": "Fairy Cave Quarry"
 }, {
@@ -46442,7 +45087,7 @@ module.exports = [{
   "Crag name": "Fairy Cave Quarry"
 }, {
   "Climb name": "Le Freak",
-  "Grade": "E1 5b",
+  "Grade": "E1 5b ",
   "Style": "2nd O/S",
   "Partner(s)": "Tom Hudson",
   "Notes": "Pumpy one for the sport climber. Short and sweet.",
@@ -46461,7 +45106,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "30/Apr/16",
   "Crag name": "Avon Gorge (Suspension Bridge Area)"
 }, {
@@ -46477,7 +45121,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "30/Apr/16",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -46485,7 +45128,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "30/Apr/16",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -46573,7 +45215,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "17/Apr/16",
   "Crag name": "Stanage Popular"
 }, {
@@ -46581,7 +45222,6 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "17/Apr/16",
   "Crag name": "Stanage Popular"
 }, {
@@ -46589,7 +45229,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "17/Apr/16",
   "Crag name": "Stanage Popular"
 }, {
@@ -46597,7 +45236,6 @@ module.exports = [{
   "Grade": "E2 5c *",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "17/Apr/16",
   "Crag name": "Rivelin Edge"
 }, {
@@ -46605,7 +45243,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "17/Apr/16",
   "Crag name": "Rivelin Edge"
 }, {
@@ -46621,7 +45258,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "16/Apr/16",
   "Crag name": "Stanage Popular"
 }, {
@@ -46629,7 +45265,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "16/Apr/16",
   "Crag name": "Stanage Popular"
 }, {
@@ -46637,7 +45272,6 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "16/Apr/16",
   "Crag name": "Stanage Popular"
 }, {
@@ -46645,7 +45279,6 @@ module.exports = [{
   "Grade": "HVS 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "16/Apr/16",
   "Crag name": "Stanage Popular"
 }, {
@@ -46653,7 +45286,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet",
-  "Notes": "",
   "Date": "16/Apr/16",
   "Crag name": "Stanage Popular"
 }, {
@@ -46693,7 +45325,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson, Ed Green",
-  "Notes": "",
   "Date": "10/Apr/16",
   "Crag name": "Blacknor South"
 }, {
@@ -46709,7 +45340,6 @@ module.exports = [{
   "Grade": "5a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson, Ed Green",
-  "Notes": "",
   "Date": "09/Apr/16",
   "Crag name": "The Cuttings"
 }, {
@@ -46717,7 +45347,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson, Ed Green",
-  "Notes": "",
   "Date": "09/Apr/16",
   "Crag name": "The Cuttings"
 }, {
@@ -46725,7 +45354,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson, Ed Green",
-  "Notes": "",
   "Date": "09/Apr/16",
   "Crag name": "The Cuttings"
 }, {
@@ -46741,7 +45369,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "09/Apr/16",
   "Crag name": "The Cuttings"
 }, {
@@ -46749,7 +45376,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "03/Apr/16",
   "Crag name": "Winspit"
 }, {
@@ -46757,7 +45383,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "03/Apr/16",
   "Crag name": "Winspit"
 }, {
@@ -46765,7 +45390,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "03/Apr/16",
   "Crag name": "Winspit"
 }, {
@@ -46773,7 +45397,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead β",
   "Partner(s)": "Some Californian dude, Rafal Malczyk",
-  "Notes": "",
   "Date": "03/Apr/16",
   "Crag name": "Winspit"
 }, {
@@ -46810,7 +45433,7 @@ module.exports = [{
   "Crag name": "Winspit"
 }, {
   "Climb name": "The Fantastic Mr Faz",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead β",
   "Partner(s)": "Michael Porter, Andrew porter, Rafal Malczyk",
   "Notes": "Michael put the clips in. Nice 3D climbing.",
@@ -46885,7 +45508,6 @@ module.exports = [{
   "Grade": "E2  **",
   "Style": "2nd O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "23/Mar/16",
   "Crag name": "Polney Crag (Craig a Barns)"
 }, {
@@ -46909,7 +45531,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "20/Mar/16",
   "Crag name": "Suidhe Biorach"
 }, {
@@ -46917,7 +45538,6 @@ module.exports = [{
   "Grade": "VS 4b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "20/Mar/16",
   "Crag name": "Suidhe Biorach"
 }, {
@@ -46925,7 +45545,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "20/Mar/16",
   "Crag name": "Suidhe Biorach"
 }, {
@@ -46933,7 +45552,6 @@ module.exports = [{
   "Grade": "HVS 4c **",
   "Style": "2nd O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "19/Mar/16",
   "Crag name": "Creag Dubh (Newtonmore)"
 }, {
@@ -46941,7 +45559,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "19/Mar/16",
   "Crag name": "Creag Dubh (Newtonmore)"
 }, {
@@ -46949,7 +45566,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Tim",
-  "Notes": "",
   "Date": "13/Mar/16",
   "Crag name": "Blacknor Central"
 }, {
@@ -46957,7 +45573,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tim",
-  "Notes": "",
   "Date": "13/Mar/16",
   "Crag name": "Blacknor Central"
 }, {
@@ -46965,7 +45580,6 @@ module.exports = [{
   "Grade": "6a+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Tim",
-  "Notes": "",
   "Date": "13/Mar/16",
   "Crag name": "Blacknor Central"
 }, {
@@ -46989,7 +45603,7 @@ module.exports = [{
   "Grade": "7b  **",
   "Style": "Lead dnf",
   "Partner(s)": "Tim",
-  "Notes": "I'm pretty sure after reading the comments that I headed up this rather than 'A Ship load of Moonies' as I originally intended to. No rock had collapsed at the start, the two first bolts were about level with each other (and not shared), and I was hanging in there until the last clip, albeit voguing a little for the last couple metres. Then came a bit with tiny sidepulls, not much feet, and square- cut pinches to aim for. Gave up after a couple tries.",
+  "Notes": "I'm pretty sure after reading the comments that I headed up this rather than 'A Ship load of Moonies' as I originally intended to. No rock had collapsed at the start, the two first bolts were about level with each other (and not shared), and I was hanging in there until the last clip, albeit voguing a little for the last couple metres. Then came a bit with tiny sidepulls, not much feet, and square- cut pinches to aim for. Gave up after a couple tries. ",
   "Date": "13/Mar/16",
   "Crag name": "Coastguard South"
 }, {
@@ -46997,7 +45611,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Tim",
-  "Notes": "",
   "Date": "12/Mar/16",
   "Crag name": "The Cuttings"
 }, {
@@ -47005,7 +45618,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tim",
-  "Notes": "",
   "Date": "12/Mar/16",
   "Crag name": "The Cuttings"
 }, {
@@ -47029,7 +45641,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tim",
-  "Notes": "",
   "Date": "12/Mar/16",
   "Crag name": "Blacknor South"
 }, {
@@ -47045,7 +45656,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "06/Mar/16",
   "Crag name": "The New Cuttings"
 }, {
@@ -47053,7 +45663,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "06/Mar/16",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -47061,7 +45670,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "06/Mar/16",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -47069,7 +45677,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "06/Mar/16",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -47077,7 +45684,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "06/Mar/16",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -47085,7 +45691,6 @@ module.exports = [{
   "Grade": "5a  ***",
   "Style": "Lead rpt",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "06/Mar/16",
   "Crag name": "Blacknor North"
 }, {
@@ -47101,15 +45706,13 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "05/Mar/16",
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "Parsnip Soup",
-  "Grade": "5a",
+  "Grade": "5a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "05/Mar/16",
   "Crag name": "The Cuttings"
 }, {
@@ -47117,23 +45720,20 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "05/Mar/16",
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "Cheese and Pickle",
-  "Grade": "4c",
+  "Grade": "4c  ",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "05/Mar/16",
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "Eat, Stick and Die",
-  "Grade": "2a",
+  "Grade": "2a  ",
   "Style": "Lead β",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "05/Mar/16",
   "Crag name": "The Cuttings"
 }, {
@@ -47141,7 +45741,6 @@ module.exports = [{
   "Grade": "4c  *",
   "Style": "Lead β",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "05/Mar/16",
   "Crag name": "The Cuttings"
 }, {
@@ -47149,31 +45748,27 @@ module.exports = [{
   "Grade": "4c  *",
   "Style": "Lead β",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "05/Mar/16",
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "On Manoeuvres",
-  "Grade": "3a",
+  "Grade": "3a  ",
   "Style": "Lead β",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "05/Mar/16",
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "We're Only Placing Bolts for Nigel",
-  "Grade": "3a",
+  "Grade": "3a  ",
   "Style": "Lead β",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "05/Mar/16",
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "Corporal Punishment",
-  "Grade": "5a",
+  "Grade": "5a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "05/Mar/16",
   "Crag name": "The Cuttings"
 }, {
@@ -47181,7 +45776,6 @@ module.exports = [{
   "Grade": "4c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "05/Mar/16",
   "Crag name": "The New Cuttings"
 }, {
@@ -47189,7 +45783,6 @@ module.exports = [{
   "Grade": "4c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "",
   "Date": "05/Mar/16",
   "Crag name": "The New Cuttings"
 }, {
@@ -47197,7 +45790,7 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead dnf",
   "Partner(s)": "Mullet, Jadey Lewis",
-  "Notes": "Really sequency and hard not to get too knackered to hold the top hold that you pop to. Will be back when stronger.",
+  "Notes": "Really sequency and hard not to get too knackered to hold the top hold that you pop to. Will be back when stronger.\n",
   "Date": "05/Mar/16",
   "Crag name": "The New Cuttings"
 }, {
@@ -47205,7 +45798,6 @@ module.exports = [{
   "Grade": "6a  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "01/Jan/16",
   "Crag name": "Port de Sóller"
 }, {
@@ -47213,7 +45805,6 @@ module.exports = [{
   "Grade": "6b  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "01/Jan/16",
   "Crag name": "Port de Sóller"
 }, {
@@ -47245,7 +45836,6 @@ module.exports = [{
   "Grade": "5b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "31/Dec/15",
   "Crag name": "Es Fumat"
 }, {
@@ -47253,7 +45843,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "31/Dec/15",
   "Crag name": "Es Fumat"
 }, {
@@ -47261,7 +45850,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "31/Dec/15",
   "Crag name": "El Calo de Betlem"
 }, {
@@ -47293,7 +45881,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "30/Dec/15",
   "Crag name": "Can Ortigues"
 }, {
@@ -47301,7 +45888,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "30/Dec/15",
   "Crag name": "Can Ortigues"
 }, {
@@ -47309,7 +45895,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "30/Dec/15",
   "Crag name": "Can Ortigues"
 }, {
@@ -47317,7 +45902,6 @@ module.exports = [{
   "Grade": "4c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "30/Dec/15",
   "Crag name": "Can Ortigues"
 }, {
@@ -47373,7 +45957,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "28/Dec/15",
   "Crag name": "Alaro"
 }, {
@@ -47381,7 +45964,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "28/Dec/15",
   "Crag name": "Alaro"
 }, {
@@ -47389,7 +45971,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead β",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "28/Dec/15",
   "Crag name": "Alaro"
 }, {
@@ -47413,7 +45994,6 @@ module.exports = [{
   "Grade": "5a  **",
   "Style": "Lead β",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "27/Dec/15",
   "Crag name": "S'estret"
 }, {
@@ -47421,7 +46001,6 @@ module.exports = [{
   "Grade": "5a  ***",
   "Style": "Lead β",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "27/Dec/15",
   "Crag name": "S'estret"
 }, {
@@ -47429,7 +46008,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead β",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "27/Dec/15",
   "Crag name": "S'estret"
 }, {
@@ -47469,7 +46047,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "26/Dec/15",
   "Crag name": "Puig de Garrafa"
 }, {
@@ -47477,7 +46054,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "26/Dec/15",
   "Crag name": "Puig de Garrafa"
 }, {
@@ -47485,7 +46061,6 @@ module.exports = [{
   "Grade": "5c  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "26/Dec/15",
   "Crag name": "Puig de Garrafa"
 }, {
@@ -47509,7 +46084,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "14/Nov/15",
   "Crag name": "Arcadio"
 }, {
@@ -47517,7 +46091,6 @@ module.exports = [{
   "Grade": "6b+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "14/Nov/15",
   "Crag name": "Arcadio"
 }, {
@@ -47549,7 +46122,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "13/Nov/15",
   "Crag name": "Cala Luna"
 }, {
@@ -47557,7 +46129,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "13/Nov/15",
   "Crag name": "Cala Luna"
 }, {
@@ -47565,7 +46136,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "13/Nov/15",
   "Crag name": "Cala Luna"
 }, {
@@ -47578,7 +46148,7 @@ module.exports = [{
   "Crag name": "Cala Luna"
 }, {
   "Climb name": "Joey",
-  "Grade": "7b",
+  "Grade": "7b  ",
   "Style": "Lead dog",
   "Partner(s)": "Tom Hudson",
   "Notes": "Made it halfway (to the first crux) without falling. Can't believe Tom looked at it and thought it was a 6b+!!! One to come back for!",
@@ -47586,7 +46156,7 @@ module.exports = [{
   "Crag name": "Cala Luna"
 }, {
   "Climb name": "Euforbia",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tim, Tom Hudson",
   "Notes": "First pitch only",
@@ -47597,7 +46167,6 @@ module.exports = [{
   "Grade": "5c  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Tim, Tom Hudson",
-  "Notes": "",
   "Date": "11/Nov/15",
   "Crag name": "Dorgali"
 }, {
@@ -47610,10 +46179,9 @@ module.exports = [{
   "Crag name": "Dorgali"
 }, {
   "Climb name": "Cris Joan",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Pete Lovell",
-  "Notes": "",
   "Date": "11/Nov/15",
   "Crag name": "Dorgali"
 }, {
@@ -47621,7 +46189,6 @@ module.exports = [{
   "Grade": "6b  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Paul Amies",
-  "Notes": "",
   "Date": "11/Nov/15",
   "Crag name": "Dorgali"
 }, {
@@ -47629,7 +46196,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Paul Amies",
-  "Notes": "",
   "Date": "11/Nov/15",
   "Crag name": "Dorgali"
 }, {
@@ -47658,10 +46224,9 @@ module.exports = [{
   "Crag name": "La Poltrona"
 }, {
   "Climb name": "Ti do io I Nuts!",
-  "Grade": "6b",
+  "Grade": "6b  ",
   "Style": "Lead β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "09/Nov/15",
   "Crag name": "Cala Fuili"
 }, {
@@ -47669,7 +46234,6 @@ module.exports = [{
   "Grade": "6a+  ***",
   "Style": "Lead β",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "09/Nov/15",
   "Crag name": "Cala Fuili"
 }, {
@@ -47698,42 +46262,37 @@ module.exports = [{
   "Crag name": "Cala Fuili"
 }, {
   "Climb name": "Ernia",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "08/Nov/15",
   "Crag name": "Rocca della Regina"
 }, {
   "Climb name": "Kateno",
-  "Grade": "5c",
+  "Grade": "5c  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "08/Nov/15",
   "Crag name": "Rocca della Regina"
 }, {
   "Climb name": "Black Angel",
-  "Grade": "6b",
+  "Grade": "6b  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "08/Nov/15",
   "Crag name": "Rocca della Regina"
 }, {
   "Climb name": "Bubble Wall",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "08/Nov/15",
   "Crag name": "Rocca della Regina"
 }, {
   "Climb name": "Nebbia",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead β",
   "Partner(s)": "Joey Gilham, Pete Lovell, Ben Farrier",
-  "Notes": "",
   "Date": "08/Nov/15",
   "Crag name": "Rocca della Regina"
 }, {
@@ -47741,7 +46300,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "01/Nov/15",
   "Crag name": "Nicodemus Knob"
 }, {
@@ -47749,7 +46307,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "01/Nov/15",
   "Crag name": "Nicodemus Knob"
 }, {
@@ -47757,7 +46314,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "01/Nov/15",
   "Crag name": "Nicodemus Knob"
 }, {
@@ -47765,7 +46321,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "01/Nov/15",
   "Crag name": "Nicodemus Knob"
 }, {
@@ -47773,7 +46328,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "01/Nov/15",
   "Crag name": "Blacknor North"
 }, {
@@ -47781,7 +46335,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "01/Nov/15",
   "Crag name": "Blacknor North"
 }, {
@@ -47805,7 +46358,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "31/Oct/15",
   "Crag name": "Coastguard North"
 }, {
@@ -47829,7 +46381,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "31/Oct/15",
   "Crag name": "Wallsend South"
 }, {
@@ -47837,7 +46388,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "31/Oct/15",
   "Crag name": "Wallsend South"
 }, {
@@ -47845,7 +46395,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "31/Oct/15",
   "Crag name": "Wallsend South"
 }, {
@@ -47853,7 +46402,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Martin Franke",
-  "Notes": "",
   "Date": "25/Oct/15",
   "Crag name": "Higgar Tor"
 }, {
@@ -47861,7 +46409,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "Simon from Sheffield",
-  "Notes": "",
   "Date": "25/Oct/15",
   "Crag name": "Higgar Tor"
 }, {
@@ -47869,7 +46416,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Simon from Sheffield",
-  "Notes": "",
   "Date": "25/Oct/15",
   "Crag name": "Higgar Tor"
 }, {
@@ -47877,7 +46423,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Simon from Sheffield, Martin Franke",
-  "Notes": "",
   "Date": "25/Oct/15",
   "Crag name": "Higgar Tor"
 }, {
@@ -47885,7 +46430,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Martin Franke",
-  "Notes": "",
   "Date": "24/Oct/15",
   "Crag name": "Lawrencefield"
 }, {
@@ -47893,7 +46437,6 @@ module.exports = [{
   "Grade": "VS 4b *",
   "Style": "2nd O/S",
   "Partner(s)": "Martin Franke",
-  "Notes": "",
   "Date": "24/Oct/15",
   "Crag name": "Lawrencefield"
 }, {
@@ -47901,7 +46444,7 @@ module.exports = [{
   "Grade": "E1 5c **",
   "Style": "Lead G/U",
   "Partner(s)": "Martin Franke",
-  "Notes": "Took a slip at the start, bit precarious in the wet. 2nd try",
+  "Notes": "Took a slip at the start, bit precarious in the wet. 2nd try\n",
   "Date": "24/Oct/15",
   "Crag name": "Lawrencefield"
 }, {
@@ -47909,7 +46452,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "11/Oct/15",
   "Crag name": "Winspit"
 }, {
@@ -47917,7 +46459,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "11/Oct/15",
   "Crag name": "Winspit"
 }, {
@@ -47925,7 +46466,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "11/Oct/15",
   "Crag name": "Winspit"
 }, {
@@ -47933,7 +46473,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "11/Oct/15",
   "Crag name": "Winspit"
 }, {
@@ -47957,7 +46496,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "11/Oct/15",
   "Crag name": "Boulder Ruckle"
 }, {
@@ -47965,7 +46503,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "11/Oct/15",
   "Crag name": "Boulder Ruckle"
 }, {
@@ -47989,7 +46526,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Martin Wei?mann",
-  "Notes": "",
   "Date": "04/Oct/15",
   "Crag name": "Stanage Plantation"
 }, {
@@ -48013,7 +46549,6 @@ module.exports = [{
   "Grade": "VS 5a *",
   "Style": "2nd O/S",
   "Partner(s)": "Martin Wei?mann",
-  "Notes": "",
   "Date": "04/Oct/15",
   "Crag name": "Stanage Plantation"
 }, {
@@ -48021,7 +46556,6 @@ module.exports = [{
   "Grade": "HS 4b *",
   "Style": "2nd O/S",
   "Partner(s)": "Martin Wei?mann",
-  "Notes": "",
   "Date": "04/Oct/15",
   "Crag name": "Stanage Plantation"
 }, {
@@ -48029,7 +46563,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Martin Wei?mann",
-  "Notes": "",
   "Date": "04/Oct/15",
   "Crag name": "Stanage Popular"
 }, {
@@ -48037,7 +46570,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd rpt",
   "Partner(s)": "Martin Wei?mann",
-  "Notes": "",
   "Date": "04/Oct/15",
   "Crag name": "Stanage Popular"
 }, {
@@ -48053,7 +46585,6 @@ module.exports = [{
   "Grade": "VS 4a **",
   "Style": "Lead O/S",
   "Partner(s)": "Martin Wei?mann, Tom Hudson",
-  "Notes": "",
   "Date": "03/Oct/15",
   "Crag name": "Stanage Plantation"
 }, {
@@ -48061,7 +46592,6 @@ module.exports = [{
   "Grade": "HS 4b **",
   "Style": "2nd O/S",
   "Partner(s)": "Martin Wei?mann, Tom Hudson",
-  "Notes": "",
   "Date": "03/Oct/15",
   "Crag name": "Stanage Plantation"
 }, {
@@ -48077,7 +46607,6 @@ module.exports = [{
   "Grade": "VD  **",
   "Style": "2nd O/S",
   "Partner(s)": "Martin Wei?mann",
-  "Notes": "",
   "Date": "03/Oct/15",
   "Crag name": "Stanage Plantation"
 }, {
@@ -48085,7 +46614,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Martin Wei?mann",
-  "Notes": "",
   "Date": "03/Oct/15",
   "Crag name": "Stanage Plantation"
 }, {
@@ -48093,7 +46621,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Martin Wei?mann",
-  "Notes": "",
   "Date": "03/Oct/15",
   "Crag name": "Stanage Plantation"
 }, {
@@ -48101,7 +46628,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "27/Sep/15",
   "Crag name": "Roaches Lower Tier"
 }, {
@@ -48157,7 +46683,6 @@ module.exports = [{
   "Grade": "HVS 5b *",
   "Style": "AltLd O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "26/Sep/15",
   "Crag name": "Roaches Upper Tier"
 }, {
@@ -48165,7 +46690,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "26/Sep/15",
   "Crag name": "Roaches Skyline"
 }, {
@@ -48178,10 +46702,9 @@ module.exports = [{
   "Crag name": "Roaches Skyline"
 }, {
   "Climb name": "Perch",
-  "Grade": "E1 5b",
+  "Grade": "E1 5b ",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "13/Sep/15",
   "Crag name": "Third Sister to Zulu Zawn"
 }, {
@@ -48221,7 +46744,6 @@ module.exports = [{
   "Grade": "HVS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "12/Sep/15",
   "Crag name": "Three Cliffs Bay"
 }, {
@@ -48229,7 +46751,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "12/Sep/15",
   "Crag name": "Three Cliffs Bay"
 }, {
@@ -48237,7 +46758,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd rpt",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "12/Sep/15",
   "Crag name": "Three Cliffs Bay"
 }, {
@@ -48245,7 +46765,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson, Katsmiff",
-  "Notes": "",
   "Date": "06/Sep/15",
   "Crag name": "Blacknor South"
 }, {
@@ -48253,7 +46772,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson, Katsmiff",
-  "Notes": "",
   "Date": "06/Sep/15",
   "Crag name": "Blacknor South"
 }, {
@@ -48277,7 +46795,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson, Katsmiff",
-  "Notes": "",
   "Date": "05/Sep/15",
   "Crag name": "Wallsend North"
 }, {
@@ -48285,7 +46802,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson, Katsmiff",
-  "Notes": "",
   "Date": "05/Sep/15",
   "Crag name": "Wallsend North"
 }, {
@@ -48301,7 +46817,6 @@ module.exports = [{
   "Grade": "6a+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson, Katsmiff",
-  "Notes": "",
   "Date": "05/Sep/15",
   "Crag name": "Wallsend South"
 }, {
@@ -48309,7 +46824,6 @@ module.exports = [{
   "Grade": "6b  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Tom Hudson, Katsmiff",
-  "Notes": "",
   "Date": "05/Sep/15",
   "Crag name": "Wallsend South"
 }, {
@@ -48357,7 +46871,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "29/Aug/15",
   "Crag name": "Shepherd’s Crag"
 }, {
@@ -48365,7 +46878,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "29/Aug/15",
   "Crag name": "Shepherd’s Crag"
 }, {
@@ -48373,7 +46885,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "2nd O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "29/Aug/15",
   "Crag name": "Shepherd’s Crag"
 }, {
@@ -48402,26 +46913,23 @@ module.exports = [{
   "Crag name": "Cheyne Weares Area"
 }, {
   "Climb name": "Damn These Electric Sex Pants",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "22/Aug/15",
   "Crag name": "Cheyne Weares Area"
 }, {
   "Climb name": "Kate",
-  "Grade": "6b+",
+  "Grade": "6b+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "22/Aug/15",
   "Crag name": "Cheyne Weares Area"
 }, {
   "Climb name": "Bigus Dickus",
-  "Grade": "6b",
+  "Grade": "6b  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "22/Aug/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -48429,7 +46937,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "22/Aug/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -48453,15 +46960,13 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "22/Aug/15",
   "Crag name": "Battleship Back Cliff"
 }, {
   "Climb name": "April Skies",
-  "Grade": "4c",
+  "Grade": "4c  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "22/Aug/15",
   "Crag name": "Battleship Edge"
 }, {
@@ -48485,7 +46990,6 @@ module.exports = [{
   "Grade": "HVS 4c **",
   "Style": "AltLd",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "09/Aug/15",
   "Crag name": "Boulder Ruckle"
 }, {
@@ -48493,7 +46997,6 @@ module.exports = [{
   "Grade": "HVS 4c ***",
   "Style": "AltLd",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "08/Aug/15",
   "Crag name": "Boulder Ruckle"
 }, {
@@ -48501,7 +47004,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "AltLd",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "08/Aug/15",
   "Crag name": "Boulder Ruckle"
 }, {
@@ -48509,7 +47011,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "28/Jun/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -48517,7 +47018,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "28/Jun/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -48533,15 +47033,12 @@ module.exports = [{
   "Grade": "HS 4b **",
   "Style": "DWS O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "28/Jun/15",
   "Crag name": "Cave Hole"
 }, {
   "Climb name": "Big Easy Arête",
   "Grade": "HVS 5a *",
   "Style": "DWS O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "28/Jun/15",
   "Crag name": "Cave Hole"
 }, {
@@ -48549,7 +47046,6 @@ module.exports = [{
   "Grade": "f5+  ***",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "28/Jun/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -48557,7 +47053,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "28/Jun/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -48565,7 +47060,6 @@ module.exports = [{
   "Grade": "f6A  ***",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "28/Jun/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -48573,7 +47067,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "28/Jun/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -48581,7 +47074,6 @@ module.exports = [{
   "Grade": "f6B  **",
   "Style": "Sent x",
   "Partner(s)": "Tom Hudson",
-  "Notes": "",
   "Date": "28/Jun/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -48589,15 +47081,13 @@ module.exports = [{
   "Grade": "f4+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Tom Hudson, Ed Green",
-  "Notes": "",
   "Date": "28/Jun/15",
   "Crag name": "Cheyne Weares Area"
 }, {
   "Climb name": "Love in the Mist",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "27/Jun/15",
   "Crag name": "Blacknor South"
 }, {
@@ -48605,7 +47095,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "27/Jun/15",
   "Crag name": "Blacknor South"
 }, {
@@ -48613,7 +47102,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "27/Jun/15",
   "Crag name": "Blacknor Far South"
 }, {
@@ -48621,7 +47109,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "21/Jun/15",
   "Crag name": "Curbar Edge"
 }, {
@@ -48629,7 +47116,6 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "Lead rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "21/Jun/15",
   "Crag name": "Curbar Edge"
 }, {
@@ -48637,7 +47123,6 @@ module.exports = [{
   "Grade": "VD  *",
   "Style": "2nd rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "21/Jun/15",
   "Crag name": "Lawrencefield"
 }, {
@@ -48645,7 +47130,6 @@ module.exports = [{
   "Grade": "VD  *",
   "Style": "2nd rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "21/Jun/15",
   "Crag name": "Lawrencefield"
 }, {
@@ -48661,7 +47145,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "20/Jun/15",
   "Crag name": "Curbar Edge"
 }, {
@@ -48669,7 +47152,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "20/Jun/15",
   "Crag name": "Curbar Edge"
 }, {
@@ -48677,7 +47159,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "20/Jun/15",
   "Crag name": "Curbar Edge"
 }, {
@@ -48685,28 +47166,23 @@ module.exports = [{
   "Grade": "VS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "20/Jun/15",
   "Crag name": "Curbar Edge"
 }, {
   "Climb name": "Green Acres",
   "Grade": "HVS 5a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/15",
   "Crag name": "Curbar Edge"
 }, {
   "Climb name": "Dog-Leg Crack",
   "Grade": "HVD 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "20/Jun/15",
   "Crag name": "Curbar Edge"
 }, {
   "Climb name": "Short Measure",
-  "Grade": "D",
+  "Grade": "D  ",
   "Style": "2nd O/S",
   "Partner(s)": "Ed Green",
   "Notes": "Eds first trad lead",
@@ -48773,7 +47249,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Ian Jones",
-  "Notes": "",
   "Date": "09/Jun/15",
   "Crag name": "Fair Head"
 }, {
@@ -48781,7 +47256,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ian Jones",
-  "Notes": "",
   "Date": "09/Jun/15",
   "Crag name": "Fair Head"
 }, {
@@ -48789,7 +47263,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Ian Jones",
-  "Notes": "",
   "Date": "09/Jun/15",
   "Crag name": "Fair Head"
 }, {
@@ -48797,7 +47270,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Ian Jones",
-  "Notes": "",
   "Date": "09/Jun/15",
   "Crag name": "Fair Head"
 }, {
@@ -48805,7 +47277,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Ian Jones, Drexciyan",
-  "Notes": "",
   "Date": "07/Jun/15",
   "Crag name": "Fair Head"
 }, {
@@ -48821,7 +47292,6 @@ module.exports = [{
   "Grade": "HVS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "31/May/15",
   "Crag name": "Stanage Popular"
 }, {
@@ -48829,7 +47299,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "31/May/15",
   "Crag name": "Stanage Popular"
 }, {
@@ -48837,7 +47306,6 @@ module.exports = [{
   "Grade": "VS 4b **",
   "Style": "Lead rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "31/May/15",
   "Crag name": "Stanage Popular"
 }, {
@@ -48845,7 +47313,6 @@ module.exports = [{
   "Grade": "VS 4b ***",
   "Style": "Lead rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "31/May/15",
   "Crag name": "Stanage Popular"
 }, {
@@ -48853,15 +47320,13 @@ module.exports = [{
   "Grade": "4c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "30/May/15",
   "Crag name": "Horseshoe Quarry"
 }, {
   "Climb name": "The Cake Walk",
-  "Grade": "4b",
+  "Grade": "4b  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "30/May/15",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -48869,7 +47334,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "30/May/15",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -48877,7 +47341,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "30/May/15",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -48885,7 +47348,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "30/May/15",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -48893,15 +47355,13 @@ module.exports = [{
   "Grade": "6c  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "30/May/15",
   "Crag name": "Horseshoe Quarry"
 }, {
   "Climb name": "Latrine",
-  "Grade": "5a",
+  "Grade": "5a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "30/May/15",
   "Crag name": "Horseshoe Quarry"
 }, {
@@ -48909,12 +47369,11 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "30/May/15",
   "Crag name": "Horseshoe Quarry"
 }, {
   "Climb name": "Waves of Mutilation",
-  "Grade": "7a",
+  "Grade": "7a  ",
   "Style": "Lead dog",
   "Partner(s)": "Ed Green",
   "Notes": "another project to the list",
@@ -48941,7 +47400,6 @@ module.exports = [{
   "Grade": "E1 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "25/May/15",
   "Crag name": "Vivian Quarry"
 }, {
@@ -48949,7 +47407,6 @@ module.exports = [{
   "Grade": "HVS 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "25/May/15",
   "Crag name": "Vivian Quarry"
 }, {
@@ -48957,7 +47414,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "24/May/15",
   "Crag name": "Gogarth North Stack and Main Cliff"
 }, {
@@ -48973,7 +47429,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "23/May/15",
   "Crag name": "Clogwyn Du'r Arddu (Cloggy)"
 }, {
@@ -48981,7 +47436,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "23/May/15",
   "Crag name": "Clogwyn Du'r Arddu (Cloggy)"
 }, {
@@ -48989,7 +47443,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "17/May/15",
   "Crag name": "Blacknor Beach"
 }, {
@@ -48997,7 +47450,6 @@ module.exports = [{
   "Grade": "3c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "17/May/15",
   "Crag name": "Blacknor Beach"
 }, {
@@ -49005,7 +47457,6 @@ module.exports = [{
   "Grade": "4c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "17/May/15",
   "Crag name": "Blacknor Central"
 }, {
@@ -49013,7 +47464,6 @@ module.exports = [{
   "Grade": "6b+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "17/May/15",
   "Crag name": "Blacknor Central"
 }, {
@@ -49021,7 +47471,6 @@ module.exports = [{
   "Grade": "5a  ***",
   "Style": "Lead rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "17/May/15",
   "Crag name": "Blacknor North"
 }, {
@@ -49037,7 +47486,6 @@ module.exports = [{
   "Grade": "4c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "16/May/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -49045,7 +47493,6 @@ module.exports = [{
   "Grade": "4c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "16/May/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -49053,7 +47500,6 @@ module.exports = [{
   "Grade": "4c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "16/May/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -49061,23 +47507,20 @@ module.exports = [{
   "Grade": "4a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "16/May/15",
   "Crag name": "Cheyne Weares Area"
 }, {
   "Climb name": "The Wilsonator",
-  "Grade": "6b",
+  "Grade": "6b  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "16/May/15",
   "Crag name": "Cheyne Weares Area"
 }, {
   "Climb name": "Jobby's Leaving Gift",
-  "Grade": "5b",
+  "Grade": "5b  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "16/May/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -49085,7 +47528,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "16/May/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -49101,7 +47543,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "16/May/15",
   "Crag name": "Blacknor Central"
 }, {
@@ -49109,7 +47550,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "16/May/15",
   "Crag name": "Blacknor South"
 }, {
@@ -49117,7 +47557,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "16/May/15",
   "Crag name": "Blacknor South"
 }, {
@@ -49125,7 +47564,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "16/May/15",
   "Crag name": "Blacknor South"
 }, {
@@ -49141,7 +47579,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "10/May/15",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -49149,7 +47586,6 @@ module.exports = [{
   "Grade": "E2 5c *",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "10/May/15",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
@@ -49165,15 +47601,13 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "2nd O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "10/May/15",
   "Crag name": "Avon Gorge (Sea Walls Area)"
 }, {
   "Climb name": "Dead on Arrival",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "danimal, Ed Green, Katsmiff",
-  "Notes": "",
   "Date": "09/May/15",
   "Crag name": "Cheddar Gorge North"
 }, {
@@ -49181,7 +47615,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "danimal, Ed Green, Katsmiff",
-  "Notes": "",
   "Date": "09/May/15",
   "Crag name": "Cheddar Gorge North"
 }, {
@@ -49189,7 +47622,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "09/May/15",
   "Crag name": "Cheddar Gorge South"
 }, {
@@ -49197,15 +47629,13 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "danimal, Katsmiff",
-  "Notes": "",
   "Date": "09/May/15",
   "Crag name": "Cheddar Gorge South"
 }, {
   "Climb name": "Tourist Distraction",
-  "Grade": "5a",
+  "Grade": "5a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "09/May/15",
   "Crag name": "Cheddar Gorge South"
 }, {
@@ -49229,7 +47659,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "04/May/15",
   "Crag name": "Clogwyn Bochlwyd"
 }, {
@@ -49237,7 +47666,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "2nd O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "04/May/15",
   "Crag name": "Clogwyn Bochlwyd"
 }, {
@@ -49245,7 +47673,6 @@ module.exports = [{
   "Grade": "E1 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "03/May/15",
   "Crag name": "Bus Stop Quarry"
 }, {
@@ -49253,15 +47680,13 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "03/May/15",
   "Crag name": "Bus Stop Quarry"
 }, {
   "Climb name": "Sterling Silver",
-  "Grade": "E2 5c",
+  "Grade": "E2 5c ",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "03/May/15",
   "Crag name": "Bus Stop Quarry"
 }, {
@@ -49285,7 +47710,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "2nd O/S",
   "Partner(s)": "Katsmiff, Rafal Malczyk",
-  "Notes": "",
   "Date": "25/Apr/15",
   "Crag name": "Millstone Edge"
 }, {
@@ -49293,7 +47717,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "25/Apr/15",
   "Crag name": "Burbage North"
 }, {
@@ -49309,7 +47732,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "25/Apr/15",
   "Crag name": "Stanage Plantation"
 }, {
@@ -49317,7 +47739,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "25/Apr/15",
   "Crag name": "Stanage Plantation"
 }, {
@@ -49325,7 +47746,6 @@ module.exports = [{
   "Grade": "HVS 5b **",
   "Style": "2nd O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "25/Apr/15",
   "Crag name": "Stanage Plantation"
 }, {
@@ -49333,7 +47753,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff, Rafal Malczyk",
-  "Notes": "",
   "Date": "25/Apr/15",
   "Crag name": "Millstone Edge"
 }, {
@@ -49341,7 +47760,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "2nd O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "25/Apr/15",
   "Crag name": "Millstone Edge"
 }, {
@@ -49349,7 +47767,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "2nd O/S",
   "Partner(s)": "Katsmiff, Rafal Malczyk",
-  "Notes": "",
   "Date": "25/Apr/15",
   "Crag name": "Millstone Edge"
 }, {
@@ -49357,7 +47774,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "2nd O/S",
   "Partner(s)": "Katsmiff, Rafal Malczyk",
-  "Notes": "",
   "Date": "25/Apr/15",
   "Crag name": "Millstone Edge"
 }, {
@@ -49373,7 +47789,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "2nd",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "25/Apr/15",
   "Crag name": "Millstone Edge"
 }, {
@@ -49381,7 +47796,6 @@ module.exports = [{
   "Grade": "6a+ 5b ***",
   "Style": "TR O/S",
   "Partner(s)": "danimal, Katsmiff",
-  "Notes": "",
   "Date": "19/Apr/15",
   "Crag name": "Bowles Rocks"
 }, {
@@ -49389,7 +47803,6 @@ module.exports = [{
   "Grade": "6c 5c ***",
   "Style": "TR O/S",
   "Partner(s)": "danimal, Katsmiff",
-  "Notes": "",
   "Date": "19/Apr/15",
   "Crag name": "Bowles Rocks"
 }, {
@@ -49397,7 +47810,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR O/S",
   "Partner(s)": "danimal, Katsmiff",
-  "Notes": "",
   "Date": "19/Apr/15",
   "Crag name": "Bowles Rocks"
 }, {
@@ -49405,7 +47817,6 @@ module.exports = [{
   "Grade": "6a+ 5b ***",
   "Style": "TR O/S",
   "Partner(s)": "danimal, Katsmiff",
-  "Notes": "",
   "Date": "19/Apr/15",
   "Crag name": "Bowles Rocks"
 }, {
@@ -49445,7 +47856,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "TR",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "19/Apr/15",
   "Crag name": "Bowles Rocks"
 }, {
@@ -49453,7 +47863,6 @@ module.exports = [{
   "Grade": "6c 6a *",
   "Style": "TR",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "19/Apr/15",
   "Crag name": "Bowles Rocks"
 }, {
@@ -49469,7 +47878,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "AltLd O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "05/Apr/15",
   "Crag name": "Bosigran"
 }, {
@@ -49477,7 +47885,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "AltLd O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "05/Apr/15",
   "Crag name": "Bosigran"
 }, {
@@ -49501,7 +47908,6 @@ module.exports = [{
   "Grade": "E1 5c ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "04/Apr/15",
   "Crag name": "Bosigran"
 }, {
@@ -49509,7 +47915,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "AltLd O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "04/Apr/15",
   "Crag name": "Bosigran"
 }, {
@@ -49517,7 +47922,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "03/Apr/15",
   "Crag name": "Sennen"
 }, {
@@ -49525,7 +47929,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead dog",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "03/Apr/15",
   "Crag name": "Sennen"
 }, {
@@ -49533,15 +47936,13 @@ module.exports = [{
   "Grade": "HS 4b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "03/Apr/15",
   "Crag name": "Sennen"
 }, {
   "Climb name": "Puppet Show of Memory",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "danimal, John Andrews",
-  "Notes": "",
   "Date": "22/Mar/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -49549,7 +47950,6 @@ module.exports = [{
   "Grade": "3c  **",
   "Style": "Lead O/S",
   "Partner(s)": "John Andrews",
-  "Notes": "",
   "Date": "22/Mar/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -49557,7 +47957,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "John Andrews",
-  "Notes": "",
   "Date": "22/Mar/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -49565,7 +47964,6 @@ module.exports = [{
   "Grade": "5a  **",
   "Style": "Lead O/S",
   "Partner(s)": "John Andrews",
-  "Notes": "",
   "Date": "22/Mar/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -49573,7 +47971,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "John Andrews",
-  "Notes": "",
   "Date": "22/Mar/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -49581,7 +47978,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Jadey Lewis",
-  "Notes": "",
   "Date": "22/Mar/15",
   "Crag name": "Blacknor North"
 }, {
@@ -49589,7 +47985,6 @@ module.exports = [{
   "Grade": "6a+  ***",
   "Style": "Lead rpt",
   "Partner(s)": "Jadey Lewis",
-  "Notes": "",
   "Date": "22/Mar/15",
   "Crag name": "Blacknor North"
 }, {
@@ -49605,7 +48000,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Jadey Lewis, danimal, Rafal Malczyk, John Andrews",
-  "Notes": "",
   "Date": "21/Mar/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -49613,7 +48007,6 @@ module.exports = [{
   "Grade": "3c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Jadey Lewis, danimal, Rafal Malczyk, John Andrews",
-  "Notes": "",
   "Date": "21/Mar/15",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -49621,15 +48014,13 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Jadey Lewis, danimal, Rafal Malczyk, John Andrews",
-  "Notes": "",
   "Date": "21/Mar/15",
   "Crag name": "Southwell Landslips"
 }, {
   "Climb name": "Flake Away",
-  "Grade": "4a",
+  "Grade": "4a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Jadey Lewis, danimal, Rafal Malczyk, John Andrews",
-  "Notes": "",
   "Date": "21/Mar/15",
   "Crag name": "Southwell Landslips"
 }, {
@@ -49637,7 +48028,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Jadey Lewis, danimal, Rafal Malczyk, John Andrews",
-  "Notes": "",
   "Date": "21/Mar/15",
   "Crag name": "Southwell Landslips"
 }, {
@@ -49650,10 +48040,9 @@ module.exports = [{
   "Crag name": "Cheyne Weares Area"
 }, {
   "Climb name": "Flaked Out",
-  "Grade": "4c",
+  "Grade": "4c  ",
   "Style": "TR O/S",
   "Partner(s)": "Jadey Lewis, danimal, Rafal Malczyk, John Andrews",
-  "Notes": "",
   "Date": "21/Mar/15",
   "Crag name": "Southwell Landslips"
 }, {
@@ -49661,7 +48050,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "21/Mar/15",
   "Crag name": "Blacknor Central"
 }, {
@@ -49669,7 +48057,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "21/Mar/15",
   "Crag name": "Blacknor South"
 }, {
@@ -49677,7 +48064,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Jamie Vince",
-  "Notes": "",
   "Date": "07/Mar/15",
   "Crag name": "Les Gaillands"
 }, {
@@ -49685,7 +48071,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Jamie Vince",
-  "Notes": "",
   "Date": "07/Mar/15",
   "Crag name": "Les Gaillands"
 }, {
@@ -49693,7 +48078,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Jamie Vince",
-  "Notes": "",
   "Date": "07/Mar/15",
   "Crag name": "Les Gaillands"
 }, {
@@ -49701,7 +48085,6 @@ module.exports = [{
   "Grade": "7a  *",
   "Style": "TR dog",
   "Partner(s)": "Jamie Vince",
-  "Notes": "",
   "Date": "07/Mar/15",
   "Crag name": "Les Gaillands"
 }, {
@@ -49714,7 +48097,7 @@ module.exports = [{
   "Crag name": "Les Gaillands"
 }, {
   "Climb name": "Cerise",
-  "Grade": "WI-3",
+  "Grade": "WI-3  ",
   "Style": "2nd",
   "Partner(s)": "Jamie Vince",
   "Notes": "might have been one further to the right of the steep ice, think it was a grade 4 single pitch after the initial steep section, but not listed here.",
@@ -49722,7 +48105,7 @@ module.exports = [{
   "Crag name": "La Crémerie"
 }, {
   "Climb name": "Moby Dick",
-  "Grade": "WI-3",
+  "Grade": "WI-3  ",
   "Style": "AltLd O/S",
   "Partner(s)": "Jamie Vince",
   "Notes": "first ice lead, did pitch 2",
@@ -49733,7 +48116,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Polish Tom (CMC)",
-  "Notes": "",
   "Date": "16/Nov/14",
   "Crag name": "Australia"
 }, {
@@ -49741,7 +48123,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Polish Tom (CMC)",
-  "Notes": "",
   "Date": "16/Nov/14",
   "Crag name": "Australia"
 }, {
@@ -49749,7 +48130,6 @@ module.exports = [{
   "Grade": "5a  **",
   "Style": "2nd O/S",
   "Partner(s)": "Sam Benson, Polish Tom (CMC)",
-  "Notes": "",
   "Date": "16/Nov/14",
   "Crag name": "Australia"
 }, {
@@ -49757,7 +48137,6 @@ module.exports = [{
   "Grade": "E1 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Luke Green",
-  "Notes": "",
   "Date": "16/Nov/14",
   "Crag name": "Australia"
 }, {
@@ -49765,7 +48144,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Sam Benson",
-  "Notes": "",
   "Date": "16/Nov/14",
   "Crag name": "Australia"
 }, {
@@ -49773,7 +48151,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Claire Bone",
-  "Notes": "",
   "Date": "16/Nov/14",
   "Crag name": "Australia"
 }, {
@@ -49781,7 +48158,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Luke Green",
-  "Notes": "",
   "Date": "15/Nov/14",
   "Crag name": "Clogwyn y Grochan"
 }, {
@@ -49789,7 +48165,6 @@ module.exports = [{
   "Grade": "HVS 5b **",
   "Style": "2nd O/S",
   "Partner(s)": "Luke Green",
-  "Notes": "",
   "Date": "15/Nov/14",
   "Crag name": "Clogwyn y Grochan"
 }, {
@@ -49797,7 +48172,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Luke Green",
-  "Notes": "",
   "Date": "15/Nov/14",
   "Crag name": "Clogwyn y Grochan"
 }, {
@@ -49813,7 +48187,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Simon Tietjen",
-  "Notes": "",
   "Date": "07/Nov/14",
   "Crag name": "Adrar Umlil"
 }, {
@@ -49829,7 +48202,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "AltLd O/S",
   "Partner(s)": "tomdude",
-  "Notes": "",
   "Date": "06/Nov/14",
   "Crag name": "Lower Eagle"
 }, {
@@ -49837,7 +48209,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ben Lister",
-  "Notes": "",
   "Date": "05/Nov/14",
   "Crag name": "Ksar Rock"
 }, {
@@ -49877,7 +48248,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "Simon Tietjen",
-  "Notes": "",
   "Date": "02/Nov/14",
   "Crag name": "Anergui Playground"
 }, {
@@ -49885,7 +48255,6 @@ module.exports = [{
   "Grade": "none 5a ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Simon Tietjen",
-  "Notes": "",
   "Date": "02/Nov/14",
   "Crag name": "Crag A Tafraoute"
 }, {
@@ -49893,7 +48262,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "Simon Tietjen",
-  "Notes": "",
   "Date": "01/Nov/14",
   "Crag name": "Palm Tree Gorge"
 }, {
@@ -49901,7 +48269,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "2nd O/S",
   "Partner(s)": "Simon Tietjen",
-  "Notes": "",
   "Date": "01/Nov/14",
   "Crag name": "Palm Tree Gorge"
 }, {
@@ -49925,12 +48292,11 @@ module.exports = [{
   "Grade": "E1 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "18/Oct/14",
   "Crag name": "Twll Mawr"
 }, {
   "Climb name": "Watford Gap West",
-  "Grade": "VS 4b",
+  "Grade": "VS 4b ",
   "Style": "2nd O/S",
   "Partner(s)": "ipegg",
   "Notes": "Bit of a rubbish climb",
@@ -49941,7 +48307,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "2nd O/S",
   "Partner(s)": "ipegg, Richard Apthorp",
-  "Notes": "",
   "Date": "18/Oct/14",
   "Crag name": "Serengeti"
 }, {
@@ -49957,7 +48322,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "13/Oct/14",
   "Crag name": "Dinas Cromlech"
 }, {
@@ -49965,7 +48329,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "13/Oct/14",
   "Crag name": "Never Never Land"
 }, {
@@ -49973,7 +48336,6 @@ module.exports = [{
   "Grade": "5c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "13/Oct/14",
   "Crag name": "Never Never Land"
 }, {
@@ -49997,7 +48359,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "28/Sep/14",
   "Crag name": "Roaches Upper Tier"
 }, {
@@ -50005,7 +48366,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "28/Sep/14",
   "Crag name": "Roaches Upper Tier"
 }, {
@@ -50013,7 +48373,6 @@ module.exports = [{
   "Grade": "HS 4b *",
   "Style": "2nd O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "28/Sep/14",
   "Crag name": "Roaches Upper Tier"
 }, {
@@ -50021,15 +48380,13 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "28/Sep/14",
   "Crag name": "Roaches Skyline"
 }, {
   "Climb name": "Nosepicker",
-  "Grade": "E1 5a",
+  "Grade": "E1 5a ",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "28/Sep/14",
   "Crag name": "Roaches Skyline"
 }, {
@@ -50037,7 +48394,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "2nd O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "28/Sep/14",
   "Crag name": "Roaches Skyline"
 }, {
@@ -50061,7 +48417,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "27/Sep/14",
   "Crag name": "Roaches Upper Tier"
 }, {
@@ -50069,7 +48424,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "27/Sep/14",
   "Crag name": "Roaches Lower Tier"
 }, {
@@ -50077,7 +48431,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "27/Sep/14",
   "Crag name": "Roaches Lower Tier"
 }, {
@@ -50085,7 +48438,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "27/Sep/14",
   "Crag name": "Roaches Lower Tier"
 }, {
@@ -50109,7 +48461,6 @@ module.exports = [{
   "Grade": "VS 4a **",
   "Style": "2nd O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "27/Sep/14",
   "Crag name": "Roaches Upper Tier"
 }, {
@@ -50117,7 +48468,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green, Chris CMC",
-  "Notes": "",
   "Date": "14/Sep/14",
   "Crag name": "Shining Clough"
 }, {
@@ -50125,7 +48475,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green, Chris CMC",
-  "Notes": "",
   "Date": "14/Sep/14",
   "Crag name": "Shining Clough"
 }, {
@@ -50133,7 +48482,6 @@ module.exports = [{
   "Grade": "S 4a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green, Chris CMC",
-  "Notes": "",
   "Date": "14/Sep/14",
   "Crag name": "Shining Clough"
 }, {
@@ -50141,7 +48489,6 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green, Chris CMC",
-  "Notes": "",
   "Date": "13/Sep/14",
   "Crag name": "Hen Cloud"
 }, {
@@ -50149,7 +48496,6 @@ module.exports = [{
   "Grade": "S 4a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green, Chris CMC",
-  "Notes": "",
   "Date": "13/Sep/14",
   "Crag name": "Hen Cloud"
 }, {
@@ -50173,7 +48519,6 @@ module.exports = [{
   "Grade": "f4+  **",
   "Style": "Sent O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50181,7 +48526,6 @@ module.exports = [{
   "Grade": "f5  *",
   "Style": "Sent O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50189,7 +48533,6 @@ module.exports = [{
   "Grade": "f5+  **",
   "Style": "Sent O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50197,7 +48540,6 @@ module.exports = [{
   "Grade": "f2+  *",
   "Style": "Sent O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50205,7 +48547,6 @@ module.exports = [{
   "Grade": "4c 4c **",
   "Style": "TR O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50213,7 +48554,6 @@ module.exports = [{
   "Grade": "6c 5c *",
   "Style": "TR O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50221,7 +48561,6 @@ module.exports = [{
   "Grade": "5a 4c ***",
   "Style": "TR O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50229,7 +48568,6 @@ module.exports = [{
   "Grade": "6b+ 5c *",
   "Style": "TR O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50237,7 +48575,6 @@ module.exports = [{
   "Grade": "6a+ 5a *",
   "Style": "TR O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50245,7 +48582,6 @@ module.exports = [{
   "Grade": "6a+ 5a **",
   "Style": "TR rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50253,7 +48589,6 @@ module.exports = [{
   "Grade": "6b+ 5c *",
   "Style": "TR rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50261,7 +48596,6 @@ module.exports = [{
   "Grade": "6a+ 5b *",
   "Style": "TR rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50269,7 +48603,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR rpt",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "07/Sep/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50277,7 +48610,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "30/Aug/14",
   "Crag name": "Mother Carey's Kitchen"
 }, {
@@ -50301,15 +48633,13 @@ module.exports = [{
   "Grade": "VS 4b *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "29/Aug/14",
   "Crag name": "Stennis Head"
 }, {
   "Climb name": "North Corner",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "29/Aug/14",
   "Crag name": "Stennis Head"
 }, {
@@ -50317,7 +48647,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "29/Aug/14",
   "Crag name": "Stennis Head"
 }, {
@@ -50325,7 +48654,6 @@ module.exports = [{
   "Grade": "HS 4b *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "29/Aug/14",
   "Crag name": "Stennis Head"
 }, {
@@ -50341,7 +48669,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "28/Aug/14",
   "Crag name": "Carreg-y-Barcud Area"
 }, {
@@ -50349,7 +48676,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "28/Aug/14",
   "Crag name": "Carreg-y-Barcud Area"
 }, {
@@ -50357,7 +48683,6 @@ module.exports = [{
   "Grade": "HS 4b **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "28/Aug/14",
   "Crag name": "Carreg-y-Barcud Area"
 }, {
@@ -50365,7 +48690,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "28/Aug/14",
   "Crag name": "Carreg-y-Barcud Area"
 }, {
@@ -50373,7 +48697,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "27/Aug/14",
   "Crag name": "Carreg-y-Barcud Area"
 }, {
@@ -50381,7 +48704,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "27/Aug/14",
   "Crag name": "Carreg-y-Barcud Area"
 }, {
@@ -50389,7 +48711,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "27/Aug/14",
   "Crag name": "Carreg-y-Barcud Area"
 }, {
@@ -50397,7 +48718,6 @@ module.exports = [{
   "Grade": "HS 4b *",
   "Style": "2nd O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "27/Aug/14",
   "Crag name": "Carreg-y-Barcud Area"
 }, {
@@ -50405,7 +48725,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Aug/14",
   "Crag name": "Porthclais Area"
 }, {
@@ -50413,7 +48732,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Aug/14",
   "Crag name": "Porthclais Area"
 }, {
@@ -50421,7 +48739,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Aug/14",
   "Crag name": "Porthclais Area"
 }, {
@@ -50429,7 +48746,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Aug/14",
   "Crag name": "Porthclais Area"
 }, {
@@ -50437,14 +48753,12 @@ module.exports = [{
   "Grade": "S 4a **",
   "Style": "2nd O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Aug/14",
   "Crag name": "Porthclais Area"
 }, {
   "Climb name": "Rising Damp",
   "Grade": "D  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
   "Notes": "My lovely second abseiled without a rope. Got another route in, so I can't complain!",
   "Date": "26/Aug/14",
   "Crag name": "Porthclais Area"
@@ -50461,7 +48775,6 @@ module.exports = [{
   "Grade": "HS 4b **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "25/Aug/14",
   "Crag name": "Porthclais Area"
 }, {
@@ -50485,7 +48798,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "23/Aug/14",
   "Crag name": "Wynd Cliff"
 }, {
@@ -50493,7 +48805,6 @@ module.exports = [{
   "Grade": "VS 4b ***",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "23/Aug/14",
   "Crag name": "Wynd Cliff"
 }, {
@@ -50501,7 +48812,6 @@ module.exports = [{
   "Grade": "HVS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "23/Aug/14",
   "Crag name": "Wynd Cliff"
 }, {
@@ -50509,7 +48819,6 @@ module.exports = [{
   "Grade": "E1 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "Katsmiff, Rafal Malczyk",
-  "Notes": "",
   "Date": "23/Aug/14",
   "Crag name": "Wynd Cliff"
 }, {
@@ -50517,7 +48826,6 @@ module.exports = [{
   "Grade": "6b 5b ***",
   "Style": "TR O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "16/Aug/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50525,7 +48833,6 @@ module.exports = [{
   "Grade": "6c 5c ***",
   "Style": "TR O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "16/Aug/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50533,7 +48840,6 @@ module.exports = [{
   "Grade": "6b+ 5c **",
   "Style": "TR O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "16/Aug/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50541,7 +48847,6 @@ module.exports = [{
   "Grade": "6b+ 5c **",
   "Style": "TR O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "16/Aug/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50549,7 +48854,6 @@ module.exports = [{
   "Grade": "none 6a *",
   "Style": "TR O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "16/Aug/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50557,7 +48861,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR rpt",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "16/Aug/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50565,7 +48868,6 @@ module.exports = [{
   "Grade": "6b+ 5c *",
   "Style": "TR rpt",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "16/Aug/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50573,7 +48875,6 @@ module.exports = [{
   "Grade": "4a 4a *",
   "Style": "TR rpt",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "16/Aug/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50589,7 +48890,6 @@ module.exports = [{
   "Grade": "6a+ 5a **",
   "Style": "TR rpt",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "16/Aug/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50597,7 +48897,6 @@ module.exports = [{
   "Grade": "6c 6a *",
   "Style": "TR rpt",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "16/Aug/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50605,7 +48904,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "03/Aug/14",
   "Crag name": "Coastguard North"
 }, {
@@ -50618,10 +48916,9 @@ module.exports = [{
   "Crag name": "Coastguard North"
 }, {
   "Climb name": "Face in the Chert",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "03/Aug/14",
   "Crag name": "Wallsend South"
 }, {
@@ -50629,7 +48926,6 @@ module.exports = [{
   "Grade": "6a  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "03/Aug/14",
   "Crag name": "Coastguard South"
 }, {
@@ -50637,22 +48933,18 @@ module.exports = [{
   "Grade": "6a  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "03/Aug/14",
   "Crag name": "Coastguard South"
 }, {
   "Climb name": "The Red Crane Traverse",
   "Grade": "5a  **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "03/Aug/14",
   "Crag name": "Lighthouse Area"
 }, {
   "Climb name": "White Pony",
-  "Grade": "f5+",
+  "Grade": "f5+  ",
   "Style": "Solo dnf",
-  "Partner(s)": "",
   "Notes": "took a dunking!",
   "Date": "03/Aug/14",
   "Crag name": "Lighthouse Area"
@@ -50661,7 +48953,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Aug/14",
   "Crag name": "The Cuttings"
 }, {
@@ -50669,15 +48960,13 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Aug/14",
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "Time Out of Mind",
-  "Grade": "5a",
+  "Grade": "5a  ",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Aug/14",
   "Crag name": "The Cuttings"
 }, {
@@ -50685,7 +48974,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Aug/14",
   "Crag name": "The Cuttings"
 }, {
@@ -50693,7 +48981,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Aug/14",
   "Crag name": "Blacknor North"
 }, {
@@ -50701,7 +48988,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Aug/14",
   "Crag name": "Blacknor North"
 }, {
@@ -50709,7 +48995,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Ed Green",
-  "Notes": "",
   "Date": "02/Aug/14",
   "Crag name": "Blacknor North"
 }, {
@@ -50717,7 +49002,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "27/Jul/14",
   "Crag name": "Blacknor South"
 }, {
@@ -50725,7 +49009,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "27/Jul/14",
   "Crag name": "Blacknor South"
 }, {
@@ -50733,7 +49016,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "27/Jul/14",
   "Crag name": "Blacknor South"
 }, {
@@ -50741,7 +49023,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "27/Jul/14",
   "Crag name": "Blacknor South"
 }, {
@@ -50749,7 +49030,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "27/Jul/14",
   "Crag name": "Blacknor Beach"
 }, {
@@ -50765,7 +49045,6 @@ module.exports = [{
   "Grade": "3a  ***",
   "Style": "2nd O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "27/Jul/14",
   "Crag name": "Blacknor Beach"
 }, {
@@ -50773,7 +49052,6 @@ module.exports = [{
   "Grade": "3a  ***",
   "Style": "2nd O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "27/Jul/14",
   "Crag name": "Blacknor Beach"
 }, {
@@ -50781,7 +49059,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Jul/14",
   "Crag name": "The Cuttings"
 }, {
@@ -50789,7 +49066,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Jul/14",
   "Crag name": "The Cuttings"
 }, {
@@ -50797,7 +49073,6 @@ module.exports = [{
   "Grade": "5c  **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Jul/14",
   "Crag name": "The Cuttings"
 }, {
@@ -50805,7 +49080,6 @@ module.exports = [{
   "Grade": "6a+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Jul/14",
   "Crag name": "Blacknor North"
 }, {
@@ -50813,7 +49087,6 @@ module.exports = [{
   "Grade": "5a  ***",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Jul/14",
   "Crag name": "Blacknor North"
 }, {
@@ -50821,15 +49094,13 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Jul/14",
   "Crag name": "Blacknor North"
 }, {
   "Climb name": "Apfel Strudel",
-  "Grade": "6a",
+  "Grade": "6a  ",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Jul/14",
   "Crag name": "Blacknor North"
 }, {
@@ -50837,7 +49108,6 @@ module.exports = [{
   "Grade": "6a  **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Jul/14",
   "Crag name": "Blacknor North"
 }, {
@@ -50845,7 +49115,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "26/Jul/14",
   "Crag name": "Blacknor Central"
 }, {
@@ -50861,15 +49130,13 @@ module.exports = [{
   "Grade": "6c 5c *",
   "Style": "TR O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "20/Jul/14",
   "Crag name": "Harrison's Rocks"
 }, {
-  "Climb name": "Bow Window Direct",
-  "Grade": "none 5c *",
+  "Climb name": "Bow Window Right",
+  "Grade": "6b+ 5c *",
   "Style": "TR O/S",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "20/Jul/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50877,7 +49144,6 @@ module.exports = [{
   "Grade": "6b 5b ***",
   "Style": "TR rpt",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "20/Jul/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50885,7 +49151,6 @@ module.exports = [{
   "Grade": "6c 5c **",
   "Style": "TR rpt",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "20/Jul/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50893,7 +49158,6 @@ module.exports = [{
   "Grade": "6a 5b **",
   "Style": "TR rpt",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "20/Jul/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50901,7 +49165,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR rpt",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "20/Jul/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50909,7 +49172,6 @@ module.exports = [{
   "Grade": "4a 4a ***",
   "Style": "TR rpt",
   "Partner(s)": "Katsmiff",
-  "Notes": "",
   "Date": "20/Jul/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -50933,7 +49195,6 @@ module.exports = [{
   "Grade": "HVD  ***",
   "Style": "AltLd O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "11/Jul/14",
   "Crag name": "Pikes Crag"
 }, {
@@ -50941,7 +49202,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "11/Jul/14",
   "Crag name": "Scafell Crag"
 }, {
@@ -50973,31 +49233,25 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Chris CMC",
-  "Notes": "",
   "Date": "06/Jul/14",
   "Crag name": "Bamford Edge"
 }, {
   "Climb name": "Recess Groove",
-  "Grade": "HS 4b",
+  "Grade": "HS 4b ",
   "Style": "2nd O/S",
   "Partner(s)": "Chris CMC",
-  "Notes": "",
   "Date": "06/Jul/14",
   "Crag name": "Bamford Edge"
 }, {
   "Climb name": "Brown's Crack",
   "Grade": "HS 4b ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Jul/14",
   "Crag name": "Bamford Edge"
 }, {
   "Climb name": "Bilberry Crack",
   "Grade": "VS 5a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "06/Jul/14",
   "Crag name": "Bamford Edge"
 }, {
@@ -51005,7 +49259,6 @@ module.exports = [{
   "Grade": "E1 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "Chris CMC",
-  "Notes": "",
   "Date": "06/Jul/14",
   "Crag name": "Bamford Edge"
 }, {
@@ -51021,7 +49274,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Paul Schweizer",
-  "Notes": "",
   "Date": "21/Jun/14",
   "Crag name": "Pabbay"
 }, {
@@ -51029,7 +49281,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "2nd O/S",
   "Partner(s)": "Paul Schweizer",
-  "Notes": "",
   "Date": "21/Jun/14",
   "Crag name": "Pabbay"
 }, {
@@ -51045,7 +49296,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "AltLd O/S",
   "Partner(s)": "tomdude",
-  "Notes": "",
   "Date": "20/Jun/14",
   "Crag name": "Pabbay"
 }, {
@@ -51053,7 +49303,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "AltLd O/S",
   "Partner(s)": "tomdude",
-  "Notes": "",
   "Date": "19/Jun/14",
   "Crag name": "Pabbay"
 }, {
@@ -51061,7 +49310,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Paul Schweizer",
-  "Notes": "",
   "Date": "18/Jun/14",
   "Crag name": "Mingulay"
 }, {
@@ -51069,7 +49317,6 @@ module.exports = [{
   "Grade": "E2 5c **",
   "Style": "Lead O/S",
   "Partner(s)": "Paul Schweizer",
-  "Notes": "",
   "Date": "18/Jun/14",
   "Crag name": "Mingulay"
 }, {
@@ -51077,7 +49324,6 @@ module.exports = [{
   "Grade": "E2 5b ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Paul Schweizer",
-  "Notes": "",
   "Date": "18/Jun/14",
   "Crag name": "Mingulay"
 }, {
@@ -51085,7 +49331,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "Paul Schweizer",
-  "Notes": "",
   "Date": "17/Jun/14",
   "Crag name": "Mingulay"
 }, {
@@ -51093,7 +49338,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Paul Schweizer",
-  "Notes": "",
   "Date": "16/Jun/14",
   "Crag name": "Mingulay"
 }, {
@@ -51101,7 +49345,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Paul Schweizer",
-  "Notes": "",
   "Date": "16/Jun/14",
   "Crag name": "Mingulay"
 }, {
@@ -51117,7 +49360,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "AltLd O/S",
   "Partner(s)": "Paul Schweizer",
-  "Notes": "",
   "Date": "15/Jun/14",
   "Crag name": "Mingulay"
 }, {
@@ -51125,7 +49367,6 @@ module.exports = [{
   "Grade": "E2 5b **",
   "Style": "AltLd O/S",
   "Partner(s)": "Paul Schweizer",
-  "Notes": "",
   "Date": "15/Jun/14",
   "Crag name": "Mingulay"
 }, {
@@ -51133,7 +49374,6 @@ module.exports = [{
   "Grade": "VS 4b *",
   "Style": "Lead O/S",
   "Partner(s)": "Rich CMC, Chris CMC",
-  "Notes": "",
   "Date": "26/May/14",
   "Crag name": "Ilkley (Cow and Calf)"
 }, {
@@ -51141,7 +49381,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Sarah Pentelow",
-  "Notes": "",
   "Date": "26/May/14",
   "Crag name": "Ilkley (Cow and Calf)"
 }, {
@@ -51149,7 +49388,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Rich CMC, Chris CMC",
-  "Notes": "",
   "Date": "26/May/14",
   "Crag name": "Ilkley (Cow and Calf)"
 }, {
@@ -51157,31 +49395,27 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "Rich CMC",
-  "Notes": "",
   "Date": "26/May/14",
   "Crag name": "Ilkley (Cow and Calf)"
 }, {
   "Climb name": "Swans to Steele",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Chris CMC",
-  "Notes": "",
   "Date": "24/May/14",
   "Crag name": "Giggleswick South"
 }, {
   "Climb name": "Chopping Block",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead O/S",
   "Partner(s)": "Chris CMC",
-  "Notes": "",
   "Date": "24/May/14",
   "Crag name": "Giggleswick South"
 }, {
   "Climb name": "Match Play",
-  "Grade": "5c",
+  "Grade": "5c  ",
   "Style": "Lead O/S",
   "Partner(s)": "Rich CMC",
-  "Notes": "",
   "Date": "24/May/14",
   "Crag name": "Giggleswick South"
 }, {
@@ -51189,7 +49423,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Rob",
-  "Notes": "",
   "Date": "24/May/14",
   "Crag name": "Giggleswick South"
 }, {
@@ -51197,7 +49430,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Rob",
-  "Notes": "",
   "Date": "24/May/14",
   "Crag name": "Giggleswick South"
 }, {
@@ -51205,23 +49437,20 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Rob",
-  "Notes": "",
   "Date": "24/May/14",
   "Crag name": "Giggleswick South"
 }, {
   "Climb name": "Wing Traverse",
-  "Grade": "VS 4c",
+  "Grade": "VS 4c ",
   "Style": "Lead O/S",
   "Partner(s)": "AnitaClimb",
-  "Notes": "",
   "Date": "24/May/14",
   "Crag name": "Giggleswick South"
 }, {
   "Climb name": "Flicker",
-  "Grade": "VS 4b",
+  "Grade": "VS 4b ",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews, Sarah Pentelow",
-  "Notes": "",
   "Date": "24/May/14",
   "Crag name": "Attermire Scar"
 }, {
@@ -51229,12 +49458,11 @@ module.exports = [{
   "Grade": "HVS 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews, Sarah Pentelow",
-  "Notes": "",
   "Date": "24/May/14",
   "Crag name": "Attermire Scar"
 }, {
   "Climb name": "Contortionist",
-  "Grade": "E1 5c",
+  "Grade": "E1 5c ",
   "Style": "Lead O/S",
   "Partner(s)": "Chris CMC",
   "Notes": "definitely lived up to its name",
@@ -51245,7 +49473,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "24/May/14",
   "Crag name": "Attermire Scar"
 }, {
@@ -51253,7 +49480,6 @@ module.exports = [{
   "Grade": "6c+  *",
   "Style": "TR O/S",
   "Partner(s)": "Rob",
-  "Notes": "",
   "Date": "24/May/14",
   "Crag name": "Giggleswick South"
 }, {
@@ -51261,7 +49487,6 @@ module.exports = [{
   "Grade": "6c+  *",
   "Style": "TR O/S",
   "Partner(s)": "Rob",
-  "Notes": "",
   "Date": "24/May/14",
   "Crag name": "Giggleswick South"
 }, {
@@ -51325,7 +49550,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "04/May/14",
   "Crag name": "Hound Tor"
 }, {
@@ -51333,7 +49557,6 @@ module.exports = [{
   "Grade": "HVS 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "04/May/14",
   "Crag name": "Hound Tor"
 }, {
@@ -51341,47 +49564,36 @@ module.exports = [{
   "Grade": "E2 5c *",
   "Style": "Lead O/S",
   "Partner(s)": "ipegg, Richard Apthorp",
-  "Notes": "",
   "Date": "04/May/14",
   "Crag name": "Hound Tor"
 }, {
   "Climb name": "Pulpit",
   "Grade": "HVD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "04/May/14",
   "Crag name": "Hound Tor"
 }, {
   "Climb name": "Liars Dice",
   "Grade": "S  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "04/May/14",
   "Crag name": "Hound Tor"
 }, {
   "Climb name": "P93 (Javu)",
-  "Grade": "HVS 4c",
+  "Grade": "HVS 4c ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "04/May/14",
   "Crag name": "Hound Tor"
 }, {
   "Climb name": "P94 (Javu)",
-  "Grade": "HS 4b",
+  "Grade": "HS 4b ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "04/May/14",
   "Crag name": "Hound Tor"
 }, {
   "Climb name": "P91 (Javu) / One Move Wonder",
   "Grade": "HS 5a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "04/May/14",
   "Crag name": "Hound Tor"
 }, {
@@ -51413,7 +49625,6 @@ module.exports = [{
   "Grade": "VS 4b **",
   "Style": "AltLd O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "03/May/14",
   "Crag name": "The Dewerstone"
 }, {
@@ -51421,7 +49632,6 @@ module.exports = [{
   "Grade": "E1 5a ***",
   "Style": "AltLd O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "03/May/14",
   "Crag name": "The Dewerstone"
 }, {
@@ -51429,7 +49639,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "AltLd O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "03/May/14",
   "Crag name": "The Dewerstone"
 }, {
@@ -51437,7 +49646,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "21/Apr/14",
   "Crag name": "Gouther Crags"
 }, {
@@ -51445,15 +49653,13 @@ module.exports = [{
   "Grade": "VS  *",
   "Style": "AltLd O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "21/Apr/14",
   "Crag name": "Gouther Crags"
 }, {
   "Climb name": "Razorback",
-  "Grade": "VS 4c",
+  "Grade": "VS 4c ",
   "Style": "2nd O/S",
   "Partner(s)": "Neil Passmore",
-  "Notes": "",
   "Date": "21/Apr/14",
   "Crag name": "Gouther Crags"
 }, {
@@ -51477,7 +49683,6 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Passmore, Danny Crump",
-  "Notes": "",
   "Date": "20/Apr/14",
   "Crag name": "White Ghyll"
 }, {
@@ -51485,7 +49690,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Sole",
-  "Notes": "",
   "Date": "20/Apr/14",
   "Crag name": "White Ghyll"
 }, {
@@ -51517,12 +49721,11 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Catherine O' Connor",
-  "Notes": "",
   "Date": "18/Apr/14",
   "Crag name": "Eagle Crag (Grisedale)"
 }, {
   "Climb name": "Poisoned Arrow",
-  "Grade": "HVS 5a",
+  "Grade": "HVS 5a ",
   "Style": "Lead O/S",
   "Partner(s)": "Catherine O' Connor, Danny Crump",
   "Notes": "Would probably be HVS if you wire brushed the whole thing!",
@@ -51541,7 +49744,6 @@ module.exports = [{
   "Grade": "S 4a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Catherine O' Connor",
-  "Notes": "",
   "Date": "18/Apr/14",
   "Crag name": "Eagle Crag (Grisedale)"
 }, {
@@ -51549,7 +49751,6 @@ module.exports = [{
   "Grade": "4c 4c ***",
   "Style": "TR O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "12/Apr/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -51557,7 +49758,6 @@ module.exports = [{
   "Grade": "6a+ 5b *",
   "Style": "TR O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "12/Apr/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -51565,7 +49765,6 @@ module.exports = [{
   "Grade": "3c 3c *",
   "Style": "TR O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "12/Apr/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -51573,7 +49772,6 @@ module.exports = [{
   "Grade": "3b 3b ***",
   "Style": "TR O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "12/Apr/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -51581,7 +49779,6 @@ module.exports = [{
   "Grade": "4a 4a ***",
   "Style": "TR O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "12/Apr/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -51589,7 +49786,6 @@ module.exports = [{
   "Grade": "5a 4c **",
   "Style": "TR O/S",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "12/Apr/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -51597,7 +49793,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR rpt",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "12/Apr/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -51605,7 +49800,6 @@ module.exports = [{
   "Grade": "6a+ 5a ***",
   "Style": "TR rpt",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "12/Apr/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -51613,7 +49807,6 @@ module.exports = [{
   "Grade": "5a 4c **",
   "Style": "TR rpt",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "12/Apr/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -51621,7 +49814,6 @@ module.exports = [{
   "Grade": "6a+ 5a **",
   "Style": "TR rpt",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "12/Apr/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -51629,7 +49821,6 @@ module.exports = [{
   "Grade": "4a 4a *",
   "Style": "TR rpt",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "12/Apr/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -51637,7 +49828,6 @@ module.exports = [{
   "Grade": "3c 3c *",
   "Style": "TR rpt",
   "Partner(s)": "clairemathews",
-  "Notes": "",
   "Date": "12/Apr/14",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -51645,7 +49835,6 @@ module.exports = [{
   "Grade": "S 4a *",
   "Style": "2nd O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "06/Apr/14",
   "Crag name": "Burbage North"
 }, {
@@ -51677,7 +49866,6 @@ module.exports = [{
   "Grade": "HS 4b **",
   "Style": "2nd O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "06/Apr/14",
   "Crag name": "Burbage North"
 }, {
@@ -51693,7 +49881,6 @@ module.exports = [{
   "Grade": "HS 4b *",
   "Style": "2nd O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "06/Apr/14",
   "Crag name": "Burbage North"
 }, {
@@ -51701,7 +49888,6 @@ module.exports = [{
   "Grade": "HS 4a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "05/Apr/14",
   "Crag name": "Stanage Popular"
 }, {
@@ -51709,7 +49895,6 @@ module.exports = [{
   "Grade": "HS 4b ***",
   "Style": "2nd rpt",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "05/Apr/14",
   "Crag name": "Stanage Popular"
 }, {
@@ -51725,7 +49910,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd rpt",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "05/Apr/14",
   "Crag name": "Stanage Popular"
 }, {
@@ -51733,7 +49917,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "05/Apr/14",
   "Crag name": "Stanage Popular"
 }, {
@@ -51741,7 +49924,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "2nd rpt",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "05/Apr/14",
   "Crag name": "Stanage Popular"
 }, {
@@ -51749,7 +49931,6 @@ module.exports = [{
   "Grade": "HVS 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "05/Apr/14",
   "Crag name": "Stanage Popular"
 }, {
@@ -51765,7 +49946,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "05/Apr/14",
   "Crag name": "Stanage Popular"
 }, {
@@ -51781,7 +49961,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "2nd O/S",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "31/Mar/14",
   "Crag name": "Almscliff"
 }, {
@@ -51821,7 +50000,6 @@ module.exports = [{
   "Grade": "IV 4 **",
   "Style": "2nd O/S",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "29/Mar/14",
   "Crag name": "Ben Nevis"
 }, {
@@ -51834,34 +50012,30 @@ module.exports = [{
   "Crag name": "Ben Nevis"
 }, {
   "Climb name": "Back Off Back On",
-  "Grade": "M4",
+  "Grade": "M4  ",
   "Style": "TR O/S",
   "Partner(s)": "Piers Harley",
-  "Notes": "",
   "Date": "17/Nov/13",
   "Crag name": "Saltdean"
 }, {
   "Climb name": "Back in Time",
-  "Grade": "M4",
+  "Grade": "M4  ",
   "Style": "TR O/S",
   "Partner(s)": "Piers Harley",
-  "Notes": "",
   "Date": "17/Nov/13",
   "Crag name": "Saltdean"
 }, {
   "Climb name": "The Strangeness and the Charm of the Quark (Direct)",
-  "Grade": "M5",
+  "Grade": "M5  ",
   "Style": "TR O/S",
   "Partner(s)": "Piers Harley",
-  "Notes": "",
   "Date": "17/Nov/13",
   "Crag name": "Saltdean"
 }, {
   "Climb name": "Back Up",
-  "Grade": "M4",
+  "Grade": "M4  ",
   "Style": "Lead O/S",
   "Partner(s)": "Piers Harley",
-  "Notes": "",
   "Date": "17/Nov/13",
   "Crag name": "Saltdean"
 }, {
@@ -51877,7 +50051,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "2nd O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "03/Nov/13",
   "Crag name": "Cratcliffe Tor"
 }, {
@@ -51893,7 +50066,6 @@ module.exports = [{
   "Grade": "HS 4b **",
   "Style": "2nd O/S",
   "Partner(s)": "Jamie Vince, Rob Laird",
-  "Notes": "",
   "Date": "02/Nov/13",
   "Crag name": "Froggatt Edge"
 }, {
@@ -51908,7 +50080,6 @@ module.exports = [{
   "Climb name": "Long John's Slab",
   "Grade": "E3 5c **",
   "Style": "Solo dnf",
-  "Partner(s)": "",
   "Notes": "couldn't quite reach the first decent crimp, took a little fall, and thought I best save it for another day",
   "Date": "02/Nov/13",
   "Crag name": "Froggatt Edge"
@@ -51917,7 +50088,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd O/S",
   "Partner(s)": "Jamie Vince",
-  "Notes": "",
   "Date": "01/Nov/13",
   "Crag name": "Froggatt Edge"
 }, {
@@ -51933,7 +50103,6 @@ module.exports = [{
   "Grade": "HS 4b *",
   "Style": "2nd O/S",
   "Partner(s)": "Jamie Vince",
-  "Notes": "",
   "Date": "01/Nov/13",
   "Crag name": "Froggatt Edge"
 }, {
@@ -51941,7 +50110,6 @@ module.exports = [{
   "Grade": "6a  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "19/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -51949,7 +50117,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "19/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -51957,7 +50124,6 @@ module.exports = [{
   "Grade": "6b  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "19/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -51965,7 +50131,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "19/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -51973,7 +50138,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "18/Oct/13",
   "Crag name": "Poza de la Mona"
 }, {
@@ -51981,7 +50145,6 @@ module.exports = [{
   "Grade": "6b  *",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "18/Oct/13",
   "Crag name": "Poza de la Mona"
 }, {
@@ -51989,7 +50152,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "18/Oct/13",
   "Crag name": "Poza de la Mona"
 }, {
@@ -51997,7 +50159,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Tom from Taunton",
-  "Notes": "",
   "Date": "18/Oct/13",
   "Crag name": "Poza de la Mona"
 }, {
@@ -52005,7 +50166,6 @@ module.exports = [{
   "Grade": "6c  *",
   "Style": "Lead dog",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "18/Oct/13",
   "Crag name": "Poza de la Mona"
 }, {
@@ -52013,7 +50173,6 @@ module.exports = [{
   "Grade": "6c+  ***",
   "Style": "TR O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "18/Oct/13",
   "Crag name": "Poza de la Mona"
 }, {
@@ -52021,7 +50180,6 @@ module.exports = [{
   "Grade": "7a+  *",
   "Style": "TR dog",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "18/Oct/13",
   "Crag name": "Poza de la Mona"
 }, {
@@ -52029,7 +50187,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "17/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52037,7 +50194,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "TR O/S",
   "Partner(s)": "Emily from Taunton",
-  "Notes": "",
   "Date": "17/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52045,7 +50201,6 @@ module.exports = [{
   "Grade": "6c  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Patrick from The Olive Branch",
-  "Notes": "",
   "Date": "17/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52053,7 +50208,6 @@ module.exports = [{
   "Grade": "6c+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Mark from The Olive Branch",
-  "Notes": "",
   "Date": "17/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52061,7 +50215,6 @@ module.exports = [{
   "Grade": "7a  **",
   "Style": "TR dog",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "17/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52069,7 +50222,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "16/Oct/13",
   "Crag name": "Las Encantadas"
 }, {
@@ -52077,7 +50229,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "16/Oct/13",
   "Crag name": "Las Encantadas"
 }, {
@@ -52085,7 +50236,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead dnf",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "16/Oct/13",
   "Crag name": "Las Encantadas"
 }, {
@@ -52093,7 +50243,6 @@ module.exports = [{
   "Grade": "6b+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "16/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52101,7 +50250,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "16/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52109,7 +50257,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "16/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52117,7 +50264,6 @@ module.exports = [{
   "Grade": "6c  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "16/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52125,7 +50271,6 @@ module.exports = [{
   "Grade": "6c+  ***",
   "Style": "Lead dnf",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "16/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52133,7 +50278,6 @@ module.exports = [{
   "Grade": "6b  **",
   "Style": "Lead dog",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "15/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52141,7 +50285,6 @@ module.exports = [{
   "Grade": "6b+  **",
   "Style": "Lead dog",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "15/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52149,7 +50292,6 @@ module.exports = [{
   "Grade": "5c  **",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "15/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52157,7 +50299,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "15/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52165,7 +50306,6 @@ module.exports = [{
   "Grade": "7a  **",
   "Style": "TR dog",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "15/Oct/13",
   "Crag name": "Desplomilandia"
 }, {
@@ -52173,7 +50313,6 @@ module.exports = [{
   "Grade": "5a  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "14/Oct/13",
   "Crag name": "Valle de Abdalajis"
 }, {
@@ -52181,7 +50320,6 @@ module.exports = [{
   "Grade": "6a+  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "14/Oct/13",
   "Crag name": "Valle de Abdalajis"
 }, {
@@ -52189,7 +50327,6 @@ module.exports = [{
   "Grade": "6b  ***",
   "Style": "Lead O/S",
   "Partner(s)": "Neil Kerr, Danny Crump",
-  "Notes": "",
   "Date": "14/Oct/13",
   "Crag name": "Valle de Abdalajis"
 }, {
@@ -52213,7 +50350,6 @@ module.exports = [{
   "Grade": "6a+  **",
   "Style": "Lead",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "23/Sep/13",
   "Crag name": "Hedbury"
 }, {
@@ -52221,7 +50357,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "TR O/S",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "23/Sep/13",
   "Crag name": "Hedbury"
 }, {
@@ -52229,7 +50364,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "2nd",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "23/Sep/13",
   "Crag name": "Dancing Ledge"
 }, {
@@ -52237,7 +50371,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "Lead",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "23/Sep/13",
   "Crag name": "Dancing Ledge"
 }, {
@@ -52245,7 +50378,6 @@ module.exports = [{
   "Grade": "6c  **",
   "Style": "Lead",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "23/Sep/13",
   "Crag name": "Dancing Ledge"
 }, {
@@ -52253,7 +50385,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "2nd",
   "Partner(s)": "Michael Porter",
-  "Notes": "",
   "Date": "23/Sep/13",
   "Crag name": "Dancing Ledge"
 }, {
@@ -52269,7 +50400,6 @@ module.exports = [{
   "Grade": "VS 5a ***",
   "Style": "AltLd O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "22/Sep/13",
   "Crag name": "Guillemot Ledge"
 }, {
@@ -52277,7 +50407,6 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "AltLd O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "22/Sep/13",
   "Crag name": "Guillemot Ledge"
 }, {
@@ -52300,7 +50429,6 @@ module.exports = [{
   "Climb name": "Right Wall Traverse",
   "Grade": "f5+  **",
   "Style": "Sent O/S",
-  "Partner(s)": "",
   "Notes": "A fun traverse on good quality rock.",
   "Date": "03/Sep/13",
   "Crag name": "Cave Hill"
@@ -52309,7 +50437,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "mr random",
-  "Notes": "",
   "Date": "26/Aug/13",
   "Crag name": "Caerfai Bay"
 }, {
@@ -52317,7 +50444,6 @@ module.exports = [{
   "Grade": "HS 4b *",
   "Style": "2nd O/S",
   "Partner(s)": "mr random",
-  "Notes": "",
   "Date": "26/Aug/13",
   "Crag name": "Caerfai Bay"
 }, {
@@ -52325,7 +50451,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "mr random",
-  "Notes": "",
   "Date": "26/Aug/13",
   "Crag name": "Caerfai Bay"
 }, {
@@ -52333,7 +50458,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "2nd O/S",
   "Partner(s)": "mr random",
-  "Notes": "",
   "Date": "26/Aug/13",
   "Crag name": "Caerfai Bay"
 }, {
@@ -52349,23 +50473,20 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "2nd O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "25/Aug/13",
   "Crag name": "St. Govan's Head"
 }, {
   "Climb name": "Exit Corner",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "2nd O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "25/Aug/13",
   "Crag name": "St. Govan's Head"
 }, {
   "Climb name": "Stacked Against",
-  "Grade": "VS 4b",
+  "Grade": "VS 4b ",
   "Style": "2nd O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "25/Aug/13",
   "Crag name": "St. Govan's Head"
 }, {
@@ -52373,12 +50494,11 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "25/Aug/13",
   "Crag name": "St. Govan's Head"
 }, {
   "Climb name": "Rock-a-Block",
-  "Grade": "E3 5c",
+  "Grade": "E3 5c ",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
   "Notes": "Not quite the warm up I wanted, but glad I didn't fall off.",
@@ -52389,7 +50509,6 @@ module.exports = [{
   "Grade": "S 4a *",
   "Style": "Lead O/S",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "24/Aug/13",
   "Crag name": "Saddle Head"
 }, {
@@ -52397,15 +50516,12 @@ module.exports = [{
   "Grade": "HS 4b *",
   "Style": "Lead O/S",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "24/Aug/13",
   "Crag name": "Saddle Head"
 }, {
   "Climb name": "Forgotten Corner",
   "Grade": "HVD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "24/Aug/13",
   "Crag name": "Saddle Head"
 }, {
@@ -52413,15 +50529,12 @@ module.exports = [{
   "Grade": "HS 4a **",
   "Style": "Lead O/S",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "24/Aug/13",
   "Crag name": "Saddle Head"
 }, {
   "Climb name": "Small Beginnings",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "24/Aug/13",
   "Crag name": "Saddle Head"
 }, {
@@ -52429,7 +50542,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "20/Aug/13",
   "Crag name": "Black Crag (Borrowdale)"
 }, {
@@ -52437,7 +50549,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "20/Aug/13",
   "Crag name": "Black Crag (Borrowdale)"
 }, {
@@ -52445,7 +50556,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "20/Aug/13",
   "Crag name": "Black Crag (Borrowdale)"
 }, {
@@ -52453,7 +50563,6 @@ module.exports = [{
   "Grade": "E2 5c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "19/Aug/13",
   "Crag name": "Shepherd’s Crag"
 }, {
@@ -52461,7 +50570,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "19/Aug/13",
   "Crag name": "Shepherd’s Crag"
 }, {
@@ -52469,7 +50577,6 @@ module.exports = [{
   "Grade": "E1 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "19/Aug/13",
   "Crag name": "Shepherd’s Crag"
 }, {
@@ -52477,7 +50584,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "19/Aug/13",
   "Crag name": "Shepherd’s Crag"
 }, {
@@ -52485,7 +50591,6 @@ module.exports = [{
   "Grade": "VD  ***",
   "Style": "2nd O/S",
   "Partner(s)": "Joe Redhead, Danny Crump",
-  "Notes": "",
   "Date": "19/Aug/13",
   "Crag name": "Shepherd’s Crag"
 }, {
@@ -52493,7 +50598,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "19/Aug/13",
   "Crag name": "Shepherd’s Crag"
 }, {
@@ -52501,15 +50605,13 @@ module.exports = [{
   "Grade": "VD  ***",
   "Style": "AltLd O/S",
   "Partner(s)": "Joe Redhead, Danny Crump",
-  "Notes": "",
   "Date": "19/Aug/13",
   "Crag name": "Shepherd’s Crag"
 }, {
   "Climb name": "Cracked Wall",
-  "Grade": "HS 4b",
+  "Grade": "HS 4b ",
   "Style": "2nd O/S",
   "Partner(s)": "Joe Redhead, Danny Crump",
-  "Notes": "",
   "Date": "18/Aug/13",
   "Crag name": "Whitestone"
 }, {
@@ -52517,15 +50619,13 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "Joe Redhead, Danny Crump",
-  "Notes": "",
   "Date": "18/Aug/13",
   "Crag name": "Whitestone"
 }, {
   "Climb name": "Chimney Route",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "2nd O/S",
   "Partner(s)": "Joe Redhead, Danny Crump",
-  "Notes": "",
   "Date": "18/Aug/13",
   "Crag name": "Whitestone"
 }, {
@@ -52533,31 +50633,26 @@ module.exports = [{
   "Grade": "HS 4b **",
   "Style": "2nd O/S",
   "Partner(s)": "Graham Cook, Joe Redhead, Alec Cook, Danny Crump",
-  "Notes": "",
   "Date": "18/Aug/13",
   "Crag name": "Whitestone"
 }, {
   "Climb name": "Ridge",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "18/Aug/13",
   "Crag name": "Whitestone"
 }, {
   "Climb name": "Direct Route",
-  "Grade": "HS 4a",
+  "Grade": "HS 4a ",
   "Style": "Lead O/S",
   "Partner(s)": "Joe Redhead, Danny Crump",
-  "Notes": "",
   "Date": "18/Aug/13",
   "Crag name": "Whitestone"
 }, {
   "Climb name": "High-level Girdle",
-  "Grade": "S 4a",
+  "Grade": "S 4a ",
   "Style": "2nd O/S",
   "Partner(s)": "Joe Redhead, Danny Crump",
-  "Notes": "",
   "Date": "18/Aug/13",
   "Crag name": "Whitestone"
 }, {
@@ -52565,7 +50660,6 @@ module.exports = [{
   "Grade": "S 4a ***",
   "Style": "2nd O/S",
   "Partner(s)": "tony wood, Danny Crump",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Eastby Crag"
 }, {
@@ -52581,7 +50675,6 @@ module.exports = [{
   "Grade": "S 4a *",
   "Style": "2nd O/S",
   "Partner(s)": "tony wood, Danny Crump",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Eastby Crag"
 }, {
@@ -52589,7 +50682,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "2nd O/S",
   "Partner(s)": "tony wood, Danny Crump",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Eastby Crag"
 }, {
@@ -52597,7 +50689,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "Lead O/S",
   "Partner(s)": "tony wood, Danny Crump",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Eastby Crag"
 }, {
@@ -52605,7 +50696,6 @@ module.exports = [{
   "Grade": "VD  ***",
   "Style": "2nd O/S",
   "Partner(s)": "tony wood, Danny Crump",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Eastby Crag"
 }, {
@@ -52613,7 +50703,6 @@ module.exports = [{
   "Grade": "VS 4b **",
   "Style": "2nd O/S",
   "Partner(s)": "tony wood, Danny Crump",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Eastby Crag"
 }, {
@@ -52621,54 +50710,42 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Crookrise"
 }, {
   "Climb name": "Route 2",
   "Grade": "VS 5a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Crookrise"
 }, {
   "Climb name": "Route 1",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Crookrise"
 }, {
   "Climb name": "Octopus",
   "Grade": "S 4a *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Crookrise"
 }, {
   "Climb name": "Arsenic Slab",
   "Grade": "S 4a **",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Crookrise"
 }, {
   "Climb name": "Long Climb",
   "Grade": "HS 4b ***",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Crookrise"
 }, {
   "Climb name": "Open Chimney",
   "Grade": "VD  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
   "Notes": "downclimb solo",
   "Date": "16/Aug/13",
   "Crag name": "Crookrise"
@@ -52676,8 +50753,6 @@ module.exports = [{
   "Climb name": "Arsenic Slab Direct",
   "Grade": "f6A  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "16/Aug/13",
   "Crag name": "Crookrise"
 }, {
@@ -52690,18 +50765,16 @@ module.exports = [{
   "Crag name": "Wilton 1"
 }, {
   "Climb name": "Remembrance Corner",
-  "Grade": "VS 4c",
+  "Grade": "VS 4c ",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "14/Aug/13",
   "Crag name": "Wilton 1"
 }, {
-  "Climb name": 999,
+  "Climb name": "999",
   "Grade": "HS 4b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "14/Aug/13",
   "Crag name": "Wilton 1"
 }, {
@@ -52709,7 +50782,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "2nd O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "14/Aug/13",
   "Crag name": "Wilton 1"
 }, {
@@ -52717,7 +50789,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "2nd O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "14/Aug/13",
   "Crag name": "Wilton 1"
 }, {
@@ -52725,7 +50796,6 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "14/Aug/13",
   "Crag name": "Wilton 1"
 }, {
@@ -52733,31 +50803,27 @@ module.exports = [{
   "Grade": "E1 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "14/Aug/13",
   "Crag name": "Wilton 1"
 }, {
   "Climb name": "Liptricks (2)",
-  "Grade": "f6A",
+  "Grade": "f6A  ",
   "Style": "Sent",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "11/Aug/13",
   "Crag name": "Fairlop Boulders"
 }, {
   "Climb name": "Rich's Demise",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "11/Aug/13",
   "Crag name": "Fairlop Boulders"
 }, {
   "Climb name": "Nosejob",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "11/Aug/13",
   "Crag name": "Fairlop Boulders"
 }, {
@@ -52765,7 +50831,6 @@ module.exports = [{
   "Grade": "f4+  *",
   "Style": "Sent",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "11/Aug/13",
   "Crag name": "Fairlop Boulders"
 }, {
@@ -52773,7 +50838,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "11/Aug/13",
   "Crag name": "Fairlop Boulders"
 }, {
@@ -52781,39 +50845,34 @@ module.exports = [{
   "Grade": "f4  **",
   "Style": "Sent",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "11/Aug/13",
   "Crag name": "Fairlop Boulders"
 }, {
   "Climb name": "Layaway Crack",
-  "Grade": "f3",
+  "Grade": "f3  ",
   "Style": "Sent",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "11/Aug/13",
   "Crag name": "Fairlop Boulders"
 }, {
   "Climb name": "Step Up",
-  "Grade": "f3+",
+  "Grade": "f3+  ",
   "Style": "Sent",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "11/Aug/13",
   "Crag name": "Fairlop Boulders"
 }, {
   "Climb name": "Can You Hear Me Major Tim?",
-  "Grade": "f4",
+  "Grade": "f4  ",
   "Style": "Sent",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "11/Aug/13",
   "Crag name": "Fairlop Boulders"
 }, {
   "Climb name": "Stand Start Art",
-  "Grade": "f5",
+  "Grade": "f5  ",
   "Style": "Sent",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "11/Aug/13",
   "Crag name": "Fairlop Boulders"
 }, {
@@ -52821,7 +50880,6 @@ module.exports = [{
   "Grade": "f5  *",
   "Style": "Sent",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "11/Aug/13",
   "Crag name": "Fairlop Boulders"
 }, {
@@ -52829,7 +50887,6 @@ module.exports = [{
   "Grade": "f5+  *",
   "Style": "Sent",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "11/Aug/13",
   "Crag name": "Fairlop Boulders"
 }, {
@@ -52837,7 +50894,6 @@ module.exports = [{
   "Grade": "VS 5a *",
   "Style": "Solo O/S",
   "Partner(s)": "Jamie Vince, Richard Apthorp",
-  "Notes": "",
   "Date": "04/Aug/13",
   "Crag name": "Gardom's Edge"
 }, {
@@ -52845,7 +50901,6 @@ module.exports = [{
   "Grade": "VS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "Jamie Vince, Richard Apthorp",
-  "Notes": "",
   "Date": "04/Aug/13",
   "Crag name": "Gardom's Edge"
 }, {
@@ -52853,7 +50908,6 @@ module.exports = [{
   "Grade": "VS 4b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Jamie Vince, Richard Apthorp",
-  "Notes": "",
   "Date": "04/Aug/13",
   "Crag name": "Gardom's Edge"
 }, {
@@ -52861,7 +50915,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Jamie Vince, Richard Apthorp",
-  "Notes": "",
   "Date": "04/Aug/13",
   "Crag name": "Gardom's Edge"
 }, {
@@ -52869,7 +50922,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "Lead O/S",
   "Partner(s)": "efe tunc, Richard Apthorp",
-  "Notes": "",
   "Date": "03/Aug/13",
   "Crag name": "Lawrencefield"
 }, {
@@ -52877,7 +50929,6 @@ module.exports = [{
   "Grade": "E1 5c *",
   "Style": "Lead O/S",
   "Partner(s)": "efe tunc, Richard Apthorp",
-  "Notes": "",
   "Date": "03/Aug/13",
   "Crag name": "Lawrencefield"
 }, {
@@ -52885,7 +50936,6 @@ module.exports = [{
   "Grade": "VS 5a *",
   "Style": "2nd O/S",
   "Partner(s)": "efe tunc, Richard Apthorp",
-  "Notes": "",
   "Date": "03/Aug/13",
   "Crag name": "Lawrencefield"
 }, {
@@ -52893,7 +50943,6 @@ module.exports = [{
   "Grade": "VS 4b *",
   "Style": "Lead O/S",
   "Partner(s)": "Richard Apthorp",
-  "Notes": "",
   "Date": "03/Aug/13",
   "Crag name": "Lawrencefield"
 }, {
@@ -52901,12 +50950,11 @@ module.exports = [{
   "Grade": "E1 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "efe tunc, Richard Apthorp",
-  "Notes": "",
   "Date": "03/Aug/13",
   "Crag name": "Lawrencefield"
 }, {
   "Climb name": "Slab Crack",
-  "Grade": "6a 5b",
+  "Grade": "6a 5b ",
   "Style": "TR O/S",
   "Partner(s)": "Alec Cook",
   "Notes": "green and slimy yay",
@@ -52916,8 +50964,6 @@ module.exports = [{
   "Climb name": "Slab Direct",
   "Grade": "6a+ 5b **",
   "Style": "Solo rpt",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "24/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -52925,7 +50971,6 @@ module.exports = [{
   "Grade": "6a+ 5a ***",
   "Style": "TR rpt",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "24/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -52933,7 +50978,6 @@ module.exports = [{
   "Grade": "5c 5a *",
   "Style": "TR O/S",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "24/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -52941,7 +50985,6 @@ module.exports = [{
   "Grade": "7a 6a **",
   "Style": "TR dog",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "24/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -52949,7 +50992,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR rpt",
   "Partner(s)": "Jamie Vince",
-  "Notes": "",
   "Date": "24/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -52957,7 +50999,6 @@ module.exports = [{
   "Grade": "6a 5b **",
   "Style": "TR O/S",
   "Partner(s)": "Jamie Vince",
-  "Notes": "",
   "Date": "24/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -52965,7 +51006,6 @@ module.exports = [{
   "Grade": "6c 5c **",
   "Style": "TR RP",
   "Partner(s)": "Jamie Vince",
-  "Notes": "",
   "Date": "24/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -52973,7 +51013,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd O/S",
   "Partner(s)": "Jeremy, Piers Harley",
-  "Notes": "",
   "Date": "21/Jul/13",
   "Crag name": "Stanage North"
 }, {
@@ -52981,7 +51020,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Jeremy, Piers Harley",
-  "Notes": "",
   "Date": "21/Jul/13",
   "Crag name": "Stanage North"
 }, {
@@ -52989,7 +51027,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd O/S",
   "Partner(s)": "Jeremy, Piers Harley",
-  "Notes": "",
   "Date": "21/Jul/13",
   "Crag name": "Stanage Plantation"
 }, {
@@ -53005,7 +51042,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Jeremy, Piers Harley",
-  "Notes": "",
   "Date": "21/Jul/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53013,7 +51049,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd O/S",
   "Partner(s)": "Jeremy, Piers Harley",
-  "Notes": "",
   "Date": "21/Jul/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53021,7 +51056,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd O/S",
   "Partner(s)": "Jeremy, Piers Harley",
-  "Notes": "",
   "Date": "21/Jul/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53029,7 +51063,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Piers Harley",
-  "Notes": "",
   "Date": "21/Jul/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53037,7 +51070,6 @@ module.exports = [{
   "Grade": "VS 4b ***",
   "Style": "2nd rpt",
   "Partner(s)": "Piers Harley",
-  "Notes": "",
   "Date": "21/Jul/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53045,7 +51077,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "Piers Harley",
-  "Notes": "",
   "Date": "21/Jul/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53053,7 +51084,6 @@ module.exports = [{
   "Grade": "HS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Piers Harley",
-  "Notes": "",
   "Date": "20/Jul/13",
   "Crag name": "Birchen Edge"
 }, {
@@ -53061,7 +51091,6 @@ module.exports = [{
   "Grade": "HS 4c *",
   "Style": "2nd",
   "Partner(s)": "Piers Harley",
-  "Notes": "",
   "Date": "20/Jul/13",
   "Crag name": "Birchen Edge"
 }, {
@@ -53069,7 +51098,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Piers Harley",
-  "Notes": "",
   "Date": "20/Jul/13",
   "Crag name": "Birchen Edge"
 }, {
@@ -53077,7 +51105,6 @@ module.exports = [{
   "Grade": "HS 4b **",
   "Style": "2nd",
   "Partner(s)": "Jeremy, Piers Harley",
-  "Notes": "",
   "Date": "20/Jul/13",
   "Crag name": "Birchen Edge"
 }, {
@@ -53085,7 +51112,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "2nd O/S",
   "Partner(s)": "Jeremy, Piers Harley",
-  "Notes": "",
   "Date": "20/Jul/13",
   "Crag name": "Birchen Edge"
 }, {
@@ -53093,7 +51119,6 @@ module.exports = [{
   "Grade": "6a 5a ***",
   "Style": "TR O/S",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "16/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53101,7 +51126,6 @@ module.exports = [{
   "Grade": "6c+ 6a **",
   "Style": "TR dog",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "16/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53109,7 +51133,6 @@ module.exports = [{
   "Grade": "3c 3c *",
   "Style": "TR O/S",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "16/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53117,7 +51140,6 @@ module.exports = [{
   "Grade": "6a+ 5a **",
   "Style": "TR O/S",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "16/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53125,7 +51147,6 @@ module.exports = [{
   "Grade": "4a 4a *",
   "Style": "TR O/S",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "16/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53133,7 +51154,6 @@ module.exports = [{
   "Grade": "6b+ 5c *",
   "Style": "TR O/S",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "16/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53141,7 +51161,6 @@ module.exports = [{
   "Grade": "6b+ 5c **",
   "Style": "TR dog",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "16/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53149,7 +51168,6 @@ module.exports = [{
   "Grade": "6b 5b ***",
   "Style": "TR O/S",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "16/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53157,7 +51175,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR O/S",
   "Partner(s)": "Alec Cook",
-  "Notes": "",
   "Date": "16/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53165,7 +51182,6 @@ module.exports = [{
   "Grade": "6c 6a *",
   "Style": "TR dog",
   "Partner(s)": "Bryan Clary",
-  "Notes": "",
   "Date": "16/Jul/13",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53173,7 +51189,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Jamie Vince",
-  "Notes": "",
   "Date": "22/Jun/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53181,7 +51196,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "chubbyclimber",
-  "Notes": "",
   "Date": "22/Jun/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53189,7 +51203,6 @@ module.exports = [{
   "Grade": "HS 4b ***",
   "Style": "Lead O/S",
   "Partner(s)": "Jamie Vince",
-  "Notes": "",
   "Date": "22/Jun/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53197,7 +51210,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead O/S",
   "Partner(s)": "Jamie Vince",
-  "Notes": "",
   "Date": "22/Jun/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53205,7 +51217,6 @@ module.exports = [{
   "Grade": "S 4b ***",
   "Style": "Lead O/S",
   "Partner(s)": "John Andrews",
-  "Notes": "",
   "Date": "21/Jun/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53213,7 +51224,6 @@ module.exports = [{
   "Grade": "HS 4b ***",
   "Style": "Lead O/S",
   "Partner(s)": "John Andrews",
-  "Notes": "",
   "Date": "21/Jun/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53221,7 +51231,6 @@ module.exports = [{
   "Grade": "VS 4b **",
   "Style": "Lead O/S",
   "Partner(s)": "John Andrews",
-  "Notes": "",
   "Date": "21/Jun/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53229,7 +51238,6 @@ module.exports = [{
   "Grade": "HS 4a ***",
   "Style": "Lead O/S",
   "Partner(s)": "John Andrews",
-  "Notes": "",
   "Date": "21/Jun/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53237,7 +51245,6 @@ module.exports = [{
   "Grade": "VS 4b ***",
   "Style": "Lead O/S",
   "Partner(s)": "John Andrews",
-  "Notes": "",
   "Date": "21/Jun/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53253,7 +51260,6 @@ module.exports = [{
   "Grade": "S 4a ***",
   "Style": "Lead O/S",
   "Partner(s)": "John Andrews",
-  "Notes": "",
   "Date": "20/Jun/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53269,7 +51275,6 @@ module.exports = [{
   "Grade": "VS 4b *",
   "Style": "Lead O/S",
   "Partner(s)": "John Andrews",
-  "Notes": "",
   "Date": "20/Jun/13",
   "Crag name": "Stanage Popular"
 }, {
@@ -53277,12 +51282,11 @@ module.exports = [{
   "Grade": "HVS 5a **",
   "Style": "Lead O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "29/May/13",
   "Crag name": "Goat Gills Crag"
 }, {
   "Climb name": "GillyWilly",
-  "Grade": "HVS 5a",
+  "Grade": "HVS 5a ",
   "Style": "2nd O/S",
   "Partner(s)": "ipegg",
   "Notes": "the face is a fun start",
@@ -53293,7 +51297,6 @@ module.exports = [{
   "Grade": "VS 4b *",
   "Style": "2nd O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "29/May/13",
   "Crag name": "Goat Gills Crag"
 }, {
@@ -53301,7 +51304,6 @@ module.exports = [{
   "Grade": "HVS 5a *",
   "Style": "2nd",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "29/May/13",
   "Crag name": "Goat Gills Crag"
 }, {
@@ -53309,7 +51311,6 @@ module.exports = [{
   "Grade": "D  *",
   "Style": "Solo",
   "Partner(s)": "Richard Apthorp",
-  "Notes": "",
   "Date": "28/May/13",
   "Crag name": "Intake Ridge/Glaciated Slab"
 }, {
@@ -53325,31 +51326,24 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "AltLd O/S",
   "Partner(s)": "ipegg, Sarah Pentelow",
-  "Notes": "",
   "Date": "26/May/13",
   "Crag name": "Scrubby Crag"
 }, {
   "Climb name": "Hard Labour",
   "Grade": "f5+  ***",
   "Style": "Sent",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "21/Apr/13",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Crouching Start, Hidden Agenda",
   "Grade": "f6B+  ***",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "21/Apr/13",
   "Crag name": "The Cuttings Boulderfield"
 }, {
   "Climb name": "Captain Cook",
   "Grade": "f6A  **",
   "Style": "Sent dnf",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "21/Apr/13",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -53357,23 +51351,20 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "efe tunc",
-  "Notes": "",
   "Date": "21/Apr/13",
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "Voices in the Bower",
-  "Grade": "3a",
+  "Grade": "3a  ",
   "Style": "2nd O/S",
   "Partner(s)": "chubbyclimber",
-  "Notes": "",
   "Date": "21/Apr/13",
   "Crag name": "The Cuttings"
 }, {
   "Climb name": "Voices in the Bower",
-  "Grade": "3a",
+  "Grade": "3a  ",
   "Style": "Lead β",
   "Partner(s)": "efe tunc, Rafal Malczyk",
-  "Notes": "",
   "Date": "21/Apr/13",
   "Crag name": "The Cuttings"
 }, {
@@ -53381,7 +51372,6 @@ module.exports = [{
   "Grade": "6b+  *",
   "Style": "TR O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "21/Apr/13",
   "Crag name": "The Cuttings"
 }, {
@@ -53389,7 +51379,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "21/Apr/13",
   "Crag name": "The Cuttings"
 }, {
@@ -53397,7 +51386,6 @@ module.exports = [{
   "Grade": "4a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
-  "Notes": "",
   "Date": "20/Apr/13",
   "Crag name": "Beeston Cliff"
 }, {
@@ -53421,7 +51409,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "2nd O/S",
   "Partner(s)": "efe tunc",
-  "Notes": "",
   "Date": "20/Apr/13",
   "Crag name": "Cheyne Weares Area"
 }, {
@@ -53434,7 +51421,7 @@ module.exports = [{
   "Crag name": "Battleship Edge"
 }, {
   "Climb name": "The Sheer Weight of Prague",
-  "Grade": "VS 4c",
+  "Grade": "VS 4c ",
   "Style": "Lead O/S",
   "Partner(s)": "Rafal Malczyk",
   "Notes": "Lovely vs climb, featured in the climbers club guidebook. Climb it as a layback if you don't want to hurt yourself mind. Also, more importantly, set a static rope to pull up/ belay from at the top, or you have to do the sketchy traverse to 'Never drive a car when you're dead",
@@ -53444,8 +51431,6 @@ module.exports = [{
   "Climb name": "The Pocket Traverse",
   "Grade": "f6A  *",
   "Style": "Sent O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "???/2013",
   "Crag name": "The Cuttings Boulderfield"
 }, {
@@ -53453,7 +51438,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Steve Pryer",
-  "Notes": "",
   "Date": "18/Nov/12",
   "Crag name": "Bus Stop Quarry"
 }, {
@@ -53461,7 +51445,6 @@ module.exports = [{
   "Grade": "6a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Steve Pryer",
-  "Notes": "",
   "Date": "18/Nov/12",
   "Crag name": "Bus Stop Quarry"
 }, {
@@ -53469,7 +51452,6 @@ module.exports = [{
   "Grade": "HS 4a *",
   "Style": "Lead O/S",
   "Partner(s)": "Steve Pryer",
-  "Notes": "",
   "Date": "18/Nov/12",
   "Crag name": "Bus Stop Quarry"
 }, {
@@ -53482,7 +51464,7 @@ module.exports = [{
   "Crag name": "Bus Stop Quarry"
 }, {
   "Climb name": "Snakes and Ladders Approach",
-  "Grade": "HVS 5a",
+  "Grade": "HVS 5a ",
   "Style": "-",
   "Partner(s)": "Tony Walencowicz, Simon Clark, Matthew Porter, Andrew porter, ipegg, Richard Apthorp",
   "Notes": "Climbing the chain and seeing more of the quarries was awesome. Probably won't be doing the bridge at the end again though.",
@@ -53509,7 +51491,6 @@ module.exports = [{
   "Grade": "5.10c  ***",
   "Style": "Lead",
   "Partner(s)": "Andrey Romanuik",
-  "Notes": "",
   "Date": "11/Oct/12",
   "Crag name": "Lower Cathedral Rock"
 }, {
@@ -53517,15 +51498,13 @@ module.exports = [{
   "Grade": "5.11b  *",
   "Style": "TR",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "10/Oct/12",
   "Crag name": "El Capitan"
 }, {
   "Climb name": "La Cosita (Left Side)",
-  "Grade": 5.7,
+  "Grade": "5.7  ",
   "Style": "TR",
   "Partner(s)": "Raymond",
-  "Notes": "",
   "Date": "10/Oct/12",
   "Crag name": "El Capitan"
 }, {
@@ -53533,7 +51512,6 @@ module.exports = [{
   "Grade": "5.9  ***",
   "Style": "Lead",
   "Partner(s)": "Ted Lange",
-  "Notes": "",
   "Date": "10/Oct/12",
   "Crag name": "El Capitan"
 }, {
@@ -53541,7 +51519,6 @@ module.exports = [{
   "Grade": "5.7  **",
   "Style": "Lead",
   "Partner(s)": "Shaenaedey",
-  "Notes": "",
   "Date": "10/Oct/12",
   "Crag name": "El Capitan"
 }, {
@@ -53549,7 +51526,6 @@ module.exports = [{
   "Grade": "5.10d  *",
   "Style": "Lead",
   "Partner(s)": "Paul Schweizer",
-  "Notes": "",
   "Date": "10/Oct/12",
   "Crag name": "Reed's Pinnacle Area"
 }, {
@@ -53557,7 +51533,6 @@ module.exports = [{
   "Grade": "5.10b  **",
   "Style": "TR",
   "Partner(s)": "Andrey Romanuik, Drexciyan",
-  "Notes": "",
   "Date": "10/Oct/12",
   "Crag name": "Reed's Pinnacle Area"
 }, {
@@ -53565,15 +51540,13 @@ module.exports = [{
   "Grade": "5.10c  ***",
   "Style": "AltLd",
   "Partner(s)": "Drexciyan",
-  "Notes": "",
   "Date": "09/Oct/12",
   "Crag name": "Middle Cathedral Rock"
 }, {
   "Climb name": "Boneheads",
-  "Grade": "5.10b",
+  "Grade": "5.10b  ",
   "Style": "Lead",
   "Partner(s)": "Raymond",
-  "Notes": "",
   "Date": "08/Oct/12",
   "Crag name": "Pat and Jack Pinnacle"
 }, {
@@ -53581,7 +51554,6 @@ module.exports = [{
   "Grade": "5.10a  **",
   "Style": "TR",
   "Partner(s)": "Raymond",
-  "Notes": "",
   "Date": "08/Oct/12",
   "Crag name": "Pat and Jack Pinnacle"
 }, {
@@ -53589,7 +51561,6 @@ module.exports = [{
   "Grade": "5.11a  *",
   "Style": "TR",
   "Partner(s)": "Jenn Flemming",
-  "Notes": "",
   "Date": "08/Oct/12",
   "Crag name": "Pat and Jack Pinnacle"
 }, {
@@ -53597,7 +51568,6 @@ module.exports = [{
   "Grade": "5.9  **",
   "Style": "-",
   "Partner(s)": "Raymond",
-  "Notes": "",
   "Date": "08/Oct/12",
   "Crag name": "Pat and Jack Pinnacle"
 }, {
@@ -53605,7 +51575,6 @@ module.exports = [{
   "Grade": "5.6 4a **",
   "Style": "TR",
   "Partner(s)": "Benjamin Field",
-  "Notes": "",
   "Date": "03/Sep/12",
   "Crag name": "Interstate Park"
 }, {
@@ -53613,7 +51582,6 @@ module.exports = [{
   "Grade": "5.9 5a ***",
   "Style": "TR",
   "Partner(s)": "Benjamin Field",
-  "Notes": "",
   "Date": "03/Sep/12",
   "Crag name": "Interstate Park"
 }, {
@@ -53621,7 +51589,6 @@ module.exports = [{
   "Grade": "5.6 4a **",
   "Style": "TR",
   "Partner(s)": "Benjamin Field",
-  "Notes": "",
   "Date": "03/Sep/12",
   "Crag name": "Interstate Park"
 }, {
@@ -53629,7 +51596,6 @@ module.exports = [{
   "Grade": "5.11a 5c **",
   "Style": "TR",
   "Partner(s)": "Benjamin Field",
-  "Notes": "",
   "Date": "03/Sep/12",
   "Crag name": "Interstate Park"
 }, {
@@ -53637,7 +51603,6 @@ module.exports = [{
   "Grade": "5.10a 5b ***",
   "Style": "TR",
   "Partner(s)": "Benjamin Field",
-  "Notes": "",
   "Date": "03/Sep/12",
   "Crag name": "Interstate Park"
 }, {
@@ -53645,7 +51610,6 @@ module.exports = [{
   "Grade": "VD  *",
   "Style": "2nd O/S",
   "Partner(s)": "chubbyclimber, Steve Pryer",
-  "Notes": "",
   "Date": "01/Jul/12",
   "Crag name": "Lawrencefield"
 }, {
@@ -53653,7 +51617,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "Lead O/S",
   "Partner(s)": "chubbyclimber, Steve Pryer",
-  "Notes": "",
   "Date": "01/Jul/12",
   "Crag name": "Lawrencefield"
 }, {
@@ -53661,7 +51624,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "Lead O/S",
   "Partner(s)": "chubbyclimber, Steve Pryer",
-  "Notes": "",
   "Date": "01/Jul/12",
   "Crag name": "Lawrencefield"
 }, {
@@ -53669,7 +51631,6 @@ module.exports = [{
   "Grade": "VD  *",
   "Style": "2nd O/S",
   "Partner(s)": "chubbyclimber, Steve Pryer",
-  "Notes": "",
   "Date": "01/Jul/12",
   "Crag name": "Lawrencefield"
 }, {
@@ -53677,7 +51638,6 @@ module.exports = [{
   "Grade": "HS 4b *",
   "Style": "Lead O/S",
   "Partner(s)": "chubbyclimber, Steve Pryer",
-  "Notes": "",
   "Date": "01/Jul/12",
   "Crag name": "Lawrencefield"
 }, {
@@ -53685,7 +51645,6 @@ module.exports = [{
   "Grade": "VS 4b *",
   "Style": "Lead O/S",
   "Partner(s)": "chubbyclimber, Steve Pryer",
-  "Notes": "",
   "Date": "30/Jun/12",
   "Crag name": "Burbage North"
 }, {
@@ -53693,7 +51652,6 @@ module.exports = [{
   "Grade": "HS 4b ***",
   "Style": "Lead O/S",
   "Partner(s)": "chubbyclimber, Steve Pryer",
-  "Notes": "",
   "Date": "30/Jun/12",
   "Crag name": "Burbage North"
 }, {
@@ -53701,7 +51659,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "Lead O/S",
   "Partner(s)": "chubbyclimber, Steve Pryer",
-  "Notes": "",
   "Date": "30/Jun/12",
   "Crag name": "Burbage North"
 }, {
@@ -53709,23 +51666,19 @@ module.exports = [{
   "Grade": "M  *",
   "Style": "Solo O/S",
   "Partner(s)": "chubbyclimber",
-  "Notes": "",
   "Date": "30/Jun/12",
   "Crag name": "Bamford Edge"
 }, {
   "Climb name": "Green Parrot",
   "Grade": "f5  *",
   "Style": "Solo O/S",
-  "Partner(s)": "",
-  "Notes": "",
   "Date": "30/Jun/12",
   "Crag name": "Bamford Edge"
 }, {
   "Climb name": "Adjacent Slab",
-  "Grade": "VD",
+  "Grade": "VD  ",
   "Style": "2nd O/S",
   "Partner(s)": "chubbyclimber, Steve Pryer",
-  "Notes": "",
   "Date": "30/Jun/12",
   "Crag name": "Bamford Edge"
 }, {
@@ -53733,7 +51686,6 @@ module.exports = [{
   "Grade": "VS 5b **",
   "Style": "Lead O/S",
   "Partner(s)": "chubbyclimber, Steve Pryer",
-  "Notes": "",
   "Date": "30/Jun/12",
   "Crag name": "Bamford Edge"
 }, {
@@ -53741,7 +51693,6 @@ module.exports = [{
   "Grade": "VS 4c **",
   "Style": "Lead β",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "04/Jun/12",
   "Crag name": "Dali's Hole"
 }, {
@@ -53749,7 +51700,6 @@ module.exports = [{
   "Grade": "E1 5b *",
   "Style": "2nd O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "04/Jun/12",
   "Crag name": "Dali's Hole"
 }, {
@@ -53765,7 +51715,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "04/Jun/12",
   "Crag name": "Australia"
 }, {
@@ -53773,7 +51722,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "TR O/S",
   "Partner(s)": "Steve Pryer",
-  "Notes": "",
   "Date": "04/Jun/12",
   "Crag name": "Australia"
 }, {
@@ -53781,7 +51729,6 @@ module.exports = [{
   "Grade": "4c  *",
   "Style": "TR O/S",
   "Partner(s)": "Steve Pryer",
-  "Notes": "",
   "Date": "04/Jun/12",
   "Crag name": "Australia"
 }, {
@@ -53789,7 +51736,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "04/Jun/12",
   "Crag name": "Australia"
 }, {
@@ -53797,7 +51743,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "TR O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "04/Jun/12",
   "Crag name": "Australia"
 }, {
@@ -53805,7 +51750,6 @@ module.exports = [{
   "Grade": "HVD 4a ***",
   "Style": "AltLd",
   "Partner(s)": "Gavin Phillips, Steve Pryer",
-  "Notes": "",
   "Date": "02/Jun/12",
   "Crag name": "Tryfan"
 }, {
@@ -53813,7 +51757,6 @@ module.exports = [{
   "Grade": "VD  *",
   "Style": "2nd",
   "Partner(s)": "chubbyclimber",
-  "Notes": "",
   "Date": "01/Jun/12",
   "Crag name": "Lawrencefield"
 }, {
@@ -53821,7 +51764,6 @@ module.exports = [{
   "Grade": "5a 4c **",
   "Style": "TR",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "26/May/12",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53829,7 +51771,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "26/May/12",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53837,15 +51778,13 @@ module.exports = [{
   "Grade": "6c 6a *",
   "Style": "TR dnf",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "26/May/12",
   "Crag name": "Harrison's Rocks"
 }, {
   "Climb name": "Slab Crack",
-  "Grade": "6a 5b",
+  "Grade": "6a 5b ",
   "Style": "TR dnf",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "26/May/12",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53853,7 +51792,6 @@ module.exports = [{
   "Grade": "6a+ 5b **",
   "Style": "TR RP",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "26/May/12",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53861,7 +51799,6 @@ module.exports = [{
   "Grade": "6a+ 5b *",
   "Style": "TR",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "26/May/12",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53869,7 +51806,6 @@ module.exports = [{
   "Grade": "6b 5c *",
   "Style": "TR dog",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "26/May/12",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53877,7 +51813,6 @@ module.exports = [{
   "Grade": "6b 5b ***",
   "Style": "TR dog",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "26/May/12",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53885,7 +51820,6 @@ module.exports = [{
   "Grade": "f5+  **",
   "Style": "TR dog",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "26/May/12",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53893,7 +51827,6 @@ module.exports = [{
   "Grade": "6c 6a **",
   "Style": "TR dog",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "26/May/12",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53901,7 +51834,6 @@ module.exports = [{
   "Grade": "5b 5a *",
   "Style": "TR O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "26/May/12",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53909,7 +51841,6 @@ module.exports = [{
   "Grade": "5a 4c **",
   "Style": "TR O/S",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "26/May/12",
   "Crag name": "Harrison's Rocks"
 }, {
@@ -53917,15 +51848,13 @@ module.exports = [{
   "Grade": "VS 4b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Gavin Phillips, ipegg",
-  "Notes": "",
   "Date": "13/May/12",
   "Crag name": "Curbar Edge"
 }, {
   "Climb name": "Slab Route",
-  "Grade": "S 4a",
+  "Grade": "S 4a ",
   "Style": "2nd O/S",
   "Partner(s)": "Gavin Phillips, ipegg",
-  "Notes": "",
   "Date": "13/May/12",
   "Crag name": "Curbar Edge"
 }, {
@@ -53941,7 +51870,6 @@ module.exports = [{
   "Grade": "HVS 5b ***",
   "Style": "2nd",
   "Partner(s)": "Gavin Phillips, ipegg",
-  "Notes": "",
   "Date": "13/May/12",
   "Crag name": "Curbar Edge"
 }, {
@@ -53949,7 +51877,6 @@ module.exports = [{
   "Grade": "S 4b *",
   "Style": "2nd",
   "Partner(s)": "Gavin Phillips, ipegg",
-  "Notes": "",
   "Date": "13/May/12",
   "Crag name": "Curbar Edge"
 }, {
@@ -53957,7 +51884,6 @@ module.exports = [{
   "Grade": "HS 4b *",
   "Style": "2nd O/S",
   "Partner(s)": "Gavin Phillips, ipegg",
-  "Notes": "",
   "Date": "12/May/12",
   "Crag name": "Froggatt Edge"
 }, {
@@ -53965,7 +51891,6 @@ module.exports = [{
   "Grade": "HS 4a ***",
   "Style": "Lead O/S",
   "Partner(s)": "Gavin Phillips, ipegg",
-  "Notes": "",
   "Date": "12/May/12",
   "Crag name": "Froggatt Edge"
 }, {
@@ -53981,7 +51906,6 @@ module.exports = [{
   "Grade": "VS 4c *",
   "Style": "2nd O/S",
   "Partner(s)": "Gavin Phillips, ipegg",
-  "Notes": "",
   "Date": "12/May/12",
   "Crag name": "Froggatt Edge"
 }, {
@@ -53989,7 +51913,6 @@ module.exports = [{
   "Grade": "S 4a **",
   "Style": "2nd O/S",
   "Partner(s)": "Gavin Phillips, ipegg",
-  "Notes": "",
   "Date": "12/May/12",
   "Crag name": "Froggatt Edge"
 }, {
@@ -53997,7 +51920,6 @@ module.exports = [{
   "Grade": "HVS 5a ***",
   "Style": "2nd O/S",
   "Partner(s)": "Gavin Phillips, ipegg",
-  "Notes": "",
   "Date": "12/May/12",
   "Crag name": "Froggatt Edge"
 }, {
@@ -54018,18 +51940,16 @@ module.exports = [{
   "Crag name": "Froggatt Edge"
 }, {
   "Climb name": "Right Corner",
-  "Grade": "S",
+  "Grade": "S  ",
   "Style": "Lead O/S",
   "Partner(s)": "Richard Vaughn",
-  "Notes": "",
   "Date": "06/May/12",
   "Crag name": "Tor Bay and Great Tor"
 }, {
   "Climb name": "Left White",
-  "Grade": "HVS 5a",
+  "Grade": "HVS 5a ",
   "Style": "TR O/S",
   "Partner(s)": "Richard Apthorp",
-  "Notes": "",
   "Date": "06/May/12",
   "Crag name": "Tor Bay and Great Tor"
 }, {
@@ -54037,7 +51957,6 @@ module.exports = [{
   "Grade": "S 4a *",
   "Style": "Lead O/S",
   "Partner(s)": "Steve Pryer",
-  "Notes": "",
   "Date": "06/May/12",
   "Crag name": "Tor Bay and Great Tor"
 }, {
@@ -54045,15 +51964,13 @@ module.exports = [{
   "Grade": "S  **",
   "Style": "Lead O/S",
   "Partner(s)": "Steve Pryer",
-  "Notes": "",
   "Date": "06/May/12",
   "Crag name": "Tor Bay and Great Tor"
 }, {
   "Climb name": "Stella",
-  "Grade": "VS 4c",
+  "Grade": "VS 4c ",
   "Style": "2nd",
   "Partner(s)": "mr random, Steve Pryer",
-  "Notes": "",
   "Date": "06/May/12",
   "Crag name": "Tor Bay and Great Tor"
 }, {
@@ -54069,12 +51986,11 @@ module.exports = [{
   "Grade": "HS 4a *",
   "Style": "2nd O/S",
   "Partner(s)": "mr random",
-  "Notes": "",
   "Date": "05/May/12",
   "Crag name": "Three Cliffs Bay"
 }, {
   "Climb name": "Spouse Crack",
-  "Grade": "S",
+  "Grade": "S  ",
   "Style": "Lead O/S",
   "Partner(s)": "mr random",
   "Notes": "Led the side crack, and bernie did the overhang move on Inverted V",
@@ -54082,9 +51998,8 @@ module.exports = [{
   "Crag name": "Three Cliffs Bay"
 }, {
   "Climb name": "Scent of Mutton",
-  "Grade": "S 4a",
+  "Grade": "S 4a ",
   "Style": "Lead O/S",
-  "Partner(s)": "",
   "Notes": "Pulled off a loose bit of rock about the size of a fist about half way up. Watch out for a loose flake about a foot wide on the left.",
   "Date": "04/May/12",
   "Crag name": "Port Eynon"
@@ -54093,7 +52008,6 @@ module.exports = [{
   "Grade": "S 4a *",
   "Style": "Lead O/S",
   "Partner(s)": "mr random, Steve Pryer",
-  "Notes": "",
   "Date": "04/May/12",
   "Crag name": "Port Eynon"
 }, {
@@ -54101,7 +52015,6 @@ module.exports = [{
   "Grade": "S 4a *",
   "Style": "2nd",
   "Partner(s)": "mr random, Steve Pryer",
-  "Notes": "",
   "Date": "04/May/12",
   "Crag name": "Port Eynon"
 }, {
@@ -54117,7 +52030,6 @@ module.exports = [{
   "Grade": "S 4a **",
   "Style": "TR",
   "Partner(s)": "John Andrews, Sarah Pentelow, Danny Crump",
-  "Notes": "",
   "Date": "08/Apr/12",
   "Crag name": "Castle Rock of Triermain"
 }, {
@@ -54125,7 +52037,6 @@ module.exports = [{
   "Grade": "VS 4b ***",
   "Style": "2nd O/S",
   "Partner(s)": "John Andrews, Sarah Pentelow, Danny Crump",
-  "Notes": "",
   "Date": "08/Apr/12",
   "Crag name": "Castle Rock of Triermain"
 }, {
@@ -54141,7 +52052,6 @@ module.exports = [{
   "Grade": "VS 4b ***",
   "Style": "2nd O/S",
   "Partner(s)": "Rob Laird",
-  "Notes": "",
   "Date": "07/Apr/12",
   "Crag name": "Gimmer Crag"
 }, {
@@ -54149,7 +52059,6 @@ module.exports = [{
   "Grade": "VS 4c ***",
   "Style": "2nd O/S",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "07/Apr/12",
   "Crag name": "Gimmer Crag"
 }, {
@@ -54157,7 +52066,6 @@ module.exports = [{
   "Grade": "S 4a *",
   "Style": "2nd O/S",
   "Partner(s)": "Richard Apthorp",
-  "Notes": "",
   "Date": "06/Apr/12",
   "Crag name": "Raven Crag (Langdale)"
 }, {
@@ -54165,7 +52073,6 @@ module.exports = [{
   "Grade": "VS 4b *",
   "Style": "2nd",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "06/Apr/12",
   "Crag name": "Raven Crag (Langdale)"
 }, {
@@ -54173,7 +52080,6 @@ module.exports = [{
   "Grade": "S 4a *",
   "Style": "Lead β",
   "Partner(s)": "ipegg",
-  "Notes": "",
   "Date": "???/2012",
   "Crag name": "Raven Crag (Langdale)"
 }, {
@@ -54181,7 +52087,6 @@ module.exports = [{
   "Grade": "5c  *",
   "Style": "Lead",
   "Partner(s)": "Danny Crump",
-  "Notes": "",
   "Date": "???/2012",
   "Crag name": "Australia"
 }, {
@@ -54189,7 +52094,6 @@ module.exports = [{
   "Grade": "6a+  *",
   "Style": "Lead O/S",
   "Partner(s)": "Jake Rawlings",
-  "Notes": "",
   "Date": "??/Aug/11",
   "Crag name": "Winspit"
 }, {
@@ -54197,7 +52101,6 @@ module.exports = [{
   "Grade": "5a  *",
   "Style": "Lead O/S",
   "Partner(s)": "Jake Rawlings",
-  "Notes": "",
   "Date": "??/Aug/11",
   "Crag name": "Winspit"
 }, {
@@ -54205,15 +52108,13 @@ module.exports = [{
   "Grade": "5a  **",
   "Style": "TR O/S",
   "Partner(s)": "Jake Rawlings",
-  "Notes": "",
   "Date": "??/Aug/11",
   "Crag name": "Winspit"
 }, {
   "Climb name": "Nosey",
-  "Grade": "6a+",
+  "Grade": "6a+  ",
   "Style": "Lead",
   "Partner(s)": "Jake Rawlings",
-  "Notes": "",
   "Date": "??/Aug/11",
   "Crag name": "Winspit"
 }, {
@@ -54225,7 +52126,7 @@ module.exports = [{
   "Date": "??/Aug/11",
   "Crag name": "Winspit"
 }];
-},{}],"utils/constants.js":[function(require,module,exports) {
+},{}],"utils/constants.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54233,26 +52134,22 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.months = exports.defaultSettings = void 0;
 var defaultSettings = {
-  type: "Date",
-  // grade, discipline, style, crag
   date: {
     cumulative: "Year"
+  },
+  discipline: {
+    cumulative: "Trad"
   },
   grade: {
     cumulative: "Low"
   },
-  // low to high. Tricky to show in a pie chart
-  discipline: {
-    cumulative: "Trad"
+  partners: {
+    cumulative: undefined
   },
-  // Sport, Bouldering, Mixed, etc. => grade low to high
   style: {
     cumulative: "Onsight"
   },
-  // Flashed, Worked, Dogged, Did not finish
-  partners: {
-    cumulative: undefined
-  } // most climbed with by default
+  type: "Date" // make this to lowercase? - how and where does it need conversion?
 
 };
 exports.defaultSettings = defaultSettings;
@@ -54307,41 +52204,49 @@ var months = {
   }
 };
 exports.months = months;
-},{}],"utils/formatData.js":[function(require,module,exports) {
+},{}],"utils/formatData.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.formatData = void 0;
+exports.allLogs = void 0;
 
-var _constants = require("./constants.js");
+var _mbLogbook = _interopRequireDefault(require("../data/mb-logbook.json"));
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+var _constants = require("./constants");
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+/* formatData.ts
+ * - format logbook data from json
+ * - id = index of climb in logbook
+ */
+var __assign = void 0 && (void 0).__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+    return t;
+  };
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+  return __assign.apply(this, arguments);
+};
 
 var twoDigitYear = new Date().getFullYear().toString().substr(2);
 
-var processMonthYear = function processMonthYear(month, year, retObj) {
+var processMonthYear = function processMonthYear(month, year, inputObj) {
+  var retObj = __assign({}, inputObj);
+
   if (Object.keys(_constants.months).includes(month)) {
-    var _months$month = _constants.months[month],
-        text = _months$month.text,
-        int = _months$month.int;
+    var _a = _constants.months[month],
+        text = _a.text,
+        int = _a.int;
     retObj.month = month;
     retObj.monthLong = text;
     retObj.monthInt = int;
@@ -54352,7 +52257,7 @@ var processMonthYear = function processMonthYear(month, year, retObj) {
   }
 
   if (year && !year.includes("?") && year.length === 2) {
-    retObj.year = year > twoDigitYear ? "19".concat(year) : "20".concat(year);
+    retObj.year = year > twoDigitYear ? "19" + year : "20" + year;
   }
 
   retObj.yearInt = year.slice(0, 2);
@@ -54370,20 +52275,19 @@ var processDaySuffix = function processDaySuffix(day) {
   var h = num % 100;
 
   if (t == 1 && h != 11) {
-    return "".concat(num, "st");
+    return num + "st";
   }
 
   if (t == 2 && h != 12) {
-    return "".concat(num, "nd");
+    return num + "nd";
   }
 
   if (t == 3 && h != 13) {
-    return "".concat(num, "rd");
+    return num + "rd";
   }
 
-  return "".concat(num, "th");
-}; // return an object
-
+  return num + "th";
+};
 
 var processDate = function processDate(date) {
   var defaultRes = {
@@ -54400,30 +52304,30 @@ var processDate = function processDate(date) {
   var dateArr = date.split("/"); // month and year only
 
   if (dateArr.length === 2) {
-    var _dateArr = _slicedToArray(dateArr, 2),
-        month = _dateArr[0],
-        year = _dateArr[1];
+    var _a = dateArr,
+        month = _a[0],
+        year = _a[1];
 
-    var newRes = _objectSpread({}, defaultRes);
+    var newRes = __assign({}, defaultRes);
 
     return processMonthYear(month, year, newRes);
   } // day, month, and year
 
 
   if (dateArr.length === 3) {
-    var _dateArr2 = _slicedToArray(dateArr, 3),
-        day = _dateArr2[0],
-        _month = _dateArr2[1],
-        _year = _dateArr2[2];
+    var _b = dateArr,
+        day = _b[0],
+        month = _b[1],
+        year = _b[2];
 
-    var _newRes = _objectSpread({}, defaultRes);
+    var newRes = __assign({}, defaultRes);
 
     if (day && !day.includes("?") && day.length === 2) {
-      _newRes.day = day;
-      _newRes.dayLong = processDaySuffix(day);
+      newRes.day = day;
+      newRes.dayLong = processDaySuffix(day);
     }
 
-    return processMonthYear(_month, _year, _newRes);
+    return processMonthYear(month, year, newRes);
   }
 
   return defaultRes;
@@ -54438,17 +52342,19 @@ var formatData = function formatData(rawData) {
         original: item.Date,
         processed: processDate(item.Date)
       },
-      grade: "".concat(item.Grade).replace(/\*+$/, "").trim(),
+      grade: ("" + item.Grade).replace(/\*+$/, "").trim(),
       notes: item.Notes,
       partners: item["Partner(s)"] || "climbed alone / no partner listed",
-      style: "".concat(item.Style).replace(/&beta;|_/, "flash"),
-      key: "ascent-".concat(index)
+      style: ("" + item.Style).replace(/&beta;|_/, "flash"),
+      key: "ascent-" + index
     };
   });
-};
+}; // perhaps avoid using a record to make this work:
 
-exports.formatData = formatData;
-},{"./constants.js":"utils/constants.js"}],"../node_modules/d3/dist/package.js":[function(require,module,exports) {
+
+var allLogs = formatData(_mbLogbook.default);
+exports.allLogs = allLogs;
+},{"../data/mb-logbook.json":"data/mb-logbook.json","./constants":"utils/constants.ts"}],"../node_modules/d3/dist/package.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -83350,7 +81256,7 @@ var breakpoint = {
   massive: "1440px"
 };
 exports.breakpoint = breakpoint;
-},{}],"components/views/stats/StatsHeader.jsx":[function(require,module,exports) {
+},{}],"components/stats/StatsHeader.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -83362,7 +81268,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _styleVars = require("../../common/styleVars");
+var _styleVars = require("../common/styleVars");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -83469,7 +81375,7 @@ var StatsHeader = function StatsHeader(_ref) {
 
 var _default = StatsHeader;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/styleVars":"components/common/styleVars.js"}],"components/views/stats/PieChart.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../common/styleVars":"components/common/styleVars.js"}],"components/stats/PieChart.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -83482,6 +81388,8 @@ var _react = _interopRequireWildcard(require("react"));
 var d3 = _interopRequireWildcard(require("d3"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _styleVars = require("../common/styleVars");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -83505,8 +81413,18 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _templateObject5() {
+function _templateObject6() {
   var data = _taggedTemplateLiteral(["\n  pointer-events: none;\n  padding: 0 0.25rem 0.25rem 0;\n  div {\n    width: auto;\n    z-index: 1;\n    pointer-events: none;\n    user-select: none;\n    font-size: 0.625rem;\n    text-align: left;\n    background: white;\n    box-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.25);\n    padding: 0.25rem;\n    border-radius: 0.125rem;\n  }\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n  cursor: none;\n  user-select: none;\n  pointer-events: none;\n  font-size: 0.625rem;\n  fill: white;\n  text-anchor: middle;\n  /* alignment-baseline: middle; */\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -83516,7 +81434,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  cursor: none;\n  user-select: none;\n  pointer-events: none;\n  font-size: 0.625rem;\n  fill: white;\n  text-anchor: middle;\n  /* alignment-baseline: middle; */\n"]);
+  var data = _taggedTemplateLiteral(["\n  cursor: pointer;\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -83526,7 +81444,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  cursor: pointer;\n"]);
+  var data = _taggedTemplateLiteral(["\n  cursor: pointer;\n  width: 100%;\n  height: 100%;\n  transform: translate(-200px, -200px);\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -83536,7 +81454,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  cursor: pointer;\n  width: 100%;\n  height: 100%;\n  transform: translate(-200px, -200px);\n"]);
+  var data = _taggedTemplateLiteral(["\n  overflow: visible;\n  transform: scale(0.5) translate(0, 0);\n  transform-origin: bottom right;\n  @media only screen and (min-width: ", ") {\n    transform: scale(0.5) translate(0, -20%);\n  }\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -83546,7 +81464,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: block;\n  margin: auto;\n  overflow: visible;\n  transform: scale(0.5) translate(0, 0);\n  transform-origin: bottom right;\n  max-width: 480px;\n  @media only screen and (min-width: 768px) {\n    margin: 0;\n    margin-left: auto;\n    transform: scale(0.75) translate(0, 50%);\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: block;\n  margin: 1rem;\n  max-width: 480px;\n  @media only screen and (min-width: ", ") {\n    margin: 1rem auto;\n  }\n  @media only screen and (min-width: ", ") {\n    margin: 0;\n    margin-left: auto;\n    padding-right: 1rem;\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -83557,15 +81475,17 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var SvgChart = _styledComponents.default.svg(_templateObject());
+var ChartContainer = _styledComponents.default.div(_templateObject(), _styleVars.breakpoint.Xsmall, _styleVars.breakpoint.tablet);
 
-var DismissObject = _styledComponents.default.foreignObject(_templateObject2());
+var SvgChart = _styledComponents.default.svg(_templateObject2(), _styleVars.breakpoint.tablet);
 
-var ArcGroup = _styledComponents.default.g(_templateObject3());
+var DismissObject = _styledComponents.default.foreignObject(_templateObject3());
 
-var Text = _styledComponents.default.text(_templateObject4());
+var ArcGroup = _styledComponents.default.g(_templateObject4());
 
-var ForeignObject = _styledComponents.default.foreignObject(_templateObject5());
+var Text = _styledComponents.default.text(_templateObject5());
+
+var ForeignObject = _styledComponents.default.foreignObject(_templateObject6());
 
 var Tooltip = function Tooltip(_ref) {
   var transform = _ref.transform,
@@ -83637,7 +81557,7 @@ var PieChart = function PieChart(_ref3) {
     return "translate(0, 0)";
   };
 
-  return /*#__PURE__*/_react.default.createElement(SvgChart, {
+  return /*#__PURE__*/_react.default.createElement(ChartContainer, null, /*#__PURE__*/_react.default.createElement(SvgChart, {
     viewBox: "0 0 200 200"
   }, /*#__PURE__*/_react.default.createElement(DismissObject, {
     onClick: function onClick() {
@@ -83658,12 +81578,12 @@ var PieChart = function PieChart(_ref3) {
     });
   }), tooltip && /*#__PURE__*/_react.default.createElement(Tooltip, _extends({
     transform: getToolPos(tooltip, createArc, outerRadius)
-  }, tooltip)));
+  }, tooltip))));
 };
 
 var _default = PieChart;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"../node_modules/matchmedia-polyfill/matchMedia.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../common/styleVars":"components/common/styleVars.js"}],"../node_modules/matchmedia-polyfill/matchMedia.js":[function(require,module,exports) {
 /*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas, David Knight. MIT license */
 
 window.matchMedia || (window.matchMedia = function() {
@@ -83977,7 +81897,7 @@ var Circle = function Circle(_ref) {
       difficulty: "medium",
       band: "".concat(_styleVars.colors.red)
     },
-    "E4, E5, E6, E7, E8, E9, E10, E11, E12, 7a+, 7b, 7b+, 7c, 7c+, 8a, 8a+, 8b, 8b+, 8c, 8c+, 9a, 9a+, 9b, 9b+, 9c, 5.12a, 5.12b, 5.12c, 5.12d, 5.13a, 5.13b, 5.13c, 5.13d, 5.14a, n7-, n7, n7+, n8-, n, n8+, f6B, f6B+, f6C, f6c+, f7A, f7A+, f7B, f7B+, f7C, f7C+, f8A, V7, V8, V9, V10, V11, V12, V13, V14, V15, VII, VIII, IX, X, WI-6, WI-7": {
+    "E4, E5, E6, E7, E8, E9, E10, E11, E12, 7a+, 7b, 7b+, 7c, 7c+, 8a, 8a+, 8b, 8b+, 8c, 8c+, 9a, 9a+, 9b, 9b+, 9c, 5.12a, 5.12b, 5.12c, 5.12d, 5.13a, 5.13b, 5.13c, 5.13d, 5.14a, n7-, n7, n7+, n8-, n, n8+, f6B, f6B+, f6C, f6C+, f7A, f7A+, f7B, f7B+, f7C, f7C+, f8A, V7, V8, V9, V10, V11, V12, V13, V14, V15, VII, VIII, IX, X, WI-6, WI-7": {
       difficulty: "hard",
       band: "".concat(_styleVars.colors.black)
     }
@@ -84283,7 +82203,7 @@ var _Partner = require("./Partner.jsx");
 var _Comment = require("./Comment.jsx");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Chevron.jsx":"components/common/icons/Chevron.jsx","./Circle.jsx":"components/common/icons/Circle.jsx","./Place.jsx":"components/common/icons/Place.jsx","./Style.jsx":"components/common/icons/Style.jsx","./Date.jsx":"components/common/icons/Date.jsx","./Partner.jsx":"components/common/icons/Partner.jsx","./Comment.jsx":"components/common/icons/Comment.jsx"}],"components/views/stats/Legend.jsx":[function(require,module,exports) {
+},{"./Chevron.jsx":"components/common/icons/Chevron.jsx","./Circle.jsx":"components/common/icons/Circle.jsx","./Place.jsx":"components/common/icons/Place.jsx","./Style.jsx":"components/common/icons/Style.jsx","./Date.jsx":"components/common/icons/Date.jsx","./Partner.jsx":"components/common/icons/Partner.jsx","./Comment.jsx":"components/common/icons/Comment.jsx"}],"components/stats/Legend.tsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -84297,13 +82217,13 @@ var d3 = _interopRequireWildcard(require("d3"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _useIsWidth2 = _interopRequireDefault(require("../../common/useIsWidth.jsx"));
+var _useIsWidth = _interopRequireDefault(require("../common/useIsWidth.jsx"));
 
-var _Buttons = require("../../common/Buttons.jsx");
+var _Buttons = require("../common/Buttons.jsx");
 
-var _Icons = require("../../common/icons/Icons.jsx");
+var _Icons = require("../common/icons/Icons.jsx");
 
-var _styleVars = require("../../common/styleVars");
+var _styleVars = require("../common/styleVars");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -84311,153 +82231,80 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+var __makeTemplateObject = void 0 && (void 0).__makeTemplateObject || function (cooked, raw) {
+  if (Object.defineProperty) {
+    Object.defineProperty(cooked, "raw", {
+      value: raw
+    });
+  } else {
+    cooked.raw = raw;
+  }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+  return cooked;
+};
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+var Container = _styledComponents.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  padding: 0.5rem;\n  position: fixed;\n  bottom: 0;\n  z-index: 1;\n  width: 100%;\n  background: ", ";\n  border-top: 0.175rem solid ", ";\n  @media only screen and (min-width: ", ") {\n    position: unset;\n    width: auto;\n    background: transparent;\n    border-top: 0;\n  }\n"], ["\n  padding: 0.5rem;\n  position: fixed;\n  bottom: 0;\n  z-index: 1;\n  width: 100%;\n  background: ", ";\n  border-top: 0.175rem solid ", ";\n  @media only screen and (min-width: ", ") {\n    position: unset;\n    width: auto;\n    background: transparent;\n    border-top: 0;\n  }\n"])), _styleVars.colors.lightGrey, _styleVars.colors.midGrey, _styleVars.breakpoint.tablet);
 
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+var TitleContainer = _styledComponents.default.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n"], ["\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n"])));
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+var LegendTitle = _styledComponents.default.legend(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  font-weight: 500;\n"], ["\n  font-weight: 500;\n"])));
 
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var Button = _styledComponents.default.button(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  ", ";\n  width: 100%;\n  text-align: right;\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n    margin-right: 0.25rem;\n    width: 2.25rem;\n    height: 2.25rem;\n    @media only screen and (min-width: ", ") {\n      width: 3rem;\n      height: 3rem;\n    }\n  }\n  &:hover svg {\n    margin-left: 0.5rem;\n  }\n  @media only screen and (min-width: ", ") {\n    display: none;\n    pointer-events: none;\n  }\n"], ["\n  ", ";\n  width: 100%;\n  text-align: right;\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n    margin-right: 0.25rem;\n    width: 2.25rem;\n    height: 2.25rem;\n    @media only screen and (min-width: ", ") {\n      width: 3rem;\n      height: 3rem;\n    }\n  }\n  &:hover svg {\n    margin-left: 0.5rem;\n  }\n  @media only screen and (min-width: ", ") {\n    display: none;\n    pointer-events: none;\n  }\n"])), _Buttons.buttonBase, _styleVars.colors.black, _styleVars.breakpoint.Xsmall, _styleVars.breakpoint.tablet);
 
-function _templateObject7() {
-  var data = _taggedTemplateLiteral(["\n  width: 1rem;\n  height: 1rem;\n  margin-right: 0.5rem;\n  background-color: ", ";\n"]);
+var Items = _styledComponents.default.div(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  margin-top: 0.5rem;\n"], ["\n  display: flex;\n  flex-direction: column;\n  margin-top: 0.5rem;\n"])));
 
-  _templateObject7 = function _templateObject7() {
-    return data;
-  };
+var Item = _styledComponents.default.div(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n  display: flex;\n  align-items: center;\n  margin-bottom: 0.25rem;\n  font-size: 0.875rem;\n  strong {\n    font-weight: 700;\n    margin-right: 0.5rem;\n  }\n"], ["\n  display: flex;\n  align-items: center;\n  margin-bottom: 0.25rem;\n  font-size: 0.875rem;\n  strong {\n    font-weight: 700;\n    margin-right: 0.5rem;\n  }\n"])));
 
-  return data;
-}
+;
 
-function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  margin-bottom: 0.25rem;\n  font-size: 0.875rem;\n  strong {\n    font-weight: 700;\n    margin-right: 0.5rem;\n  }\n"]);
-
-  _templateObject6 = function _templateObject6() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  margin-top: 0.5rem;\n"]);
-
-  _templateObject5 = function _templateObject5() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  ", ";\n  width: 100%;\n  text-align: right;\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n    margin-right: 0.25rem;\n    width: 2.25rem;\n    height: 2.25rem;\n    @media only screen and (min-width: ", ") {\n      width: 3rem;\n      height: 3rem;\n    }\n  }\n  &:hover svg {\n    margin-left: 0.5rem;\n  }\n  @media only screen and (min-width: ", ") {\n    display: none;\n    pointer-events: none;\n  }\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  font-weight: 500;\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  padding: 0.5rem;\n  position: fixed;\n  bottom: 0;\n  z-index: 1;\n  width: 100%;\n  background: ", ";\n  border-top: 0.175rem solid ", ";\n  @media only screen and (min-width: ", ") {\n    position: unset;\n    width: auto;\n    background: transparent;\n    border-top: 0;\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var Container = _styledComponents.default.div(_templateObject(), _styleVars.colors.lightGrey, _styleVars.colors.midGrey, _styleVars.breakpoint.tablet);
-
-var TitleContainer = _styledComponents.default.div(_templateObject2());
-
-var LegendTitle = _styledComponents.default.legend(_templateObject3());
-
-var Button = _styledComponents.default.button(_templateObject4(), _Buttons.buttonBase, _styleVars.colors.black, _styleVars.breakpoint.Xsmall, _styleVars.breakpoint.tablet);
-
-var Items = _styledComponents.default.div(_templateObject5());
-
-var Item = _styledComponents.default.div(_templateObject6());
-
-var Square = _styledComponents.default.div(_templateObject7(), function (_ref) {
-  var bg = _ref.bg;
+var Square = _styledComponents.default.div(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n  width: 1rem;\n  height: 1rem;\n  margin-right: 0.5rem;\n  background-color: ", ";\n"], ["\n  width: 1rem;\n  height: 1rem;\n  margin-right: 0.5rem;\n  background-color: ", ";\n"])), function (_a) {
+  var bg = _a.bg;
   return bg;
 });
 
 var chartColors = d3.scaleOrdinal(d3.schemeCategory10);
+;
+; // https://stackoverflow.com/questions/57086672/element-implicitly-has-an-any-type-because-expression-of-type-string-cant-b
 
-var logText = function logText(data) {
-  if (data && data.keyLabel) {
-    var keyLabel = data.keyLabel;
-    return /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement("strong", null, keyLabel[0]), "".concat(keyLabel[1]));
-  }
+var Legend = function Legend(_a) {
+  var chartdata = _a.chartdata,
+      settings = _a.settings;
 
-  return "no label found";
-};
+  var _b = (0, _react.useState)(false),
+      open = _b[0],
+      setOpen = _b[1];
 
-var Legend = function Legend(_ref2) {
-  var chartdata = _ref2.chartdata,
-      settings = _ref2.settings;
+  var isTablet = (0, _useIsWidth.default)("tablet").isWidth;
+  var type = settings.type; // https://stackoverflow.com/questions/37978528/typescript-type-string-is-not-assignable-to-type
+  // const key: (keyof Date) = type.toLowerCase();
 
-  var _useState = (0, _react.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      open = _useState2[0],
-      setOpen = _useState2[1];
+  var key = type.toLowerCase(); // set so I can only use property names that exist on settings
 
-  var _useIsWidth = (0, _useIsWidth2.default)("tablet"),
-      isTablet = _useIsWidth.isWidth;
+  var cumulative = settings[key].cumulative; // settings.type is a string
+  // this is also a key of settings object, after it has been converted to lowercase
+  // value of type property is the key value of other properties on the same object
 
-  var type = settings.type;
-  var cumulative = settings[type.toLowerCase()].cumulative;
   return /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement(TitleContainer, null, /*#__PURE__*/_react.default.createElement(LegendTitle, null, "Key", cumulative === "Month" && ": All years"), /*#__PURE__*/_react.default.createElement(Button, {
     onClick: function onClick() {
       return setOpen(!open);
     }
   }, /*#__PURE__*/_react.default.createElement(_Icons.Chevron, {
-    title: "".concat(open ? "close" : "open", " key"),
+    title: (open ? "close" : "open") + " key",
     fill: "unset",
-    direction: open ? "down" : "up",
-    width: "unset"
+    direction: open ? "down" : "up"
   }))), (isTablet || open) && /*#__PURE__*/_react.default.createElement(Items, null, chartdata.map(function (d, i) {
     return /*#__PURE__*/_react.default.createElement(Item, {
       key: i
     }, /*#__PURE__*/_react.default.createElement(Square, {
-      bg: chartColors(i)
-    }), logText(d.data));
+      bg: chartColors(i.toString())
+    }), d.data && d.data.keyLabel ? /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement("strong", null, d.data.keyLabel[0]), "" + d.data.keyLabel[1]) : "no label found");
   })));
 };
 
 var _default = Legend;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/useIsWidth.jsx":"components/common/useIsWidth.jsx","../../common/Buttons.jsx":"components/common/Buttons.jsx","../../common/icons/Icons.jsx":"components/common/icons/Icons.jsx","../../common/styleVars":"components/common/styleVars.js"}],"components/views/stats/Stats.jsx":[function(require,module,exports) {
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
+},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../common/useIsWidth.jsx":"components/common/useIsWidth.jsx","../common/Buttons.jsx":"components/common/Buttons.jsx","../common/icons/Icons.jsx":"components/common/icons/Icons.jsx","../common/styleVars":"components/common/styleVars.js"}],"components/stats/Stats.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -84471,15 +82318,15 @@ var d3 = _interopRequireWildcard(require("d3"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _constants = require("../../../utils/constants.js");
+var _constants = require("../../utils/constants.ts");
 
 var _StatsHeader = _interopRequireDefault(require("./StatsHeader.jsx"));
 
 var _PieChart = _interopRequireDefault(require("./PieChart.jsx"));
 
-var _Legend = _interopRequireDefault(require("./Legend.jsx"));
+var _Legend = _interopRequireDefault(require("./Legend.tsx"));
 
-var _styleVars = require("../../common/styleVars");
+var _styleVars = require("../common/styleVars");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -84524,7 +82371,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  max-width: 60rem;\n  margin: 0 auto;\n  padding: 1rem 0;\n"]);
+  var data = _taggedTemplateLiteral(["\n  width: 50%;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -84535,17 +82382,25 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var StatContainer = _styledComponents.default.div(_templateObject());
+var StatContainer = _styledComponents.default.div(_templateObject()); // old version: 
+// const StatContainer = styled.div`
+//   width: 50%;
+//   visibility: hidden;
+//   ${({ isVisible }) =>
+//     isVisible &&
+//     `
+//   visibility: visible;
+//   `};
+// `;
+
 
 var BodySection = _styledComponents.default.section(_templateObject2(), _styleVars.breakpoint.tablet); // TODO:
 // - cache main chart data for better performance
 // - update key and total logs text when drilling down
-// - clicking 'out' of the piechart resets
 // - more detailed tooltips (handle content drilldown)
 // - link to logbook at end of drilldown (e.g. see logs for a particular date)
 // - set up a context for nested components to use
 // - dropdown styling (probably need to reformat data for this)
-// - pie chart more responsive
 // - add more 'type'/overall filters (partners, discipline, etc)
 // ^ see github issue https://github.com/martinbagshaw/ReactLogbook/issues/23
 // TODO (filter function for date):
@@ -84982,10 +82837,14 @@ var Stats = function Stats(_ref5) {
 
         return acc;
       }, []);
+      console.log("dailyLogs", dailyLogs);
       handleSingleDay(dailyLogs, filter);
     }
-  }, [hasFilter]);
-  return !(hasFilter === null || hasFilter === void 0 ? void 0 : (_hasFilter$filter2 = hasFilter.filter) === null || _hasFilter$filter2 === void 0 ? void 0 : _hasFilter$filter2.day) && /*#__PURE__*/_react.default.createElement(StatContainer, null, /*#__PURE__*/_react.default.createElement(_StatsHeader.default, {
+  }, [hasFilter]); // see if I need isVisible prop
+
+  return /*#__PURE__*/_react.default.createElement(StatContainer, {
+    isVisible: !(hasFilter === null || hasFilter === void 0 ? void 0 : (_hasFilter$filter2 = hasFilter.filter) === null || _hasFilter$filter2 === void 0 ? void 0 : _hasFilter$filter2.day)
+  }, /*#__PURE__*/_react.default.createElement(_StatsHeader.default, {
     logs: logs,
     setDropdown: setDropdown,
     type: type
@@ -85005,7 +82864,7 @@ var Stats = function Stats(_ref5) {
 
 var _default = Stats;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../../utils/constants.js":"utils/constants.js","./StatsHeader.jsx":"components/views/stats/StatsHeader.jsx","./PieChart.jsx":"components/views/stats/PieChart.jsx","./Legend.jsx":"components/views/stats/Legend.jsx","../../common/styleVars":"components/common/styleVars.js"}],"components/common/Layout.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","d3":"../node_modules/d3/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../utils/constants.ts":"utils/constants.ts","./StatsHeader.jsx":"components/stats/StatsHeader.jsx","./PieChart.jsx":"components/stats/PieChart.jsx","./Legend.tsx":"components/stats/Legend.tsx","../common/styleVars":"components/common/styleVars.js"}],"components/common/Layout.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85044,13 +82903,38 @@ function _templateObject() {
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 // put in a typography file instead:
-var searchResultText = (0, _styledComponents.css)(_templateObject());
+var searchResultText = (0, _styledComponents.css)(_templateObject()); // remove?
+
 exports.searchResultText = searchResultText;
 
 var ContainerStyle = _styledComponents.default.div(_templateObject2(), _styleVars.breakpoint.small, _styleVars.colors.midGrey);
 
 exports.ContainerStyle = ContainerStyle;
-},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./styleVars":"components/common/styleVars.js"}],"components/views/logbook/Search.jsx":[function(require,module,exports) {
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./styleVars":"components/common/styleVars.js"}],"utils/getDate.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getDate = void 0;
+
+var getDate = function getDate(dateData, desktop) {
+  var day = dateData.day,
+      dayLong = dateData.dayLong,
+      monthInt = dateData.monthInt,
+      monthLong = dateData.monthLong,
+      year = dateData.year,
+      yearInt = dateData.yearInt;
+
+  if (desktop) {
+    return dayLong + " " + monthLong + " " + year;
+  }
+
+  return day + "/" + monthInt + "/" + yearInt;
+};
+
+exports.getDate = getDate;
+},{}],"components/logbook/Search.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85062,15 +82946,15 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _useIsWidth3 = _interopRequireDefault(require("../../common/useIsWidth.jsx"));
+var _useIsWidth3 = _interopRequireDefault(require("../common/useIsWidth.jsx"));
 
-var _Layout = require("../../common/Layout.jsx");
+var _Layout = require("../common/Layout.jsx");
 
-var _Buttons = require("../../common/Buttons.jsx");
+var _Buttons = require("../common/Buttons.jsx");
 
-var _styleVars = require("../../common/styleVars");
+var _styleVars = require("../common/styleVars");
 
-var _Logbook = require("./Logbook.jsx");
+var _getDate = require("../../utils/getDate");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -85201,13 +83085,13 @@ var Search = function Search(_ref) {
       onClick: function onClick() {
         return handleSingleView(i.key);
       }
-    }, /*#__PURE__*/_react.default.createElement(Climb, null, i.climbName), isTablet && /*#__PURE__*/_react.default.createElement(Crag, null, i.cragName), /*#__PURE__*/_react.default.createElement(Date, null, (0, _Logbook.getDate)(i.date.processed, isDesktop))));
+    }, /*#__PURE__*/_react.default.createElement(Climb, null, i.climbName), isTablet && /*#__PURE__*/_react.default.createElement(Crag, null, i.cragName), /*#__PURE__*/_react.default.createElement(Date, null, (0, _getDate.getDate)(i.date.processed, isDesktop))));
   })));
 };
 
 var _default = Search;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/useIsWidth.jsx":"components/common/useIsWidth.jsx","../../common/Layout.jsx":"components/common/Layout.jsx","../../common/Buttons.jsx":"components/common/Buttons.jsx","../../common/styleVars":"components/common/styleVars.js","./Logbook.jsx":"components/views/logbook/Logbook.jsx"}],"components/views/logbook/SearchReset.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../common/useIsWidth.jsx":"components/common/useIsWidth.jsx","../common/Layout.jsx":"components/common/Layout.jsx","../common/Buttons.jsx":"components/common/Buttons.jsx","../common/styleVars":"components/common/styleVars.js","../../utils/getDate":"utils/getDate.ts"}],"components/logbook/SearchReset.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85252,7 +83136,7 @@ var SearchReset = function SearchReset(_ref) {
 
 var _default = SearchReset;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"components/views/logbook/PageNav.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"components/logbook/PageNav.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85262,20 +83146,64 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _useIsWidth2 = _interopRequireDefault(require("../../common/useIsWidth.jsx"));
+var _useIsWidth2 = _interopRequireDefault(require("../common/useIsWidth.jsx"));
 
-var _Chevron = _interopRequireDefault(require("../../common/icons/Chevron.jsx"));
+var _Chevron = _interopRequireDefault(require("../common/icons/Chevron.jsx"));
 
-var _Buttons = require("../../common/Buttons.jsx");
+var _Buttons = require("../common/Buttons.jsx");
 
-var _styleVars = require("../../common/styleVars");
+var _styleVars = require("../common/styleVars");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _templateObject3() {
+function _templateObject7() {
   var data = _taggedTemplateLiteral(["\n  ", ";\n  line-height: 1;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 0.175rem;\n  border: 0.125rem solid ", ";\n  ", ";\n  color: ", ";\n  background-color: ", ";\n  &:focus,\n  &:hover,\n  &:active {\n    background-color: ", ";\n    color: ", ";\n    svg {\n      fill: ", ";\n    }\n  }\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n  }\n"]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["\n    padding-left: 1rem;\n    margin-left: auto;\n  "]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n    padding-right: 1rem;\n  "]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n  background-color: ", ";\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n  font-weight: 500;\n  padding: 0.125rem;\n  border-radius: 0.125rem;\n  background-color: ", ";\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -85285,7 +83213,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  left: calc(50% - 259px / 2);\n  top: 2rem;\n  font-size: 1rem;\n  text-align: center;\n  strong {\n    font-weight: 500;\n    padding: 0.125rem;\n    border-radius: 0.125rem;\n    background-color: ", ";\n    &:nth-child(2) {\n      background-color: ", ";\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  left: calc(50% - 259px / 2);\n  top: 1rem;\n  font-size: 1rem;\n  text-align: center;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -85295,7 +83223,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  padding: 0 0.5rem 0.5rem;\n  position: fixed;\n  bottom: 0;\n  z-index: 1;\n  width: 100%;\n  background: linear-gradient(0deg, white, transparent);\n  @media only screen and (min-width: ", ") {\n    padding: 1rem 0.5rem;\n    position: unset;\n    background: none;\n  }\n  @media only screen and (min-width: ", ") {\n    position: relative;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  padding: 0 0.5rem 0.5rem;\n  position: fixed;\n  bottom: 0;\n  z-index: 1;\n  width: 100%;\n  background: linear-gradient(0deg, white, transparent);\n  @media only screen and (min-width: ", ") {\n    padding: 1rem 0.5rem;\n    position: unset;\n    background: none;\n  }\n  @media only screen and (min-width: ", ") {\n    position: relative;\n    min-height: 52px;\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -85308,14 +83236,20 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var NavContainer = _styledComponents.default.div(_templateObject(), _styleVars.breakpoint.Xsmall, _styleVars.breakpoint.large);
 
-var Pagination = _styledComponents.default.p(_templateObject2(), _styleVars.colors.lightBlue, _styleVars.colors.lightRed);
+var Pagination = _styledComponents.default.p(_templateObject2());
 
-var Button = _styledComponents.default.button(_templateObject3(), _Buttons.buttonBase, _styleVars.colors.midBlue, function (_ref) {
+var Low = _styledComponents.default.strong(_templateObject3(), _styleVars.colors.lightBlue);
+
+var High = (0, _styledComponents.default)(Low)(_templateObject4(), _styleVars.colors.lightRed);
+var buttonCss = {
+  left: (0, _styledComponents.css)(_templateObject5()),
+  right: (0, _styledComponents.css)(_templateObject6())
+};
+
+var Button = _styledComponents.default.button(_templateObject7(), _Buttons.buttonBase, _styleVars.colors.midBlue, function (_ref) {
   var direction = _ref.direction;
-  return direction === "left" ? "padding-right: 1rem" : direction === "right" ? "\n  padding-left: 1rem;\n  margin-left: auto;\n  " : "";
-}, _styleVars.colors.midBlue, _styleVars.colors.lightBlue, _styleVars.colors.midBlue, _styleVars.colors.white, _styleVars.colors.white, _styleVars.colors.midBlue); // TODO:
-// - go to top of page when changing pages
-
+  return buttonCss[direction];
+}, _styleVars.colors.midBlue, _styleVars.colors.lightBlue, _styleVars.colors.midBlue, _styleVars.colors.white, _styleVars.colors.white, _styleVars.colors.midBlue);
 
 var PageNav = function PageNav(_ref2) {
   var logs = _ref2.logs,
@@ -85336,7 +83270,7 @@ var PageNav = function PageNav(_ref2) {
       direction: "right"
     }
   };
-  return /*#__PURE__*/_react.default.createElement(NavContainer, null, isDesktop && /*#__PURE__*/_react.default.createElement(Pagination, null, "Showing ", /*#__PURE__*/_react.default.createElement("strong", null, "".concat(logs.length - high >= 0 ? logs.length - high : 0)), " to", " ", /*#__PURE__*/_react.default.createElement("strong", null, "".concat(logs.length - low)), " ", "of ".concat(logs.length, " logs.")), Object.keys(buttons).map(function (i) {
+  return /*#__PURE__*/_react.default.createElement(NavContainer, null, isDesktop && /*#__PURE__*/_react.default.createElement(Pagination, null, "Showing ", /*#__PURE__*/_react.default.createElement(Low, null, "".concat(logs.length - high >= 0 ? logs.length - high : 1)), " to", " ", /*#__PURE__*/_react.default.createElement(High, null, "".concat(logs.length - low)), " ", "of ".concat(logs.length, " logs.")), Object.keys(buttons).map(function (i) {
     var _buttons$i = buttons[i],
         condition = _buttons$i.condition,
         direction = _buttons$i.direction;
@@ -85356,7 +83290,7 @@ var PageNav = function PageNav(_ref2) {
 
 var _default = PageNav;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/useIsWidth.jsx":"components/common/useIsWidth.jsx","../../common/icons/Chevron.jsx":"components/common/icons/Chevron.jsx","../../common/Buttons.jsx":"components/common/Buttons.jsx","../../common/styleVars":"components/common/styleVars.js"}],"components/views/logbook/Results.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../common/useIsWidth.jsx":"components/common/useIsWidth.jsx","../common/icons/Chevron.jsx":"components/common/icons/Chevron.jsx","../common/Buttons.jsx":"components/common/Buttons.jsx","../common/styleVars":"components/common/styleVars.js"}],"components/logbook/Results.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85368,17 +83302,17 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _useIsWidth2 = _interopRequireDefault(require("../../common/useIsWidth.jsx"));
+var _useIsWidth2 = _interopRequireDefault(require("../common/useIsWidth.jsx"));
 
-var _Chevron = _interopRequireDefault(require("../../common/icons/Chevron.jsx"));
+var _Chevron = _interopRequireDefault(require("../common/icons/Chevron.jsx"));
 
-var _styleVars = require("../../common/styleVars");
+var _styleVars = require("../common/styleVars");
 
-var _Layout = require("../../common/Layout.jsx");
+var _Layout = require("../common/Layout.jsx");
 
-var _Buttons = require("../../common/Buttons.jsx");
+var _Buttons = require("../common/Buttons.jsx");
 
-var _Logbook = require("./Logbook.jsx");
+var _getDate = require("../../utils/getDate");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -85478,7 +83412,7 @@ var Results = function Results(_ref) {
       onClick: function onClick() {
         return handleSingleView(key);
       }
-    }, /*#__PURE__*/_react.default.createElement(Climb, null, /*#__PURE__*/_react.default.createElement("strong", null, climbName), " - ", grade), " ", /*#__PURE__*/_react.default.createElement(Crag, null, isDesktop && "".concat(style, " - "), cragName), /*#__PURE__*/_react.default.createElement(Date, null, (0, _Logbook.getDate)(processed, isDesktop), /*#__PURE__*/_react.default.createElement(_Chevron.default, {
+    }, /*#__PURE__*/_react.default.createElement(Climb, null, /*#__PURE__*/_react.default.createElement("strong", null, climbName), " - ", grade), " ", /*#__PURE__*/_react.default.createElement(Crag, null, isDesktop && "".concat(style, " - "), cragName), /*#__PURE__*/_react.default.createElement(Date, null, (0, _getDate.getDate)(processed, isDesktop), /*#__PURE__*/_react.default.createElement(_Chevron.default, {
       fill: "unset"
     }))));
   }));
@@ -85486,7 +83420,7 @@ var Results = function Results(_ref) {
 
 var _default = Results;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/useIsWidth.jsx":"components/common/useIsWidth.jsx","../../common/icons/Chevron.jsx":"components/common/icons/Chevron.jsx","../../common/styleVars":"components/common/styleVars.js","../../common/Layout.jsx":"components/common/Layout.jsx","../../common/Buttons.jsx":"components/common/Buttons.jsx","./Logbook.jsx":"components/views/logbook/Logbook.jsx"}],"components/views/singleLog/IconButton.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../common/useIsWidth.jsx":"components/common/useIsWidth.jsx","../common/icons/Chevron.jsx":"components/common/icons/Chevron.jsx","../common/styleVars":"components/common/styleVars.js","../common/Layout.jsx":"components/common/Layout.jsx","../common/Buttons.jsx":"components/common/Buttons.jsx","../../utils/getDate":"utils/getDate.ts"}],"components/singleLog/IconButton.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85498,12 +83432,12 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _styleVars = require("../../common/styleVars");
+var _styleVars = require("../common/styleVars");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  user-select: none;\n  cursor: pointer;\n  transition: all ease-in-out 0.3s;\n  display: flex;\n  flex: 1;\n  align-items: center;\n  justify-content: center;\n  height: 50%;\n  margin: -", ";\n  padding: ", ";\n  border-radius: ", ";\n  border: ", " solid\n    ", ";\n  background-color: ", ";\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n  }\n  &:focus,\n  &:hover {\n    outline: none;\n    background-color: ", ";\n    svg {\n      fill: ", ";\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  user-select: none;\n  cursor: pointer;\n  transition: all ease-in-out 0.3s;\n  display: flex;\n  flex: 1;\n  align-items: center;\n  justify-content: center;\n  height: 50%;\n  margin: -", ";\n  padding: ", ";\n  border-radius: ", ";\n  border: ", " solid ", ";\n  background-color: ", ";\n  svg {\n    fill: ", ";\n    transition: all ease-in-out 0.3s;\n  }\n  &:focus,\n  &:hover {\n    outline: none;\n    background-color: ", ";\n    svg {\n      fill: ", ";\n    }\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -85514,20 +83448,24 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var IconStyle = _styledComponents.default.button(_templateObject(), _styleVars.spacing.xSmall, _styleVars.spacing.med, _styleVars.spacing.small, _styleVars.spacing.xSmall, function (props) {
-  return props.type === "star" ? "".concat(_styleVars.colors.yellow) : "".concat(_styleVars.colors.midBlue);
-}, function (props) {
-  return props.type === "star" ? "".concat(_styleVars.colors.lightYellow) : "".concat(_styleVars.colors.lightBlue);
-}, function (props) {
-  return props.type === "star" ? "".concat(_styleVars.colors.yellow) : "".concat(_styleVars.colors.midBlue);
-}, function (props) {
-  return props.type === "star" ? "".concat(_styleVars.colors.yellow) : "".concat(_styleVars.colors.midBlue);
+var IconStyle = _styledComponents.default.button(_templateObject(), _styleVars.spacing.xSmall, _styleVars.spacing.med, _styleVars.spacing.small, _styleVars.spacing.xSmall, function (_ref) {
+  var type = _ref.type;
+  return _styleVars.colors[type === "star" ? "yellow" : "midBlue"];
+}, function (_ref2) {
+  var type = _ref2.type;
+  return _styleVars.colors[type === "star" ? "lightYellow" : "lightBlue"];
+}, function (_ref3) {
+  var type = _ref3.type;
+  return _styleVars.colors[type === "star" ? "yellow" : "midBlue"];
+}, function (_ref4) {
+  var type = _ref4.type;
+  return _styleVars.colors[type === "star" ? "yellow" : "midBlue"];
 }, _styleVars.colors.white); // star and notes button
 
 
-var IconButton = function IconButton(_ref) {
-  var type = _ref.type,
-      title = _ref.title;
+var IconButton = function IconButton(_ref5) {
+  var type = _ref5.type,
+      title = _ref5.title;
   return /*#__PURE__*/_react.default.createElement(IconStyle, {
     type: type,
     title: title
@@ -85559,7 +83497,7 @@ var IconButton = function IconButton(_ref) {
 
 var _default = IconButton;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/styleVars":"components/common/styleVars.js"}],"components/views/singleLog/SingleLog.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../common/styleVars":"components/common/styleVars.js"}],"components/singleLog/SingleLog.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85571,11 +83509,11 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _Icons = require("../../common/icons/Icons.jsx");
+var _Icons = require("../common/icons/Icons.jsx");
 
-var _styleVars = require("../../common/styleVars");
+var _styleVars = require("../common/styleVars");
 
-var _Buttons = require("../../common/Buttons.jsx");
+var _Buttons = require("../common/Buttons.jsx");
 
 var _IconButton = _interopRequireDefault(require("./IconButton.jsx"));
 
@@ -85730,15 +83668,17 @@ var SingleLog = function SingleLog(props) {
 
 var _default = SingleLog;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../../common/icons/Icons.jsx":"components/common/icons/Icons.jsx","../../common/styleVars":"components/common/styleVars.js","../../common/Buttons.jsx":"components/common/Buttons.jsx","./IconButton.jsx":"components/views/singleLog/IconButton.jsx"}],"components/views/logbook/Logbook.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../common/icons/Icons.jsx":"components/common/icons/Icons.jsx","../common/styleVars":"components/common/styleVars.js","../common/Buttons.jsx":"components/common/Buttons.jsx","./IconButton.jsx":"components/singleLog/IconButton.jsx"}],"components/logbook/Logbook.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.getDate = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _Search = _interopRequireDefault(require("./Search.jsx"));
 
@@ -85749,8 +83689,6 @@ var _PageNav = _interopRequireDefault(require("./PageNav.jsx"));
 var _Results = _interopRequireDefault(require("./Results.jsx"));
 
 var _SingleLog = _interopRequireDefault(require("../singleLog/SingleLog.jsx"));
-
-var _Layout = require("../../common/Layout.jsx");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -85778,22 +83716,20 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var getDate = function getDate(dateData, desktop) {
-  var day = dateData.day,
-      dayLong = dateData.dayLong,
-      monthInt = dateData.monthInt,
-      monthLong = dateData.monthLong,
-      year = dateData.year,
-      yearInt = dateData.yearInt;
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  width: 50%;\n"]);
 
-  if (desktop) {
-    return "".concat(dayLong, " ").concat(monthLong, " ").concat(year);
-  }
+  _templateObject = function _templateObject() {
+    return data;
+  };
 
-  return "".concat(day, "/").concat(monthInt, "/").concat(yearInt);
-};
+  return data;
+}
 
-exports.getDate = getDate;
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var LogContainer = _styledComponents.default.div(_templateObject());
+
 var defaultSearch = {
   placeholder: "Search by Climb or Crag name...",
   searchTerm: "",
@@ -85865,7 +83801,7 @@ var Logbook = function Logbook(_ref) {
     }));
   };
 
-  return /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_Layout.ContainerStyle, null, !singleLog && /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_Search.default, _extends({}, search, {
+  return /*#__PURE__*/_react.default.createElement(LogContainer, null, /*#__PURE__*/_react.default.createElement("div", null, !singleLog && /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_Search.default, _extends({}, search, {
     handleSearch: function handleSearch(e) {
       return _handleSearch(e.target.value);
     },
@@ -85887,7 +83823,7 @@ var Logbook = function Logbook(_ref) {
 
 var _default = Logbook;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./Search.jsx":"components/views/logbook/Search.jsx","./SearchReset.jsx":"components/views/logbook/SearchReset.jsx","./PageNav.jsx":"components/views/logbook/PageNav.jsx","./Results.jsx":"components/views/logbook/Results.jsx","../singleLog/SingleLog.jsx":"components/views/singleLog/SingleLog.jsx","../../common/Layout.jsx":"components/common/Layout.jsx"}],"components/App.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Search.jsx":"components/logbook/Search.jsx","./SearchReset.jsx":"components/logbook/SearchReset.jsx","./PageNav.jsx":"components/logbook/PageNav.jsx","./Results.jsx":"components/logbook/Results.jsx","../singleLog/SingleLog.jsx":"components/singleLog/SingleLog.jsx"}],"components/App.tsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85899,13 +83835,11 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _mbLogbook = _interopRequireDefault(require("../data/mb-logbook.json"));
-
 var _formatData = require("../utils/formatData");
 
-var _Stats = _interopRequireDefault(require("./views/stats/Stats.jsx"));
+var _Stats = _interopRequireDefault(require("./stats/Stats.jsx"));
 
-var _Logbook = _interopRequireDefault(require("./views/logbook/Logbook.jsx"));
+var _Logbook = _interopRequireDefault(require("./logbook/Logbook.jsx"));
 
 var _styleVars = require("./common/styleVars");
 
@@ -85917,106 +83851,65 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+var __makeTemplateObject = void 0 && (void 0).__makeTemplateObject || function (cooked, raw) {
+  if (Object.defineProperty) {
+    Object.defineProperty(cooked, "raw", {
+      value: raw
+    });
+  } else {
+    cooked.raw = raw;
+  }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+  return cooked;
+};
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+var Root = _styledComponents.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  margin: 0;\n  font-family: ", ";\n  font-size: ", ";\n  line-height: 1.4;\n"], ["\n  margin: 0;\n  font-family: ", ";\n  font-size: ", ";\n  line-height: 1.4;\n"])), _styleVars.fonts.main, _styleVars.fontSize.small);
 
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+var Header = _styledComponents.default.header(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n"], ["\n  display: flex;\n"])));
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  text-align: center;\n  padding: 0.25rem;\n  background-color: ", ";\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  ", ";\n  display: flex;\n  width: 50%;\n  padding: 1.25rem 2rem;\n  border-bottom: 0.175rem solid ", ";\n  background-color: ", ";\n  @media only screen and (min-width: ", ") {\n    padding: 2rem;\n    font-size: 1.5rem;\n  }\n  &:first-child {\n    justify-content: flex-end;\n  }\n  > span {\n    user-select: none;\n    max-width: 23rem;\n    width: 100%;\n    display: block;\n  }\n  &:hover {\n    background-color: ", ";\n  }\n  ", "\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  margin: 0;\n  font-family: ", ";\n  font-size: ", ";\n  line-height: 1.4;\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var Root = _styledComponents.default.div(_templateObject(), _styleVars.fonts.main, _styleVars.fontSize.small);
-
-var Header = _styledComponents.default.header(_templateObject2());
-
-var Button = _styledComponents.default.button(_templateObject3(), _Buttons.buttonBase, _styleVars.colors.midGrey, _styleVars.colors.lightGrey, _styleVars.breakpoint.small, function (_ref) {
-  var isActive = _ref.isActive;
+var Button = _styledComponents.default.button(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  ", ";\n  display: flex;\n  width: 50%;\n  padding: 1.25rem 2rem;\n  border-bottom: 0.175rem solid ", ";\n  background-color: ", ";\n  @media only screen and (min-width: ", ") {\n    padding: 2rem;\n    font-size: 1.5rem;\n  }\n  &:first-child {\n    justify-content: flex-end;\n  }\n  > span {\n    user-select: none;\n    max-width: 23rem;\n    width: 100%;\n    display: block;\n  }\n  &:hover {\n    background-color: ", ";\n  }\n  ", "\n"], ["\n  ", ";\n  display: flex;\n  width: 50%;\n  padding: 1.25rem 2rem;\n  border-bottom: 0.175rem solid ", ";\n  background-color: ", ";\n  @media only screen and (min-width: ", ") {\n    padding: 2rem;\n    font-size: 1.5rem;\n  }\n  &:first-child {\n    justify-content: flex-end;\n  }\n  > span {\n    user-select: none;\n    max-width: 23rem;\n    width: 100%;\n    display: block;\n  }\n  &:hover {\n    background-color: ", ";\n  }\n  ", "\n"])), _Buttons.buttonBase, _styleVars.colors.midGrey, _styleVars.colors.lightGrey, _styleVars.breakpoint.small, function (_a) {
+  var isActive = _a.isActive;
   return _styleVars.colors[isActive ? "lightRed" : "midGrey"];
-}, function (_ref2) {
-  var isActive = _ref2.isActive;
-  return isActive && "\n  background-color: ".concat(_styleVars.colors.lightRed, ";\n  border-bottom-color: ").concat(_styleVars.colors.red, ";\n  ");
+}, function (_a) {
+  var isActive = _a.isActive;
+  return isActive && "\n  background-color: " + _styleVars.colors.lightRed + ";\n  border-bottom-color: " + _styleVars.colors.red + ";\n  ";
 });
 
-var DailyMessage = _styledComponents.default.p(_templateObject4(), _styleVars.colors.midBlue);
+var DailyMessage = _styledComponents.default.p(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  text-align: center;\n  padding: 0.25rem;\n  background-color: ", ";\n"], ["\n  text-align: center;\n  padding: 0.25rem;\n  background-color: ", ";\n"])), _styleVars.colors.midBlue);
 
-var allLogs = (0, _formatData.formatData)(_mbLogbook.default);
+var ViewContainer = _styledComponents.default.div(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  max-width: 60rem;\n  margin: 0 auto;\n  padding: 1rem 0;\n  overflow: hidden;\n"], ["\n  max-width: 60rem;\n  margin: 0 auto;\n  padding: 1rem 0;\n  overflow: hidden;\n"])));
+
+var Views = _styledComponents.default.div(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n  display: flex;\n  width: 200%;\n  ", "\n"], ["\n  display: flex;\n  width: 200%;\n  ", "\n"])), function (_a) {
+  var isLogbook = _a.isLogbook;
+  return isLogbook ? "\n    transform: translateX(-50%);\n    transition: transform ease-in-out 1s;\n  " : "\n    transform: translateX(0%);\n    transition: transform ease-in-out 1s;\n  ";
+});
 
 var App = function App() {
-  var _useState = (0, _react.useState)("Stats"),
-      _useState2 = _slicedToArray(_useState, 2),
-      view = _useState2[0],
-      setView = _useState2[1];
+  var _a = (0, _react.useState)("Stats"),
+      view = _a[0],
+      setView = _a[1];
 
-  var _useState3 = (0, _react.useState)(allLogs),
-      _useState4 = _slicedToArray(_useState3, 2),
-      logs = _useState4[0],
-      setLogs = _useState4[1];
+  var _b = (0, _react.useState)(_formatData.allLogs),
+      logs = _b[0],
+      setLogs = _b[1];
 
-  var _useState5 = (0, _react.useState)(null),
-      _useState6 = _slicedToArray(_useState5, 2),
-      message = _useState6[0],
-      setMessage = _useState6[1];
+  var _c = (0, _react.useState)(null),
+      message = _c[0],
+      setMessage = _c[1];
 
   var handleSingleDay = function handleSingleDay(logs, filter) {
     var day = filter.day,
         month = filter.month,
-        year = filter.year; // bug: make smoother
-
+        year = filter.year;
     setView("Logbook");
     setLogs(logs);
-    setMessage("Showing ".concat(logs.length, " ").concat(logs.length === 1 ? "log" : "logs", " for: ").concat(day, " ").concat(month, " ").concat(year));
+    setMessage("Showing " + logs.length + " " + (logs.length === 1 ? "log" : "logs") + " for: " + day + " " + month + " " + year);
   }; // reset to original
 
 
   (0, _react.useEffect)(function () {
     if (message && view === "Stats") {
-      setLogs(allLogs);
+      setLogs(_formatData.allLogs);
       setMessage(null);
     }
   }, [message, view]);
@@ -86032,29 +83925,32 @@ var App = function App() {
     },
     isActive: view === "Logbook",
     "aria-label": "Logbook View"
-  }, /*#__PURE__*/_react.default.createElement("span", null, "Logbook"))), view === "Stats" && /*#__PURE__*/_react.default.createElement(_Stats.default, {
+  }, /*#__PURE__*/_react.default.createElement("span", null, "Logbook"))), /*#__PURE__*/_react.default.createElement(ViewContainer, null, /*#__PURE__*/_react.default.createElement(Views, {
+    isLogbook: view === "Logbook"
+  }, /*#__PURE__*/_react.default.createElement(_Stats.default, {
     logs: logs,
     handleSingleDay: handleSingleDay
-  }), view === "Logbook" && /*#__PURE__*/_react.default.createElement(_Logbook.default, {
+  }), /*#__PURE__*/_react.default.createElement(_Logbook.default, {
     logs: logs
-  }));
+  }))));
 };
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../data/mb-logbook.json":"data/mb-logbook.json","../utils/formatData":"utils/formatData.js","./views/stats/Stats.jsx":"components/views/stats/Stats.jsx","./views/logbook/Logbook.jsx":"components/views/logbook/Logbook.jsx","./common/styleVars":"components/common/styleVars.js","./common/Buttons.jsx":"components/common/Buttons.jsx"}],"index.js":[function(require,module,exports) {
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../utils/formatData":"utils/formatData.ts","./stats/Stats.jsx":"components/stats/Stats.jsx","./logbook/Logbook.jsx":"components/logbook/Logbook.jsx","./common/styleVars":"components/common/styleVars.js","./common/Buttons.jsx":"components/common/Buttons.jsx"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _App = _interopRequireDefault(require("./components/App.jsx"));
+var _App = _interopRequireDefault(require("./components/App"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom.default.render( /*#__PURE__*/_react.default.createElement(_App.default, null), document.getElementById("root"));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/App.jsx":"components/App.jsx"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/App":"components/App.tsx"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -86082,7 +83978,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50780" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57238" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
