@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import styled from "styled-components";
-import climbData from "../data/mb-logbook.json";
-import { formatData } from "../utils/formatData.ts";
 
+import { allLogs, OutputObject } from "../utils/formatData";
 import Stats from "./stats/Stats.jsx";
 import Logbook from "./logbook/Logbook.jsx";
 
@@ -20,7 +19,7 @@ const Header = styled.header`
   display: flex;
 `;
 
-const Button = styled.button`
+const Button = styled.button<{ readonly isActive: boolean }>`
   ${buttonBase};
   display: flex;
   width: 50%;
@@ -57,16 +56,40 @@ const DailyMessage = styled.p`
   background-color: ${colors.midBlue};
 `;
 
-const allLogs = formatData(climbData);
+const ViewContainer = styled.div`
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1rem 0;
+  overflow: hidden;
+`;
 
-const App = () => {
-  const [view, setView] = useState("Stats");
-  const [logs, setLogs] = useState(allLogs);
-  const [message, setMessage] = useState(null);
+const Views = styled.div<{ readonly isLogbook: boolean }>`
+  display: flex;
+  width: 200%;
+  ${({ isLogbook }) =>
+    isLogbook
+      ? `
+    transform: translateX(-50%);
+    transition: transform ease-in-out 1s;
+  `
+      : `
+    transform: translateX(0%);
+    transition: transform ease-in-out 1s;
+  `}
+`;
 
-  const handleSingleDay = (logs, filter) => {
+interface Filter {
+  day: string;
+  month: string;
+  year: string;
+}
+const App: FC = () => {
+  const [view, setView] = useState<string>("Stats");
+  const [logs, setLogs] = useState<OutputObject[]>(allLogs);
+  const [message, setMessage] = useState<string | null>(null);
+
+  const handleSingleDay = (logs: OutputObject[], filter: Filter) => {
     const { day, month, year } = filter;
-    // bug: make smoother
     setView("Logbook");
     setLogs(logs);
     setMessage(
@@ -101,8 +124,13 @@ const App = () => {
           <span>Logbook</span>
         </Button>
       </Header>
-      {view === "Stats" && <Stats logs={logs} handleSingleDay={handleSingleDay} />}
-      {view === "Logbook" && <Logbook logs={logs} />}
+
+      <ViewContainer>
+        <Views isLogbook={view === "Logbook"}>
+          <Stats logs={logs} handleSingleDay={handleSingleDay} />
+          <Logbook logs={logs} />
+        </Views>
+      </ViewContainer>
     </Root>
   );
 };

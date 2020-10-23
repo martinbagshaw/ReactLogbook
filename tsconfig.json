@@ -3,14 +3,16 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "~*": ["./*"]
+      "~*": ["./*"],
     },
     "outDir": "./dist/",
     "module": "es6",
     "target": "es5",
     "jsx": "react",
-    "lib": ["es2015", "dom"],
+    "lib": ["es2015", "es2017", "dom"],
     "allowJs": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "checkJs": true,
     // linter:

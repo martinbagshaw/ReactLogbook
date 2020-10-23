@@ -24,18 +24,20 @@ const defaultSettings: DefaultSettings = {
   type: "Date" // make this to lowercase? - how and where does it need conversion?
 };
 
-// applies to formatData
 type IntOptions = "01" | "02" | "03" | "04" | "05" | "06" | "07" | "08" | "09" | "10" | "11" | "12";
-type MonthOptions = "Jan" | "Feb" | "Mar" | "Apr" | "May" | "Jun" | "Jul" | "Aug" | "Sep" | "Oct" | "Nov" | "Dec";
 type MonthOptionsLong = "January" | "February" | "March" | "April" | "May" | "June" | "July" | "August" | "September" | "October" | "November" | "December";
+type MonthOptions = "Jan" | "Feb" | "Mar" | "Apr" | "May" | "Jun" | "Jul" | "Aug" | "Sep" | "Oct" | "Nov" | "Dec";
 
 interface Month {
   text: MonthOptionsLong;
   int: IntOptions;
 }
 
-// probably need to change this from a Record
-const months: Record<MonthOptions, Month> = {
+// previously used a Record:
+// const months: Record<MonthOptions, Month> = {
+type Months = { [month in MonthOptions]: Month };
+
+const months: Months = {
   Jan: { text: "January", int: "01" },
   Feb: { text: "February", int: "02" },
   Mar: { text: "March", int: "03" },
@@ -50,4 +52,4 @@ const months: Record<MonthOptions, Month> = {
   Dec: { text: "December", int: "12" },
 };
 
-export { defaultSettings, months };
+export { defaultSettings, months, MonthOptions };

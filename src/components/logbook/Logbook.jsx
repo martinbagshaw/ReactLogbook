@@ -1,11 +1,15 @@
 import React, { useState, Fragment } from "react";
+import styled from "styled-components";
+
 import Search from "./Search.jsx";
 import SearchReset from "./SearchReset.jsx";
 import PageNav from "./PageNav.jsx";
 import Results from "./Results.jsx";
 import SingleLog from "../singleLog/SingleLog.jsx";
 
-import { ContainerStyle } from "../common/Layout.jsx";
+const LogContainer = styled.div`
+  width: 50%;
+`;
 
 const defaultSearch = {
   placeholder: "Search by Climb or Crag name...",
@@ -47,8 +51,8 @@ const Logbook = ({ logs }) => {
   };
 
   return (
-    <Fragment>
-      <ContainerStyle>
+    <LogContainer>
+      <div>
         {!singleLog && (
           <Fragment>
             <Search
@@ -61,13 +65,13 @@ const Logbook = ({ logs }) => {
           </Fragment>
         )}
         {singleLog && <SingleLog {...singleLog} handleSingleView={handleSingleView} />}
-      </ContainerStyle>
+      </div>
       <SearchReset
         onClose={() => {
           setSearch({ ...defaultSearch });
         }}
       />
-    </Fragment>
+    </LogContainer>
   );
 };
 

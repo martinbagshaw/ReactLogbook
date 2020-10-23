@@ -8,7 +8,7 @@ const searchResultText = css`
   text-overflow: ellipsis;
   margin-right: 1rem;
 `;
-
+// remove?
 const ContainerStyle = styled.div`
   max-width: 60rem;
   margin: 0 auto;
