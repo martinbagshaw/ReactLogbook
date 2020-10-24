@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 
-import { defaultSettings, months } from "../../utils/constants.ts";
+import { defaultSettings, months } from "../../utils/constants";
 import StatsHeader from "./StatsHeader.jsx";
 import PieChart from "./PieChart.jsx";
 import Legend from "./Legend.tsx";

@@ -1,4 +1,6 @@
-// applies to <Stats />
+import { MonthOptions } from "./common-types";
+
+// for <Stats />
 type DateOptions = "Year" | "Month";
 type DisciplineOptions = "Bouldering" | "Ice" | "Mixed" | "Sport" | "Trad";
 type GradeOptions = "Low" | "High"; // order low to high
@@ -26,7 +28,6 @@ const defaultSettings: DefaultSettings = {
 
 type IntOptions = "01" | "02" | "03" | "04" | "05" | "06" | "07" | "08" | "09" | "10" | "11" | "12";
 type MonthOptionsLong = "January" | "February" | "March" | "April" | "May" | "June" | "July" | "August" | "September" | "October" | "November" | "December";
-type MonthOptions = "Jan" | "Feb" | "Mar" | "Apr" | "May" | "Jun" | "Jul" | "Aug" | "Sep" | "Oct" | "Nov" | "Dec";
 
 interface Month {
   text: MonthOptionsLong;
@@ -52,4 +53,4 @@ const months: Months = {
   Dec: { text: "December", int: "12" },
 };
 
-export { defaultSettings, months, MonthOptions };
+export { defaultSettings, months };

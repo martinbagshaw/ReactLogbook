@@ -1,5 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 import styled, { css } from "styled-components";
+
+import { OutputObject } from "../../utils/common-types";
 
 import useIsWidth from "../common/useIsWidth.jsx";
 import Chevron from "../common/icons/Chevron.jsx";
@@ -45,6 +47,10 @@ const High = styled(Low)`
   background-color: ${colors.lightRed};
 `;
 
+type ButtonOptions = "left" | "right"
+type ButtonCss = {
+  [key in ButtonOptions]: string;
+}
 const buttonCss = {
   left: css`
     padding-right: 1rem;
@@ -55,7 +61,7 @@ const buttonCss = {
   `,
 };
 
-const Button = styled.button`
+const Button = styled.button<{ readonly direction: keyof ButtonCss }>`
   ${buttonBase};
   line-height: 1;
   display: flex;
@@ -81,9 +87,19 @@ const Button = styled.button`
   }
 `;
 
-const PageNav = ({ logs, low, high, handlePageChange }) => {
+interface Buttons {
+  [key: string]: { condition: boolean, direction: ButtonOptions }
+}
+
+interface Props {
+  logs: OutputObject[];
+  low: number;
+  high: number;
+  handlePageChange: (direction: string) => void;
+}
+const PageNav: FC<Props> = ({ logs, low, high, handlePageChange }) => {
   const { isWidth: isDesktop } = useIsWidth("large");
-  const buttons = {
+  const buttons: Buttons = {
     older: {
       condition: high < logs.length,
       direction: "left",
@@ -102,7 +118,7 @@ const PageNav = ({ logs, low, high, handlePageChange }) => {
           <High>{`${logs.length - low}`}</High> {`of ${logs.length} logs.`}
         </Pagination>
       )}
-      {Object.keys(buttons).map(i => {
+      {Object.keys(buttons).map((i) => {
         const { condition, direction } = buttons[i];
         return (
           condition && (

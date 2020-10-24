@@ -1,12 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
+
+import { DefaultSearch } from "../../utils/common-types";
 
 import useIsWidth from "../common/useIsWidth.jsx";
 import { searchResultText } from "../common/Layout.jsx";
 import { buttonBase } from "../common/Buttons.jsx";
 import { colors, fonts, boxShadow, breakpoint } from "../common/styleVars";
-
-import { getDate } from "../../utils/getDate";
+import { getDate } from "../../utils/get-date";
 
 const SearchContainer = styled.div`
   position: relative;
@@ -77,8 +78,9 @@ const Results = styled.ul`
   @media only screen and (min-width: ${breakpoint.small}) {
     top: 71px;
   }
+  margin-top: 1rem;
   left: 0.5rem;
-  z-index: 1;
+  z-index: 2;
   width: calc(100% - 1rem);
   max-height: 65vh;
   overflow-y: scroll;
@@ -126,7 +128,15 @@ const Date = styled.span`
   font-weight: 600;
 `;
 
-const Search = ({ handleSearch, handleSingleView, placeholder, results, searchTerm }) => {
+// seems to be problems combining interfaces
+// https://github.com/typescript-cheatsheets/react/issues/61
+// https://github.com/microsoft/TypeScript/issues/21417
+// https://stackoverflow.com/questions/59969756/not-assignable-to-type-intrinsicattributes-intrinsicclassattributes-react-js
+interface Props extends DefaultSearch {
+  handleSearch: (value: string) => void;
+  handleSingleView: (index: string) => void;
+}
+const Search: FC<Props> = ({ handleSearch, handleSingleView, placeholder, results, searchTerm }) => {
   const { isWidth: isTablet } = useIsWidth("tablet");
   const { isWidth: isDesktop } = useIsWidth("large");
 
@@ -138,23 +148,27 @@ const Search = ({ handleSearch, handleSingleView, placeholder, results, searchTe
         type="text"
         placeholder={placeholder}
         value={searchTerm}
-        onChange={handleSearch}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSearch(e.currentTarget.value)}
       />
 
       {results && (
         <Results>
-          {results.map(i => (
-            <li key={i.key}>
-              <ResultButton
-                aria-label={`Go to log for: ${i.climbName} on ${i.date}`}
-                onClick={() => handleSingleView(i.key)}
-              >
-                <Climb>{i.climbName}</Climb>
-                {isTablet && <Crag>{i.cragName}</Crag>}
-                <Date>{getDate(i.date.processed, isDesktop)}</Date>
-              </ResultButton>
-            </li>
-          ))}
+          {results.map(({ climbName, cragName, date: { processed }, key }) => {
+            // TODO: do this in processed-data.ts
+            const formattedDate = getDate(processed, isDesktop);
+            return (
+              <li key={key}>
+                <ResultButton
+                  aria-label={`Go to log for: ${climbName} on ${formattedDate}`}
+                  onClick={() => handleSingleView(key)}
+                >
+                  <Climb>{climbName}</Climb>
+                  {isTablet && <Crag>{cragName}</Crag>}
+                  <Date>{formattedDate}</Date>
+                </ResultButton>
+              </li>
+            )
+          })}
         </Results>
       )}
     </SearchContainer>
