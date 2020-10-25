@@ -7,7 +7,7 @@ import Search from "./Search";
 import SearchReset from "./SearchReset";
 import PageNav from "./PageNav";
 import Results from "./Results";
-import SingleLog from "../singleLog/SingleLog.jsx";
+import SingleLog from "../singleLog/SingleLog";
 
 const LogContainer = styled.div`
   width: 50%;
@@ -52,7 +52,7 @@ const Logbook: FC<Props> = ({ logs }) => {
   };
 
   // TODO: stricter checking here. Should be ascent-<number>, see OutputObject
-  const handleSingleView = (index: string): void => {
+  const handleSingleView = (index: string | null): void => {
     return setSingleLog(logs.find(i => i.key === index));
   };
 

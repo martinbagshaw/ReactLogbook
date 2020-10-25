@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import useIsWidth from "../common/useIsWidth.jsx";
 import { buttonBase } from "../common/Buttons.jsx";
-import { Chevron } from "../common/icons/Icons.jsx";
+import Chevron from "../common/icons/Chevron";
 import { breakpoint, colors } from "../common/styleVars";
 
 const Container = styled.div`

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 
-import { Chevron, Circle, Place, Style, Date, Partner, Comment } from "../common/icons/Icons.jsx";
+import { OutputObject, Date } from "../../utils/common-types";
+
 import { colors, breakpoint } from "../common/styleVars";
 import { buttonBase } from "../common/Buttons.jsx";
-import IconButton from "./IconButton.jsx";
+import UpdateButton from "./UpdateButton";
+import { iconFunc } from "../common/icons/iconFunc";
 
 const Container = styled.div`
   margin-top: -1rem;
@@ -122,7 +124,7 @@ const ListItem = styled.li`
   }
 `;
 
-const EditButtons = styled.div`
+const ButtonContainer = styled.div`
   display: flex;
   position: fixed;
   bottom: 0;
@@ -134,61 +136,57 @@ const EditButtons = styled.div`
   }
 `;
 
-const iconFunc = (key, string) => {
-  const icons = {
-    cragName: <Place cragName={string} />,
-    grade: <Circle grade={string} />,
-    style: <Style style={string} />,
-    partners: <Partner partners={string} />,
-    date: <Date date={string} />,
-  };
-  return icons[key];
-};
-
-const textFunc = (key, data) => {
-  if (key === "date") {
+const getText = (item: keyof OutputObject, props: Props) => {
+  const detail: string | Date | undefined = props[item];
+  if (item === "date") {
     const {
       processed: { dayLong, monthLong, year },
-    } = data;
-    return `${dayLong} ${monthLong} ${year}`;
+    } = detail;
+    return {
+      jsx: <strong>{`${dayLong} ${monthLong} ${year}`}</strong>,
+      raw: `${dayLong} ${monthLong} ${year}`,
+    };
+  } else {
+    return { raw: detail };
   }
-  return data;
 };
 
-// TODO:
-// - onClick for star and notes / memorable buttons.
-const SingleLog = props => {
-  const { climbName, notes, handleSingleView } = props;
+interface Props extends OutputObject {
+  handleSingleView: (index: string | null) => void;
+}
+const SingleLog: FC<Props> = props => {
+  const { climbName, handleSingleView, notes } = props;
+  const logDetails = ["grade", "cragName", "style", "date", "partners"] as const;
   return (
     <Container>
       <BackButton onClick={() => handleSingleView(null)}>
-        <Chevron fill="unset" title="back to logs" direction="left" />
+        {iconFunc("chevron", { fill: "unset", title: "back", direction: "left" })}
         <span>back</span>
       </BackButton>
       <Content>
         <Title>{climbName}</Title>
         <LogList>
-          {["grade", "cragName", "style", "date", "partners"].map(i => {
-            const string = textFunc(i, props[i]);
+          {logDetails.map(item => {
+            const { jsx, raw } = getText(item, props);
             return (
-              <ListItem key={i}>
-                {iconFunc(i, string)}
-                {i === "date" ? <strong>{string}</strong> : string}
+              <ListItem key={item}>
+                {iconFunc(item, { title: raw })}
+                {jsx || raw}
               </ListItem>
             );
           })}
           {notes && (
             <ListItem>
-              <Comment />
+              {iconFunc("comment")}
               {notes}
             </ListItem>
           )}
         </LogList>
       </Content>
-      <EditButtons>
-        <IconButton type="star" title="star this ascent" />
-        <IconButton type="notes" title="add notes to this ascent" />
-      </EditButtons>
+      <ButtonContainer>
+        <UpdateButton icon="star" title="star this ascent" />
+        <UpdateButton icon="notes" title="add notes to this ascent" />
+      </ButtonContainer>
     </Container>
   );
 };
