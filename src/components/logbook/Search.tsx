@@ -134,7 +134,7 @@ const Date = styled.span`
 // https://stackoverflow.com/questions/59969756/not-assignable-to-type-intrinsicattributes-intrinsicclassattributes-react-js
 interface Props extends DefaultSearch {
   handleSearch: (value: string) => void;
-  handleSingleView: (index: string) => void;
+  handleSingleView: (index: string | null) => void;
 }
 const Search: FC<Props> = ({ handleSearch, handleSingleView, placeholder, results, searchTerm }) => {
   const { isWidth: isTablet } = useIsWidth("tablet");

@@ -1,14 +1,28 @@
-import React from "react";
+import React, { FC } from "react";
 
-const Chevron = ({ title = "Arrow", width = 48, fill = "#000000", direction = "right" }) => {
-  const degree = {
+interface Degree {
+  [key: string]: number;
+}
+interface Props {
+  direction?: string;
+  fill?: string;
+  title?: string;
+  width?: string;
+}
+
+const Chevron: FC<Props> = ({
+  title = "Arrow",
+  width = 48,
+  fill = "#000000",
+  direction = "right",
+}): JSX.Element => {
+  const degree: Degree = {
     left: 180,
     right: 0,
     up: -90,
     down: 90,
   };
   const arrowDirection = `rotate(${degree[direction]}deg)`;
-
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

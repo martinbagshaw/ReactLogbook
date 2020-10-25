@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { OutputObject } from "../../utils/common-types";
 
 import useIsWidth from "../common/useIsWidth.jsx";
-import Chevron from "../common/icons/Chevron.jsx";
+import Chevron from "../common/icons/Chevron";
 import { buttonBase } from "../common/Buttons.jsx";
 import { breakpoint, colors } from "../common/styleVars";
 
