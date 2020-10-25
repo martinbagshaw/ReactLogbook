@@ -1,9 +1,10 @@
 import React, { useEffect, useState, FC } from "react";
 import styled from "styled-components";
 
-import { allLogs, OutputObject } from "../utils/formatData";
+import { OutputObject } from "../utils/common-types";
+import { allLogs } from "../utils/processed-data";
 import Stats from "./stats/Stats.jsx";
-import Logbook from "./logbook/Logbook.jsx";
+import Logbook from "./logbook/Logbook";
 
 import { breakpoint, colors, fonts, fontSize } from "./common/styleVars";
 import { buttonBase } from "./common/Buttons.jsx";
@@ -19,7 +20,7 @@ const Header = styled.header`
   display: flex;
 `;
 
-const Button = styled.button<{ readonly isActive: boolean }>`
+const ViewButton = styled.button<{ readonly isActive: boolean }>`
   ${buttonBase};
   display: flex;
   width: 50%;
@@ -33,12 +34,6 @@ const Button = styled.button<{ readonly isActive: boolean }>`
   &:first-child {
     justify-content: flex-end;
   }
-  > span {
-    user-select: none;
-    max-width: 23rem;
-    width: 100%;
-    display: block;
-  }
   &:hover {
     background-color: ${({ isActive }) => colors[isActive ? "lightRed" : "midGrey"]};
   }
@@ -48,6 +43,13 @@ const Button = styled.button<{ readonly isActive: boolean }>`
   background-color: ${colors.lightRed};
   border-bottom-color: ${colors.red};
   `}
+`;
+
+const ViewButtonText = styled.span`
+  user-select: none;
+  max-width: 23rem;
+  width: 100%;
+  display: block;
 `;
 
 const DailyMessage = styled.p`
@@ -63,7 +65,7 @@ const ViewContainer = styled.div`
   overflow: hidden;
 `;
 
-const Views = styled.div<{ readonly isLogbook: boolean }>`
+const ViewPanel = styled.div<{ readonly isLogbook: boolean }>`
   display: flex;
   width: 200%;
   ${({ isLogbook }) =>
@@ -78,19 +80,28 @@ const Views = styled.div<{ readonly isLogbook: boolean }>`
   `}
 `;
 
+interface Views {
+  s: string;
+  l: string;
+}
+const views: Views = {
+  s: "Stats",
+  l: "Logbook"
+};
+
 interface Filter {
   day: string;
   month: string;
   year: string;
 }
 const App: FC = () => {
-  const [view, setView] = useState<string>("Stats");
+  const [activeView, setActiveView] = useState<string>(views.s);
   const [logs, setLogs] = useState<OutputObject[]>(allLogs);
   const [message, setMessage] = useState<string | null>(null);
 
   const handleSingleDay = (logs: OutputObject[], filter: Filter) => {
     const { day, month, year } = filter;
-    setView("Logbook");
+    setActiveView(views.l);
     setLogs(logs);
     setMessage(
       `Showing ${logs.length} ${logs.length === 1 ? "log" : "logs"} for: ${day} ${month} ${year}`
@@ -99,37 +110,33 @@ const App: FC = () => {
 
   // reset to original
   useEffect(() => {
-    if (message && view === "Stats") {
+    if (message && activeView === views.s) {
       setLogs(allLogs);
       setMessage(null);
     }
-  }, [message, view]);
+  }, [message, activeView]);
 
   return (
     <Root>
       {message && <DailyMessage>{message}</DailyMessage>}
       <Header>
-        <Button
-          onClick={() => setView("Stats")}
-          isActive={view === "Stats"}
-          aria-label="Stats View"
-        >
-          <span>Stats</span>
-        </Button>
-        <Button
-          onClick={() => setView("Logbook")}
-          isActive={view === "Logbook"}
-          aria-label="Logbook View"
-        >
-          <span>Logbook</span>
-        </Button>
+        {Object.values(views).map(view => (
+          <ViewButton
+            key={view}
+            onClick={() => setActiveView(view)}
+            isActive={activeView === view}
+            aria-label={`${view} View`}
+          >
+            <ViewButtonText>{view}</ViewButtonText>
+          </ViewButton>
+        ))}
       </Header>
 
       <ViewContainer>
-        <Views isLogbook={view === "Logbook"}>
+        <ViewPanel isLogbook={activeView === views.l}>
           <Stats logs={logs} handleSingleDay={handleSingleDay} />
           <Logbook logs={logs} />
-        </Views>
+        </ViewPanel>
       </ViewContainer>
     </Root>
   );

@@ -1,15 +1,7 @@
-/* formatData.ts
- * - format logbook data from json
- * - id = index of climb in logbook
- */
 
-import climbData from "../data/mb-logbook.json";
-import { months, MonthOptions } from "./constants";
 
-const twoDigitYear = new Date()
-  .getFullYear()
-  .toString()
-  .substr(2);
+import { MonthOptions, DateOptions } from "./common-types";
+import { months } from "./constants";
 
 type MonthYearInputOptions = "day" | "month" | "monthLong" | "year"
 type MonthYearInput = {
@@ -22,6 +14,11 @@ interface MonthYearOutput extends MonthYearInput {
   yearInt?: string; 
 }
 
+const twoDigitYear = new Date()
+  .getFullYear()
+  .toString()
+  .substr(2);
+  
 const processMonthYear = (month: keyof typeof months, year: string, inputObj: MonthYearInput): MonthYearOutput => {
   const retObj: MonthYearOutput = { ...inputObj };
   if (Object.keys(months).includes(month)) {
@@ -59,17 +56,7 @@ const processDaySuffix = (day: string): string => {
   return `${num}th`;
 };
 
-interface DateOptions {
-  year: string,
-  yearInt?: string,
-  month: string,
-  monthLong: string,
-  monthInt?: string,
-  day: string,
-  dayLong?: string,
-}
-
-const processDate = (date: string): DateOptions => {
+export const processDate = (date: string): DateOptions => {
   const defaultRes: DateOptions = {
     year: "unknown",
     month: "unknown",
@@ -101,44 +88,3 @@ const processDate = (date: string): DateOptions => {
   }
   return defaultRes;
 };
-
-
-type InputOptions = "Climb name" | "Grade" | "Style" | "Partner(s)" | "Notes" | "Date" | "Crag name";
-interface Date {
-  original: string,
-  processed: DateOptions
-}
-
-interface OutputObject {
-  climbName: string,
-  cragName: string,
-  date: Date,
-  grade: string,
-  notes: string,
-  partners: string,
-  style: string,
-  key: string,
-}
-
-const formatData = (rawData: Record<InputOptions, string>[]): OutputObject[] => {
-  return rawData.map((item, index: number) => {
-    return {
-      climbName: item["Climb name"],
-      cragName: item["Crag name"],
-      date: {
-        original: item.Date,
-        processed: processDate(item.Date),
-      },
-      grade: `${item.Grade}`.replace(/\*+$/, "").trim(),
-      notes: item.Notes,
-      partners: item["Partner(s)"] || "climbed alone / no partner listed",
-      style: `${item.Style}`.replace(/&beta;|_/, "flash"),
-      key: `ascent-${index}`,
-    };
-  });
-};
-
-// perhaps avoid using a record to make this work:
-const allLogs = formatData(climbData)
-
-export { allLogs, InputOptions, OutputObject };

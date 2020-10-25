@@ -1,13 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
+
+import { OutputObject } from "../../utils/common-types";
 
 import useIsWidth from "../common/useIsWidth.jsx";
 import Chevron from "../common/icons/Chevron.jsx";
 import { breakpoint, colors } from "../common/styleVars";
 import { searchResultText } from "../common/Layout.jsx";
 import { buttonBase } from "../common/Buttons.jsx";
-
-import { getDate } from "../../utils/getDate";
+import { getDate } from "../../utils/get-date";
 
 const ResultsList = styled.ul`
   margin: 0 0 3rem;
@@ -82,9 +83,15 @@ const Date = styled.span`
   align-items: center;
 `;
 
-const Results = ({ logs, low, high, handleSingleView }) => {
+interface Props {
+  logs: OutputObject[];
+  low: number;
+  high: number;
+  handleSingleView: (index: string) => void;
+}
+const Results: FC<Props> = ({ logs, low, high, handleSingleView }) => {
   const { isWidth: isDesktop } = useIsWidth("large");
-
+  // TODO: run getDate in processed-data.ts
   return (
     <ResultsList>
       {logs

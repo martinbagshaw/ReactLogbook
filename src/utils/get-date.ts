@@ -1,7 +1,6 @@
-interface DateObject {
-  [key: string]: string;
-}
-const getDate = (dateData: DateObject, desktop: boolean): string => {
+import { DateOptions } from "./common-types";
+
+const getDate = (dateData: DateOptions, desktop: boolean): string => {
   const { day, dayLong, monthInt, monthLong, year, yearInt } = dateData;
   if (desktop) {
     return `${dayLong} ${monthLong} ${year}`;

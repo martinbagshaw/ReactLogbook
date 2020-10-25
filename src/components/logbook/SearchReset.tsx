@@ -1,7 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState, Fragment } from "react";
+import React, { useCallback, useEffect, useRef, FC } from "react";
 
-const SearchReset = ({ onClose, children }) => {
-  const ref = useRef(null);
+interface Props {
+  onClose: () => void;
+}
+
+const SearchReset: FC<Props> = ({ onClose }) => {
+  const ref = useRef<HTMLDivElement>(null);
   const escapeListener = useCallback(
     e => {
       if (e.key === "Escape") {
@@ -28,7 +32,7 @@ const SearchReset = ({ onClose, children }) => {
       document.removeEventListener("keyup", escapeListener);
     };
   }, [clickListener, escapeListener]);
-  return <div ref={ref}>{children}</div>;
+  return <div ref={ref}/>;
 };
 
 export default SearchReset;
