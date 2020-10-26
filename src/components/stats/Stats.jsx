@@ -6,7 +6,7 @@ import { defaultSettings, months } from "../../utils/constants";
 import StatsHeader from "./StatsHeader.jsx";
 import PieChart from "./PieChart.jsx";
 import Legend from "./Legend.tsx";
-import { breakpoint } from "../common/styleVars";
+import { breakpoint } from "../common/styleVariables";
 
 const StatContainer = styled.div`
   width: 50%;

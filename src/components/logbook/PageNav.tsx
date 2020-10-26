@@ -3,10 +3,10 @@ import styled, { css } from "styled-components";
 
 import { OutputObject } from "../../utils/common-types";
 
-import useIsWidth from "../common/useIsWidth.jsx";
+import useIsWidth from "../common/useIsWidth";
 import Chevron from "../common/icons/Chevron";
-import { buttonBase } from "../common/Buttons.jsx";
-import { breakpoint, colors } from "../common/styleVars";
+import { buttonBase } from "../common/Buttons";
+import { breakpoint, colors } from "../common/styleVariables";
 
 const NavContainer = styled.div`
   display: flex;

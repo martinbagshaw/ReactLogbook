@@ -1,5 +1,5 @@
 import { MonthOptions, Grades } from "./common-types";
-import { colors } from "../components/common/styleVars";
+import { colors } from "../components/common/styleVariables";
 
 // for <Stats />
 type DateOptions = "Year" | "Month";

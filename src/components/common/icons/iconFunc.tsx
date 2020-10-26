@@ -1,5 +1,7 @@
 import React from "react";
 
+import { IconOptions } from "../../../utils/common-types";
+
 import Chevron from "./Chevron";
 import Comment from "./Comment";
 import Date from "./Date";
@@ -8,7 +10,6 @@ import Location from "./Location";
 import Partner from "./Partner";
 import Style from "./Style";
 
-type IconOptions = "chevron" | "comment" | "cragName" | "date" | "grade" | "partners" | "style";
 type Icons = {
   [key in IconOptions]: JSX.Element;
 }

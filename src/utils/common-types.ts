@@ -20,7 +20,7 @@ interface DateOptions {
   monthLong: string;
   monthInt?: string;
   day: string;
-  dayLong?: string;
+  dayLong: string;
 }
 
 interface Date {
@@ -28,7 +28,6 @@ interface Date {
   processed: DateOptions;
 }
 
-// make this work better with <SingleLog>
 interface OutputObject {
   climbName: string;
   cragName: string;
@@ -40,11 +39,11 @@ interface OutputObject {
   style: string;
 }
 
-interface DefaultSearch {
+type DefaultSearch = {
   placeholder: string;
   results: OutputObject[] | void | undefined;
   searchTerm: string;
-}
+};
 
 interface Grade {
   difficulty: string;
@@ -61,9 +60,20 @@ type Grades = {
   [key in GradeOptions]: Grade;
 };
 
-// try this?
-// interface GradeOutput<T> {
-//   [string: T]: Grade;
-// }
+type LogOptions = "cragName" | "date" | "grade" | "partners" | "style";
+type IconOptions = LogOptions | "chevron" | "comment";
 
-export { MonthOptions, DateOptions, Date, OutputObject, DefaultSearch, Grade, Grades };
+type Breakpoints = "XXsmall" | "Xsmall" | "small" | "tablet" | "large" | "Xlarge" | "massive";
+
+export {
+  MonthOptions,
+  DateOptions,
+  Date,
+  OutputObject,
+  DefaultSearch,
+  Grade,
+  Grades,
+  LogOptions,
+  IconOptions,
+  Breakpoints,
+};

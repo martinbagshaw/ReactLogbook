@@ -3,10 +3,10 @@ import styled from "styled-components";
 
 import { DefaultSearch } from "../../utils/common-types";
 
-import useIsWidth from "../common/useIsWidth.jsx";
-import { searchResultText } from "../common/Layout.jsx";
-import { buttonBase } from "../common/Buttons.jsx";
-import { colors, fonts, boxShadow, breakpoint } from "../common/styleVars";
+import useIsWidth from "../common/useIsWidth";
+import { searchResultText } from "../common/Typography";
+import { buttonBase } from "../common/Buttons";
+import { colors, fonts, boxShadow, breakpoint } from "../common/styleVariables";
 import { getDate } from "../../utils/get-date";
 
 const SearchContainer = styled.div`
@@ -128,15 +128,17 @@ const Date = styled.span`
   font-weight: 600;
 `;
 
-// seems to be problems combining interfaces
-// https://github.com/typescript-cheatsheets/react/issues/61
-// https://github.com/microsoft/TypeScript/issues/21417
-// https://stackoverflow.com/questions/59969756/not-assignable-to-type-intrinsicattributes-intrinsicclassattributes-react-js
-interface Props extends DefaultSearch {
+type Props = Partial<DefaultSearch> & {
   handleSearch: (value: string) => void;
   handleSingleView: (index: string | null) => void;
-}
-const Search: FC<Props> = ({ handleSearch, handleSingleView, placeholder, results, searchTerm }) => {
+};
+const Search: FC<Props> = ({
+  handleSearch,
+  handleSingleView,
+  placeholder,
+  results,
+  searchTerm,
+}) => {
   const { isWidth: isTablet } = useIsWidth("tablet");
   const { isWidth: isDesktop } = useIsWidth("large");
 
@@ -167,7 +169,7 @@ const Search: FC<Props> = ({ handleSearch, handleSingleView, placeholder, result
                   <Date>{formattedDate}</Date>
                 </ResultButton>
               </li>
-            )
+            );
           })}
         </Results>
       )}
