@@ -23,8 +23,8 @@ interface Props {
   logs: OutputObject[];
 }
 const Logbook: FC<Props> = ({ logs }) => {
-  const [search, setSearch] = useState<DefaultSearch | void>(defaultSearch);
-  const [page, setPage] = useState<{low: number, high: number}>({ low: 0, high: 50 });
+  const [search, setSearch] = useState<DefaultSearch | undefined>(defaultSearch);
+  const [page, setPage] = useState<{ low: number; high: number }>({ low: 0, high: 50 });
   const [singleLog, setSingleLog] = useState<OutputObject | undefined>(undefined);
 
   const handleSearch = (value: string): DefaultSearch | void => {
@@ -44,10 +44,10 @@ const Logbook: FC<Props> = ({ logs }) => {
   const handlePageChange = (direction: string) => {
     let { low: newLow, high: newHigh } = page;
     if (direction === "older") {
-      setPage({ low: (newLow += 50), high: (newHigh += 50) });
+      setPage({ low: newLow += 50, high: newHigh += 50 });
     }
     if (direction === "newer") {
-      setPage({ low: (newLow -= 50), high: (newHigh -= 50) });
+      setPage({ low: newLow -= 50, high: newHigh -= 50 });
     }
   };
 
@@ -61,14 +61,7 @@ const Logbook: FC<Props> = ({ logs }) => {
       <div>
         {!singleLog && (
           <Fragment>
-            <Search
-              handleSearch={handleSearch}
-              handleSingleView={handleSingleView}
-              {...search}
-              // placeholder={search.placeholder}
-              // results={search.results}
-              // searchTerm={search.searchTerm}
-            />
+            <Search handleSearch={handleSearch} handleSingleView={handleSingleView} {...search} />
             <PageNav {...page} logs={logs} handlePageChange={handlePageChange} />
             <Results {...page} logs={logs} handleSingleView={handleSingleView} />
           </Fragment>

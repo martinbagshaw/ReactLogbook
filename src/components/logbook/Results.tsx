@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 import { OutputObject } from "../../utils/common-types";
 
-import useIsWidth from "../common/useIsWidth.jsx";
+import useIsWidth from "../common/useIsWidth";
 import Chevron from "../common/icons/Chevron";
-import { breakpoint, colors } from "../common/styleVars";
-import { searchResultText } from "../common/Layout.jsx";
-import { buttonBase } from "../common/Buttons.jsx";
+import { breakpoint, colors } from "../common/styleVariables";
+import { searchResultText } from "../common/Typography";
+import { buttonBase } from "../common/Buttons";
 import { getDate } from "../../utils/get-date";
 
 const ResultsList = styled.ul`

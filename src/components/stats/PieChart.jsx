@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 
-import { breakpoint } from "../common/styleVars";
+import { breakpoint } from "../common/styleVariables";
 
 const ChartContainer = styled.div`
   display: block;

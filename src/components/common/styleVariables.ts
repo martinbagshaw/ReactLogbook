@@ -1,3 +1,5 @@
+import { Breakpoints } from "../../utils/common-types";
+
 const fonts = {
   main: "'Raleway', sans-serif",
 };
@@ -47,7 +49,7 @@ const boxShadow = {
   inset: "0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19)",
 };
 
-const breakpoint = {
+const breakpoint: Record<Breakpoints, string> = {
   XXsmall: "360px",
   Xsmall: "480px",
   small: "600px",

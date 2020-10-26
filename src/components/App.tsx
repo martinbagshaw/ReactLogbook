@@ -6,8 +6,8 @@ import { allLogs } from "../utils/processed-data";
 import Stats from "./stats/Stats.jsx";
 import Logbook from "./logbook/Logbook";
 
-import { breakpoint, colors, fonts, fontSize } from "./common/styleVars";
-import { buttonBase } from "./common/Buttons.jsx";
+import { breakpoint, colors, fonts, fontSize } from "./common/styleVariables";
+import { buttonBase } from "./common/Buttons";
 
 const Root = styled.div`
   margin: 0;

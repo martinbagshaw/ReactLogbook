@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-import { fonts } from "./styleVars";
+import { fonts } from "./styleVariables";
 
 const buttonBase = css`
   user-select: none;

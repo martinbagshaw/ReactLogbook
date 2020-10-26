@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { colors, spacing } from "../common/styleVars";
+import { colors, spacing } from "../common/styleVariables";
 
 const Button = styled.button<{ readonly icon: string }>`
   user-select: none;

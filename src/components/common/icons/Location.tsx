@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { colors } from "../styleVars";
+import { colors } from "../styleVariables";
 
 interface Props {
   fill?: string;

@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { OutputObject, Date } from "../../utils/common-types";
+import { OutputObject, LogOptions } from "../../utils/common-types";
 
-import { colors, breakpoint } from "../common/styleVars";
-import { buttonBase } from "../common/Buttons.jsx";
+import { colors, breakpoint } from "../common/styleVariables";
+import { buttonBase } from "../common/Buttons";
 import UpdateButton from "./UpdateButton";
 import { iconFunc } from "../common/icons/iconFunc";
 
@@ -137,17 +137,16 @@ const ButtonContainer = styled.div`
 `;
 
 const getText = (item: keyof OutputObject, props: Props) => {
-  const detail: string | Date | undefined = props[item];
   if (item === "date") {
     const {
       processed: { dayLong, monthLong, year },
-    } = detail;
+    } = props[item];
     return {
       jsx: <strong>{`${dayLong} ${monthLong} ${year}`}</strong>,
       raw: `${dayLong} ${monthLong} ${year}`,
     };
   } else {
-    return { raw: detail };
+    return { raw: props[item] };
   }
 };
 
@@ -156,7 +155,9 @@ interface Props extends OutputObject {
 }
 const SingleLog: FC<Props> = props => {
   const { climbName, handleSingleView, notes } = props;
-  const logDetails = ["grade", "cragName", "style", "date", "partners"] as const;
+
+  const logDetails: Array<LogOptions> = ["grade", "cragName", "style", "date", "partners"];
+
   return (
     <Container>
       <BackButton onClick={() => handleSingleView(null)}>

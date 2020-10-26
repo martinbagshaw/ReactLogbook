@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 require("matchmedia-polyfill");
 require("matchmedia-polyfill/matchMedia.addListener");
+import { breakpoint } from "./styleVariables";
 
-import { breakpoint } from "./styleVars";
+import { Breakpoints } from "../../utils/common-types";
 
-const useIsWidth = width => {
+interface OutputWidth {
+  isWidth: boolean
+}
+const useIsWidth = (width: Breakpoints): OutputWidth => {
   const check = matchMedia(`(min-width: ${breakpoint[width]})`);
-  const [state, setState] = useState(check);
+  const [state, setState] = useState<MediaQueryList | boolean>(check);
 
   const checkIsWidth = () => {
     if (state !== check.matches) {
