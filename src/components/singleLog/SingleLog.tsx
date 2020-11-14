@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { OutputObject, LogOptions } from "../../utils/common-types";
+import { OutputObject, LogOptions } from "../../utils/types";
 
 import { colors, breakpoint } from "../common/styleVariables";
 import { buttonBase } from "../common/Buttons";

@@ -1,9 +1,9 @@
 import React, { useEffect, useState, FC } from "react";
 import styled from "styled-components";
 
-import { OutputObject } from "../utils/common-types";
+import { Filter, OutputObject } from "../utils/types";
 import { allLogs } from "../utils/processed-data";
-import Stats from "./stats/Stats.jsx";
+import Stats from "./stats/Stats";
 import Logbook from "./logbook/Logbook";
 
 import { breakpoint, colors, fonts, fontSize } from "./common/styleVariables";
@@ -89,17 +89,12 @@ const views: Views = {
   l: "Logbook"
 };
 
-interface Filter {
-  day: string;
-  month: string;
-  year: string;
-}
-const App: FC = () => {
+const App: FC = (): JSX.Element => {
   const [activeView, setActiveView] = useState<string>(views.s);
   const [logs, setLogs] = useState<OutputObject[]>(allLogs);
   const [message, setMessage] = useState<string | null>(null);
 
-  const handleSingleDay = (logs: OutputObject[], filter: Filter) => {
+  const handleSingleDay = (logs: OutputObject[], filter: Filter): void => {
     const { day, month, year } = filter;
     setActiveView(views.l);
     setLogs(logs);

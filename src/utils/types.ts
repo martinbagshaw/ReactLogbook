@@ -1,3 +1,4 @@
+import { OptionTypeBase } from "react-select";
 // Notes is optional on this
 type MonthOptions =
   | "Jan"
@@ -26,6 +27,33 @@ interface DateOptions {
 interface Date {
   original: string;
   processed: DateOptions;
+}
+
+type DefaultDates = "Year" | "Month";
+type DefaultDisciplines = "Bouldering" | "Ice" | "Mixed" | "Sport" | "Trad";
+type DefaultGrades = "Low" | "High"; // order low to high
+type DefaultPartners = string | undefined;
+type DefaultStyles = "Dnf" | "Dogged" | "Flashed" | "Onsight" | "Redpoint";
+type DefaultCategories = "crag" | "date" | "discipline" | "grade" | "style";
+
+export interface Category extends OptionTypeBase {
+  value: string;
+  label: string;
+}
+
+export interface DefaultSettings {
+  date: { cumulative: DefaultDates };
+  discipline: { cumulative: DefaultDisciplines };
+  grade: { cumulative: DefaultGrades };
+  partners: { cumulative: DefaultPartners };
+  style: { cumulative: DefaultStyles };
+  type: DefaultCategories;
+}
+
+export interface Filter {
+  day: string;
+  month: string;
+  year: string;
 }
 
 interface OutputObject {

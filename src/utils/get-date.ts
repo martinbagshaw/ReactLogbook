@@ -1,4 +1,4 @@
-import { DateOptions } from "./common-types";
+import { DateOptions } from "./types";
 
 const getDate = (dateData: DateOptions, desktop: boolean): string => {
   const { day, dayLong, monthInt, monthLong, year, yearInt } = dateData;

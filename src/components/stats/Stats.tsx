@@ -1,27 +1,19 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { FC, Fragment, useState, useEffect } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
+import { ValueType } from "react-select";
+
+import { Category, DefaultSettings, Filter, OutputObject } from "../../utils/types";
 
 import { defaultSettings, months } from "../../utils/constants";
-import StatsHeader from "./StatsHeader.jsx";
+import StatsHeader from "./StatsHeader";
 import PieChart from "./PieChart.jsx";
-import Legend from "./Legend.tsx";
+import Legend from "./Legend";
 import { breakpoint } from "../common/styleVariables";
 
 const StatContainer = styled.div`
   width: 50%;
 `;
-
-// old version: 
-// const StatContainer = styled.div`
-//   width: 50%;
-//   visibility: hidden;
-//   ${({ isVisible }) =>
-//     isVisible &&
-//     `
-//   visibility: visible;
-//   `};
-// `;
 
 const BodySection = styled.section`
   padding-bottom: 250px;
@@ -31,28 +23,6 @@ const BodySection = styled.section`
     padding-bottom: 0;
   }
 `;
-
-// TODO:
-// - cache main chart data for better performance
-// - update key and total logs text when drilling down
-// - more detailed tooltips (handle content drilldown)
-// - link to logbook at end of drilldown (e.g. see logs for a particular date)
-
-// - set up a context for nested components to use
-// - dropdown styling (probably need to reformat data for this)
-// - add more 'type'/overall filters (partners, discipline, etc)
-// ^ see github issue https://github.com/martinbagshaw/ReactLogbook/issues/23
-
-// TODO (filter function for date):
-// - make more adaptable: handle different data types
-// - refactor: use a single reduce, if possible
-// - new behavior: date click takes you to the logbook, with climbs on that date shown
-
-// dropdown data format may need changing to:
-// const dateOptions = {
-//   year: { label: "Year", value: "year"},
-//   month: { label: "Month", value: "month"}
-// }
 
 const handleCumulativeDate = (dateType, logs) => {
   const search = dateType.toLowerCase();
@@ -236,24 +206,28 @@ const handleFilteredDate = (filter, logs) => {
 
 // set pie chart data:
 // - filters the settingState to get chart data
-const getChartData = (settingState, logs) => {
+const getChartData = (settingState: DefaultSettings, logs: OutputObject[]) => {
   const { type, date } = settingState;
-  const search = type.toLowerCase();
-  // find the item with '.filter'
   const hasFilter = Object.values(settingState).find(i => i.filter);
-  if (search === "date" && !hasFilter) {
+  if (type === "date" && !hasFilter) {
     return handleCumulativeDate(date.cumulative, logs);
   }
-  if (search === "date" && hasFilter) {
+  if (type === "date" && hasFilter) {
     return handleFilteredDate(hasFilter.filter, logs);
   }
 };
 
-const Stats = ({ handleSingleDay, logs }) => {
+type Props = {
+  handleSingleDay: (logs: OutputObject[], filter: Filter) => void;
+  logs: OutputObject[];
+};
+const Stats: FC<Props> = ({ handleSingleDay, logs }) => {
   const [settings, setSettings] = useState(defaultSettings);
 
-  const setDropdown = (type, value) => {
+  // put this in StatsHeader perhaps:
+  const setDropdown = (type: keyof DefaultSettings, item: ValueType<Category>) => {
     const newSettings = { ...defaultSettings };
+    const { value } = item;
     if (type !== "type") {
       newSettings[type].cumulative = value;
     } else {
@@ -263,17 +237,19 @@ const Stats = ({ handleSingleDay, logs }) => {
   };
 
   const setFiltered = (type, data) => {
+    // console.log('[setFiltered]');
+
     // - works with handleFilteredDate
     // - filters the settings object, used by getChartData
     const newSettings = JSON.parse(JSON.stringify(settings)); // need to deep clone
     const search = type ? type.toLowerCase() : null;
-    if (!search || !settings[search] || !settings[search].cumulative) {
+    if (!type || !settings[type] || !settings[type].cumulative) {
       const resetSettings = { ...defaultSettings };
       return setSettings(resetSettings); // reset and return
     }
-    const { cumulative, filter } = newSettings[search];
+    const { cumulative, filter } = newSettings[type];
     if (!filter) {
-      newSettings[search].filter = {};
+      newSettings[type].filter = {};
     }
 
     // remove requirement for months data
@@ -342,7 +318,6 @@ const Stats = ({ handleSingleDay, logs }) => {
         }
         return acc;
       }, []);
-      console.log("dailyLogs", dailyLogs);
       handleSingleDay(dailyLogs, filter);
     }
   }, [hasFilter]);
@@ -352,7 +327,7 @@ const Stats = ({ handleSingleDay, logs }) => {
     <StatContainer isVisible={!hasFilter?.filter?.day}>
       <StatsHeader logs={logs} setDropdown={setDropdown} type={type} />
       <BodySection>
-        {chartdata && type === "Date" ? (
+        {chartdata && type === "date" ? (
           <Fragment>
             <PieChart
               chartdata={chartdata}

@@ -1,7 +1,7 @@
 import React, { useState, Fragment, FC } from "react";
 import styled from "styled-components";
 
-import { OutputObject, DefaultSearch } from "../../utils/common-types";
+import { OutputObject, DefaultSearch } from "../../utils/types";
 
 import Search from "./Search";
 import SearchReset from "./SearchReset";

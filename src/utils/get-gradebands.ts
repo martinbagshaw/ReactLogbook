@@ -1,4 +1,4 @@
-import { Grade, Grades } from './common-types';
+import { Grade, Grades } from './types';
 import { grades } from './constants'
 
 interface GradeOutput {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IconOptions } from "../../../utils/common-types";
+import { IconOptions } from "../../../utils/types";
 
 import Chevron from "./Chevron";
 import Comment from "./Comment";
