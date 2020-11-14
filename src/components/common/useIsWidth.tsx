@@ -3,7 +3,7 @@ require("matchmedia-polyfill");
 require("matchmedia-polyfill/matchMedia.addListener");
 import { breakpoint } from "./styleVariables";
 
-import { Breakpoints } from "../../utils/common-types";
+import { Breakpoints } from "../../utils/types";
 
 interface OutputWidth {
   isWidth: boolean

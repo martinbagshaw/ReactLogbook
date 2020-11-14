@@ -1,4 +1,4 @@
-import { OutputObject } from "./common-types";
+import { OutputObject } from "./types";
 
 import sourceData from "../data/mb-logbook.json";
 import { processDate } from "./process-date";

@@ -1,6 +1,6 @@
 
 
-import { MonthOptions, DateOptions } from "./common-types";
+import { MonthOptions, DateOptions } from "./types";
 import { months } from "./constants";
 
 type MonthYearInputOptions = "day" | "month" | "monthLong" | "year"

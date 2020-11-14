@@ -1,4 +1,4 @@
-import { Breakpoints } from "../../utils/common-types";
+import { Breakpoints } from "../../utils/types";
 
 const fonts = {
   main: "'Raleway', sans-serif",

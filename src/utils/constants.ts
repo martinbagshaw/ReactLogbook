@@ -1,22 +1,5 @@
-import { MonthOptions, Grades } from "./common-types";
+import { DefaultSettings, MonthOptions, Grades } from "./types";
 import { colors } from "../components/common/styleVariables";
-
-// for <Stats />
-type DateOptions = "Year" | "Month";
-type DisciplineOptions = "Bouldering" | "Ice" | "Mixed" | "Sport" | "Trad";
-type GradeOptions = "Low" | "High"; // order low to high
-type PartnerOptions = string | undefined;
-type StyleOptions = "Dnf" | "Dogged" | "Flashed" | "Onsight" | "Redpoint";
-type TypeOptions = "Crag" | "Date" | "Discipline" | "Grade" | "Style";
-
-interface DefaultSettings {
-  date: { cumulative: DateOptions };
-  discipline: { cumulative: DisciplineOptions };
-  grade: { cumulative: GradeOptions };
-  partners: { cumulative: PartnerOptions };
-  style: { cumulative: StyleOptions };
-  type: TypeOptions;
-}
 
 const defaultSettings: DefaultSettings = {
   date: { cumulative: "Year" },
@@ -24,7 +7,7 @@ const defaultSettings: DefaultSettings = {
   grade: { cumulative: "Low" },
   partners: { cumulative: undefined },
   style: { cumulative: "Onsight" },
-  type: "Date", // make this to lowercase? - how and where does it need conversion?
+  type: "date",
 };
 
 type IntOptions = "01" | "02" | "03" | "04" | "05" | "06" | "07" | "08" | "09" | "10" | "11" | "12";

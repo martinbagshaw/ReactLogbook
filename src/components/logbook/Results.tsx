@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { OutputObject } from "../../utils/common-types";
+import { OutputObject } from "../../utils/types";
 
 import useIsWidth from "../common/useIsWidth";
 import Chevron from "../common/icons/Chevron";
