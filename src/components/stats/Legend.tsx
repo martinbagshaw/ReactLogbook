@@ -1,6 +1,9 @@
-import React, { FC, Fragment, useState } from "react";
+import React, { FC, Fragment, useContext, useState } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
+
+import { ChartType, SettingsInt } from "../../utils/types";
+import { StatsContext } from "./StatsContext";
 
 import useIsWidth from "../common/useIsWidth";
 import { buttonBase } from "../common/Buttons";
@@ -12,7 +15,7 @@ const Container = styled.div`
   position: fixed;
   bottom: 0;
   z-index: 1;
-  width: 100%;
+  width: 100vw;
   background: ${colors.lightGrey};
   border-top: 0.175rem solid ${colors.midGrey};
   @media only screen and (min-width: ${breakpoint.tablet}) {
@@ -63,7 +66,9 @@ const Items = styled.div`
   margin-top: 0.5rem;
 `;
 
-const Item = styled.div`
+const Item = styled.div<{ opacity: number; scale: number }>`
+  cursor: pointer;
+  transform-origin: 0 center;
   display: flex;
   align-items: center;
   margin-bottom: 0.25rem;
@@ -72,9 +77,11 @@ const Item = styled.div`
     font-weight: 700;
     margin-right: 0.5rem;
   }
+  opacity: ${({ opacity }) => opacity};
+  ${({ scale }) => scale && `transform: scale(${scale})`};
 `;
 
-const Square = styled.div<{bg: string}>`
+const Square = styled.div<{ bg: string }>`
   width: 1rem;
   height: 1rem;
   margin-right: 0.5rem;
@@ -83,18 +90,28 @@ const Square = styled.div<{bg: string}>`
 
 const chartColors = d3.scaleOrdinal(d3.schemeCategory10);
 
-interface Props {
-  chartdata: object;
-  settings: object;
-}
+type Props = {
+  chartdata: ChartType[];
+  settings: SettingsInt;
+};
 const Legend: FC<Props> = ({ chartdata, settings }): JSX.Element => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const { isWidth: isTablet } = useIsWidth("tablet");
+  const {
+    state: { activeArcIndex },
+    dispatch,
+  } = useContext(StatsContext);
 
   const { type } = settings;
-  const key = type.toLowerCase();
-  const { cumulative } = settings[key];
+  const { cumulative } = settings[type];
+  const hovered = Boolean(activeArcIndex || activeArcIndex === 0);
 
+  const setActiveItem = (index: number | undefined): void => {
+    dispatch({
+      type: "activeArcIndex",
+      payload: index,
+    });
+  };
   return (
     <Container>
       <TitleContainer>
@@ -110,16 +127,24 @@ const Legend: FC<Props> = ({ chartdata, settings }): JSX.Element => {
 
       {(isTablet || open) && (
         <Items>
-          {chartdata.map((d, i: number) => (
-            <Item key={i}>
-              <Square bg={chartColors(i.toString())} />
-              {d.data && d.data.keyLabel ? 
-              (
+          {chartdata.map((d, index: number) => (
+            <Item
+              aria-label={d.data.keyLabel[0]}
+              key={index}
+              opacity={hovered && activeArcIndex !== index ? 0.5 : 1}
+              onMouseOver={() => setActiveItem(index)}
+              onMouseOut={() => setActiveItem(undefined)}
+              scale={activeArcIndex === index ? 1.25 : 1}
+            >
+              <Square bg={chartColors(index.toString())} />
+              {d.data && d.data.keyLabel ? (
                 <Fragment>
                   <strong>{d.data.keyLabel[0]}</strong>
                   {`${d.data.keyLabel[1]}`}
                 </Fragment>
-              ): "no label found"}
+              ) : (
+                "no label found"
+              )}
             </Item>
           ))}
         </Items>

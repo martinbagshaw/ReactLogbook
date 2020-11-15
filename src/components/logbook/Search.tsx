@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { DefaultSearch } from "../../utils/types";
+import { SearchType } from "../../utils/types";
 
 import useIsWidth from "../common/useIsWidth";
 import { searchResultText } from "../common/Typography";
@@ -128,7 +128,7 @@ const Date = styled.span`
   font-weight: 600;
 `;
 
-type Props = Partial<DefaultSearch> & {
+type Props = Partial<SearchType> & {
   handleSearch: (value: string) => void;
   handleSingleView: (index: string | null) => void;
 };

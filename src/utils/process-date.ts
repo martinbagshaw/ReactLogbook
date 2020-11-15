@@ -1,6 +1,6 @@
 
 
-import { MonthOptions, DateOptions } from "./types";
+import { MonthType, DateType } from "./types";
 import { months } from "./constants";
 
 type MonthYearInputOptions = "day" | "month" | "monthLong" | "year"
@@ -56,8 +56,8 @@ const processDaySuffix = (day: string): string => {
   return `${num}th`;
 };
 
-export const processDate = (date: string): DateOptions => {
-  const defaultRes: DateOptions = {
+export const processDate = (date: string): DateType => {
+  const defaultRes: DateType = {
     year: "unknown",
     month: "unknown",
     monthLong: "unknown",
@@ -71,14 +71,14 @@ export const processDate = (date: string): DateOptions => {
 
   // month and year only
   if (dateArr.length === 2) {
-    const [month, year] = <[m: MonthOptions, y: string]>dateArr;
+    const [month, year] = <[m: MonthType, y: string]>dateArr;
     const newRes = { ...defaultRes };
     return processMonthYear(month, year, newRes);
   }
 
   // day, month, and year
   if (dateArr.length === 3) {
-    const [day, month, year] = <[d: string, m: MonthOptions, y: string]>dateArr;
+    const [day, month, year] = <[d: string, m: MonthType, y: string]>dateArr;
     const newRes = { ...defaultRes };
     if (day && !day.includes("?") && day.length === 2) {
       newRes.day = day;

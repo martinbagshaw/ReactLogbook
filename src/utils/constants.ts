@@ -1,7 +1,7 @@
-import { DefaultSettings, MonthOptions, Grades } from "./types";
+import { GradeTypes, MonthType, SettingsInt } from "./types";
 import { colors } from "../components/common/styleVariables";
 
-const defaultSettings: DefaultSettings = {
+const defaultSettings: SettingsInt = {
   date: { cumulative: "Year" },
   discipline: { cumulative: "Trad" },
   grade: { cumulative: "Low" },
@@ -11,7 +11,7 @@ const defaultSettings: DefaultSettings = {
 };
 
 type IntOptions = "01" | "02" | "03" | "04" | "05" | "06" | "07" | "08" | "09" | "10" | "11" | "12";
-type MonthOptionsLong =
+type MonthTypeLong =
   | "January"
   | "February"
   | "March"
@@ -26,10 +26,10 @@ type MonthOptionsLong =
   | "December";
 
 interface Month {
-  text: MonthOptionsLong;
+  text: MonthTypeLong;
   int: IntOptions;
 }
-type Months = { [month in MonthOptions]: Month };
+type Months = { [month in MonthType]: Month };
 const months: Months = {
   Jan: { text: "January", int: "01" },
   Feb: { text: "February", int: "02" },
@@ -45,7 +45,7 @@ const months: Months = {
   Dec: { text: "December", int: "12" },
 };
 
-const grades: Grades = {
+const grades: GradeTypes = {
   Grade: {
     difficulty: "not set",
     band: `${colors.darkGrey}`,

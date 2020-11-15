@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { OutputObject } from "../../utils/types";
+import { LogType } from "../../utils/types";
 
 import useIsWidth from "../common/useIsWidth";
 import Chevron from "../common/icons/Chevron";
@@ -84,7 +84,7 @@ const Date = styled.span`
 `;
 
 interface Props {
-  logs: OutputObject[];
+  logs: LogType[];
   low: number;
   high: number;
   handleSingleView: (index: string | null) => void;

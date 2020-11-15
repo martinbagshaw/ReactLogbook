@@ -3,11 +3,13 @@ import * as d3 from "d3";
 import styled from "styled-components";
 import { ValueType } from "react-select";
 
-import { Category, DefaultSettings, Filter, OutputObject } from "../../utils/types";
+import { CategoryInt, FilterType, LogType, SettingsInt } from "../../utils/types";
 
 import { defaultSettings, months } from "../../utils/constants";
+
+import { StatsContextProvider } from "./StatsContext";
 import StatsHeader from "./StatsHeader";
-import PieChart from "./PieChart.jsx";
+import PieChart from "./PieChart";
 import Legend from "./Legend";
 import { breakpoint } from "../common/styleVariables";
 
@@ -16,13 +18,25 @@ const StatContainer = styled.div`
 `;
 
 const BodySection = styled.section`
-  padding-bottom: 250px;
   @media only screen and (min-width: ${breakpoint.tablet}) {
     display: flex;
     flex-direction: row-reverse;
     padding-bottom: 0;
   }
 `;
+
+// TODO:
+// Make this easier to reason about, bit by bit
+// - draw a diagram / note information flows
+// - can the original shape of the data be changed to help?
+// - cut down on legacy / old stuff
+
+// AFTER:
+// - add more 'type'/overall filters (partners, discipline, etc)
+// - make filter function more adaptable: handle different data types
+// Refactoring:
+// - make functions more modular
+// - look for patterns and reuse opportunities
 
 const handleCumulativeDate = (dateType, logs) => {
   const search = dateType.toLowerCase();
@@ -206,7 +220,7 @@ const handleFilteredDate = (filter, logs) => {
 
 // set pie chart data:
 // - filters the settingState to get chart data
-const getChartData = (settingState: DefaultSettings, logs: OutputObject[]) => {
+const getChartData = (settingState: SettingsInt, logs: LogType[]) => {
   const { type, date } = settingState;
   const hasFilter = Object.values(settingState).find(i => i.filter);
   if (type === "date" && !hasFilter) {
@@ -218,14 +232,14 @@ const getChartData = (settingState: DefaultSettings, logs: OutputObject[]) => {
 };
 
 type Props = {
-  handleSingleDay: (logs: OutputObject[], filter: Filter) => void;
-  logs: OutputObject[];
+  handleSingleDay: (logs: LogType[], filter: FilterType) => void;
+  logs: LogType[];
 };
 const Stats: FC<Props> = ({ handleSingleDay, logs }) => {
-  const [settings, setSettings] = useState(defaultSettings);
+  const [settings, setSettings] = useState<SettingsInt>(defaultSettings);
 
   // put this in StatsHeader perhaps:
-  const setDropdown = (type: keyof DefaultSettings, item: ValueType<Category>) => {
+  const setDropdown = (type: keyof SettingsInt, item: ValueType<CategoryInt>) => {
     const newSettings = { ...defaultSettings };
     const { value } = item;
     if (type !== "type") {
@@ -322,29 +336,30 @@ const Stats: FC<Props> = ({ handleSingleDay, logs }) => {
     }
   }, [hasFilter]);
 
-  // see if I need isVisible prop
   return (
-    <StatContainer isVisible={!hasFilter?.filter?.day}>
-      <StatsHeader logs={logs} setDropdown={setDropdown} type={type} />
-      <BodySection>
-        {chartdata && type === "date" ? (
-          <Fragment>
-            <PieChart
-              chartdata={chartdata}
-              width={500}
-              height={500}
-              innerRadius={120}
-              outerRadius={200}
-              type={type}
-              setFiltered={setFiltered}
-            />
-            <Legend chartdata={chartdata} settings={settings} />
-          </Fragment>
-        ) : (
-          <p>Only date has been implemented so far...</p>
-        )}
-      </BodySection>
-    </StatContainer>
+    <StatsContextProvider>
+      <StatContainer>
+        <StatsHeader logs={logs} setDropdown={setDropdown} type={type} />
+        <BodySection>
+          {chartdata && type === "date" ? (
+            <Fragment>
+              <PieChart
+                chartdata={chartdata}
+                width={500}
+                height={500}
+                innerRadius={120}
+                outerRadius={200}
+                type={type}
+                setFiltered={setFiltered}
+              />
+              <Legend chartdata={chartdata} settings={settings} />
+            </Fragment>
+          ) : (
+            <p>Only date has been implemented so far...</p>
+          )}
+        </BodySection>
+      </StatContainer>
+    </StatsContextProvider>
   );
 };
 

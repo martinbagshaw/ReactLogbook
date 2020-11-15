@@ -1,20 +1,10 @@
-import { OutputObject } from "./types";
+import { InputLogType, LogType } from "./types";
 
 import sourceData from "../data/mb-logbook.json";
 import { processDate } from "./process-date";
 
-interface InputObject {
-  "Climb name": string;
-  "Crag name": string;
-  "Date": string;
-  "Grade": string;
-  "Notes"?: string;
-  "Partner(s)"?: string;
-  "Style": string;
-}
-
-const formatData = (rawData: InputObject[]): OutputObject[] => {
-  const ret: OutputObject[] = [];
+const formatData = (rawData: InputLogType []): LogType[] => {
+  const ret: LogType[] = [];
   rawData.forEach((item, index: number) => {
     ret.push({
       climbName: item["Climb name"],

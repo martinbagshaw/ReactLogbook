@@ -1,7 +1,7 @@
 import React, { useEffect, useState, FC } from "react";
 import styled from "styled-components";
 
-import { Filter, OutputObject } from "../utils/types";
+import { FilterType, LogType } from "../utils/types";
 import { allLogs } from "../utils/processed-data";
 import Stats from "./stats/Stats";
 import Logbook from "./logbook/Logbook";
@@ -14,6 +14,7 @@ const Root = styled.div`
   font-family: ${fonts.main};
   font-size: ${fontSize.small};
   line-height: 1.4;
+  min-height: 100vh;
 `;
 
 const Header = styled.header`
@@ -61,26 +62,20 @@ const DailyMessage = styled.p`
 const ViewContainer = styled.div`
   max-width: 60rem;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding-top: 1rem;
+  box-sizing: border-box;
   overflow: hidden;
 `;
 
-const ViewPanel = styled.div<{ readonly isLogbook: boolean }>`
+const ViewPanel = styled.div<{ translatePercent: number }>`
   display: flex;
   width: 200%;
-  ${({ isLogbook }) =>
-    isLogbook
-      ? `
-    transform: translateX(-50%);
-    transition: transform ease-in-out 1s;
-  `
-      : `
-    transform: translateX(0%);
-    transition: transform ease-in-out 1s;
-  `}
+  height: 100%;
+  transition: transform ease-in-out 1s;
+  transform: translateX(${props => props.translatePercent}%);
 `;
 
-interface Views {
+type Views = {
   s: string;
   l: string;
 }
@@ -91,10 +86,10 @@ const views: Views = {
 
 const App: FC = (): JSX.Element => {
   const [activeView, setActiveView] = useState<string>(views.s);
-  const [logs, setLogs] = useState<OutputObject[]>(allLogs);
+  const [logs, setLogs] = useState<LogType[]>(allLogs);
   const [message, setMessage] = useState<string | null>(null);
 
-  const handleSingleDay = (logs: OutputObject[], filter: Filter): void => {
+  const handleSingleDay = (logs: LogType[], filter: FilterType): void => {
     const { day, month, year } = filter;
     setActiveView(views.l);
     setLogs(logs);
@@ -128,9 +123,9 @@ const App: FC = (): JSX.Element => {
       </Header>
 
       <ViewContainer>
-        <ViewPanel isLogbook={activeView === views.l}>
+        <ViewPanel translatePercent={activeView === views.l ? -50 : 0}>
           <Stats logs={logs} handleSingleDay={handleSingleDay} />
-          <Logbook logs={logs} />
+          <Logbook logs={logs} isActive={activeView === views.l}/>
         </ViewPanel>
       </ViewContainer>
     </Root>

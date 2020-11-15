@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { FC, useContext } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 
+import { ChartType } from "../../utils/types";
+
+import { StatsContext } from "./StatsContext";
+import PieArc from "./PieArc";
 import { breakpoint } from "../common/styleVariables";
 
 const ChartContainer = styled.div`
@@ -27,6 +31,7 @@ const SvgChart = styled.svg`
   }
 `;
 
+// need to lift this out / have in another svg for better reset
 const DismissObject = styled.foreignObject`
   cursor: pointer;
   width: 100%;
@@ -34,21 +39,7 @@ const DismissObject = styled.foreignObject`
   transform: translate(-200px, -200px);
 `;
 
-const ArcGroup = styled.g`
-  cursor: pointer;
-`;
-
-const Text = styled.text`
-  cursor: none;
-  user-select: none;
-  pointer-events: none;
-  font-size: 0.625rem;
-  fill: white;
-  text-anchor: middle;
-  /* alignment-baseline: middle; */
-`;
-
-const ForeignObject = styled.foreignObject`
+const HoverTooltip = styled.foreignObject`
   pointer-events: none;
   padding: 0 0.25rem 0.25rem 0;
   div {
@@ -65,40 +56,37 @@ const ForeignObject = styled.foreignObject`
   }
 `;
 
-const Tooltip = ({ transform, data }) => {
-  const { tooltipLabel } = data;
-  return (
-    <ForeignObject transform={transform} width={150} height={40}>
-      <div>
-        <p>{tooltipLabel}</p>
-      </div>
-    </ForeignObject>
-  );
+const colors = d3.scaleOrdinal(d3.schemeCategory10);
+const format = d3.format(".0f");
+
+type Props = {
+  chartdata: ChartType[];
 };
+const PieChart: FC<Props> = ({
+  chartdata,
+  innerRadius,
+  outerRadius,
+  setFiltered,
+  type,
+}): JSX.Element => {
+  const {
+    state: { activeArcIndex },
+    dispatch,
+  } = useContext(StatsContext);
 
-const Arc = ({ setTooltip, data, index, createArc, colors, format, onClick }) => (
-  <ArcGroup key={index} onClick={onClick}>
-    <path
-      d={createArc(data)}
-      fill={colors(index)}
-      onMouseOver={() => setTooltip(data)}
-      onMouseOut={() => setTooltip(false)}
-    />
-    <Text transform={`translate(${createArc.centroid(data)})`}>{format(data.value)}</Text>
-  </ArcGroup>
-);
+  const setTooltip = (index: number | undefined): void => {
+    dispatch({
+      type: "activeArcIndex",
+      payload: index,
+    });
+  };
 
-const PieChart = ({ chartdata, innerRadius, outerRadius, type, setFiltered }) => {
-  const [tooltip, setTooltip] = useState(false); // data for active tooltip
-
-  const colors = d3.scaleOrdinal(d3.schemeCategory10);
-  const format = d3.format(".0f");
   const createArc = d3
     .arc()
     .innerRadius(innerRadius)
     .outerRadius(outerRadius);
 
-  const getToolPos = (data, arcFunc, radius) => {
+  const getToolPos = (data: ChartType, arcFunc, radius) => {
     if (typeof data !== "object" || !arcFunc.centroid) {
       return "translate(0, 0)";
     }
@@ -109,24 +97,35 @@ const PieChart = ({ chartdata, innerRadius, outerRadius, type, setFiltered }) =>
     return "translate(0, 0)";
   };
 
+  const showTooltip = chartdata[activeArcIndex];
+
   return (
     <ChartContainer>
       <SvgChart viewBox="0 0 200 200">
         <DismissObject onClick={() => setFiltered(null)} />
         {chartdata.map((d, i) => (
-          <Arc
-            setTooltip={setTooltip}
-            key={i}
-            data={d}
-            index={i}
-            createArc={createArc}
+          <PieArc
+            activeArcIndex={activeArcIndex}
             colors={colors}
+            createArc={createArc}
+            data={d}
             format={format}
+            index={i}
+            key={i}
             onClick={() => setFiltered(type, d.data)}
+            setTooltip={setTooltip}
           />
         ))}
-        {tooltip && (
-          <Tooltip transform={getToolPos(tooltip, createArc, outerRadius)} {...tooltip} />
+        {showTooltip && (
+          <HoverTooltip
+            transform={getToolPos(showTooltip, createArc, outerRadius)}
+            width={150}
+            height={40}
+          >
+            <div>
+              <p>{showTooltip.data.tooltipLabel}</p>
+            </div>
+          </HoverTooltip>
         )}
       </SvgChart>
     </ChartContainer>

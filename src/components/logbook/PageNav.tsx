@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
 
-import { OutputObject } from "../../utils/types";
+import { LogType } from "../../utils/types";
 
 import useIsWidth from "../common/useIsWidth";
 import Chevron from "../common/icons/Chevron";
@@ -92,7 +92,7 @@ interface Buttons {
 }
 
 interface Props {
-  logs: OutputObject[];
+  logs: LogType[];
   low: number;
   high: number;
   handlePageChange: (direction: string) => void;
