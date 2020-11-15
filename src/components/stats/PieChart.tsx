@@ -19,6 +19,7 @@ const ChartContainer = styled.div`
     margin: 0;
     margin-left: auto;
     padding-right: 1rem;
+    width: 100%;
   }
 `;
 
@@ -39,9 +40,10 @@ const DismissObject = styled.foreignObject`
   transform: translate(-200px, -200px);
 `;
 
-const HoverTooltip = styled.foreignObject`
+const HoverTooltip = styled.foreignObject<{positioning: number[] | undefined}>`
   pointer-events: none;
-  padding: 0 0.25rem 0.25rem 0;
+  transform: scale(1.125)
+    ${({ positioning }) => positioning && `translate(${positioning[0]}px, ${positioning[1]}px)`};
   div {
     width: auto;
     z-index: 1;
@@ -86,18 +88,20 @@ const PieChart: FC<Props> = ({
     .innerRadius(innerRadius)
     .outerRadius(outerRadius);
 
-  const getToolPos = (data: ChartType, arcFunc, radius) => {
+  const getToolPos = (data: ChartType, arcFunc, radius): number[] | undefined => {
     if (typeof data !== "object" || !arcFunc.centroid) {
-      return "translate(0, 0)";
+      return;
     }
     const [a, b] = arcFunc.centroid(data);
     if (a && b) {
-      return `translate(${a - radius / 4}, ${b - radius / 4})`;
+      const x = a - radius / 4;
+      const y = b - radius / 4;
+      return [x, y];
     }
-    return "translate(0, 0)";
+    return;
   };
 
-  const showTooltip = chartdata[activeArcIndex];
+  const showTooltip = activeArcIndex && chartdata[activeArcIndex];
 
   return (
     <ChartContainer>
@@ -118,7 +122,7 @@ const PieChart: FC<Props> = ({
         ))}
         {showTooltip && (
           <HoverTooltip
-            transform={getToolPos(showTooltip, createArc, outerRadius)}
+            positioning={getToolPos(showTooltip, createArc, outerRadius)}
             width={150}
             height={40}
           >

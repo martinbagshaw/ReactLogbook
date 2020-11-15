@@ -14,7 +14,10 @@ const Root = styled.div`
   font-family: ${fonts.main};
   font-size: ${fontSize.small};
   line-height: 1.4;
-  min-height: 100vh;
+  height: calc(100vh - 84px);
+  @media only screen and (min-width: ${breakpoint.small}) {
+    height: calc(100vh - 114px);
+  }
 `;
 
 const Header = styled.header`
@@ -61,10 +64,7 @@ const DailyMessage = styled.p`
 
 const ViewContainer = styled.div`
   max-width: 60rem;
-  margin: 0 auto;
-  padding-top: 1rem;
-  box-sizing: border-box;
-  overflow: hidden;
+  margin: 1rem auto 0;
 `;
 
 const ViewPanel = styled.div<{ translatePercent: number }>`
@@ -78,14 +78,15 @@ const ViewPanel = styled.div<{ translatePercent: number }>`
 type Views = {
   s: string;
   l: string;
-}
+};
 const views: Views = {
   s: "Stats",
-  l: "Logbook"
+  l: "Logbook",
 };
 
 const App: FC = (): JSX.Element => {
   const [activeView, setActiveView] = useState<string>(views.s);
+  const [hideView, setHideView] = useState<string | null>(views.l);
   const [logs, setLogs] = useState<LogType[]>(allLogs);
   const [message, setMessage] = useState<string | null>(null);
 
@@ -106,6 +107,14 @@ const App: FC = (): JSX.Element => {
     }
   }, [message, activeView]);
 
+  // hide panels when the transition ends
+  useEffect(() => {
+    setTimeout(() => {
+      const { l, s } = views;
+      setHideView(activeView === s ? l : s);
+    }, 1000);
+  }, [activeView]);
+
   return (
     <Root>
       {message && <DailyMessage>{message}</DailyMessage>}
@@ -113,7 +122,10 @@ const App: FC = (): JSX.Element => {
         {Object.values(views).map(view => (
           <ViewButton
             key={view}
-            onClick={() => setActiveView(view)}
+            onClick={() => {
+              setActiveView(view);
+              setHideView(null);
+            }}
             isActive={activeView === view}
             aria-label={`${view} View`}
           >
@@ -121,11 +133,10 @@ const App: FC = (): JSX.Element => {
           </ViewButton>
         ))}
       </Header>
-
       <ViewContainer>
         <ViewPanel translatePercent={activeView === views.l ? -50 : 0}>
-          <Stats logs={logs} handleSingleDay={handleSingleDay} />
-          <Logbook logs={logs} isActive={activeView === views.l}/>
+          <Stats logs={logs} handleSingleDay={handleSingleDay} isHidden={hideView === views.s} />
+          <Logbook logs={logs} isHidden={hideView === views.l} />
         </ViewPanel>
       </ViewContainer>
     </Root>

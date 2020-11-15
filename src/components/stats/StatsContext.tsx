@@ -1,24 +1,23 @@
-import React, { FC, createContext, useReducer } from "react";
-
+import React, { Dispatch, Reducer, FC, createContext, useReducer } from "react";
 interface ContextProps {
-  state: any;
-  dispatch: ({ type }: { type: string }) => void;
+  state: StateType;
+  dispatch: Dispatch<ActionType>;
 }
-let StatsContext = createContext<{}>({} as ContextProps);
+export const StatsContext = createContext({} as ContextProps);
 
-type InitialStateType = {
-  activeArcIndex: undefined | number;
+type StateType = {
+  activeArcIndex: number | undefined;
 };
-let initialState: InitialStateType = {
-  activeArcIndex: undefined,
-};
-
 type ActionType = {
   payload: undefined | number;
   type: string;
 };
 
-let reducer = (state: InitialStateType, action: ActionType) => {
+const initialState: StateType = {
+  activeArcIndex: undefined,
+};
+
+const reducer: Reducer<StateType, ActionType> = (state, action) => {
   switch (action.type) {
     case "activeArcIndex":
       return { ...state, activeArcIndex: action.payload };
@@ -29,14 +28,10 @@ let reducer = (state: InitialStateType, action: ActionType) => {
 };
 
 type Props = {
-  init?: InitialStateType;
+  init?: StateType;
 };
-const StatsContextProvider: FC<Props> = ({ init = initialState, children }) => {
+export const StatsContextProvider: FC<Props> = ({ init = initialState, children }) => {
   const [state, dispatch] = useReducer(reducer, init);
   const value = { state, dispatch };
   return <StatsContext.Provider value={value}>{children}</StatsContext.Provider>;
 };
-
-const StatsContextConsumer = StatsContext.Consumer;
-
-export { StatsContext, StatsContextProvider, StatsContextConsumer };
