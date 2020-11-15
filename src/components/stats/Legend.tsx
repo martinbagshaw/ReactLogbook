@@ -129,7 +129,7 @@ const Legend: FC<Props> = ({ chartdata, settings }): JSX.Element => {
         <Items>
           {chartdata.map((d, index: number) => (
             <Item
-              aria-label={d.data.keyLabel[0]}
+              aria-labelledby="key item"
               key={index}
               opacity={hovered && activeArcIndex !== index ? 0.5 : 1}
               onMouseOver={() => setActiveItem(index)}

@@ -13,8 +13,9 @@ import PieChart from "./PieChart";
 import Legend from "./Legend";
 import { breakpoint } from "../common/styleVariables";
 
-const StatContainer = styled.div`
+const StatContainer = styled.div<{isHidden: boolean}>`
   width: 50%;
+  ${({ isHidden }) => isHidden && `height: 0; opacity: 0`};
 `;
 
 const BodySection = styled.section`
@@ -29,6 +30,7 @@ const BodySection = styled.section`
 // Make this easier to reason about, bit by bit
 // - draw a diagram / note information flows
 // - can the original shape of the data be changed to help?
+// ^ less data = less processing
 // - cut down on legacy / old stuff
 
 // AFTER:
@@ -233,9 +235,10 @@ const getChartData = (settingState: SettingsInt, logs: LogType[]) => {
 
 type Props = {
   handleSingleDay: (logs: LogType[], filter: FilterType) => void;
+  isHidden: boolean;
   logs: LogType[];
 };
-const Stats: FC<Props> = ({ handleSingleDay, logs }) => {
+const Stats: FC<Props> = ({ handleSingleDay, isHidden, logs }) => {
   const [settings, setSettings] = useState<SettingsInt>(defaultSettings);
 
   // put this in StatsHeader perhaps:
@@ -338,7 +341,7 @@ const Stats: FC<Props> = ({ handleSingleDay, logs }) => {
 
   return (
     <StatsContextProvider>
-      <StatContainer>
+      <StatContainer isHidden={isHidden}>
         <StatsHeader logs={logs} setDropdown={setDropdown} type={type} />
         <BodySection>
           {chartdata && type === "date" ? (
