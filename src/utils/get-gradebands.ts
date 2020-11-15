@@ -1,11 +1,11 @@
-import { Grade, Grades } from './types';
+import { GradeType, GradeTypes } from './types';
 import { grades } from './constants'
 
 interface GradeOutput {
-  [key: string]: Grade;
+  [key: string]: GradeType;
 }
 
-const getGrades = (obj: Grades): GradeOutput => {
+const getGrades = (obj: GradeTypes): GradeOutput => {
   const newObj: GradeOutput = {};
   Object.entries(obj).forEach(([key, value]) => {
     const subkeys = key.split(/,\s?/);

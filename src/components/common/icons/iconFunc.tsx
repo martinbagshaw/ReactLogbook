@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IconOptions } from "../../../utils/types";
+import { LogbookIconsType } from "../../../utils/types";
 
 import Chevron from "./Chevron";
 import Comment from "./Comment";
@@ -11,10 +11,10 @@ import Partner from "./Partner";
 import Style from "./Style";
 
 type Icons = {
-  [key in IconOptions]: JSX.Element;
+  [key in LogbookIconsType]: JSX.Element;
 }
 
-const iconFunc = (item: IconOptions, props?: object): JSX.Element => {
+const iconFunc = (item: LogbookIconsType, props?: object): JSX.Element => {
   const icons: Icons = {
     chevron: <Chevron {...props} />,
     comment: <Comment {...props} />,

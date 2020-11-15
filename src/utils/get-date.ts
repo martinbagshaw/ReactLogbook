@@ -1,6 +1,6 @@
-import { DateOptions } from "./types";
+import { DateType } from "./types";
 
-const getDate = (dateData: DateOptions, desktop: boolean): string => {
+const getDate = (dateData: DateType, desktop: boolean): string => {
   const { day, dayLong, monthInt, monthLong, year, yearInt } = dateData;
   if (desktop) {
     return `${dayLong} ${monthLong} ${year}`;

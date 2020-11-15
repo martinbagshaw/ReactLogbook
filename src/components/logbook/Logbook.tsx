@@ -1,7 +1,7 @@
 import React, { useState, Fragment, FC } from "react";
 import styled from "styled-components";
 
-import { OutputObject, DefaultSearch } from "../../utils/types";
+import { LogType, SearchType } from "../../utils/types";
 
 import Search from "./Search";
 import SearchReset from "./SearchReset";
@@ -9,26 +9,28 @@ import PageNav from "./PageNav";
 import Results from "./Results";
 import SingleLog from "../singleLog/SingleLog";
 
-const LogContainer = styled.div`
+const LogContainer = styled.div<{isActive: boolean}>`
   width: 50%;
+  ${({ isActive }) => !isActive && `height: 0`};
 `;
 
-const defaultSearch: DefaultSearch = {
+const defaultSearch: SearchType = {
   placeholder: "Search by Climb or Crag name...",
   searchTerm: "",
   results: undefined,
 };
 
-interface Props {
-  logs: OutputObject[];
+type Props = {
+  isActive: boolean;
+  logs: LogType[];
 }
-const Logbook: FC<Props> = ({ logs }) => {
-  const [search, setSearch] = useState<DefaultSearch | undefined>(defaultSearch);
+const Logbook: FC<Props> = ({ isActive, logs }): JSX.Element => {
+  const [search, setSearch] = useState<SearchType | undefined>(defaultSearch);
   const [page, setPage] = useState<{ low: number; high: number }>({ low: 0, high: 50 });
-  const [singleLog, setSingleLog] = useState<OutputObject | undefined>(undefined);
+  const [singleLog, setSingleLog] = useState<LogType | undefined>(undefined);
 
-  const handleSearch = (value: string): DefaultSearch | void => {
-    const findResults = (value: string, logs: OutputObject[]): OutputObject[] | void => {
+  const handleSearch = (value: string): SearchType | void => {
+    const findResults = (value: string, logs: LogType[]): LogType[] | void => {
       if (value.length < 3) return;
       return logs.filter(log => {
         const regex = new RegExp(value, "gi");
@@ -51,13 +53,13 @@ const Logbook: FC<Props> = ({ logs }) => {
     }
   };
 
-  // TODO: stricter checking here. Should be ascent-<number>, see OutputObject
+  // TODO: stricter checking here. Should be ascent-<number>, see LogType
   const handleSingleView = (index: string | null): void => {
     return setSingleLog(logs.find(i => i.key === index));
   };
 
   return (
-    <LogContainer>
+    <LogContainer isActive={isActive}>
       <div>
         {!singleLog && (
           <Fragment>

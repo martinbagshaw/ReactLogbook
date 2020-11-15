@@ -5,10 +5,10 @@ import { breakpoint } from "./styleVariables";
 
 import { Breakpoints } from "../../utils/types";
 
-interface OutputWidth {
+type WidthType = {
   isWidth: boolean
 }
-const useIsWidth = (width: Breakpoints): OutputWidth => {
+const useIsWidth = (width: Breakpoints): WidthType => {
   const check = matchMedia(`(min-width: ${breakpoint[width]})`);
   const [state, setState] = useState<MediaQueryList | boolean>(check);
 

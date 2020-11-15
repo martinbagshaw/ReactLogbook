@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import Select, { StylesConfig, ValueType } from "react-select";
 
-import { Category, DefaultSettings, OutputObject } from "../../utils/types";
+import { CategoryInt, SettingsInt, SettingsType, LogType } from "../../utils/types";
 import { breakpoint, colors } from "../common/styleVariables";
 
 const Header = styled.header`
@@ -30,19 +30,18 @@ const CategoriesControl = styled.div`
   border-left: 1px solid ${colors.black};
   padding-left: 1rem;
   margin-left: 1rem;
-  label {
-    margin-right: 1rem;
-  }
-`;
-
-const FilterLabel = styled.label`
-  margin-right: 2rem;
-  strong {
-    font-weight: 700;
-  }
   font-size: 1rem;
   @media only screen and (min-width: ${breakpoint.Xsmall}) {
     font-size: 1.25rem;
+  }
+`;
+
+const Label = styled.label`
+  font-size: 1rem;
+  margin-right: 0.75rem;
+  @media only screen and (min-width: ${breakpoint.Xsmall}) {
+    font-size: 1.25rem;
+    margin-right: 1rem;
   }
 `;
 
@@ -51,6 +50,10 @@ const FilterControl = styled.div`
   align-items: center;
   width: 100%;
   margin: 1rem 0;
+  font-size: 1rem;
+  @media only screen and (min-width: ${breakpoint.Xsmall}) {
+    font-size: 1.25rem;
+  }
 `;
 
 const Controls = styled.div`
@@ -59,12 +62,12 @@ const Controls = styled.div`
 
 const customStyles: StylesConfig = {
   control: (provided, state) => {
-    const { isFocused } = state;
+    const { isFocused, selectProps: { width } } = state;
     const color = colors[isFocused ? "red" : "midGrey"];
     const backgroundColor = colors[isFocused ? "lightRed" : "white"];
     return {
       ...provided,
-      width: 140,
+      width: width || 140,
       backgroundColor,
       borderColor: color,
       boxShadow: `0 0 1px ${color}`,
@@ -73,7 +76,7 @@ const customStyles: StylesConfig = {
     };
   },
   indicatorSeparator: () => ({
-    borderColor: colors.midGrey
+    borderColor: colors.midGrey,
   }),
   option: (provided, state) => ({
     ...provided,
@@ -97,14 +100,14 @@ const categories = [
 ];
 
 const dates = [
-  { value: "year", label: "Year" },
-  { value: "month", label: "Month" },
+  { value: "year", label: "All Years" },
+  { value: "month", label: "Combined Months" },
 ];
 
 type Props = {
-  logs: OutputObject[];
-  type: keyof DefaultSettings;
-  setDropdown: (type: keyof DefaultSettings, item: ValueType<Category>) => void;
+  logs: LogType[];
+  type: SettingsType;
+  setDropdown: (type: keyof SettingsInt, item: ValueType<CategoryInt>) => void;
 };
 const StatsHeader: FC<Props> = ({ logs, setDropdown, type }): JSX.Element => (
   <Header>
@@ -113,7 +116,7 @@ const StatsHeader: FC<Props> = ({ logs, setDropdown, type }): JSX.Element => (
         Total Logs: <strong>{logs.length}</strong>
       </H1>
       <CategoriesControl>
-        <label htmlFor="categories-control">Stats by:</label>
+        <Label htmlFor="categories-control">Stats by:</Label>
         <Select
           aria-label="Select by Category"
           defaultValue={categories[0]}
@@ -125,14 +128,11 @@ const StatsHeader: FC<Props> = ({ logs, setDropdown, type }): JSX.Element => (
           placeholder="Select by Category"
           styles={customStyles}
           value={categories.find(i => i.value === type)}
-          width="200px"
         />
       </CategoriesControl>
     </Categories>
     <FilterControl>
-      <FilterLabel htmlFor={`${type}-control`}>
-        Filter <strong>{type}</strong>
-      </FilterLabel>
+      <Label htmlFor={`${type}-control`}>Filtering by:</Label>
       <Controls>
         <Select
           aria-label={`Select by ${type}`}
@@ -145,7 +145,7 @@ const StatsHeader: FC<Props> = ({ logs, setDropdown, type }): JSX.Element => (
           placeholder={`Select by ${type}`}
           styles={customStyles}
           value={dates.find(i => i.value === type)}
-          width="200px"
+          width={220}
         />
       </Controls>
     </FilterControl>

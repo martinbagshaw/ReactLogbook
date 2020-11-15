@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { OutputObject, LogOptions } from "../../utils/types";
+import { LogType, LogbookType } from "../../utils/types";
 
 import { colors, breakpoint } from "../common/styleVariables";
 import { buttonBase } from "../common/Buttons";
@@ -136,7 +136,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const getText = (item: keyof OutputObject, props: Props) => {
+const getText = (item: keyof LogType, props: Props) => {
   if (item === "date") {
     const {
       processed: { dayLong, monthLong, year },
@@ -150,13 +150,13 @@ const getText = (item: keyof OutputObject, props: Props) => {
   }
 };
 
-interface Props extends OutputObject {
+interface Props extends LogType {
   handleSingleView: (index: string | null) => void;
 }
 const SingleLog: FC<Props> = props => {
   const { climbName, handleSingleView, notes } = props;
 
-  const logDetails: Array<LogOptions> = ["grade", "cragName", "style", "date", "partners"];
+  const logDetails: Array<LogbookType> = ["grade", "cragName", "style", "date", "partners"];
 
   return (
     <Container>
