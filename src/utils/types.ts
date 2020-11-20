@@ -40,6 +40,34 @@ export type DateType = {
   dayLong?: string;
 };
 
+type DisciplineValues =
+  | "alpine"
+  | "dws"
+  | "ice"
+  | "mixed"
+  | "none"
+  | "sport"
+  | "summit"
+  | "trad"
+  | "unknown"
+  | "winter";
+type DisciplineLabels =
+  | "Alpine"
+  | "Deep Water Solo"
+  | "Ice"
+  | "Mixed / dry tool"
+  | "None found"
+  | "Sport"
+  | "Summit walk"
+  | "Trad"
+  | "Unable to determine"
+  | "Winter climb";
+
+export type DisciplineType = {
+  value: DisciplineValues;
+  label: DisciplineLabels;
+};
+
 type DefaultDates = "Year" | "Month";
 type DefaultDisciplines = "Bouldering" | "Ice" | "Mixed" | "Sport" | "Trad";
 type DefaultGrades = "Low" | "High"; // order low to high
@@ -71,6 +99,7 @@ export type LogType = {
   climbName: string;
   cragName: string;
   date: LogDateType;
+  discipline: DisciplineType;
   grade: string;
   key: string;
   notes?: string;
