@@ -40,7 +40,7 @@ const DismissObject = styled.foreignObject`
   transform: translate(-200px, -200px);
 `;
 
-const HoverTooltip = styled.foreignObject<{positioning: number[] | undefined}>`
+const HoverTooltip = styled.foreignObject<{ positioning: number[] | undefined }>`
   pointer-events: none;
   transform: scale(1.125)
     ${({ positioning }) => positioning && `translate(${positioning[0]}px, ${positioning[1]}px)`};
@@ -88,7 +88,7 @@ const PieChart: FC<Props> = ({
     .innerRadius(innerRadius)
     .outerRadius(outerRadius);
 
-  const getToolPos = (data: ChartType, arcFunc, radius): number[] | undefined => {
+  const getToolPos = (data: ChartType | number | false, arcFunc, radius): number[] | undefined => {
     if (typeof data !== "object" || !arcFunc.centroid) {
       return;
     }
@@ -100,9 +100,10 @@ const PieChart: FC<Props> = ({
     }
     return;
   };
-
-  const showTooltip = activeArcIndex && chartdata[activeArcIndex];
-
+  
+  const hovered = Boolean(activeArcIndex || activeArcIndex === 0);
+  const tooltip = (activeArcIndex || activeArcIndex === 0) && chartdata[activeArcIndex];
+  
   return (
     <ChartContainer>
       <SvgChart viewBox="0 0 200 200">
@@ -120,14 +121,14 @@ const PieChart: FC<Props> = ({
             setTooltip={setTooltip}
           />
         ))}
-        {showTooltip && (
+        {hovered && tooltip && (
           <HoverTooltip
-            positioning={getToolPos(showTooltip, createArc, outerRadius)}
+            positioning={getToolPos(tooltip, createArc, outerRadius)}
             width={150}
             height={40}
           >
             <div>
-              <p>{showTooltip.data.tooltipLabel}</p>
+              <p>{tooltip.data.tooltipLabel}</p>
             </div>
           </HoverTooltip>
         )}

@@ -2,8 +2,9 @@ import { InputLogType, LogType } from "./types";
 
 import sourceData from "../data/mb-logbook.json";
 import { processDate } from "./process-date";
+import { getDiscipline } from "./get-discipline";
 
-const formatData = (rawData: InputLogType []): LogType[] => {
+const formatData = (rawData: InputLogType[]): LogType[] => {
   const ret: LogType[] = [];
   rawData.forEach((item, index: number) => {
     ret.push({
@@ -13,6 +14,7 @@ const formatData = (rawData: InputLogType []): LogType[] => {
         original: item.Date,
         processed: processDate(item.Date),
       },
+      discipline: getDiscipline(item.Grade, item.Style),
       grade: `${item.Grade}`.replace(/\*+$/, "").trim(),
       notes: item.Notes,
       partners: item["Partner(s)"] || "climbed alone / no partner listed",
@@ -23,5 +25,5 @@ const formatData = (rawData: InputLogType []): LogType[] => {
   return ret;
 };
 
-const allLogs = formatData(sourceData)
+const allLogs = formatData(sourceData);
 export { allLogs };
