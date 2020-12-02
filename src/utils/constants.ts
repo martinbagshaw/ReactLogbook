@@ -26,23 +26,24 @@ type MonthTypeLong =
   | "December";
 
 interface Month {
-  text: MonthTypeLong;
-  int: IntOptions;
+  label: MonthTypeLong;
+  int: IntOptions; // remove when done
+  value: number;
 }
 type Months = { [month in MonthType]: Month };
 const months: Months = {
-  Jan: { text: "January", int: "01" },
-  Feb: { text: "February", int: "02" },
-  Mar: { text: "March", int: "03" },
-  Apr: { text: "April", int: "04" },
-  May: { text: "May", int: "05" },
-  Jun: { text: "June", int: "06" },
-  Jul: { text: "July", int: "07" },
-  Aug: { text: "August", int: "08" },
-  Sep: { text: "September", int: "09" },
-  Oct: { text: "October", int: "10" },
-  Nov: { text: "November", int: "11" },
-  Dec: { text: "December", int: "12" },
+  Jan: { label: "January", int: "01", value: 1 },// integer, label, value
+  Feb: { label: "February", int: "02", value: 2 },
+  Mar: { label: "March", int: "03", value: 3 },
+  Apr: { label: "April", int: "04", value: 4 },
+  May: { label: "May", int: "05", value: 5 },
+  Jun: { label: "June", int: "06", value: 6 },
+  Jul: { label: "July", int: "07", value: 7 },
+  Aug: { label: "August", int: "08", value: 8 },
+  Sep: { label: "September", int: "09", value: 9 },
+  Oct: { label: "October", int: "10", value: 10 },
+  Nov: { label: "November", int: "11", value: 11 },
+  Dec: { label: "December", int: "12", value: 12 },
 };
 
 const grades: GradeTypes = {

@@ -42,6 +42,7 @@ export type DateType = {
 
 type DisciplineValues =
   | "alpine"
+  | "boulder"
   | "dws"
   | "ice"
   | "mixed"
@@ -53,6 +54,7 @@ type DisciplineValues =
   | "winter";
 type DisciplineLabels =
   | "Alpine"
+  | "Boulder Problem"
   | "Deep Water Solo"
   | "Ice"
   | "Mixed / dry tool"
@@ -90,15 +92,10 @@ export type InputLogType = {
   Style: string;
 };
 
-type LogDateType = {
-  original: string;
-  processed: DateType;
-};
-
 export type LogType = {
   climbName: string;
   cragName: string;
-  date: LogDateType;
+  date: DateType;
   discipline: DisciplineType;
   grade: string;
   key: string;

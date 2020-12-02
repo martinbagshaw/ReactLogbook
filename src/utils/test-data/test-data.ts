@@ -219,3 +219,56 @@ export const panthersWall = {
   Date: "24/Apr/16",
   "Crag name": "Harrison's Rocks",
 };
+
+export const fontanel = {
+  "Climb name": "Fontanel",
+  Grade: "f7A  *",
+  Style: "Sent x",
+  "Partner(s)": "Michael Porter",
+  Notes: "Still got it after Decembers damage!",
+  Date: "29/Dec/19",
+  "Crag name": "Cheyne Weares Area",
+};
+
+export const realFreaks = {
+  "Climb name": "Real Freaks",
+  Grade: "f4+  *",
+  Style: "Sent O/S",
+  Date: "29/Dec/19",
+  "Crag name": "Southwell Landslips",
+};
+
+export const thePocketTraverse = {
+  "Climb name": "The Pocket Traverse",
+  Grade: "f6A  *",
+  Style: "Sent O/S",
+  Date: "???/2013",
+  "Crag name": "The Cuttings Boulderfield",
+};
+
+export const theMallard = {
+  "Climb name": "The Mallard",
+  Grade: "5c  *",
+  Style: "Lead",
+  "Partner(s)": "Danny Crump",
+  Date: "???/2012",
+  "Crag name": "Australia",
+};
+
+export const mackerel = {
+  "Climb name": "Mackerel",
+  Grade: "5a  **",
+  Style: "TR O/S",
+  "Partner(s)": "Jake Rawlings",
+  Date: "??/Aug/11",
+  "Crag name": "Winspit",
+};
+
+export const paranoid = {
+  "Climb name": "Paranoid",
+  Grade: "E2 5c ",
+  Style: "Lead O/S",
+  "Partner(s)": "Wil Treasure",
+  Date: "02/Aug/20",
+  "Crag name": "Uig Sea Cliffs North, Aird Uig",
+};

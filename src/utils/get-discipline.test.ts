@@ -8,6 +8,7 @@ import {
   chulilla,
   contamineRoute,
   crabParty,
+  fontanel,
   guillotine,
   hadriansWallDirect,
   italianRightHand,
@@ -17,8 +18,10 @@ import {
   onTheRoad,
   panthersWall,
   portfolio,
+  realFreaks,
   temporaryLifestyle,
   theOverhang,
+  theTube,
 } from "./test-data/test-data";
 
 afterEach(cleanup);
@@ -36,12 +39,12 @@ describe("getDiscipline tests", () => {
   });
 
   describe("Alpine Climbs", () => {
-    it("Le Marchand de Sable - Alpine Climb", () => {
+    it("Le Marchand de Sable = Alpine Climb", () => {
       const { Grade, Style } = leMarchandDeSable;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "alpine", label: "Alpine" });
     });
-    it("Contamine Route - Alpine Climb", () => {
+    it("Contamine Route = Alpine Climb", () => {
       const { Grade, Style } = contamineRoute;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "alpine", label: "Alpine" });
@@ -61,19 +64,18 @@ describe("getDiscipline tests", () => {
     });
   });
 
-  // remove? - covers a lot
-  // describe("Solos", () => {
-  //   it("The Overhang = Solo", () => {
-  //     const { Grade, Style } = theOverhang;
-  //     const res = getDiscipline(Grade, Style);
-  //     expect(res).toEqual({ value: "solo", label: "Solo" });
-  //   });
-  //   it("Portfolio = Solo", () => {
-  //     const { Grade, Style } = portfolio;
-  //     const res = getDiscipline(Grade, Style);
-  //     expect(res).toEqual({ value: "solo", label: "Solo" });
-  //   });
-  // });
+  describe("Boulder problems", () => {
+    it("Fontanel = Boulder", () => {
+      const { Grade, Style } = fontanel;
+      const res = getDiscipline(Grade, Style);
+      expect(res).toEqual({ value: "boulder", label: "Boulder Problem" });
+    });
+    it("Real Freaks = Boulder", () => {
+      const { Grade, Style } = realFreaks;
+      const res = getDiscipline(Grade, Style);
+      expect(res).toEqual({ value: "boulder", label: "Boulder Problem" });
+    });
+  });
 
   describe("Ice Climbs", () => {
     it("Moby Dick = Ice Climb", () => {
@@ -92,17 +94,17 @@ describe("getDiscipline tests", () => {
   });
 
   describe("Sport climbs", () => {
-    it("On The Road - sport", () => {
+    it("On The Road = sport", () => {
       const { Grade, Style } = onTheRoad;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "sport", label: "Sport" });
     });
-    it("Chulilla - sport", () => {
+    it("Chulilla = sport", () => {
       const { Grade, Style } = chulilla;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "sport", label: "Sport" });
     });
-    it("Manilow Magic - deep water solo that has a sport grade", () => {
+    it("Manilow Magic = deep water solo that has a sport grade", () => {
       const { Grade, Style } = manilowMagic;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "dws", label: "Deep Water Solo" });
@@ -110,32 +112,32 @@ describe("getDiscipline tests", () => {
   });
 
   describe("Trad climbs", () => {
-    it("Guillotine - trad", () => {
+    it("Guillotine = trad", () => {
       const { Grade, Style } = guillotine;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "trad", label: "Trad" });
     });
-    it("Portfolio - trad", () => {
+    it("Portfolio = trad", () => {
       const { Grade, Style } = portfolio;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "trad", label: "Trad" });
     });
-    it("The Overhang - trad", () => {
+    it("The Overhang = trad", () => {
       const { Grade, Style } = theOverhang;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "trad", label: "Trad" });
     });
-    it("Crab Party - deep water solo that is a trad climb", () => {
+    it("Crab Party = deep water solo that is a trad climb", () => {
       const { Grade, Style } = crabParty;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "dws", label: "Deep Water Solo" });
     });
-    it("Carrera - trad top rope climb", () => {
+    it("Carrera = trad top rope climb", () => {
       const { Grade, Style } = carrera;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "trad", label: "Trad" });
     });
-    it("Panther's Wall - trad top rope climb", () => {
+    it("Panther's Wall = trad top rope climb", () => {
       const { Grade, Style } = panthersWall;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "trad", label: "Trad" });
@@ -143,7 +145,7 @@ describe("getDiscipline tests", () => {
   });
 
   describe("Summit walks", () => {
-    it("Ben Macdui - summit walk", () => {
+    it("Ben Macdui = summit walk", () => {
       const { Grade, Style } = benMacdui;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "summit", label: "Summit walk" });
@@ -156,10 +158,18 @@ describe("getDiscipline tests", () => {
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "winter", label: "Winter climb" });
     });
-    it("Hadrian's Wall Direct - winter climb", () => {
+    it("Hadrian's Wall Direct = winter climb", () => {
       const { Grade, Style } = hadriansWallDirect;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "winter", label: "Winter climb" });
+    });
+  });
+
+  describe("Unable to determine climbs", () => {
+    it("The Tube = American grade, not enough info to determine", () => {
+      const { Grade, Style } = theTube;
+      const res = getDiscipline(Grade, Style);
+      expect(res).toEqual({ value: "unknown", label: "Unable to determine" });
     });
   });
 });

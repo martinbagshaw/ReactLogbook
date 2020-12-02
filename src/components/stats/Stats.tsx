@@ -33,12 +33,45 @@ const BodySection = styled.section`
 // ^ less data = less processing
 // - cut down on legacy / old stuff
 
+// STRATEGY
+// - adding type annotations to below functions could help, but don't get too into it
+// - the below functions basically take logs, then format for the chart and tooltips
+// - think ahead - how will this work with discipline, partners etc?
+// - getChartData takes setting state and logs
+// - pie chart is determined outside of this. Do a function that sets the chart type
+// - draw diagram / chart, come up with 3-4 scenarios (plot out discipline, styles, partners)
+// ^ what gets filtered with what?
+
+// 1. draft flows and filters
+// - Date is fine, just filtering date
+// - Discipline requires an algorithm to convert grade + style to discipline (do this higher up)
+//   - 6a+ 5a and TR/OS = sandstone
+//   - default: Show discipline breakdown in pie
+//   - add years and months filtering option
+// - 
+
+
+// 2. separate out functions, write tests for them
+
+
+
+// - Legend and PieChart require this processed data
+// ^ look to separate the two, if it makes sense
+//   - key doesn't need to know all of the arc points. Just keyLabel, and a range
+//   - pie needs to know hover tooltips (keyLabel)
+
+
+
 // AFTER:
 // - add more 'type'/overall filters (partners, discipline, etc)
 // - make filter function more adaptable: handle different data types
+
 // Refactoring:
 // - make functions more modular
 // - look for patterns and reuse opportunities
+
+// BUG:
+// - clicking from chart to log view (disappearing stuff)
 
 const handleCumulativeDate = (dateType, logs) => {
   const search = dateType.toLowerCase();
@@ -46,7 +79,7 @@ const handleCumulativeDate = (dateType, logs) => {
   const createData = (monthOrYear, logs) => {
     const newLogs = [...logs];
     const res = newLogs.reduce((r, { date }) => {
-      let label = date.processed[monthOrYear];
+      let label = date[monthOrYear];
       if (monthOrYear === "month") {
         label = (months[label] && months[label].text) || "unknown";
       }
@@ -109,15 +142,15 @@ const handleFilteredDate = (filter, logs) => {
       // year and cumulative month
       return newLogs.filter(i => {
         if (month) {
-          return i.date.processed["month"] === month;
+          return i.date["month"] === month;
         }
-        return i.date.processed["year"] === year;
+        return i.date["year"] === year;
       });
     }
     if ([2, 3].includes(filterLength)) {
       // month and day
       return newLogs.reduce((acc, i) => {
-        const { day, month, year } = i.date.processed;
+        const { day, month, year } = i.date;
         const isMonth = month === filter["month"] && year === filter["year"];
         const isDay = isMonth && day === filter["day"];
         if ((filterLength === 2 && isMonth) || (filterLength === 3 && isDay)) {
@@ -137,7 +170,7 @@ const handleFilteredDate = (filter, logs) => {
     // cumulative month, single year
     if (filterLength === 1) {
       result = newLogs.reduce((acc, { date }) => {
-        const { dayLong, day, month, monthLong, year } = date.processed;
+        const { dayLong, day, month, monthLong, year } = date;
         let label = `${monthLong} ${year}`;
         if (isCumulativeMonth) {
           label = `${dayLong} ${monthLong}`;
@@ -157,7 +190,7 @@ const handleFilteredDate = (filter, logs) => {
     // single month and single day
     if ([2, 3].includes(filterLength)) {
       result = newLogs.reduce((acc, { date }) => {
-        const { day, dayLong, month, monthLong, year } = date.processed;
+        const { day, dayLong, month, monthLong, year } = date;
         const label = `${dayLong} ${monthLong} ${year}`;
         if (!acc[label]) {
           acc[label] = { day, dayLong, month, monthLong, year, label, value: 1 };
@@ -228,6 +261,9 @@ const getChartData = (settingState: SettingsInt, logs: LogType[]) => {
   if (type === "date" && !hasFilter) {
     return handleCumulativeDate(date.cumulative, logs);
   }
+  // if (type === "date" && hasFilter.filter.day) {
+  //   return console.log('single day, no chart things');
+  // }
   if (type === "date" && hasFilter) {
     return handleFilteredDate(hasFilter.filter, logs);
   }
@@ -253,8 +289,8 @@ const Stats: FC<Props> = ({ handleSingleDay, isHidden, logs }) => {
     setSettings(newSettings);
   };
 
+  // prevent single day pie chart from showing
   const setFiltered = (type, data) => {
-    // console.log('[setFiltered]');
 
     // - works with handleFilteredDate
     // - filters the settings object, used by getChartData
@@ -320,13 +356,18 @@ const Stats: FC<Props> = ({ handleSingleDay, isHidden, logs }) => {
 
   const hasFilter = Object.values(settings).find(i => i.filter);
 
-  // bug: make smoother
+  // console.log('chartdata', chartdata);
+  // console.log('hasFilter', hasFilter)
+  console.log('logs', logs)
+
+  // Single day log - probably best remove, as this makes a boring pie chart
+  // - change to cut straight to logbook
   useEffect(() => {
     if (hasFilter?.filter?.day) {
       const newLogs = [...logs];
       const filter = hasFilter.filter;
       const dailyLogs = newLogs.reduce((acc, i) => {
-        const { day, month, year } = i.date.processed;
+        const { day, month, year } = i.date;
         const isMonth = month === filter["month"] && year === filter["year"];
         // normalise days: can be '04', needs to match to '4'
         const isDay = isMonth && parseInt(day) === parseInt(filter["day"]);

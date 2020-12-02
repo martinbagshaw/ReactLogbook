@@ -3,12 +3,10 @@ import styled from "styled-components";
 
 import { LogType } from "../../utils/types";
 
-import useIsWidth from "../common/useIsWidth";
-import Chevron from "../common/icons/Chevron";
 import { breakpoint, colors } from "../common/styleVariables";
+import Chevron from "../common/icons/Chevron";
 import { searchResultText } from "../common/Typography";
 import { buttonBase } from "../common/Buttons";
-import { getDate } from "../../utils/get-date";
 
 const ResultsList = styled.ul`
   margin: 0 0 3rem;
@@ -83,38 +81,49 @@ const Date = styled.span`
   align-items: center;
 `;
 
+const Small = styled.span`
+  @media only screen and (min-width: ${breakpoint.tablet}) {
+    display: none;
+  }
+`;
+const Large = styled.span`
+  display: none;
+  @media only screen and (min-width: ${breakpoint.tablet}) {
+    display: flex;
+  }
+`;
+
 interface Props {
   logs: LogType[];
   low: number;
   high: number;
   handleSingleView: (index: string | null) => void;
 }
-const Results: FC<Props> = ({ logs, low, high, handleSingleView }) => {
-  const { isWidth: isDesktop } = useIsWidth("large");
-  // TODO: run getDate in processed-data.ts
-  return (
-    <ResultsList>
-      {logs
-        .slice(low, high)
-        .map(({ climbName, cragName, date: { processed }, grade, key, style }) => (
-          <ListItem key={key}>
-            <ListButton onClick={() => handleSingleView(key)}>
-              <Climb>
-                <strong>{climbName}</strong> - {grade}
-              </Climb>{" "}
-              <Crag>
-                {isDesktop && `${style} - `}
-                {cragName}
-              </Crag>
-              <Date>
-                {getDate(processed, isDesktop)}
-                <Chevron fill="unset" />
-              </Date>
-            </ListButton>
-          </ListItem>
-        ))}
-    </ResultsList>
-  );
-};
+const Results: FC<Props> = ({ logs, low, high, handleSingleView }) => (
+  <ResultsList>
+    {logs.slice(low, high).map(({ climbName, cragName, date, grade, key, style }) => {
+      // TODO: Simplify - in original data?
+      const { day, dayLong, monthInt, monthLong, year, yearInt } = date;
+      return (
+        <ListItem key={key}>
+          <ListButton onClick={() => handleSingleView(key)}>
+            <Climb>
+              <strong>{climbName}</strong> - {grade}
+            </Climb>{" "}
+            <Crag>
+              <Large>{`${style} - `}</Large>
+              {cragName}
+            </Crag>
+            <Date>
+              <Small>{`${day}/${monthInt}/${yearInt}`}</Small>
+              <Large>{`${dayLong} ${monthLong} ${year}`}</Large>
+              <Chevron fill="unset" />
+            </Date>
+          </ListButton>
+        </ListItem>
+      );
+    })}
+  </ResultsList>
+);
 
 export default Results;
