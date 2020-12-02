@@ -2,12 +2,9 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { SearchType } from "../../utils/types";
-
-import useIsWidth from "../common/useIsWidth";
+import { colors, fonts, boxShadow, breakpoint } from "../common/styleVariables";
 import { searchResultText } from "../common/Typography";
 import { buttonBase } from "../common/Buttons";
-import { colors, fonts, boxShadow, breakpoint } from "../common/styleVariables";
-import { getDate } from "../../utils/get-date";
 
 const SearchContainer = styled.div`
   position: relative;
@@ -118,14 +115,29 @@ const Climb = styled.span`
 `;
 
 const Crag = styled.span`
-  ${searchResultText};
-  font-weight: 400;
-  flex: 2;
+  display: none;
+  @media only screen and (min-width: ${breakpoint.tablet}) {
+    display: flex;
+    ${searchResultText};
+    font-weight: 400;
+    flex: 2;
+  }
 `;
 
-const Date = styled.span`
+const DateSmall = styled.span`
   margin-left: auto;
   font-weight: 600;
+  @media only screen and (min-width: ${breakpoint.tablet}) {
+    display: none;
+  }
+`;
+const DateLarge = styled.span`
+  display: none;
+  @media only screen and (min-width: ${breakpoint.tablet}) {
+    display: flex;
+    margin-left: auto;
+    font-weight: 600;
+  }
 `;
 
 type Props = Partial<SearchType> & {
@@ -139,9 +151,6 @@ const Search: FC<Props> = ({
   results,
   searchTerm,
 }) => {
-  const { isWidth: isTablet } = useIsWidth("tablet");
-  const { isWidth: isDesktop } = useIsWidth("large");
-
   return (
     <SearchContainer>
       <HiddenLabel htmlFor="search-ascents">{placeholder}</HiddenLabel>
@@ -155,18 +164,20 @@ const Search: FC<Props> = ({
 
       {results && (
         <Results>
-          {results.map(({ climbName, cragName, date: { processed }, key }) => {
-            // TODO: do this in processed-data.ts
-            const formattedDate = getDate(processed, isDesktop);
+          {results.map(({ climbName, cragName, date, key }) => {
+            // TODO: Simplify
+            const { day, dayLong, monthInt, monthLong, year, yearInt } = date;
+            const dateLarge = `${dayLong} ${monthLong} ${year}`;
             return (
               <li key={key}>
                 <ResultButton
-                  aria-label={`Go to log for: ${climbName} on ${formattedDate}`}
+                  aria-label={`Go to log for: ${climbName} on ${dateLarge}`}
                   onClick={() => handleSingleView(key)}
                 >
                   <Climb>{climbName}</Climb>
-                  {isTablet && <Crag>{cragName}</Crag>}
-                  <Date>{formattedDate}</Date>
+                  <Crag>{cragName}</Crag>
+                  <DateSmall>{`${day}/${monthInt}/${yearInt}`}</DateSmall>
+                  <DateLarge>{`${dateLarge}`}</DateLarge>
                 </ResultButton>
               </li>
             );

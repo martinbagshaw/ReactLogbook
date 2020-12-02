@@ -2,7 +2,7 @@
  * getDiscipline
  * inputs: grade and style
  * output: discipline (formatted for select)
- * (dws, ice, mixed, solo, sport, trad, summit walk, winter)
+ * (alpine, boulder, dws, ice, mixed, solo, sport, trad, summit walk, winter)
  *
  * - Makes as few assumptions as possible, though there are some:
  * - Discipline relates heavily to style, e.g. DWS overrides 'trad' or 'sport'
@@ -12,12 +12,6 @@
  */
 
 import { DisciplineType } from "./types";
-// - perhaps solo should be removed
-// - solo could be winter, mixed, deep water solo, sport, trad
-// solo
-// if (styleInput && /^Solo/.test(styleInput)) {
-//   return { value: "solo", label: "Solo" };
-// }
 
 export const getDiscipline = (gradeInput?: string, styleInput?: string): DisciplineType => {
   if (!gradeInput || (!gradeInput && !styleInput)) {
@@ -29,6 +23,10 @@ export const getDiscipline = (gradeInput?: string, styleInput?: string): Discipl
   // <F PD AD D TD ED>, <with or without a +>, <space> <french sport grade>
   if (grade && /^(F|PD|AD|D|TD|ED)\+?\s[0-9][a-c]/.test(grade)) {
     return { value: "alpine", label: "Alpine" };
+  }
+  // boulder
+  if (grade && /^f[0-5]\+?$/.test(grade) || /^f[6-9][A-C]\+?$/.test(grade)) {
+    return { value: "boulder", label: "Boulder Problem" };
   }
   // dws
   if (styleInput && /^DWS/.test(styleInput)) {

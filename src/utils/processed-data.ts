@@ -1,7 +1,7 @@
 import { InputLogType, LogType } from "./types";
 
 import sourceData from "../data/mb-logbook.json";
-import { processDate } from "./process-date";
+import { getDate } from "./get-date";
 import { getDiscipline } from "./get-discipline";
 
 const formatData = (rawData: InputLogType[]): LogType[] => {
@@ -10,10 +10,7 @@ const formatData = (rawData: InputLogType[]): LogType[] => {
     ret.push({
       climbName: item["Climb name"],
       cragName: item["Crag name"],
-      date: {
-        original: item.Date,
-        processed: processDate(item.Date),
-      },
+      date: getDate(item.Date),
       discipline: getDiscipline(item.Grade, item.Style),
       grade: `${item.Grade}`.replace(/\*+$/, "").trim(),
       notes: item.Notes,

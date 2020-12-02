@@ -138,9 +138,7 @@ const ButtonContainer = styled.div`
 
 const getText = (item: keyof LogType, props: Props) => {
   if (item === "date") {
-    const {
-      processed: { dayLong, monthLong, year },
-    } = props[item];
+    const { dayLong, monthLong, year } = props[item];
     return {
       jsx: <strong>{`${dayLong} ${monthLong} ${year}`}</strong>,
       raw: `${dayLong} ${monthLong} ${year}`,
