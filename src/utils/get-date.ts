@@ -22,9 +22,9 @@ const twoDigitYear = new Date()
 const processMonthYear = (month: keyof typeof months, year: string, inputObj: MonthYearInput): MonthYearOutput => {
   const retObj: MonthYearOutput = { ...inputObj };
   if (Object.keys(months).includes(month)) {
-    const { text, int } = months[month];
+    const { label, int } = months[month];
     retObj.month = month;
-    retObj.monthLong = text;
+    retObj.monthLong = label;
     retObj.monthInt = int;
   }
   if (year && !year.includes("?") && year.length === 4) {
