@@ -52216,7 +52216,8 @@ var defaultSettings = {
     cumulative: "Onsight"
   },
   type: "date"
-};
+}; // make this an ENUM?
+
 exports.defaultSettings = defaultSettings;
 var months = {
   Jan: {
@@ -52430,6 +52431,155 @@ var getDate = function getDate(date) {
 };
 
 exports.getDate = getDate;
+},{"./constants":"utils/constants.ts"}],"utils/get-date-new.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getDateNew = void 0;
+
+var _constants = require("./constants");
+
+/*
+ * getDate
+ * input: date string in multiple formats, with and without missing date (represented by ??)
+ * output:
+ * - an object with the below shape. `integer` denotes the order of day / month / year
+ * - as `day` and `month` may not be available, `d` and `m` may not be output
+ * - `text` property is used for the log list view, e.g. `24/05/2020` or `24th May 2020`
+*/
+var getYear = function getYear(year) {
+  var currentYear = new Date().getFullYear().toString().substr(2);
+  return year.length === 4 ? year : year > currentYear ? "19" + year : "20" + year;
+};
+
+var getMonth = function getMonth(month) {
+  if (Object.keys(_constants.months).includes(month)) {
+    var _a = _constants.months[month],
+        label = _a.label,
+        value = _a.value;
+    return {
+      integer: value,
+      label: label,
+      value: month.toLowerCase()
+    };
+  }
+
+  return;
+};
+
+var getDay = function getDay(day) {
+  if (/^\?/.test(day) || !parseInt(day)) return;
+  var number = parseInt(day);
+  var t = number % 10;
+  var h = number % 100;
+  var label = number + "th";
+
+  if (t == 1 && h != 11) {
+    label = number + "st";
+  }
+
+  if (t == 2 && h != 12) {
+    label = number + "nd";
+  }
+
+  if (t == 3 && h != 13) {
+    label = number + "rd";
+  }
+
+  var str = number.toString();
+  var value = str.length === 2 ? str : "0" + str;
+  return {
+    integer: number,
+    label: label,
+    value: value
+  };
+}; // long text: reuses calculations from month and day
+
+
+var getText = function getText(y, m, d) {
+  if (y && m && d) {
+    var str = m.integer.toString();
+    var month = str.length === 2 ? str : "0" + str;
+    return {
+      l: d.label + " " + m.label + " " + y,
+      s: d.value + "/" + month + "/" + y
+    };
+  }
+
+  if (y && m) {
+    var str = m.integer.toString();
+    var month = str.length === 2 ? str : "0" + str;
+    return {
+      l: m.label + " " + y,
+      s: month + "/" + y
+    };
+  }
+
+  return {
+    l: y,
+    s: y
+  };
+};
+
+var getDateNew = function getDateNew(date) {
+  var _a; // must end in 2 or more digits, with a slash before
+
+
+  if (!date || typeof date !== "string" || !/\/[0-9]{2,}$/.test(date)) {
+    return {
+      value: "none",
+      label: "None found"
+    };
+  }
+
+  var slashCount = (_a = date.match(/\//g)) === null || _a === void 0 ? void 0 : _a.length;
+
+  if (slashCount === 1) {
+    var year = getYear(date.split("/")[1]);
+    return {
+      y: {
+        integer: parseInt(year),
+        label: year,
+        value: year
+      },
+      text: {
+        l: year,
+        s: year
+      }
+    };
+  }
+
+  if (slashCount === 2) {
+    var _b = date.split("/"),
+        day = _b[0],
+        month = _b[1],
+        year = _b[2];
+
+    var y = getYear(year);
+    var m = getMonth(month);
+    var d = getDay(day);
+    var text = getText(y, m, d);
+    return {
+      d: d,
+      m: m,
+      y: {
+        integer: parseInt(y),
+        label: y,
+        value: y
+      },
+      text: text
+    };
+  }
+
+  return {
+    value: "none",
+    label: "None found"
+  };
+};
+
+exports.getDateNew = getDateNew;
 },{"./constants":"utils/constants.ts"}],"utils/get-discipline.ts":[function(require,module,exports) {
 "use strict";
 
@@ -52554,6 +52704,8 @@ var _mbLogbook = _interopRequireDefault(require("../data/mb-logbook.json"));
 
 var _getDate = require("./get-date");
 
+var _getDateNew = require("./get-date-new");
+
 var _getDiscipline = require("./get-discipline");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -52565,6 +52717,7 @@ var formatData = function formatData(rawData) {
       climbName: item["Climb name"],
       cragName: item["Crag name"],
       date: (0, _getDate.getDate)(item.Date),
+      dateNew: (0, _getDateNew.getDateNew)(item.Date),
       discipline: (0, _getDiscipline.getDiscipline)(item.Grade, item.Style),
       grade: ("" + item.Grade).replace(/\*+$/, "").trim(),
       notes: item.Notes,
@@ -52578,7 +52731,7 @@ var formatData = function formatData(rawData) {
 
 var allLogs = formatData(_mbLogbook.default);
 exports.allLogs = allLogs;
-},{"../data/mb-logbook.json":"data/mb-logbook.json","./get-date":"utils/get-date.ts","./get-discipline":"utils/get-discipline.ts"}],"../node_modules/d3/dist/package.js":[function(require,module,exports) {
+},{"../data/mb-logbook.json":"data/mb-logbook.json","./get-date":"utils/get-date.ts","./get-date-new":"utils/get-date-new.ts","./get-discipline":"utils/get-discipline.ts"}],"../node_modules/d3/dist/package.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -88972,6 +89125,12 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var d3 = _interopRequireWildcard(require("d3"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var __makeTemplateObject = void 0 && (void 0).__makeTemplateObject || function (cooked, raw) {
@@ -88993,12 +89152,13 @@ var ArcGroup = _styledComponents.default.g(templateObject_1 || (templateObject_1
 
 var Text = _styledComponents.default.text(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  cursor: none;\n  user-select: none;\n  pointer-events: none;\n  font-size: 0.625rem;\n  fill: white;\n  text-anchor: middle;\n"], ["\n  cursor: none;\n  user-select: none;\n  pointer-events: none;\n  font-size: 0.625rem;\n  fill: white;\n  text-anchor: middle;\n"])));
 
+var colors = d3.scaleOrdinal(d3.schemeCategory10);
+var format = d3.format(".0f");
+
 var PieArc = function PieArc(_a) {
   var activeArcIndex = _a.activeArcIndex,
-      colors = _a.colors,
       createArc = _a.createArc,
       data = _a.data,
-      format = _a.format,
       index = _a.index,
       onClick = _a.onClick,
       setTooltip = _a.setTooltip;
@@ -89009,7 +89169,7 @@ var PieArc = function PieArc(_a) {
     onClick: onClick
   }, /*#__PURE__*/_react.default.createElement("path", {
     d: createArc(data),
-    fill: colors(index),
+    fill: colors(index.toString()),
     onMouseOver: function onMouseOver() {
       return setTooltip(index);
     },
@@ -89024,7 +89184,7 @@ var PieArc = function PieArc(_a) {
 var _default = PieArc;
 exports.default = _default;
 var templateObject_1, templateObject_2;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/stats/PieChart.tsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","d3":"../node_modules/d3/index.js"}],"components/stats/PieChart.tsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -89076,8 +89236,23 @@ var HoverTooltip = _styledComponents.default.foreignObject(templateObject_4 || (
   return positioning && "translate(" + positioning[0] + "px, " + positioning[1] + "px)";
 });
 
-var colors = d3.scaleOrdinal(d3.schemeCategory10);
-var format = d3.format(".0f");
+var getToolPos = function getToolPos(data, arcFunc, radius) {
+  if (_typeof(data) !== "object" || !arcFunc.centroid) {
+    return;
+  }
+
+  var _a = arcFunc.centroid(data),
+      a = _a[0],
+      b = _a[1];
+
+  if (a && b) {
+    var x = a - radius / 4;
+    var y = b - radius / 4;
+    return [x, y];
+  }
+
+  return;
+};
 
 var PieChart = function PieChart(_a) {
   var chartdata = _a.chartdata,
@@ -89098,40 +89273,24 @@ var PieChart = function PieChart(_a) {
   };
 
   var createArc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
-
-  var getToolPos = function getToolPos(data, arcFunc, radius) {
-    if (_typeof(data) !== "object" || !arcFunc.centroid) {
-      return;
-    }
-
-    var _a = arcFunc.centroid(data),
-        a = _a[0],
-        b = _a[1];
-
-    if (a && b) {
-      var x = a - radius / 4;
-      var y = b - radius / 4;
-      return [x, y];
-    }
-
-    return;
-  };
-
   var hovered = Boolean(activeArcIndex || activeArcIndex === 0);
-  var tooltip = (activeArcIndex || activeArcIndex === 0) && chartdata[activeArcIndex];
+  var tooltip;
+
+  if (hovered && activeArcIndex) {
+    tooltip = chartdata[activeArcIndex];
+  }
+
   return /*#__PURE__*/_react.default.createElement(ChartContainer, null, /*#__PURE__*/_react.default.createElement(SvgChart, {
     viewBox: "0 0 200 200"
   }, /*#__PURE__*/_react.default.createElement(DismissObject, {
     onClick: function onClick() {
-      return setFiltered(null);
+      return setFiltered(undefined);
     }
   }), chartdata.map(function (d, i) {
     return /*#__PURE__*/_react.default.createElement(_PieArc.default, {
       activeArcIndex: activeArcIndex,
-      colors: colors,
       createArc: createArc,
       data: d,
-      format: format,
       index: i,
       key: i,
       onClick: function onClick() {
@@ -89612,7 +89771,7 @@ var BodySection = _styledComponents.default.section(templateObject_2 || (templat
 //   - 6a+ 5a and TR/OS = sandstone
 //   - default: Show discipline breakdown in pie
 //   - add years and months filtering option
-// - 
+// -
 // 2. separate out functions, write tests for them
 // - Legend and PieChart require this processed data
 // ^ look to separate the two, if it makes sense
@@ -90029,8 +90188,8 @@ var Stats = function Stats(_a) {
     return i.filter;
   }); // console.log('chartdata', chartdata);
   // console.log('hasFilter', hasFilter)
-
-  console.log('logs', logs); // Single day log - probably best remove, as this makes a boring pie chart
+  // console.log('logs', logs)
+  // Single day log - probably best remove, as this makes a boring pie chart
   // - change to cut straight to logbook
 
   (0, _react.useEffect)(function () {
@@ -91279,7 +91438,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49900" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50062" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
