@@ -81,7 +81,7 @@ const handleCumulativeDate = (dateType, logs) => {
     const res = newLogs.reduce((r, { date }) => {
       let label = date[monthOrYear];
       if (monthOrYear === "month") {
-        label = (months[label] && months[label].text) || "unknown";
+        label = (months[label] && months[label].label) || "unknown";
       }
       if (!r[label]) {
         r[label] = { label, value: 1 };
@@ -98,7 +98,7 @@ const handleCumulativeDate = (dateType, logs) => {
     if (monthOrYear === "month") {
       const valid = Object.values(months).map(({ text }) => {
         const { label, value } = newLogs[text];
-        const monthAbbr = Object.keys(months).find(key => months[key].text === label);
+        const monthAbbr = Object.keys(months).find(key => months[key].label === label);
         return {
           keyLabel: [`${label}:`, `${value} climbs`],
           itemFilter: monthAbbr,
@@ -233,7 +233,7 @@ const handleFilteredDate = (filter, logs) => {
     if (filterLength === 1) {
       // use months object to order by month
       return Object.values(months).reduce((acc, monthLong) => {
-        const entry = formatted.find(i => i.monthLong === monthLong.text);
+        const entry = formatted.find(i => i.monthLong === monthLong.label);
         if (entry) {
           const { month, monthLong, year, value } = entry;
           const keyLabel = [`${monthLong} ${year}:`, `${value} climbs`];
