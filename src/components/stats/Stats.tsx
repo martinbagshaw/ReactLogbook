@@ -13,7 +13,7 @@ import PieChart from "./PieChart";
 import Legend from "./Legend";
 import { breakpoint } from "../common/styleVariables";
 
-const StatContainer = styled.div<{isHidden: boolean}>`
+const StatContainer = styled.div<{ isHidden: boolean }>`
   width: 50%;
   ${({ isHidden }) => isHidden && `height: 0; opacity: 0`};
 `;
@@ -48,19 +48,14 @@ const BodySection = styled.section`
 //   - 6a+ 5a and TR/OS = sandstone
 //   - default: Show discipline breakdown in pie
 //   - add years and months filtering option
-// - 
-
+// -
 
 // 2. separate out functions, write tests for them
-
-
 
 // - Legend and PieChart require this processed data
 // ^ look to separate the two, if it makes sense
 //   - key doesn't need to know all of the arc points. Just keyLabel, and a range
 //   - pie needs to know hover tooltips (keyLabel)
-
-
 
 // AFTER:
 // - add more 'type'/overall filters (partners, discipline, etc)
@@ -291,7 +286,6 @@ const Stats: FC<Props> = ({ handleSingleDay, isHidden, logs }) => {
 
   // prevent single day pie chart from showing
   const setFiltered = (type, data) => {
-
     // - works with handleFilteredDate
     // - filters the settings object, used by getChartData
     const newSettings = JSON.parse(JSON.stringify(settings)); // need to deep clone
@@ -358,7 +352,7 @@ const Stats: FC<Props> = ({ handleSingleDay, isHidden, logs }) => {
 
   // console.log('chartdata', chartdata);
   // console.log('hasFilter', hasFilter)
-  console.log('logs', logs)
+  // console.log('logs', logs)
 
   // Single day log - probably best remove, as this makes a boring pie chart
   // - change to cut straight to logbook

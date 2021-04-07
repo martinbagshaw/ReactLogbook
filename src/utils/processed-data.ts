@@ -2,6 +2,7 @@ import { InputLogType, LogType } from "./types";
 
 import sourceData from "../data/mb-logbook.json";
 import { getDate } from "./get-date";
+import { getDateNew } from "./get-date-new";
 import { getDiscipline } from "./get-discipline";
 
 const formatData = (rawData: InputLogType[]): LogType[] => {
@@ -11,6 +12,7 @@ const formatData = (rawData: InputLogType[]): LogType[] => {
       climbName: item["Climb name"],
       cragName: item["Crag name"],
       date: getDate(item.Date),
+      dateNew: getDateNew(item.Date),
       discipline: getDiscipline(item.Grade, item.Style),
       grade: `${item.Grade}`.replace(/\*+$/, "").trim(),
       notes: item.Notes,

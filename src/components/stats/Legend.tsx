@@ -90,11 +90,11 @@ const Square = styled.div<{ bg: string }>`
 
 const chartColors = d3.scaleOrdinal(d3.schemeCategory10);
 
-type Props = {
+type LegendProps = {
   chartdata: ChartType[];
   settings: SettingsInt;
 };
-const Legend: FC<Props> = ({ chartdata, settings }): JSX.Element => {
+const Legend: FC<LegendProps> = ({ chartdata, settings }): JSX.Element => {
   const [open, setOpen] = useState<boolean>(false);
   const { isWidth: isTablet } = useIsWidth("tablet");
   const {

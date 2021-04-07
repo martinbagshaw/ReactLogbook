@@ -14,7 +14,7 @@ export interface CategoryInt extends OptionTypeBase {
   label: string;
 }
 
-type ChartTypeData = {
+export type ChartTypeData = {
   itemFilter: string;
   keyLabel: string[];
   tooltipLabel: string;
@@ -38,6 +38,25 @@ export type DateType = {
   monthInt?: string;
   day: string;
   dayLong?: string;
+};
+
+// taken from get-date-new
+type DatePart = {
+  integer: number; //index
+  label: string; //long
+  value: string; //short
+};
+
+type DateTypeNew = {
+  d?: DatePart;
+  m?: DatePart;
+  y: DatePart;
+  text: { l: string; s: string };
+};
+
+type DateTypeNewFail = {
+  label: string;
+  value: string;
 };
 
 type DisciplineValues =
@@ -96,6 +115,7 @@ export type LogType = {
   climbName: string;
   cragName: string;
   date: DateType;
+  dateNew: DateTypeNew | DateTypeNewFail;
   discipline: DisciplineType;
   grade: string;
   key: string;
