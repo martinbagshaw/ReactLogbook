@@ -2,7 +2,7 @@ import React, { FC, useContext } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 
-import { ChartType } from "../../utils/types";
+import { ChartType, ChartTypeData } from "../../utils/types";
 
 import { StatsContext } from "./StatsContext";
 import PieArc from "./PieArc";
@@ -40,7 +40,9 @@ const DismissObject = styled.foreignObject`
   transform: translate(-200px, -200px);
 `;
 
-const HoverTooltip = styled.foreignObject<{ positioning: number[] | undefined }>`
+const HoverTooltip = styled.foreignObject<{
+  positioning: number[] | undefined;
+}>`
   pointer-events: none;
   transform: scale(1.125)
     ${({ positioning }) => positioning && `translate(${positioning[0]}px, ${positioning[1]}px)`};
@@ -58,13 +60,32 @@ const HoverTooltip = styled.foreignObject<{ positioning: number[] | undefined }>
   }
 `;
 
-const colors = d3.scaleOrdinal(d3.schemeCategory10);
-const format = d3.format(".0f");
-
-type Props = {
-  chartdata: ChartType[];
+const getToolPos = (
+  data: ChartType,
+  arcFunc: d3.Arc<any, d3.DefaultArcObject>,
+  radius: number
+): number[] | undefined => {
+  if (typeof data !== "object" || !arcFunc.centroid) {
+    return;
+  }
+  const [a, b] = arcFunc.centroid(data);
+  if (a && b) {
+    const x = a - radius / 4;
+    const y = b - radius / 4;
+    return [x, y];
+  }
+  return;
 };
-const PieChart: FC<Props> = ({
+
+type PieChartProps = {
+  chartdata: ChartType[];
+  innerRadius: number;
+  outerRadius: number;
+  setFiltered: (type?: string, data?: ChartTypeData) => void;
+  type: string;
+};
+
+const PieChart: FC<PieChartProps> = ({
   chartdata,
   innerRadius,
   outerRadius,
@@ -88,33 +109,21 @@ const PieChart: FC<Props> = ({
     .innerRadius(innerRadius)
     .outerRadius(outerRadius);
 
-  const getToolPos = (data: ChartType | number | false, arcFunc, radius): number[] | undefined => {
-    if (typeof data !== "object" || !arcFunc.centroid) {
-      return;
-    }
-    const [a, b] = arcFunc.centroid(data);
-    if (a && b) {
-      const x = a - radius / 4;
-      const y = b - radius / 4;
-      return [x, y];
-    }
-    return;
-  };
-  
-  const hovered = Boolean(activeArcIndex || activeArcIndex === 0);
-  const tooltip = (activeArcIndex || activeArcIndex === 0) && chartdata[activeArcIndex];
-  
+  const hovered: boolean = Boolean(activeArcIndex || activeArcIndex === 0);
+  let tooltip;
+  if (hovered && activeArcIndex) {
+    tooltip = chartdata[activeArcIndex];
+  }
+
   return (
     <ChartContainer>
       <SvgChart viewBox="0 0 200 200">
-        <DismissObject onClick={() => setFiltered(null)} />
+        <DismissObject onClick={() => setFiltered(undefined)} />
         {chartdata.map((d, i) => (
           <PieArc
             activeArcIndex={activeArcIndex}
-            colors={colors}
             createArc={createArc}
             data={d}
-            format={format}
             index={i}
             key={i}
             onClick={() => setFiltered(type, d.data)}

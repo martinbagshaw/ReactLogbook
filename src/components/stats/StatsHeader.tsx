@@ -62,7 +62,10 @@ const Controls = styled.div`
 
 const customStyles: StylesConfig = {
   control: (provided, state) => {
-    const { isFocused, selectProps: { width } } = state;
+    const {
+      isFocused,
+      selectProps: { width },
+    } = state;
     const color = colors[isFocused ? "red" : "midGrey"];
     const backgroundColor = colors[isFocused ? "lightRed" : "white"];
     return {
@@ -104,12 +107,12 @@ const dates = [
   { value: "month", label: "Combined Months" },
 ];
 
-type Props = {
+type StatsHeaderProps = {
   logs: LogType[];
   type: SettingsType;
   setDropdown: (type: keyof SettingsInt, item: ValueType<CategoryInt>) => void;
 };
-const StatsHeader: FC<Props> = ({ logs, setDropdown, type }): JSX.Element => (
+const StatsHeader: FC<StatsHeaderProps> = ({ logs, setDropdown, type }): JSX.Element => (
   <Header>
     <Categories>
       <H1>

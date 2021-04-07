@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
+import * as d3 from "d3";
 
 import { ChartType } from "../../utils/types";
 
@@ -18,20 +19,22 @@ const Text = styled.text`
   text-anchor: middle;
 `;
 
-type Props = {
+const colors = d3.scaleOrdinal(d3.schemeCategory10);
+const format = d3.format(".0f");
+
+type PieArcProps = {
   activeArcIndex: number | undefined;
+  createArc: d3.Arc<any, d3.DefaultArcObject>;
   data: ChartType;
   index: number;
   onClick: () => void;
   setTooltip: (index: number | undefined) => void;
 };
 
-const PieArc: FC<Props> = ({
+const PieArc: FC<PieArcProps> = ({
   activeArcIndex,
-  colors,
   createArc,
   data,
-  format,
   index,
   onClick,
   setTooltip,
@@ -45,7 +48,7 @@ const PieArc: FC<Props> = ({
     >
       <path
         d={createArc(data)}
-        fill={colors(index)}
+        fill={colors(index.toString())}
         onMouseOver={() => setTooltip(index)}
         onMouseOut={() => setTooltip(undefined)}
       />
