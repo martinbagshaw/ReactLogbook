@@ -2,7 +2,7 @@ import React, { FC, Fragment, useContext, useState } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 
-import { ChartType, SettingsInt } from "../../utils/types";
+import { SettingsInt } from "../../utils/types";
 import { StatsContext } from "./StatsContext";
 
 import useIsWidth from "../common/useIsWidth";
@@ -91,7 +91,7 @@ const Square = styled.div<{ bg: string }>`
 const chartColors = d3.scaleOrdinal(d3.schemeCategory10);
 
 type LegendProps = {
-  chartdata: ChartType[];
+  chartdata: d3.PieArcDatum<number | { valueOf(): number }>[];
   settings: SettingsInt;
 };
 const Legend: FC<LegendProps> = ({ chartdata, settings }): JSX.Element => {

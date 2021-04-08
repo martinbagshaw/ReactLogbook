@@ -78,7 +78,7 @@ const getToolPos = (
 };
 
 type PieChartProps = {
-  chartdata: ChartType[];
+  chartdata: d3.PieArcDatum<number | { valueOf(): number }>[];
   innerRadius: number;
   outerRadius: number;
   setFiltered: (type?: string, data?: ChartTypeData) => void;
