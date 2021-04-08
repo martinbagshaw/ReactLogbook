@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import Select, { StylesConfig, ValueType } from "react-select";
+import Select, { StylesConfig } from "react-select";
 
-import { CategoryInt, SettingsInt, SettingsType, LogType } from "../../utils/types";
+import { SettingsType, LogType } from "../../utils/types";
 import { breakpoint, colors } from "../common/styleVariables";
 
 const Header = styled.header`
@@ -110,9 +110,9 @@ const dates = [
 type StatsHeaderProps = {
   logs: LogType[];
   type: SettingsType;
-  setDropdown: (type: keyof SettingsInt, item: ValueType<CategoryInt>) => void;
+  setDropdown: <T, K>(type: T, item: K) => void;
 };
-const StatsHeader: FC<StatsHeaderProps> = ({ logs, setDropdown, type }): JSX.Element => (
+export const StatsHeader: FC<StatsHeaderProps> = ({ logs, setDropdown, type }): JSX.Element => (
   <Header>
     <Categories>
       <H1>
@@ -154,5 +154,3 @@ const StatsHeader: FC<StatsHeaderProps> = ({ logs, setDropdown, type }): JSX.Ele
     </FilterControl>
   </Header>
 );
-
-export default StatsHeader;

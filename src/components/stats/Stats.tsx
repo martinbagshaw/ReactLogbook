@@ -1,17 +1,17 @@
 import React, { FC, Fragment, useState, useEffect } from "react";
-import * as d3 from "d3";
 import styled from "styled-components";
 import { ValueType } from "react-select";
 
 import { CategoryInt, FilterType, LogType, SettingsInt } from "../../utils/types";
-import { DateEnum } from "../../utils/constants";
-
 import { defaultSettings, months } from "../../utils/constants";
 
 import { StatsContextProvider } from "./StatsContext";
-import StatsHeader from "./StatsHeader";
+import { createChartData } from "./stats-utils/createChartData";
+
+import { StatsHeader } from "./StatsHeader";
 import PieChart from "./PieChart";
 import Legend from "./Legend";
+
 import { breakpoint } from "../common/styleVariables";
 
 const StatContainer = styled.div<{ isHidden: boolean }>`
@@ -38,7 +38,7 @@ const BodySection = styled.section`
 // - adding type annotations to below functions could help, but don't get too into it
 // - the below functions basically take logs, then format for the chart and tooltips
 // - think ahead - how will this work with discipline, partners etc?
-// - getChartData takes setting state and logs
+// - createChartData takes setting state and logs
 // - pie chart is determined outside of this. Do a function that sets the chart type
 // - draw diagram / chart, come up with 3-4 scenarios (plot out discipline, styles, partners)
 // ^ what gets filtered with what?
@@ -66,217 +66,6 @@ const BodySection = styled.section`
 // - make functions more modular
 // - look for patterns and reuse opportunities
 
-// BUG:
-// - clicking from chart to log view (disappearing stuff)
-
-// - - - - -
-// not working
-const handleCumulativeDate = (dateType: DateEnum, logs: LogType[]) => {
-  const search = dateType.toLowerCase();
-
-  const createData = (monthOrYear: DateEnum, logs: LogType[]) => {
-    const newLogs = [...logs];
-    const res = newLogs.reduce((r, { date }) => {
-      let label = date[monthOrYear];
-      if (monthOrYear === "month") {
-        label = (months[label] && months[label].label) || "unknown";
-      }
-      if (!r[label]) {
-        r[label] = { label, value: 1 };
-      } else {
-        r[label].value++;
-      }
-      return r;
-    }, {});
-    return res;
-  };
-
-  // creates an array from object, adds key label, adds tooltip label
-  const formatAndSort = (monthOrYear, logsObj) => {
-    const newLogs = { ...logsObj };
-    if (monthOrYear === "month") {
-      // value is number of the month, not the climbs done in the month
-      const completeLogs = Object.entries(months).map(([key, { label }]) => {
-        const climbCount = newLogs[label].value;
-        return {
-          keyLabel: [`${label}:`, `${climbCount} climbs`],
-          itemFilter: key,
-          tooltipLabel: `${climbCount} climbs in ${label}`,
-          value: climbCount,
-        };
-      });
-
-      const invalidLogs = Object.values(newLogs).find(i => i.label === "unknown");
-      const unknown = {
-        keyLabel: ["Unknown:", `${invalidLogs.value} climbs`],
-        tooltipLabel: `${invalidLogs.value} climbs on an unknown date`,
-        value: invalidLogs.value,
-      };
-
-      return invalidLogs ? completeLogs.concat(unknown) : completeLogs;
-    }
-
-    // when does this return?
-    // - thought we just cater to month?
-    return Object.values(newLogs).map(i => {
-      const { label, value } = i;
-      return {
-        keyLabel: [`${label}:`, `${value} climbs`],
-        itemFilter: label,
-        tooltipLabel: `${value} climbs in ${label}`,
-        value,
-      };
-    });
-  };
-
-  const createdData = createData(search, logs);
-  const sortedData = formatAndSort(search, createdData);
-  return sortedData;
-};
-
-const handleFilteredDate = (filter, logs) => {
-  const filters = Object.keys(filter).length;
-
-  // part 1: filter logs
-  const filterLogs = (filterLength, filter, logs) => {
-    const { month, year } = filter;
-    const newLogs = [...logs];
-    if (filterLength === 1) {
-      // year and cumulative month
-      return newLogs.filter(i => {
-        if (month) {
-          return i.date["month"] === month;
-        }
-        return i.date["year"] === year;
-      });
-    }
-    if ([2, 3].includes(filterLength)) {
-      // month and day
-      return newLogs.reduce((acc, i) => {
-        const { day, month, year } = i.date;
-        const isMonth = month === filter["month"] && year === filter["year"];
-        const isDay = isMonth && day === filter["day"];
-        if ((filterLength === 2 && isMonth) || (filterLength === 3 && isDay)) {
-          acc.push(i);
-        }
-        return acc;
-      }, []);
-    }
-  };
-
-  // part 2: create data for chart and key
-  const createData = (filterLength, filter, filteredLogs) => {
-    const { month: isCumulativeMonth } = filter;
-    const newLogs = [...filteredLogs];
-    let result;
-
-    // cumulative month, single year
-    if (filterLength === 1) {
-      result = newLogs.reduce((acc, { date }) => {
-        const { dayLong, day, month, monthLong, year } = date;
-        let label = `${monthLong} ${year}`;
-        if (isCumulativeMonth) {
-          label = `${dayLong} ${monthLong}`;
-        }
-        if (!acc[label]) {
-          acc[label] = isCumulativeMonth
-            ? { day, dayLong, month, monthLong, label, value: 1 }
-            : { month, monthLong, year, value: 1 };
-        } else {
-          acc[label].value++;
-        }
-        return acc;
-      }, {});
-      return Object.values(result);
-    }
-
-    // single month and single day
-    if ([2, 3].includes(filterLength)) {
-      result = newLogs.reduce((acc, { date }) => {
-        const { day, dayLong, month, monthLong, year } = date;
-        const label = `${dayLong} ${monthLong} ${year}`;
-        if (!acc[label]) {
-          acc[label] = { day, dayLong, month, monthLong, year, label, value: 1 };
-        } else {
-          acc[label].value++;
-        }
-        return acc;
-      }, {});
-      return Object.values(result);
-    }
-  };
-
-  // part 3: sort data ascending, format, create labels
-  const formatAndSort = (filterLength, filter, formattedData) => {
-    const { month: isCumulativeMonth } = filter;
-    const formatted = [...formattedData];
-    // order ascending
-    if ((filterLength === 1 && isCumulativeMonth) || [2, 3].includes(filterLength)) {
-      let arr = [];
-      for (let day = 0; day < 32; day++) {
-        const entry = formatted.find(i => parseInt(i.day) === day);
-        if (entry) {
-          const { dayLong, month, monthLong, year, value } = entry;
-          const keyLabel = [
-            `${dayLong} ${monthLong} ${[2, 3].includes(filterLength) ? year : ""}:`,
-            `${value} climbs`,
-          ];
-          const tooltipLabel = `${value} climbs on ${dayLong} ${monthLong} ${
-            [2, 3].includes(filterLength) ? year : ""
-          }`;
-          const res = { keyLabel, tooltipLabel, value };
-          if ([2, 3].includes(filterLength)) {
-            res.itemFilter = `${year} ${month} ${day}`;
-          }
-          arr.push(res);
-        }
-      }
-      return arr;
-    }
-    if (filterLength === 1) {
-      // use months object to order by month
-      return Object.values(months).reduce((acc, monthLong) => {
-        const entry = formatted.find(i => i.monthLong === monthLong.label);
-        if (entry) {
-          const { month, monthLong, year, value } = entry;
-          const keyLabel = [`${monthLong} ${year}:`, `${value} climbs`];
-          const tooltipLabel = `${value} climbs in ${monthLong} ${year}`;
-          acc.push({ itemFilter: `${year} ${month}`, keyLabel, tooltipLabel, value });
-        }
-        return acc;
-      }, []);
-    }
-    return formatted;
-  };
-
-  // crunch data
-  const filteredData = filterLogs(filters, filter, logs);
-  const createdData = createData(filters, filter, filteredData);
-  const sortedData = formatAndSort(filters, filter, createdData);
-  return sortedData;
-};
-
-// set pie chart data:
-// - filters the settingState to get chart data
-const getChartData = (settingState: SettingsInt, logs: LogType[]) => {
-  const { type, date } = settingState;
-  const hasFilter = Object.values(settingState).find(i => i.filter);
-
-  // month
-  if (type === "date" && !hasFilter) {
-    return handleCumulativeDate(date.cumulative, logs);
-  }
-  // if (type === "date" && hasFilter.filter.day) {
-  //   return console.log('single day, no chart things');
-  // }
-
-  // year
-  if (type === "date" && hasFilter) {
-    return handleFilteredDate(hasFilter.filter, logs);
-  }
-  return;
-};
-
 type StatsProps = {
   handleSingleDay: (logs: LogType[], filter: FilterType) => void;
   isHidden: boolean;
@@ -286,7 +75,15 @@ type StatsProps = {
 const Stats: FC<StatsProps> = ({ handleSingleDay, isHidden, logs }) => {
   const [settings, setSettings] = useState<SettingsInt>(defaultSettings);
 
-  // put this in StatsHeader perhaps:
+  // use setSettings instead?
+  // better: settings dropdown, filter dropdown
+
+  // function prop<T, K extends keyof T>(obj: T, key: K) {
+  //   return obj[key];
+  // }
+  // extends keyof SettingsInt
+  // setDropdown: (type: keyof SettingsInt, item: ValueType<CategoryInt>) => void;
+  // setDropdown: (type: keyof SettingsInt, item: ValueType<CategoryInt>) => void;
   const setDropdown = (type: keyof SettingsInt, item: ValueType<CategoryInt>) => {
     const newSettings = { ...defaultSettings };
     const { value } = item;
@@ -300,7 +97,7 @@ const Stats: FC<StatsProps> = ({ handleSingleDay, isHidden, logs }) => {
 
   // prevent single day pie chart from showing
   const setFiltered = (type, data) => {
-    // - works with handleFilteredDate
+    // - works with handleSecondaryDate
     // - filters the settings object, used by getChartData
     const newSettings = JSON.parse(JSON.stringify(settings)); // need to deep clone
     const search = type ? type.toLowerCase() : null;
@@ -353,22 +150,16 @@ const Stats: FC<StatsProps> = ({ handleSingleDay, isHidden, logs }) => {
     setSettings(newSettings);
   };
 
-  const piechartData = getChartData(settings, logs);
-
-  const createPie = d3
-    .pie()
-    .value(d => d.value)
-    .sort(null);
-  const chartdata = piechartData ? createPie(piechartData) : null;
-
   const hasFilter = Object.values(settings).find(i => i.filter);
 
   // console.log('chartdata', chartdata);
   // console.log('hasFilter', hasFilter)
   // console.log("logs", logs);
 
-  // Single day log - probably best remove, as this makes a boring pie chart
+  // Single day log
   // - change to cut straight to logbook
+  // - does this by acting on parent state
+  // - want to remove the data processing stuff first
   useEffect(() => {
     if (hasFilter?.filter?.day) {
       const newLogs = [...logs];
@@ -386,6 +177,9 @@ const Stats: FC<StatsProps> = ({ handleSingleDay, isHidden, logs }) => {
       handleSingleDay(dailyLogs, filter);
     }
   }, [hasFilter]);
+
+  // chart data
+  const chartdata = createChartData(settings, logs);
 
   return (
     <StatsContextProvider>

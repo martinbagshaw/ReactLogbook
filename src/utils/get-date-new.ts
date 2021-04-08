@@ -84,6 +84,9 @@ const getText = (y: string, m?: DatePart, d?: DatePart): TextType => {
   return {l: y, s: y};
 }
 
+// probably best to return a single type
+// - handle the invalid date in a different function
+// - make responses predicatable
 export const getDateNew = (date?: string): DateType | DateTypeFail => {
   // must end in 2 or more digits, with a slash before
   if (!date || typeof date !== "string" || !/\/[0-9]{2,}$/.test(date)) {

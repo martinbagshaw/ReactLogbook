@@ -2,8 +2,6 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import * as d3 from "d3";
 
-import { ChartType } from "../../utils/types";
-
 const ArcGroup = styled.g<{ opacity: number }>`
   cursor: pointer;
   transition: opacity ease-in-out 0.3;
@@ -25,7 +23,7 @@ const format = d3.format(".0f");
 type PieArcProps = {
   activeArcIndex: number | undefined;
   createArc: d3.Arc<any, d3.DefaultArcObject>;
-  data: ChartType;
+  data: d3.PieArcDatum<number | { valueOf(): number }>;
   index: number;
   onClick: () => void;
   setTooltip: (index: number | undefined) => void;
