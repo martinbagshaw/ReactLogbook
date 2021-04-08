@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { ValueType } from "react-select";
 
 import { CategoryInt, FilterType, LogType, SettingsInt } from "../../utils/types";
+import { DateEnum } from "../../utils/constants";
 
 import { defaultSettings, months } from "../../utils/constants";
 
@@ -68,10 +69,12 @@ const BodySection = styled.section`
 // BUG:
 // - clicking from chart to log view (disappearing stuff)
 
-const handleCumulativeDate = (dateType, logs) => {
+// - - - - -
+// not working
+const handleCumulativeDate = (dateType: DateEnum, logs: LogType[]) => {
   const search = dateType.toLowerCase();
 
-  const createData = (monthOrYear, logs) => {
+  const createData = (monthOrYear: DateEnum, logs: LogType[]) => {
     const newLogs = [...logs];
     const res = newLogs.reduce((r, { date }) => {
       let label = date[monthOrYear];
@@ -88,28 +91,33 @@ const handleCumulativeDate = (dateType, logs) => {
     return res;
   };
 
+  // creates an array from object, adds key label, adds tooltip label
   const formatAndSort = (monthOrYear, logsObj) => {
     const newLogs = { ...logsObj };
     if (monthOrYear === "month") {
-      const valid = Object.values(months).map(({ text }) => {
-        const { label, value } = newLogs[text];
-        const monthAbbr = Object.keys(months).find(key => months[key].label === label);
+      // value is number of the month, not the climbs done in the month
+      const completeLogs = Object.entries(months).map(([key, { label }]) => {
+        const climbCount = newLogs[label].value;
         return {
-          keyLabel: [`${label}:`, `${value} climbs`],
-          itemFilter: monthAbbr,
-          tooltipLabel: `${value} climbs in ${label}`,
-          value,
+          keyLabel: [`${label}:`, `${climbCount} climbs`],
+          itemFilter: key,
+          tooltipLabel: `${climbCount} climbs in ${label}`,
+          value: climbCount,
         };
       });
-      const invalid = Object.values(newLogs).find(i => i.label === "unknown");
-      const { value } = invalid;
+
+      const invalidLogs = Object.values(newLogs).find(i => i.label === "unknown");
       const unknown = {
-        keyLabel: ["Unknown:", `${value} climbs`],
-        tooltipLabel: `${value} climbs on an unknown date`,
-        value,
+        keyLabel: ["Unknown:", `${invalidLogs.value} climbs`],
+        tooltipLabel: `${invalidLogs.value} climbs on an unknown date`,
+        value: invalidLogs.value,
       };
-      return invalid ? valid.concat(unknown) : valid;
+
+      return invalidLogs ? completeLogs.concat(unknown) : completeLogs;
     }
+
+    // when does this return?
+    // - thought we just cater to month?
     return Object.values(newLogs).map(i => {
       const { label, value } = i;
       return {
@@ -253,23 +261,29 @@ const handleFilteredDate = (filter, logs) => {
 const getChartData = (settingState: SettingsInt, logs: LogType[]) => {
   const { type, date } = settingState;
   const hasFilter = Object.values(settingState).find(i => i.filter);
+
+  // month
   if (type === "date" && !hasFilter) {
     return handleCumulativeDate(date.cumulative, logs);
   }
   // if (type === "date" && hasFilter.filter.day) {
   //   return console.log('single day, no chart things');
   // }
+
+  // year
   if (type === "date" && hasFilter) {
     return handleFilteredDate(hasFilter.filter, logs);
   }
+  return;
 };
 
-type Props = {
+type StatsProps = {
   handleSingleDay: (logs: LogType[], filter: FilterType) => void;
   isHidden: boolean;
   logs: LogType[];
 };
-const Stats: FC<Props> = ({ handleSingleDay, isHidden, logs }) => {
+
+const Stats: FC<StatsProps> = ({ handleSingleDay, isHidden, logs }) => {
   const [settings, setSettings] = useState<SettingsInt>(defaultSettings);
 
   // put this in StatsHeader perhaps:
@@ -339,7 +353,6 @@ const Stats: FC<Props> = ({ handleSingleDay, isHidden, logs }) => {
     setSettings(newSettings);
   };
 
-  const { type } = settings;
   const piechartData = getChartData(settings, logs);
 
   const createPie = d3
@@ -352,7 +365,7 @@ const Stats: FC<Props> = ({ handleSingleDay, isHidden, logs }) => {
 
   // console.log('chartdata', chartdata);
   // console.log('hasFilter', hasFilter)
-  // console.log('logs', logs)
+  // console.log("logs", logs);
 
   // Single day log - probably best remove, as this makes a boring pie chart
   // - change to cut straight to logbook
@@ -377,9 +390,9 @@ const Stats: FC<Props> = ({ handleSingleDay, isHidden, logs }) => {
   return (
     <StatsContextProvider>
       <StatContainer isHidden={isHidden}>
-        <StatsHeader logs={logs} setDropdown={setDropdown} type={type} />
+        <StatsHeader logs={logs} setDropdown={setDropdown} type={settings.type} />
         <BodySection>
-          {chartdata && type === "date" ? (
+          {chartdata && settings.type === "date" ? (
             <Fragment>
               <PieChart
                 chartdata={chartdata}
@@ -387,7 +400,7 @@ const Stats: FC<Props> = ({ handleSingleDay, isHidden, logs }) => {
                 height={500}
                 innerRadius={120}
                 outerRadius={200}
-                type={type}
+                type={settings.type}
                 setFiltered={setFiltered}
               />
               <Legend chartdata={chartdata} settings={settings} />
