@@ -1,4 +1,5 @@
 import { OptionTypeBase } from "react-select";
+import { DateEnum } from "./constants";
 
 export type Breakpoints =
   | "XXsmall"
@@ -89,12 +90,6 @@ export type DisciplineType = {
   label: DisciplineLabels;
 };
 
-type DefaultDates = "Year" | "Month";
-type DefaultDisciplines = "Bouldering" | "Ice" | "Mixed" | "Sport" | "Trad";
-type DefaultGrades = "Low" | "High"; // order low to high
-type DefaultPartners = string | undefined;
-type DefaultStyles = "Dnf" | "Dogged" | "Flashed" | "Onsight" | "Redpoint";
-
 export type FilterType = {
   day: string;
   month: string;
@@ -163,8 +158,14 @@ export type SearchType = {
 };
 
 export type SettingsType = "date" | "discipline" | "grade" | "partners" | "style";
+type DefaultDates = "Year" | "Month";
+type DefaultDisciplines = "Bouldering" | "Ice" | "Mixed" | "Sport" | "Trad";
+type DefaultGrades = "Low" | "High"; // order low to high
+type DefaultPartners = string | undefined;
+type DefaultStyles = "Dnf" | "Dogged" | "Flashed" | "Onsight" | "Redpoint";
+
 export interface SettingsInt {
-  date: { cumulative: DefaultDates };
+  date: { cumulative: DateEnum }; //DefaultDates
   discipline: { cumulative: DefaultDisciplines };
   grade: { cumulative: DefaultGrades };
   partners: { cumulative: DefaultPartners };

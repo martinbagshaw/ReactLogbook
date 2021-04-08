@@ -1,8 +1,13 @@
 import { GradeTypes, MonthType, SettingsInt } from "./types";
 import { colors } from "../components/common/styleVariables";
 
+export enum DateEnum {
+  YEAR = "Year",
+  MONTH = "month",
+}
+
 const defaultSettings: SettingsInt = {
-  date: { cumulative: "Year" },
+  date: { cumulative: DateEnum.YEAR },
   discipline: { cumulative: "Trad" },
   grade: { cumulative: "Low" },
   partners: { cumulative: undefined },
@@ -32,9 +37,14 @@ interface Month {
 }
 type Months = { [month in MonthType]: Month };
 
+// https://stackoverflow.com/questions/38245081/nested-objects-in-typescript
+// interface MonthCodes<T extends MonthType> {
+//   T: Month;
+// }
+
 // make this an ENUM?
 const months: Months = {
-  Jan: { label: "January", int: "01", value: 1 },// integer, label, value
+  Jan: { label: "January", int: "01", value: 1 }, // integer, label, value
   Feb: { label: "February", int: "02", value: 2 },
   Mar: { label: "March", int: "03", value: 3 },
   Apr: { label: "April", int: "04", value: 4 },
@@ -45,7 +55,7 @@ const months: Months = {
   Sep: { label: "September", int: "09", value: 9 },
   Oct: { label: "October", int: "10", value: 10 },
   Nov: { label: "November", int: "11", value: 11 },
-  Dec: { label: "December", int: "12", value: 12 }
+  Dec: { label: "December", int: "12", value: 12 },
 };
 
 const grades: GradeTypes = {
