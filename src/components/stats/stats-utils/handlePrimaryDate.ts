@@ -1,13 +1,28 @@
 import { LogType } from "../../../utils/types";
 import { DateEnum, months } from "../../../utils/constants";
 
-export const handlePrimaryDate = (dateType: DateEnum, logs: LogType[]) => {
-  const search = dateType.toLowerCase();
+interface PrimaryData {
+  keyLabel: string[];
+  itemFilter: string;
+  tooltipLabel: string;
+  value: number;
+}
 
-  const createData = (monthOrYear: DateEnum, logs: LogType[]) => {
+// see DateTypeNewFail. Same as dropdown items
+interface CreatedItem {
+  label: string;
+  value: number;
+}
+
+interface CreatedData {
+  [key: string]: CreatedItem;
+}
+
+export const handlePrimaryDate = (monthOrYear: DateEnum, logs: LogType[]): PrimaryData[] => {
+  const createData = (monthOrYear: DateEnum, logs: LogType[]): CreatedData => {
     const newLogs = [...logs];
     const res = newLogs.reduce((r, { date }) => {
-      let label = date[monthOrYear];
+      let label = date[monthOrYear]; // key of months
       if (monthOrYear === "month") {
         label = (months[label] && months[label].label) || "unknown";
       }
@@ -22,11 +37,13 @@ export const handlePrimaryDate = (dateType: DateEnum, logs: LogType[]) => {
   };
 
   // creates an array from object, adds key label, adds tooltip label
-  const formatAndSort = (monthOrYear, logsObj) => {
+  const formatAndSort = (monthOrYear: DateEnum, logsObj: CreatedData) => {
     const newLogs = { ...logsObj };
-    if (monthOrYear === "month") {
-      // value is number of the month, not the climbs done in the month
+
+    // month
+    if (monthOrYear === DateEnum.MONTH) {
       const completeLogs = Object.entries(months).map(([key, { label }]) => {
+        // number of climbs in one month:
         const climbCount = newLogs[label].value;
         return {
           keyLabel: [`${label}:`, `${climbCount} climbs`],
@@ -37,29 +54,28 @@ export const handlePrimaryDate = (dateType: DateEnum, logs: LogType[]) => {
       });
 
       const invalidLogs = Object.values(newLogs).find(i => i.label === "unknown");
-      const unknown = {
-        keyLabel: ["Unknown:", `${invalidLogs.value} climbs`],
-        tooltipLabel: `${invalidLogs.value} climbs on an unknown date`,
-        value: invalidLogs.value,
-      };
+      if (invalidLogs?.value) {
+        const unknown = {
+          keyLabel: ["Unknown:", `${invalidLogs.value} climbs`],
+          itemFilter: "",
+          tooltipLabel: `${invalidLogs.value} climbs on an unknown date`,
+          value: invalidLogs.value,
+        };
+        return completeLogs.concat(unknown);
+      }
 
-      return invalidLogs ? completeLogs.concat(unknown) : completeLogs;
+      return completeLogs;
     }
 
-    // when does this return?
-    // - thought we just cater to month?
-    return Object.values(newLogs).map(i => {
-      const { label, value } = i;
-      return {
-        keyLabel: [`${label}:`, `${value} climbs`],
-        itemFilter: label,
-        tooltipLabel: `${value} climbs in ${label}`,
-        value,
-      };
-    });
+    return Object.values(newLogs).map(({ label, value }) => ({
+      keyLabel: [`${label}:`, `${value} climbs`],
+      itemFilter: label,
+      tooltipLabel: `${value} climbs in ${label}`,
+      value,
+    }));
   };
 
-  const createdData = createData(search, logs);
-  const sortedData = formatAndSort(search, createdData);
+  const createdData = createData(monthOrYear, logs);
+  const sortedData = formatAndSort(monthOrYear, createdData);
   return sortedData;
 };

@@ -65,6 +65,7 @@ const DailyMessage = styled.p`
 const ViewContainer = styled.div`
   max-width: 60rem;
   margin: 1rem auto 0;
+  overflow-x: hidden;
 `;
 
 const ViewPanel = styled.div<{ translatePercent: number }>`

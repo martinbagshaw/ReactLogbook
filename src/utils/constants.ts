@@ -2,7 +2,7 @@ import { GradeTypes, MonthType, SettingsInt } from "./types";
 import { colors } from "../components/common/styleVariables";
 
 export enum DateEnum {
-  YEAR = "Year",
+  YEAR = "year",
   MONTH = "month",
 }
 
@@ -30,7 +30,7 @@ type MonthTypeLong =
   | "November"
   | "December";
 
-interface Month {
+export interface Month {
   label: MonthTypeLong;
   int: IntOptions; // remove when done
   value: number;
