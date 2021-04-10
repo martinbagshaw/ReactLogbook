@@ -158,7 +158,7 @@ export type SearchType = {
 };
 
 export type SettingsType = "date" | "discipline" | "grade" | "partners" | "style";
-type DefaultDates = "Year" | "Month";
+// type DefaultDates = "Year" | "Month";
 type DefaultDisciplines = "Bouldering" | "Ice" | "Mixed" | "Sport" | "Trad";
 type DefaultGrades = "Low" | "High"; // order low to high
 type DefaultPartners = string | undefined;
