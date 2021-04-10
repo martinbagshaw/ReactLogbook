@@ -96,16 +96,24 @@ const Stats: FC<StatsProps> = ({ handleSingleDay, isHidden, logs }) => {
   };
 
   // prevent single day pie chart from showing
-  const setFiltered = (type, data) => {
+  const setFiltered = (type: keyof SettingsInt, data) => {
     // - works with handleSecondaryDate
     // - filters the settings object, used by getChartData
-    const newSettings = JSON.parse(JSON.stringify(settings)); // need to deep clone
-    const search = type ? type.toLowerCase() : null;
+
+    // make a clone function for this:
+    const newSettings = JSON.parse(JSON.stringify(settings));
+
+    // handle reset:
     if (!type || !settings[type] || !settings[type].cumulative) {
       const resetSettings = { ...defaultSettings };
       return setSettings(resetSettings); // reset and return
     }
     const { cumulative, filter } = newSettings[type];
+
+    // filter and cumulative
+    // - this is confusing, there is no mention of filter in default settings
+    // - setFiltered is used for pie chart clicks only. Could also be used for the key
+    // https://github.com/martinbagshaw/ReactLogbook/issues/68
     if (!filter) {
       newSettings[type].filter = {};
     }
@@ -139,10 +147,9 @@ const Stats: FC<StatsProps> = ({ handleSingleDay, isHidden, logs }) => {
       return dateSetting;
     };
 
-    const setting = cumulative.toLowerCase();
-    switch (search) {
+    switch (type) {
       case "date":
-        newSettings[search] = handleDate(newSettings[search], setting, data);
+        newSettings[type] = handleDate(newSettings[type], cumulative, data);
         break;
       default:
         null;
@@ -153,7 +160,7 @@ const Stats: FC<StatsProps> = ({ handleSingleDay, isHidden, logs }) => {
   const hasFilter = Object.values(settings).find(i => i.filter);
 
   // console.log('chartdata', chartdata);
-  // console.log('hasFilter', hasFilter)
+  // console.log("hasFilter", hasFilter);
   // console.log("logs", logs);
 
   // Single day log
