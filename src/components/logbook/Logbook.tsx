@@ -3,15 +3,15 @@ import styled from "styled-components";
 
 import { LogType, SearchType } from "../../utils/types";
 
-import Search from "./Search";
-import SearchReset from "./SearchReset";
+import { Search } from "./Search";
+import { SearchReset } from "./SearchReset";
 import PageNav from "./PageNav";
 import Results from "./Results";
 import SingleLog from "../singleLog/SingleLog";
 
-const LogContainer = styled.div<{isHidden: boolean}>`
+const LogContainer = styled.div<{ isHidden: boolean }>`
   width: 50%;
-  ${({ isHidden }) => isHidden && `height: 0; opacity: 0`};
+  ${({ isHidden }) => isHidden && "height: 0; opacity: 0"};
 `;
 
 const defaultSearch: SearchType = {
@@ -20,11 +20,11 @@ const defaultSearch: SearchType = {
   results: undefined,
 };
 
-type Props = {
+type LogbookProps = {
   isHidden: boolean;
   logs: LogType[];
-}
-const Logbook: FC<Props> = ({ isHidden, logs }): JSX.Element => {
+};
+const Logbook: FC<LogbookProps> = ({ isHidden, logs }): JSX.Element => {
   const [search, setSearch] = useState<SearchType | undefined>(defaultSearch);
   const [page, setPage] = useState<{ low: number; high: number }>({ low: 0, high: 50 });
   const [singleLog, setSingleLog] = useState<LogType | undefined>(undefined);
@@ -66,15 +66,15 @@ const Logbook: FC<Props> = ({ isHidden, logs }): JSX.Element => {
             <Search handleSearch={handleSearch} handleSingleView={handleSingleView} {...search} />
             <PageNav {...page} logs={logs} handlePageChange={handlePageChange} />
             <Results {...page} logs={logs} handleSingleView={handleSingleView} />
+            <SearchReset
+              onClose={() => {
+                setSearch(defaultSearch);
+              }}
+            />
           </Fragment>
         )}
         {singleLog && <SingleLog {...singleLog} handleSingleView={handleSingleView} />}
       </div>
-      <SearchReset
-        onClose={() => {
-          setSearch(defaultSearch);
-        }}
-      />
     </LogContainer>
   );
 };

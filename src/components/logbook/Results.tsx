@@ -79,6 +79,11 @@ const Date = styled.span`
   margin-left: auto;
   display: flex;
   align-items: center;
+  @media only screen and (min-width: ${breakpoint.tablet}) {
+    flex: 2.5;
+    justify-content: space-between;
+    margin-left: 2rem;
+  }
 `;
 
 const Small = styled.span`

@@ -4,7 +4,7 @@ interface Props {
   onClose: () => void;
 }
 
-const SearchReset: FC<Props> = ({ onClose }) => {
+export const SearchReset: FC<Props> = ({ onClose }) => {
   const ref = useRef<HTMLDivElement>(null);
   const escapeListener = useCallback(
     e => {
@@ -16,7 +16,8 @@ const SearchReset: FC<Props> = ({ onClose }) => {
   );
   const clickListener = useCallback(
     e => {
-      if (ref.current && !ref.current.contains(e.target)) {
+      // Reset if no value is in the search bar with !e.target.value
+      if (ref.current && !ref.current.contains(e.target) && !e.target.value) {
         onClose?.();
       }
     },
@@ -32,7 +33,5 @@ const SearchReset: FC<Props> = ({ onClose }) => {
       document.removeEventListener("keyup", escapeListener);
     };
   }, [clickListener, escapeListener]);
-  return <div ref={ref}/>;
+  return <div ref={ref} />;
 };
-
-export default SearchReset;
