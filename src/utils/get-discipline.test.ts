@@ -22,6 +22,7 @@ import {
   temporaryLifestyle,
   theOverhang,
   theTube,
+  spam,
 } from "./test-data/test-data";
 
 afterEach(cleanup);
@@ -170,6 +171,20 @@ describe("getDiscipline tests", () => {
       const { Grade, Style } = theTube;
       const res = getDiscipline(Grade, Style);
       expect(res).toEqual({ value: "unknown", label: "Unable to determine" });
+    });
+    it("Spam = American grade, not enough info to determine. Handles number 5.9", () => {
+      const { Grade, Style } = spam;
+      const res = getDiscipline(Grade, Style);
+      expect(res).toEqual({ value: "unknown", label: "Unable to determine" });
+    });
+    it("Handles no values passed in for Grade", () => {
+      const { Grade } = spam;
+      const res = getDiscipline(Grade);
+      expect(res).toEqual({ value: "unknown", label: "Unable to determine" });
+    });
+    it("Handles no values passed in for Grade or Style", () => {
+      const res = getDiscipline();
+      expect(res).toEqual({ value: "none", label: "None found" });
     });
   });
 });
