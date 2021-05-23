@@ -92,6 +92,16 @@ export const theTube = {
   "Crag name": "Pat and Jack Pinnacle",
 };
 
+export const spam = {
+  "Climb name": "Spam",
+  Grade: 5.9,
+  Style: "Lead O/S",
+  "Partner(s)": "Dave from Wenatchee, WA",
+  Notes: "",
+  Date: "09/Nov/16",
+  "Crag name": "Indian Creek",
+};
+
 export const mobyDick = {
   "Climb name": "Moby Dick",
   Grade: "WI-3  ",

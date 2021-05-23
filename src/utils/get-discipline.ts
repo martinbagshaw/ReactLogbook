@@ -13,11 +13,22 @@
 
 import { DisciplineType } from "./types";
 
-export const getDiscipline = (gradeInput?: string, styleInput?: string): DisciplineType => {
+export const getDiscipline = (
+  gradeInput?: string | number,
+  styleInput?: string
+): DisciplineType => {
   if (!gradeInput || (!gradeInput && !styleInput)) {
     return { value: "none", label: "None found" };
   }
-  const grade = gradeInput.replace(/\*+$/, "").trim();
+  // handle numbers
+  let gradeString: string = "";
+  if (typeof gradeInput !== "string") {
+    gradeString = gradeInput.toString();
+  } else {
+    gradeString = gradeInput;
+  }
+
+  const grade = gradeString.replace(/\*+$/, "").trim();
 
   // alpine
   // <F PD AD D TD ED>, <with or without a +>, <space> <french sport grade>
@@ -25,7 +36,7 @@ export const getDiscipline = (gradeInput?: string, styleInput?: string): Discipl
     return { value: "alpine", label: "Alpine" };
   }
   // boulder
-  if (grade && /^f[0-5]\+?$/.test(grade) || /^f[6-9][A-C]\+?$/.test(grade)) {
+  if ((grade && /^f[0-5]\+?$/.test(grade)) || /^f[6-9][A-C]\+?$/.test(grade)) {
     return { value: "boulder", label: "Boulder Problem" };
   }
   // dws
