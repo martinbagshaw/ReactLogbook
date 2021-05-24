@@ -67,7 +67,7 @@ const SearchBar = styled.input`
 
 type SearchProps = Partial<SearchType> & {
   handleSearch: (value: string) => void;
-  handleSingleView: (index: string | null) => void;
+  handleSingleView: (index?: string) => void;
 };
 export const Search: FC<SearchProps> = ({
   handleSearch,

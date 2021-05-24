@@ -113,6 +113,7 @@ export type LogType = {
   dateNew: DateTypeNew | DateTypeNewFail;
   discipline: DisciplineType;
   grade: string;
+  index: string;
   key: string;
   notes?: string;
   partners: string;

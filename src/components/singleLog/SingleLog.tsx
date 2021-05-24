@@ -136,7 +136,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const getText = (item: keyof LogType, props: Props) => {
+const getText = (item: keyof LogType, props: SingleLogProps) => {
   if (item === "date") {
     const { dayLong, monthLong, year } = props[item];
     return {
@@ -148,17 +148,18 @@ const getText = (item: keyof LogType, props: Props) => {
   }
 };
 
-interface Props extends LogType {
-  handleSingleView: (index: string | null) => void;
+interface SingleLogProps extends LogType {
+  handleSingleView: (index?: string) => void;
+  handleStarred: () => void;
+  isStarred: boolean;
 }
-const SingleLog: FC<Props> = props => {
-  const { climbName, handleSingleView, notes } = props;
-
+const SingleLog: FC<SingleLogProps> = props => {
+  const { climbName, handleSingleView, handleStarred, isStarred, index, notes } = props;
   const logDetails: Array<LogbookType> = ["grade", "cragName", "style", "date", "partners"];
 
   return (
     <Container>
-      <BackButton onClick={() => handleSingleView(null)}>
+      <BackButton onClick={() => handleSingleView()}>
         {iconFunc("chevron", { fill: "unset", title: "back", direction: "left" })}
         <span>back</span>
       </BackButton>
@@ -183,7 +184,13 @@ const SingleLog: FC<Props> = props => {
         </LogList>
       </Content>
       <ButtonContainer>
-        <UpdateButton icon="star" title="star this ascent" />
+        <UpdateButton
+          icon="star"
+          title={isStarred ? "starred" : "star this ascent"}
+          onClick={handleStarred}
+          isActive={isStarred}
+          index={index}
+        />
         <UpdateButton icon="notes" title="add notes to this ascent" />
       </ButtonContainer>
     </Container>

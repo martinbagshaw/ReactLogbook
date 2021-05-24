@@ -85,7 +85,7 @@ const DateLarge = styled.span`
 `;
 
 interface SearchResultsProps {
-  handleSingleView: (index: string | null) => void;
+  handleSingleView: (index?: string) => void;
   results: LogType[];
 }
 
