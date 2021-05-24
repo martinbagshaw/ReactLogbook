@@ -1,5 +1,5 @@
-import React, { FC }  from "react";
-import { gradeBands } from '../../../utils/get-gradebands';
+import React, { FC } from "react";
+import { gradeBands } from "../../../utils/get-gradebands";
 
 interface Props {
   fill?: string;
@@ -7,10 +7,7 @@ interface Props {
   width?: string;
 }
 
-const GradeCircle: FC<Props> = ({
-  title = "Grade marker",
-  width = "36",
- }): JSX.Element => {
+const GradeCircle: FC<Props> = ({ title = "Grade marker", width = "36" }): JSX.Element => {
   // get the fill colour from the grade
   const [getGrade] = title.split(" ");
   const { band: fillColor } = gradeBands[getGrade];

@@ -5,6 +5,7 @@ import { LogType } from "../../utils/types";
 
 import { breakpoint, colors } from "../common/styleVariables";
 import Chevron from "../common/icons/Chevron";
+import { Icon } from "../common/icons/Icon";
 import { searchResultText } from "../common/Typography";
 import { buttonBase } from "../common/Buttons";
 
@@ -19,8 +20,9 @@ const ListItem = styled.li`
   width: 100%;
 `;
 
-const ListButton = styled.button`
+const ListButton = styled.button<{ isActive: boolean }>`
   ${buttonBase};
+  position: relative;
   display: flex;
   align-items: center;
   text-align: left;
@@ -33,12 +35,11 @@ const ListButton = styled.button`
   }
   border: 0.125rem solid transparent;
   border-radius: 0.125rem;
-  background-color: transparent;
   &:hover {
-    background-color: ${colors.lightGrey};
-    border-color: ${colors.midGrey};
+    background-color: ${({ isActive }) => colors[isActive ? "lightYellow" : "lightGrey"]};
+    border-color: ${({ isActive }) => colors[isActive ? "yellow" : "midGrey"]};
     svg {
-      fill: ${colors.black};
+      fill: ${({ isActive }) => colors[isActive ? "yellow" : "black"]};
     }
   }
   svg {
@@ -54,6 +55,15 @@ const ListButton = styled.button`
       fill: transparent;
     }
   }
+  > svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    fill: ${colors.yellow};
+  }
+  background-color: ${({ isActive }) => (isActive ? colors.lightYellow : "transparent")};
 `;
 
 const Climb = styled.span`
@@ -98,20 +108,24 @@ const Large = styled.span`
   }
 `;
 
-interface Props {
+interface ResultsProps {
   logs: LogType[];
   low: number;
   high: number;
-  handleSingleView: (index: string | null) => void;
+  handleSingleView: (index?: string) => void;
+  starredLogs: string[];
 }
-const Results: FC<Props> = ({ logs, low, high, handleSingleView }) => (
+
+const Results: FC<ResultsProps> = ({ logs, low, high, handleSingleView, starredLogs }) => (
   <ResultsList>
-    {logs.slice(low, high).map(({ climbName, cragName, date, grade, key, style }) => {
+    {logs.slice(low, high).map(({ climbName, cragName, date, grade, index, key, style }) => {
       // TODO: Simplify - in original data?
       const { day, dayLong, monthInt, monthLong, year, yearInt } = date;
+      const isActive = starredLogs.includes(`${index}-starred`);
       return (
         <ListItem key={key}>
-          <ListButton onClick={() => handleSingleView(key)}>
+          <ListButton onClick={() => handleSingleView(key)} isActive={isActive}>
+            {isActive && <Icon icon="star" />}
             <Climb>
               <strong>{climbName}</strong> - {grade}
             </Climb>{" "}

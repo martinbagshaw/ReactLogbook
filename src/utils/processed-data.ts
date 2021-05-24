@@ -15,6 +15,7 @@ const formatData = (rawData: InputLogType[]): LogType[] => {
       dateNew: getDateNew(item.Date),
       discipline: getDiscipline(item.Grade, item.Style),
       grade: `${item.Grade}`.replace(/\*+$/, "").trim(),
+      index: `ascent-${index}`,
       notes: item.Notes,
       partners: item["Partner(s)"] || "climbed alone / no partner listed",
       style: `${item.Style}`.replace(/&beta;|_/, "flash"),
