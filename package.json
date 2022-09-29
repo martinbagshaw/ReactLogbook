@@ -25,7 +25,7 @@
     ]
   },
   "dependencies": {
-    "d3": "^5.16.0",
+    "d3": "^7.6.1",
     "gh-pages": "^2.2.0",
     "matchmedia-polyfill": "^0.3.2",
     "react": "^16.13.1",
